@@ -1,0 +1,22 @@
+name: Deploy to Cloudflare Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@V4
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/pages-action@v1
+        with:
+          key: apiToken: ${ {{secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: $${{secrets.CLOUDFLARE_ACCENT_ID }
+          projectName: wangzhan
+          directory: /
+          gitHubToken: ${ {{secrets.GITHUC_TOKEN }}
