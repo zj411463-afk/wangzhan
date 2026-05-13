@@ -838,7 +838,8 @@
     }
 
     input[type="number"],
-    input[type="text"] {
+    input[type="text"],
+    select {
       width: 100%;
       min-height: 42px;
       border: 1px solid #cfd8d8;
@@ -851,7 +852,8 @@
     }
 
     input[type="number"]:focus,
-    input[type="text"]:focus {
+    input[type="text"]:focus,
+    select:focus {
       border-color: var(--accent);
       box-shadow: 0 0 0 3px rgba(8, 125, 131, .12);
     }
@@ -951,6 +953,103 @@
       border-left-color: var(--accent-3);
       background: rgba(230, 179, 74, .14);
       color: #6e4f11;
+    }
+
+    .converter-section {
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 352px;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .converter-panel,
+    .converter-notes {
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: rgba(251, 252, 252, .94);
+      box-shadow: var(--shadow);
+    }
+
+    .converter-panel {
+      overflow: hidden;
+    }
+
+    .converter-drop {
+      position: relative;
+      display: grid;
+      place-items: center;
+      min-height: 186px;
+      padding: 26px;
+      border-bottom: 1px solid var(--line);
+      text-align: center;
+      cursor: pointer;
+      background: linear-gradient(180deg, #ffffff, #f4f8f7);
+    }
+
+    .converter-drop input {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    .converter-body {
+      display: grid;
+      gap: 14px;
+      padding: 16px 18px 18px;
+    }
+
+    .converter-file {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      padding: 12px;
+      border-radius: 8px;
+      background: var(--panel-2);
+      border: 1px solid #e2e8e8;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .converter-actions {
+      display: grid;
+      grid-template-columns: minmax(160px, 220px) 1fr;
+      gap: 12px;
+      align-items: end;
+    }
+
+    .converter-notes {
+      padding: 16px;
+      display: grid;
+      gap: 12px;
+      position: sticky;
+      top: 14px;
+    }
+
+    .converter-note {
+      padding: 12px;
+      border-left: 3px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+      background: rgba(8, 125, 131, .08);
+      color: #285250;
+      font-size: 13px;
+      line-height: 1.58;
+    }
+
+    .converter-note.warn {
+      border-left-color: var(--accent-2);
+      background: rgba(201, 64, 86, .10);
+      color: #7d2431;
+    }
+
+    .converter-note b {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--deep);
+      font-size: 14px;
     }
 
     .seo-section {
@@ -1172,6 +1271,14 @@
         position: static;
       }
 
+      .converter-section {
+        grid-template-columns: 1fr;
+      }
+
+      .converter-notes {
+        position: static;
+      }
+
       .seo-grid {
         grid-template-columns: 1fr;
       }
@@ -1271,6 +1378,10 @@
 
       .side {
         padding: 14px;
+      }
+
+      .converter-actions {
+        grid-template-columns: 1fr;
       }
     }
 
@@ -1462,6 +1573,64 @@
       </main>
     </section>
 
+    <section class="tool-section" id="converter">
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker" data-i18n="converterKicker">Format Converter</p>
+          <h2 data-i18n="converterTitle">普通音频转 MP3</h2>
+        </div>
+        <p data-i18n="converterText">把你有权处理的未加密音频转换成 MP3。适合普通 M4A、WAV、FLAC、OGG、AAC 等文件；不支持破解平台加密格式。</p>
+      </div>
+
+      <div class="converter-section">
+        <div class="converter-panel">
+          <label class="converter-drop" id="converterDropzone">
+            <input id="converterInput" type="file" accept="audio/*,.mp3,.wav,.m4a,.aac,.flac,.ogg,.wma,.ape,.mka,.mcn,.ncm,.kgm,.kgma,.qmc,.qmc0,.qmc3,.qmcflac,.qmcogg,.mflac,.mgg,.kwm">
+            <span>
+              <span class="upload-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M12 3v12"></path><path d="m7 10 5 5 5-5"></path><path d="M5 21h14"></path></svg>
+              </span>
+              <span class="drop-title" data-i18n="converterDropTitle">选择要转换的音频文件</span>
+              <span class="drop-copy" data-i18n="converterDropCopy">转换在浏览器本地执行。第一次使用会加载 FFmpeg 核心，文件越大等待越久。</span>
+            </span>
+          </label>
+
+          <div class="converter-body">
+            <div class="converter-file">
+              <span id="converterFileName" data-i18n="converterNoFile">未选择转换文件</span>
+              <span id="converterStatus" data-i18n="converterStatusReady">准备转换</span>
+            </div>
+            <div class="converter-actions">
+              <label>
+                <span data-i18n="converterBitrate">MP3 码率</span>
+                <select id="converterBitrate">
+                  <option value="128k">128 kbps</option>
+                  <option value="192k" selected>192 kbps</option>
+                  <option value="256k">256 kbps</option>
+                  <option value="320k">320 kbps</option>
+                </select>
+              </label>
+              <button class="icon primary" id="convertBtn" type="button">
+                <svg viewBox="0 0 24 24"><path d="M4 7h11"></path><path d="m12 4 3 3-3 3"></path><path d="M20 17H9"></path><path d="m12 20-3-3 3-3"></path></svg>
+                <span data-i18n="converterButton">转换并下载 MP3</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <aside class="converter-notes">
+          <p class="converter-note">
+            <b data-i18n="converterNoteTitle">关于音质</b>
+            <span data-i18n="converterNoteText">转 MP3 必须重新编码，所以不是无损。想保持音质，优先使用原 MP3/WAV 的无损切割功能。</span>
+          </p>
+          <p class="converter-note warn">
+            <b data-i18n="converterEncryptedTitle">平台加密格式</b>
+            <span data-i18n="converterEncryptedText">网易云 .ncm、酷狗 .kgm、QQ 音乐 .qmc* 等加密文件不支持解密或绕过保护。请使用无 DRM 的合法音频文件。</span>
+          </p>
+        </aside>
+      </div>
+    </section>
+
     <section class="seo-section" aria-labelledby="seoTitle">
       <div>
         <p class="section-kicker" data-i18n="seoKicker">SEO Guide</p>
@@ -1599,6 +1768,12 @@
       sizeLabel: document.querySelector("#sizeLabel"),
       zoomRange: document.querySelector("#zoomRange"),
       languageSelect: document.querySelector("#languageSelect"),
+      converterDropzone: document.querySelector("#converterDropzone"),
+      converterInput: document.querySelector("#converterInput"),
+      converterFileName: document.querySelector("#converterFileName"),
+      converterStatus: document.querySelector("#converterStatus"),
+      converterBitrate: document.querySelector("#converterBitrate"),
+      convertBtn: document.querySelector("#convertBtn"),
       toast: document.querySelector("#toast")
     };
 
@@ -1619,12 +1794,36 @@
       format: null,
       peaks: [],
       lang: "zh",
-      languageMode: "auto"
+      languageMode: "auto",
+      converterFile: null,
+      ffmpeg: null,
+      ffmpegFetchFile: null,
+      ffmpegLoaded: false,
+      converting: false
     };
 
     const seoTranslations = {
       zh: {
         metaDescription: "免费的在线无损音频切割工具，支持 MP3 按帧剪切、WAV 按采样块裁剪。文件只在浏览器本地处理，不上传服务器、无需注册，适合制作铃声、采样和音乐片段。",
+        converterKicker: "格式转换",
+        converterTitle: "普通音频转 MP3",
+        converterText: "把你有权处理的未加密音频转换成 MP3。适合普通 M4A、WAV、FLAC、OGG、AAC 等文件；不支持破解平台加密格式。",
+        converterDropTitle: "选择要转换的音频文件",
+        converterDropCopy: "转换在浏览器本地执行。第一次使用会加载 FFmpeg 核心，文件越大等待越久。",
+        converterNoFile: "未选择转换文件",
+        converterStatusReady: "准备转换",
+        converterBitrate: "MP3 码率",
+        converterButton: "转换并下载 MP3",
+        converterNoteTitle: "关于音质",
+        converterNoteText: "转 MP3 必须重新编码，所以不是无损。想保持音质，优先使用原 MP3/WAV 的无损切割功能。",
+        converterEncryptedTitle: "平台加密格式",
+        converterEncryptedText: "网易云 .ncm、酷狗 .kgm、QQ 音乐 .qmc* 等加密文件不支持解密或绕过保护。请使用无 DRM 的合法音频文件。",
+        converterEncryptedStatus: "检测到平台加密格式，无法转换。",
+        converterLoading: "正在加载转换核心...",
+        converterConverting: "正在转换 MP3，请稍候...",
+        converterDone: "转换完成，已开始下载。",
+        converterFailed: "转换失败。请确认文件未加密且格式可被 FFmpeg 读取。",
+        converterChooseAudio: "请先选择要转换的音频文件。",
         seoKicker: "搜索指南",
         seoTitle: "在线无损音频切割、MP3剪切与WAV裁剪",
         seoIntro: "Sonic Cutter 是一个免费的在线音频切割工具，适合快速裁剪音乐片段、制作手机铃声、整理采样素材和导出播客片段。工具优先保留原始音频数据：MP3 按音频帧边界剪切，WAV 按采样块边界裁剪，导出过程不重新编码、不重新压缩。",
@@ -1679,6 +1878,25 @@
       },
       en: {
         metaDescription: "Free online lossless audio cutter for MP3 frame-based cutting and WAV sample-block trimming. Files are processed locally in your browser with no upload and no signup.",
+        converterKicker: "Format Converter",
+        converterTitle: "Convert regular audio to MP3",
+        converterText: "Convert unencrypted audio you have the right to process into MP3. Works for common M4A, WAV, FLAC, OGG, AAC and similar files; it does not break protected platform formats.",
+        converterDropTitle: "Choose an audio file to convert",
+        converterDropCopy: "Conversion runs locally in the browser. The first run loads the FFmpeg core, and larger files take longer.",
+        converterNoFile: "No conversion file selected",
+        converterStatusReady: "Ready to convert",
+        converterBitrate: "MP3 bitrate",
+        converterButton: "Convert and download MP3",
+        converterNoteTitle: "About quality",
+        converterNoteText: "MP3 conversion requires re-encoding, so it is not lossless. To preserve quality, use lossless MP3/WAV cutting when possible.",
+        converterEncryptedTitle: "Protected platform formats",
+        converterEncryptedText: "Encrypted NetEase .ncm, Kugou .kgm, QQ Music .qmc* and similar files are not decrypted or bypassed. Use legal DRM-free audio files.",
+        converterEncryptedStatus: "Protected platform format detected; cannot convert.",
+        converterLoading: "Loading conversion core...",
+        converterConverting: "Converting to MP3. Please wait...",
+        converterDone: "Conversion finished. Download started.",
+        converterFailed: "Conversion failed. Make sure the file is unencrypted and readable by FFmpeg.",
+        converterChooseAudio: "Choose an audio file to convert first.",
         seoKicker: "SEO Guide",
         seoTitle: "Online lossless audio cutting, MP3 cutting, and WAV trimming",
         seoIntro: "Sonic Cutter is a free online audio cutter for trimming music, making ringtones, organizing samples, and exporting podcast clips. It preserves original audio data whenever possible: MP3 is cut on frame boundaries, WAV is cut on sample blocks, and exports are not re-encoded.",
@@ -1733,6 +1951,25 @@
       },
       ja: {
         metaDescription: "無料のオンラインロスレス音声カッター。MP3 はフレーム単位、WAV はサンプルブロック単位で切り出し、ファイルはブラウザ内で処理されます。",
+        converterKicker: "形式変換",
+        converterTitle: "通常音声を MP3 に変換",
+        converterText: "処理する権利のある暗号化されていない音声を MP3 に変換します。一般的な M4A、WAV、FLAC、OGG、AAC などに対応し、保護された配信形式の解除はしません。",
+        converterDropTitle: "変換する音声ファイルを選択",
+        converterDropCopy: "変換はブラウザ内で行います。初回は FFmpeg コアを読み込むため、大きいファイルほど時間がかかります。",
+        converterNoFile: "変換ファイル未選択",
+        converterStatusReady: "変換準備完了",
+        converterBitrate: "MP3 ビットレート",
+        converterButton: "MP3 に変換してダウンロード",
+        converterNoteTitle: "音質について",
+        converterNoteText: "MP3 変換は再エンコードが必要なためロスレスではありません。音質を保つなら、可能な限り MP3/WAV のロスレス切り出しを使ってください。",
+        converterEncryptedTitle: "保護された配信形式",
+        converterEncryptedText: "网易云 .ncm、酷狗 .kgm、QQ Music .qmc* などの暗号化ファイルの解除や回避には対応しません。DRM なしの合法的な音声を使用してください。",
+        converterEncryptedStatus: "保護された配信形式を検出したため変換できません。",
+        converterLoading: "変換コアを読み込み中...",
+        converterConverting: "MP3 に変換中です。お待ちください...",
+        converterDone: "変換完了。ダウンロードを開始しました。",
+        converterFailed: "変換に失敗しました。ファイルが暗号化されておらず FFmpeg で読める形式か確認してください。",
+        converterChooseAudio: "先に変換する音声ファイルを選択してください。",
         seoKicker: "SEO ガイド",
         seoTitle: "オンラインでロスレス音声切り出し、MP3 カット、WAV トリミング",
         seoIntro: "Sonic Cutter は音楽の一部切り出し、着信音作成、サンプル整理、ポッドキャスト編集に使える無料のオンライン音声カッターです。MP3 はフレーム境界、WAV はサンプルブロックで切り出し、再エンコードを避けます。",
@@ -1787,6 +2024,25 @@
       },
       ko: {
         metaDescription: "무료 온라인 무손실 오디오 커터입니다. MP3는 프레임 기준, WAV는 샘플 블록 기준으로 자르며 파일은 브라우저 로컬에서 처리됩니다.",
+        converterKicker: "형식 변환",
+        converterTitle: "일반 오디오를 MP3로 변환",
+        converterText: "처리 권한이 있는 암호화되지 않은 오디오를 MP3로 변환합니다. 일반 M4A, WAV, FLAC, OGG, AAC 등에 적합하며 보호된 플랫폼 형식을 우회하지 않습니다.",
+        converterDropTitle: "변환할 오디오 파일 선택",
+        converterDropCopy: "변환은 브라우저 로컬에서 실행됩니다. 처음 사용할 때 FFmpeg 코어를 불러오며 파일이 클수록 오래 걸립니다.",
+        converterNoFile: "변환 파일이 선택되지 않음",
+        converterStatusReady: "변환 준비 완료",
+        converterBitrate: "MP3 비트레이트",
+        converterButton: "MP3로 변환하고 다운로드",
+        converterNoteTitle: "음질 안내",
+        converterNoteText: "MP3 변환은 재인코딩이 필요하므로 무손실이 아닙니다. 음질 보존이 중요하면 가능한 경우 MP3/WAV 무손실 자르기를 사용하세요.",
+        converterEncryptedTitle: "보호된 플랫폼 형식",
+        converterEncryptedText: "网易云 .ncm, 酷狗 .kgm, QQ Music .qmc* 같은 암호화 파일은 해독하거나 우회하지 않습니다. DRM 없는 합법 오디오를 사용하세요.",
+        converterEncryptedStatus: "보호된 플랫폼 형식이 감지되어 변환할 수 없습니다.",
+        converterLoading: "변환 코어를 불러오는 중...",
+        converterConverting: "MP3로 변환 중입니다. 잠시 기다려 주세요...",
+        converterDone: "변환 완료. 다운로드를 시작했습니다.",
+        converterFailed: "변환 실패. 파일이 암호화되지 않았고 FFmpeg에서 읽을 수 있는지 확인하세요.",
+        converterChooseAudio: "먼저 변환할 오디오 파일을 선택하세요.",
         seoKicker: "SEO 가이드",
         seoTitle: "온라인 무손실 오디오 자르기, MP3 커터, WAV 트리머",
         seoIntro: "Sonic Cutter는 음악 클립, 벨소리, 샘플, 팟캐스트 구간을 빠르게 자르는 무료 온라인 오디오 커터입니다. MP3는 프레임 경계, WAV는 샘플 블록 기준으로 잘라 재인코딩을 피합니다.",
@@ -1841,6 +2097,25 @@
       },
       fr: {
         metaDescription: "Outil gratuit de découpe audio sans perte en ligne. MP3 aligné sur les trames, WAV aligné sur les blocs d'échantillons, traitement local dans le navigateur.",
+        converterKicker: "Convertisseur",
+        converterTitle: "Convertir un audio standard en MP3",
+        converterText: "Convertissez en MP3 les fichiers audio non chiffrés que vous avez le droit de traiter. Convient aux M4A, WAV, FLAC, OGG, AAC courants ; ne contourne pas les formats protégés.",
+        converterDropTitle: "Choisir un fichier audio à convertir",
+        converterDropCopy: "La conversion se fait localement dans le navigateur. Le premier usage charge le noyau FFmpeg ; les gros fichiers prennent plus de temps.",
+        converterNoFile: "Aucun fichier de conversion choisi",
+        converterStatusReady: "Prêt à convertir",
+        converterBitrate: "Débit MP3",
+        converterButton: "Convertir et télécharger le MP3",
+        converterNoteTitle: "À propos de la qualité",
+        converterNoteText: "La conversion MP3 réencode le son, elle n'est donc pas sans perte. Pour préserver la qualité, utilisez la découpe sans perte MP3/WAV si possible.",
+        converterEncryptedTitle: "Formats de plateformes protégés",
+        converterEncryptedText: "Les fichiers chiffrés NetEase .ncm, Kugou .kgm, QQ Music .qmc* et similaires ne sont pas déchiffrés ni contournés. Utilisez des fichiers légaux sans DRM.",
+        converterEncryptedStatus: "Format protégé détecté ; conversion impossible.",
+        converterLoading: "Chargement du moteur de conversion...",
+        converterConverting: "Conversion en MP3. Veuillez patienter...",
+        converterDone: "Conversion terminée. Téléchargement lancé.",
+        converterFailed: "Échec de la conversion. Vérifiez que le fichier n'est pas chiffré et qu'il est lisible par FFmpeg.",
+        converterChooseAudio: "Choisissez d'abord un fichier audio à convertir.",
         seoKicker: "Guide SEO",
         seoTitle: "Découpe audio sans perte en ligne, découpe MP3 et rognage WAV",
         seoIntro: "Sonic Cutter est un outil gratuit pour découper de la musique, créer des sonneries, organiser des samples et exporter des extraits de podcast. MP3 est découpé sur les trames, WAV sur les blocs d'échantillons, sans réencodage.",
@@ -1895,6 +2170,25 @@
       },
       de: {
         metaDescription: "Kostenloser verlustfreier Online-Audio-Cutter. MP3 wird an Frames, WAV an Sample-Blöcken geschnitten. Dateien bleiben lokal im Browser.",
+        converterKicker: "Formatkonverter",
+        converterTitle: "Normales Audio in MP3 konvertieren",
+        converterText: "Konvertiere unverschlüsselte Audiodateien, die du verarbeiten darfst, in MP3. Geeignet für gängige M4A, WAV, FLAC, OGG, AAC; geschützte Plattformformate werden nicht umgangen.",
+        converterDropTitle: "Audiodatei zum Konvertieren wählen",
+        converterDropCopy: "Die Konvertierung läuft lokal im Browser. Beim ersten Mal wird der FFmpeg-Kern geladen; große Dateien dauern länger.",
+        converterNoFile: "Keine Konvertierungsdatei gewählt",
+        converterStatusReady: "Bereit zum Konvertieren",
+        converterBitrate: "MP3-Bitrate",
+        converterButton: "In MP3 konvertieren und laden",
+        converterNoteTitle: "Zur Qualität",
+        converterNoteText: "MP3-Konvertierung erfordert Neukodierung und ist nicht verlustfrei. Für beste Qualität nutze nach Möglichkeit den verlustfreien MP3/WAV-Schnitt.",
+        converterEncryptedTitle: "Geschützte Plattformformate",
+        converterEncryptedText: "Verschlüsselte NetEase .ncm, Kugou .kgm, QQ Music .qmc* und ähnliche Dateien werden nicht entschlüsselt oder umgangen. Nutze legale DRM-freie Audiodateien.",
+        converterEncryptedStatus: "Geschütztes Plattformformat erkannt; Konvertierung nicht möglich.",
+        converterLoading: "Konvertierungskern wird geladen...",
+        converterConverting: "Konvertiere zu MP3. Bitte warten...",
+        converterDone: "Konvertierung fertig. Download gestartet.",
+        converterFailed: "Konvertierung fehlgeschlagen. Prüfe, ob die Datei unverschlüsselt und für FFmpeg lesbar ist.",
+        converterChooseAudio: "Wähle zuerst eine Audiodatei zum Konvertieren.",
         seoKicker: "SEO-Leitfaden",
         seoTitle: "Verlustfreies Audio online schneiden, MP3 schneiden und WAV trimmen",
         seoIntro: "Sonic Cutter ist ein kostenloser Online-Audio-Cutter für Musikclips, Klingeltöne, Samples und Podcast-Ausschnitte. MP3 wird an Frame-Grenzen, WAV an Sample-Blöcken geschnitten, ohne neu zu kodieren.",
@@ -1949,6 +2243,25 @@
       },
       es: {
         metaDescription: "Cortador de audio online sin pérdida y gratis. MP3 se corta por frames y WAV por bloques de muestra. Los archivos se procesan localmente en el navegador.",
+        converterKicker: "Convertidor",
+        converterTitle: "Convertir audio normal a MP3",
+        converterText: "Convierte a MP3 audio no cifrado que tengas derecho a procesar. Sirve para M4A, WAV, FLAC, OGG, AAC comunes; no rompe formatos protegidos de plataformas.",
+        converterDropTitle: "Elige un archivo de audio",
+        converterDropCopy: "La conversión se ejecuta localmente en el navegador. La primera vez carga el núcleo FFmpeg; los archivos grandes tardan más.",
+        converterNoFile: "Ningún archivo de conversión seleccionado",
+        converterStatusReady: "Listo para convertir",
+        converterBitrate: "Bitrate MP3",
+        converterButton: "Convertir y descargar MP3",
+        converterNoteTitle: "Sobre la calidad",
+        converterNoteText: "Convertir a MP3 requiere recodificar, así que no es sin pérdida. Para conservar calidad, usa el corte sin pérdida de MP3/WAV cuando sea posible.",
+        converterEncryptedTitle: "Formatos protegidos",
+        converterEncryptedText: "Los archivos cifrados NetEase .ncm, Kugou .kgm, QQ Music .qmc* y similares no se descifran ni se evaden. Usa audio legal sin DRM.",
+        converterEncryptedStatus: "Formato protegido detectado; no se puede convertir.",
+        converterLoading: "Cargando núcleo de conversión...",
+        converterConverting: "Convirtiendo a MP3. Espera un momento...",
+        converterDone: "Conversión terminada. Descarga iniciada.",
+        converterFailed: "Error de conversión. Confirma que el archivo no esté cifrado y que FFmpeg pueda leerlo.",
+        converterChooseAudio: "Elige primero un archivo de audio para convertir.",
         seoKicker: "Guía SEO",
         seoTitle: "Cortar audio online sin pérdida, cortar MP3 y recortar WAV",
         seoIntro: "Sonic Cutter es un cortador de audio online gratuito para recortar música, crear tonos, organizar samples y exportar fragmentos de podcast. MP3 se corta por límites de frame y WAV por bloques de muestra, sin recodificar.",
@@ -2436,6 +2749,29 @@
       if (event.target.files[0]) loadFile(event.target.files[0]);
     });
 
+    els.converterInput.addEventListener("change", (event) => {
+      if (event.target.files[0]) setConverterFile(event.target.files[0]);
+    });
+
+    ["dragenter", "dragover"].forEach((name) => {
+      els.converterDropzone.addEventListener(name, (event) => {
+        event.preventDefault();
+        els.converterDropzone.classList.add("is-dragging");
+      });
+    });
+
+    ["dragleave", "drop"].forEach((name) => {
+      els.converterDropzone.addEventListener(name, (event) => {
+        event.preventDefault();
+        els.converterDropzone.classList.remove("is-dragging");
+      });
+    });
+
+    els.converterDropzone.addEventListener("drop", (event) => {
+      const file = event.dataTransfer.files[0];
+      if (file) setConverterFile(file);
+    });
+
     ["dragenter", "dragover"].forEach((name) => {
       els.dropzone.addEventListener(name, (event) => {
         event.preventDefault();
@@ -2471,6 +2807,7 @@
     els.fullBtn.addEventListener("click", () => setSelection(0, state.duration));
     els.clearBtn.addEventListener("click", resetApp);
     els.saveBtn.addEventListener("click", saveClip);
+    els.convertBtn.addEventListener("click", convertToMp3);
     els.zoomRange.addEventListener("input", () => {
       state.zoom = Number(els.zoomRange.value);
       state.offset = Math.min(state.offset, Math.max(0, state.duration - visibleDuration()));
@@ -2485,6 +2822,97 @@
     els.endInput.addEventListener("input", () => {
       setSelection(state.start, Number(els.endInput.value));
     });
+
+    function setConverterFile(file) {
+      state.converterFile = file;
+      els.converterFileName.textContent = `${file.name} · ${formatBytes(file.size)}`;
+      if (isProtectedMusicFormat(file.name)) {
+        els.converterStatus.textContent = t("converterEncryptedStatus");
+        els.converterStatus.className = "status warn";
+        showToast(t("converterEncryptedStatus"));
+        return;
+      }
+      els.converterStatus.textContent = t("converterStatusReady");
+      els.converterStatus.className = "";
+    }
+
+    function isProtectedMusicFormat(name) {
+      const lower = String(name || "").toLowerCase();
+      const ext = lower.split(".").pop() || "";
+      return ["ncm", "kgm", "kgma", "vpr", "kwm", "mflac", "mgg", "mggl"].includes(ext)
+        || ext.startsWith("qmc")
+        || lower.includes(".qmc");
+    }
+
+    async function ensureFfmpeg() {
+      if (state.ffmpegLoaded) return;
+      els.converterStatus.textContent = t("converterLoading");
+      const ffmpegBase = "https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.10/dist/esm";
+      const [{ FFmpeg }, { fetchFile, toBlobURL }] = await Promise.all([
+        import(`${ffmpegBase}/index.js`),
+        import("https://cdn.jsdelivr.net/npm/@ffmpeg/util@0.12.1/dist/esm/index.js")
+      ]);
+      const ffmpeg = new FFmpeg();
+      const coreBase = "https://cdn.jsdelivr.net/npm/@ffmpeg/core@0.12.6/dist/umd";
+      await ffmpeg.load({
+        classWorkerURL: await toBlobURL(`${ffmpegBase}/worker.js`, "text/javascript"),
+        coreURL: await toBlobURL(`${coreBase}/ffmpeg-core.js`, "text/javascript"),
+        wasmURL: await toBlobURL(`${coreBase}/ffmpeg-core.wasm`, "application/wasm")
+      });
+      state.ffmpeg = ffmpeg;
+      state.ffmpegFetchFile = fetchFile;
+      state.ffmpegLoaded = true;
+    }
+
+    async function convertToMp3() {
+      const file = state.converterFile;
+      if (!file) {
+        showToast(t("converterChooseAudio"));
+        return;
+      }
+      if (isProtectedMusicFormat(file.name)) {
+        els.converterStatus.textContent = t("converterEncryptedStatus");
+        showToast(t("converterEncryptedStatus"));
+        return;
+      }
+      if (state.converting) return;
+
+      state.converting = true;
+      els.convertBtn.disabled = true;
+      try {
+        await ensureFfmpeg();
+        els.converterStatus.textContent = t("converterConverting");
+        const ext = (file.name.split(".").pop() || "audio").replace(/[^a-z0-9]/gi, "").toLowerCase() || "audio";
+        const inputName = `input-${Date.now()}.${ext}`;
+        const outputName = `converted-${Date.now()}.mp3`;
+        await state.ffmpeg.writeFile(inputName, await state.ffmpegFetchFile(file));
+        await state.ffmpeg.exec(["-i", inputName, "-vn", "-codec:a", "libmp3lame", "-b:a", els.converterBitrate.value, outputName]);
+        const output = await state.ffmpeg.readFile(outputName);
+        const blob = new Blob([output], { type: "audio/mpeg" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = `${cleanName(file.name.replace(/\.[^.]+$/, ""))}.mp3`;
+        document.body.append(link);
+        link.click();
+        link.remove();
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
+        try {
+          await state.ffmpeg.deleteFile(inputName);
+          await state.ffmpeg.deleteFile(outputName);
+        } catch (error) {
+        }
+        els.converterStatus.textContent = t("converterDone");
+        showToast(t("converterDone"));
+      } catch (error) {
+        console.error(error);
+        els.converterStatus.textContent = t("converterFailed");
+        showToast(t("converterFailed"));
+      } finally {
+        state.converting = false;
+        els.convertBtn.disabled = false;
+      }
+    }
 
     async function loadFile(file) {
       if (!file.type.startsWith("audio/") && !/\.(mp3|wav)$/i.test(file.name)) {
@@ -3096,7 +3524,20 @@
         els.fileMeta.textContent = `${formatBytes(state.file.size)} · ${state.file.type || t("unknownType")}`;
         updateFormatStatus();
       }
+      updateConverterLanguageState();
       drawWaveform();
+    }
+
+    function updateConverterLanguageState() {
+      if (!state.converterFile) {
+        els.converterFileName.textContent = t("converterNoFile");
+        if (!state.converting) els.converterStatus.textContent = t("converterStatusReady");
+        return;
+      }
+      els.converterFileName.textContent = `${state.converterFile.name} · ${formatBytes(state.converterFile.size)}`;
+      if (!state.converting && isProtectedMusicFormat(state.converterFile.name)) {
+        els.converterStatus.textContent = t("converterEncryptedStatus");
+      }
     }
 
     async function initializeLanguage(forceIpLookup = false) {
