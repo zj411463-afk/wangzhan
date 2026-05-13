@@ -3,74 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>在线无损音频切割工具｜MP3剪切、WAV裁剪、本地处理</title>
-  <meta name="description" content="免费的在线无损音频切割工具，支持 MP3 按帧剪切、WAV 按采样块裁剪。文件只在浏览器本地处理，不上传服务器，适合制作铃声、采样和音乐片段。">
-  <meta name="keywords" content="音频切割, MP3剪切, WAV裁剪, 在线音频剪辑, 无损音频切割, 音乐裁剪, 铃声制作, audio cutter, mp3 cutter, wav cutter">
-  <meta name="robots" content="index, follow">
-  <meta name="theme-color" content="#087d83">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="在线无损音频切割工具">
-  <meta property="og:description" content="上传 MP3 或 WAV，选择波形片段并本地导出。尽量保持原始音质，不重新压缩。">
-  <meta property="og:image" content="assets/sonic-hero.jpg">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="在线无损音频切割工具">
-  <meta name="twitter:description" content="浏览器本地完成 MP3/WAV 音频切割，不上传文件。">
-  <meta name="twitter:image" content="assets/sonic-hero.jpg">
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "WebApplication",
-          "name": "Sonic Cutter",
-          "applicationCategory": "MultimediaApplication",
-          "operatingSystem": "Web browser",
-          "description": "在线无损音频切割工具，支持 MP3 按音频帧剪切、WAV 按采样块裁剪，文件在浏览器本地处理。",
-          "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "USD"
-          },
-          "featureList": [
-            "MP3 frame-aligned cutting",
-            "WAV sample-block cutting",
-            "Local browser processing",
-            "Waveform range selection",
-            "No recompression export"
-          ]
-        },
-        {
-          "@type": "FAQPage",
-          "mainEntity": [
-            {
-              "@type": "Question",
-              "name": "这个音频切割工具会上传我的音乐吗？",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "不会。文件会在浏览器本地读取、预览和导出，不上传到服务器。"
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "MP3 和 WAV 都能无损切割吗？",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "支持 MP3 按音频帧边界切割、WAV 按采样块边界切割，导出时不重新压缩。"
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "为什么切出的时间可能有极小偏差？",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "为了保持原始音质，MP3 需要贴近音频帧边界，WAV 需要贴近采样块边界，因此实际导出时间可能出现毫秒级对齐。"
-              }
-            }
-          ]
-        }
-      ]
-    }
-  </script>
+  <title>无损音频切割</title>
+    <meta name="verification" content="auto-deploy-test-2026-05-13">
   <style>
     :root {
       color-scheme: light;
@@ -931,85 +865,6 @@
       color: #6e4f11;
     }
 
-    .seo-section {
-      display: grid;
-      gap: 18px;
-      margin-top: 32px;
-      padding: 28px;
-      border-radius: 8px;
-      border: 1px solid rgba(17, 25, 29, .10);
-      background: rgba(251, 252, 252, .92);
-      box-shadow: var(--shadow);
-    }
-
-    .seo-section h2,
-    .seo-section h3 {
-      margin: 0;
-      color: var(--deep);
-      line-height: 1.15;
-      letter-spacing: 0;
-    }
-
-    .seo-section h2 {
-      font-family: "Arial Black", "Avenir Next", Impact, ui-sans-serif, sans-serif;
-      font-size: clamp(26px, 3.5vw, 42px);
-    }
-
-    .seo-section p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.7;
-    }
-
-    .seo-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-    }
-
-    .seo-item {
-      padding: 16px;
-      border-radius: 8px;
-      border: 1px solid #e1e7e7;
-      background: #ffffff;
-    }
-
-    .seo-item h3 {
-      margin-bottom: 8px;
-      font-size: 17px;
-    }
-
-    .seo-list {
-      display: grid;
-      gap: 10px;
-      margin: 0;
-      padding-left: 20px;
-      color: var(--muted);
-      line-height: 1.65;
-    }
-
-    .faq {
-      display: grid;
-      gap: 10px;
-    }
-
-    .faq details {
-      border: 1px solid #e1e7e7;
-      border-radius: 8px;
-      background: #fff;
-      padding: 14px 16px;
-    }
-
-    .faq summary {
-      cursor: pointer;
-      color: var(--deep);
-      font-weight: 780;
-    }
-
-    .faq details p {
-      margin-top: 8px;
-    }
-
     .zoom {
       display: grid;
       gap: 8px;
@@ -1083,10 +938,6 @@
 
       .side {
         position: static;
-      }
-
-      .seo-grid {
-        grid-template-columns: 1fr;
       }
     }
 
@@ -1365,66 +1216,6 @@
         </aside>
       </main>
     </section>
-
-    <section class="seo-section" aria-labelledby="seoTitle">
-      <div>
-        <p class="section-kicker">SEO Guide</p>
-        <h2 id="seoTitle">在线无损音频切割、MP3剪切与WAV裁剪</h2>
-      </div>
-      <p>Sonic Cutter 是一个免费的在线音频切割工具，适合快速裁剪音乐片段、制作手机铃声、整理采样素材和导出播客片段。工具优先保留原始音频数据：MP3 按音频帧边界剪切，WAV 按采样块边界裁剪，导出过程不重新编码、不重新压缩。</p>
-      <div class="seo-grid">
-        <article class="seo-item">
-          <h3>支持 MP3 无损剪切</h3>
-          <p>上传 MP3 后，可以在波形上选择开始和结束位置。导出时会贴近最近的 MP3 帧边界，减少重新编码带来的音质损耗。</p>
-        </article>
-        <article class="seo-item">
-          <h3>支持 WAV 原始裁剪</h3>
-          <p>WAV 文件会按采样块切出片段，保留采样率、位深和声道信息，适合音乐制作、音频素材整理和精确片段保存。</p>
-        </article>
-        <article class="seo-item">
-          <h3>本地处理更安全</h3>
-          <p>音频文件只在浏览器中读取和处理，不上传服务器。即使是私人录音、未发布音乐或工作素材，也能放心在本地完成裁剪。</p>
-        </article>
-      </div>
-      <div class="seo-grid">
-        <article class="seo-item">
-          <h3>适合哪些场景</h3>
-          <ul class="seo-list">
-            <li>制作手机铃声和提示音</li>
-            <li>提取音乐高潮、副歌或采样片段</li>
-            <li>裁剪播客、采访和课程录音</li>
-            <li>整理短视频、剪辑和直播素材</li>
-          </ul>
-        </article>
-        <article class="seo-item">
-          <h3>为什么不重新压缩</h3>
-          <p>重新压缩可能改变声音细节并增加失真。这个工具直接从原始文件数据中切出片段，尽可能保持原文件的编码数据和声音质量。</p>
-        </article>
-        <article class="seo-item">
-          <h3>当前格式说明</h3>
-          <p>当前重点支持 MP3 和 WAV 的无损导出。M4A、AAC、FLAC、OGG 等格式在浏览器中要完整无损切割需要更复杂的容器重写，暂不作为无损导出格式。</p>
-        </article>
-      </div>
-      <div class="faq" aria-label="常见问题">
-        <h3>常见问题</h3>
-        <details>
-          <summary>这个在线音频切割工具免费吗？</summary>
-          <p>免费。你可以直接在浏览器中上传音频、选择片段并保存到本地。</p>
-        </details>
-        <details>
-          <summary>文件会上传到服务器吗？</summary>
-          <p>不会。音频文件只在你的浏览器本地处理，页面不会把音乐上传到服务器。</p>
-        </details>
-        <details>
-          <summary>为什么导出的开始或结束时间可能有一点点偏差？</summary>
-          <p>为了不重新压缩，MP3 需要对齐到音频帧，WAV 需要对齐到采样块，因此可能出现毫秒级的边界差异。</p>
-        </details>
-        <details>
-          <summary>可以部署到 Cloudflare Pages 吗？</summary>
-          <p>可以。这个网站是纯静态页面，只需要部署 index.html 和 assets/sonic-hero.jpg，就能在 Cloudflare Pages 上运行。</p>
-        </details>
-      </div>
-    </section>
   </div>
 
   <div class="toast" id="toast"></div>
@@ -1483,7 +1274,7 @@
 
     const translations = {
       zh: {
-        title: "在线无损音频切割工具｜MP3剪切、WAV裁剪、本地处理",
+        title: "无损音频切割",
         auto: "自动",
         privacyBadge: "本地处理 · 不上传文件",
         eyebrow: "Lossless Audio Studio",
@@ -1540,7 +1331,7 @@
         unknownType: "未知类型"
       },
       en: {
-        title: "Online Lossless Audio Cutter | MP3 Cutter and WAV Trimmer",
+        title: "Lossless Audio Cutter",
         auto: "Auto",
         privacyBadge: "Local only · No upload",
         eyebrow: "Lossless Audio Studio",
