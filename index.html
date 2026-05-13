@@ -1,22 +1,2448 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Sonic Cutter</title>
-<style>
-:root{--bg:#edf2f0;--ink:#141a1f;--muted:#65717a;--panel:#fbfcfc;--line:#d7dee0;--accent:#087d83;--cyan:#63e5dc;--pink:#e85d8a;--amber:#d69d28;--deep:#11191d;font-family:"Avenir Next",Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 72% 4%,rgba(232,93,138,.18),transparent 28%),radial-gradient(circle at 18% 12%,rgba(8,125,131,.20),transparent 26%),linear-gradient(90deg,rgba(8,125,131,.08) 0 1px,transparent 1px 96px),linear-gradient(0deg,rgba(20,26,31,.045) 0 1px,transparent 1px 96px),var(--bg);color:var(--ink)}button,input,select{font:inherit}.app{width:min(1240px,calc(100% - 32px));margin:auto;padding:14px 0 52px}header{display:flex;justify-content:space-between;align-items:center;gap:18px;padding:8px 0;margin-bottom:12px}.brand{display:flex;align-items:center;gap:10px;font-weight:850}.mark{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;color:#fff;background:linear-gradient(135deg,var(--deep),var(--accent));box-shadow:0 10px 22px rgba(8,125,131,.22)}.top{display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:flex-end}.badge,.lang{min-height:38px;display:inline-flex;align-items:center;border:1px solid rgba(8,125,131,.24);border-radius:999px;background:rgba(251,252,252,.9);box-shadow:0 8px 24px rgba(19,31,36,.06);padding:0 12px;color:#075d61;font-size:13px;font-weight:760}.lang select{border:0;background:transparent;outline:0;font-weight:760}.hero{position:relative;overflow:hidden;display:grid;grid-template-columns:minmax(0,1.08fr) minmax(340px,.92fr);gap:34px;align-items:center;min-height:468px;padding:clamp(24px,4vw,44px);border-radius:8px;color:#f7fbfb;background:linear-gradient(115deg,rgba(17,25,29,.98),rgba(17,25,29,.9) 48%,rgba(17,25,29,.56)),radial-gradient(circle at 72% 36%,rgba(99,229,220,.45),transparent 28%),radial-gradient(circle at 88% 62%,rgba(232,93,138,.34),transparent 24%),#11191d;box-shadow:0 28px 80px rgba(12,22,27,.28)}.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(99,229,220,.10) 0 1px,transparent 1px 74px),linear-gradient(0deg,rgba(255,255,255,.055) 0 1px,transparent 1px 74px);pointer-events:none}.copy{position:relative;z-index:1;max-width:650px;animation:rise .75s ease both}.eyebrow{display:inline-flex;align-items:center;gap:9px;margin-bottom:18px;color:#baf7f1;font-size:12px;font-weight:850;letter-spacing:.12em;text-transform:uppercase}.eyebrow:before{content:"";width:38px;height:2px;background:linear-gradient(90deg,var(--amber),var(--cyan))}h1{margin:0;max-width:760px;font-family:"Arial Black","Avenir Next",Impact,sans-serif;font-size:clamp(42px,6.2vw,80px);line-height:.96}h1 span{color:transparent;background:linear-gradient(90deg,var(--cyan),#f0c35a 48%,#ff7aa7);-webkit-background-clip:text;background-clip:text}.subtitle{max-width:660px;margin:18px 0 0;color:#d1dddd;font-size:16px;line-height:1.64}.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}.hero a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 18px;border-radius:8px;text-decoration:none;font-weight:850}.primary{color:#071315;background:var(--cyan);box-shadow:0 14px 32px rgba(99,229,220,.22)}.ghost{color:#fff;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18)}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:28px;max-width:560px}.stat{padding:12px;border:1px solid rgba(255,255,255,.14);border-radius:8px;background:rgba(255,255,255,.08);backdrop-filter:blur(14px)}.stat strong{display:block;color:#fff;font-size:20px}.stat span{display:block;margin-top:7px;color:#b8c8ca;font-size:12px}.visual{position:relative;z-index:1;min-height:360px}.orb{position:absolute;inset:12px;border-radius:8px;border:1px solid rgba(255,255,255,.18);background:repeating-linear-gradient(90deg,transparent 0 14px,rgba(255,255,255,.05) 15px 16px),radial-gradient(circle at 60% 38%,rgba(99,229,220,.55),transparent 27%),radial-gradient(circle at 72% 62%,rgba(232,93,138,.42),transparent 24%),#172027;box-shadow:0 28px 90px rgba(0,0,0,.42);overflow:hidden}.orb:before{content:"";position:absolute;left:8%;right:8%;top:42%;height:80px;background:linear-gradient(90deg,transparent,var(--cyan),var(--pink),var(--amber),transparent);filter:blur(14px);animation:pulse 2.8s ease-in-out infinite}.disc{position:absolute;right:34px;bottom:34px;width:154px;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,#10181c 0 16%,var(--cyan) 17% 20%,transparent 21%),repeating-radial-gradient(circle,rgba(255,255,255,.22) 0 2px,rgba(255,255,255,.04) 3px 9px),conic-gradient(from 20deg,#161c22,#296b76,var(--pink),var(--amber),#161c22);border:1px solid rgba(255,255,255,.22);box-shadow:0 20px 44px rgba(0,0,0,.35);animation:spin 13s linear infinite}.panel{position:absolute;left:-18px;bottom:52px;width:230px;padding:14px;border:1px solid rgba(255,255,255,.18);border-radius:8px;background:rgba(12,22,27,.72);backdrop-filter:blur(18px);box-shadow:0 22px 50px rgba(0,0,0,.26)}.panel span{display:block;color:#b8c8ca;font-size:12px;margin-bottom:10px}.bars{display:flex;align-items:end;gap:5px;height:72px}.bars i{width:100%;border-radius:999px 999px 2px 2px;background:linear-gradient(180deg,#ff7aa7,var(--cyan));animation:bar 1.3s ease-in-out infinite;animation-delay:calc(var(--i)*-90ms)}.intro{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:-34px 20px 28px;position:relative;z-index:2}.card{min-height:136px;padding:18px;border-radius:8px;overflow:hidden;border:1px solid rgba(17,25,29,.1);background:rgba(251,252,252,.92);box-shadow:0 16px 40px rgba(19,31,36,.08);backdrop-filter:blur(18px)}.card b{display:block;margin-bottom:8px;font-size:17px}.card p{margin:0;color:var(--muted);font-size:14px;line-height:1.58}.heading{display:grid;grid-template-columns:minmax(0,1fr) minmax(220px,360px);gap:18px;align-items:end;margin:24px 0 14px}.kicker{margin:0 0 8px;color:var(--accent);font-size:12px;font-weight:850;letter-spacing:.12em;text-transform:uppercase}.heading h2{margin:0;color:var(--deep);font-family:"Arial Black","Avenir Next",Impact,sans-serif;font-size:clamp(28px,4vw,48px);line-height:1}.heading p:last-child{margin:0;color:var(--muted);font-size:14px;line-height:1.62}main{display:grid;grid-template-columns:minmax(0,1fr) 352px;gap:18px;align-items:start}.left{display:grid;gap:14px;min-width:0}.drop,.workspace,.side{background:rgba(251,252,252,.94);border:1px solid var(--line);box-shadow:0 18px 48px rgba(19,31,36,.12);border-radius:8px}.drop{position:relative;display:grid;place-items:center;min-height:212px;padding:30px;text-align:center;border-style:dashed;cursor:pointer;overflow:hidden}.drop:hover{border-color:var(--accent);background:#fff;box-shadow:0 20px 54px rgba(8,125,131,.13);transform:translateY(-1px)}.drop input{position:absolute;inset:0;opacity:0;cursor:pointer}.upload{width:60px;height:60px;margin:0 auto 16px;border-radius:50%;background:var(--deep);color:#fff;display:grid;place-items:center;box-shadow:inset 0 0 0 1px rgba(255,255,255,.14),0 14px 28px rgba(17,25,29,.18)}.drop-title{font-size:24px;font-weight:760}.drop-copy{margin:8px auto 0;max-width:560px;color:var(--muted);line-height:1.55}.editor{display:none}.editor.ready{display:block}.filebar{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:16px 18px;border-bottom:1px solid var(--line);background:var(--panel)}.filename{font-weight:760;overflow-wrap:anywhere}.meta{margin-top:4px;color:var(--muted);font-size:13px}.status{max-width:360px;color:var(--muted);font-size:13px;line-height:1.45;text-align:right;padding:8px 10px;border-radius:8px;background:#f5f8f7;border:1px solid #e2e8e8}.status.good{color:#17614e;background:#e8f6ef;border-color:#cce9da}.status.warn{color:#9d4a0d;background:#fff5da;border-color:#f0dfa9}.wave-wrap{padding:14px 14px 10px;background:linear-gradient(180deg,var(--panel),#f2f6f5)}.wave{position:relative;min-height:336px;border:1px solid #263139;border-radius:8px;overflow:hidden;background:var(--deep);user-select:none;touch-action:none}canvas{display:block;width:100%;height:336px}.selection{position:absolute;top:0;bottom:0;background:rgba(8,125,131,.26);border-left:2px solid #50ddd6;border-right:2px solid #50ddd6;pointer-events:none}.selection:before,.selection:after{content:"";position:absolute;top:50%;width:10px;height:44px;border-radius:999px;background:#e7fffb;border:2px solid #50ddd6;transform:translateY(-50%);box-shadow:0 6px 16px rgba(0,0,0,.22)}.selection:before{left:-7px}.selection:after{right:-7px}.playhead{position:absolute;top:0;bottom:0;width:2px;background:var(--amber);pointer-events:none}.timeline{display:flex;justify-content:space-between;padding:8px 4px 0;color:var(--muted);font-size:13px}.controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:12px 18px 16px;background:var(--panel);border-top:1px solid var(--line)}.icon{width:42px;height:42px;display:inline-grid;place-items:center;border:1px solid #cfd8d8;border-radius:8px;background:#fff;color:var(--ink);cursor:pointer}.save{width:auto;min-width:132px;padding:0 16px;display:inline-flex;gap:9px;background:var(--accent);color:#fff;border-color:var(--accent);font-weight:760;margin-left:auto;box-shadow:0 12px 24px rgba(8,125,131,.2)}button:disabled{opacity:.45;cursor:not-allowed}.range{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:16px 18px 18px;border-top:1px solid var(--line);background:#f5f8f7}label.field{display:grid;gap:7px;color:var(--muted);font-size:13px;font-weight:700}input[type=number],input[type=text]{width:100%;min-height:42px;border:1px solid #cfd8d8;border-radius:8px;background:#fff;color:var(--ink);padding:0 12px;outline:0}.side{padding:16px;display:grid;gap:14px;position:sticky;top:14px}.side h2{margin:0 0 10px;font-size:15px;text-transform:uppercase;color:#3f4b52}.meter{display:grid;grid-template-columns:1fr auto;gap:8px;padding:11px 0;border-bottom:1px solid #e1e7e7;color:var(--muted);font-size:14px}.meter strong{color:var(--ink);font-weight:760;text-align:right}.hint{border-left:3px solid var(--accent);padding:10px 12px;background:rgba(8,125,131,.08);color:#285250;font-size:13px;line-height:1.55;border-radius:0 8px 8px 0}.hint.warn{border-left-color:var(--amber);background:rgba(230,179,74,.14);color:#6e4f11}.toast{position:fixed;right:18px;bottom:18px;width:min(380px,calc(100% - 36px));padding:14px 16px;border-radius:8px;background:#17211d;color:#fff;box-shadow:0 16px 50px rgba(0,0,0,.25);transform:translateY(20px);opacity:0;pointer-events:none;transition:.2s}.toast.show{opacity:1;transform:translateY(0)}svg{width:22px;height:22px;stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}@keyframes spin{to{transform:rotate(360deg)}}@keyframes bar{0%,100%{height:26%}35%{height:calc(32% + var(--i)*7%)}65%{height:calc(86% - var(--i)*4%)}}@keyframes pulse{50%{transform:scaleX(1.1);opacity:.7}}@media(max-width:900px){.hero,main,.heading{grid-template-columns:1fr}.hero{min-height:auto;padding:26px}.visual{min-height:320px}.panel{left:18px}.intro{grid-template-columns:1fr;margin:14px 0 24px}.range{grid-template-columns:1fr}.status{text-align:left}.filebar{flex-direction:column;align-items:flex-start}.side{position:static}}@media(max-width:560px){.app{width:min(100% - 20px,1240px);padding-top:14px}header{align-items:flex-start;flex-direction:column}.top{justify-content:flex-start}h1{font-size:42px}.subtitle{font-size:15px}.hero-actions{align-items:stretch;flex-direction:column}.hero a{width:100%}.stats{grid-template-columns:1fr}.visual{min-height:250px}.disc{width:108px;right:18px;bottom:18px}.panel{width:190px;left:12px;bottom:26px}.controls{display:grid;grid-template-columns:repeat(4,42px)}.save{grid-column:1/-1;justify-content:center;width:100%;margin-left:0}}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>无损音频切割</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #edf2f0;
+      --ink: #141a1f;
+      --muted: #65717a;
+      --line: #d7dee0;
+      --panel: #fbfcfc;
+      --panel-2: #f5f8f7;
+      --accent: #087d83;
+      --accent-soft: #dff4f2;
+      --accent-2: #c94056;
+      --accent-3: #d69d28;
+      --deep: #11191d;
+      --hot: #e85d8a;
+      --shadow: 0 18px 48px rgba(19, 31, 36, .12);
+      font-family: "Avenir Next", "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 72% 4%, rgba(232, 93, 138, .18), transparent 28%),
+        radial-gradient(circle at 18% 12%, rgba(8, 125, 131, .20), transparent 26%),
+        linear-gradient(180deg, #f8fbfb 0, rgba(248, 251, 251, 0) 520px),
+        linear-gradient(90deg, rgba(8, 125, 131, .08) 0 1px, transparent 1px 96px),
+        linear-gradient(0deg, rgba(20, 26, 31, .045) 0 1px, transparent 1px 96px),
+        var(--bg);
+      color: var(--ink);
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    .app {
+      width: min(1240px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 14px 0 52px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: center;
+      margin-bottom: 12px;
+      padding: 8px 0;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--deep);
+      font-size: 15px;
+      font-weight: 820;
+    }
+
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: #fff;
+      background: linear-gradient(135deg, var(--deep), var(--accent));
+      box-shadow: 0 10px 22px rgba(8, 125, 131, .22);
+    }
+
+    .brand-mark svg {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+      stroke-width: 2;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .hero {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(340px, .92fr);
+      gap: 34px;
+      align-items: center;
+      min-height: 468px;
+      margin-bottom: 0;
+      padding: clamp(24px, 4vw, 44px);
+      border-radius: 8px;
+      overflow: hidden;
+      background:
+        linear-gradient(115deg, rgba(17, 25, 29, .98) 0%, rgba(17, 25, 29, .92) 44%, rgba(17, 25, 29, .58) 100%),
+        url("assets/sonic-hero.jpg") center / cover no-repeat;
+      box-shadow: 0 28px 80px rgba(12, 22, 27, .28);
+      color: #f7fbfb;
+      isolation: isolate;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(99, 229, 220, .10) 0 1px, transparent 1px 74px),
+        linear-gradient(0deg, rgba(255, 255, 255, .055) 0 1px, transparent 1px 74px);
+      mask-image: linear-gradient(90deg, rgba(0, 0, 0, .72), transparent 76%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .hero-copy {
+      max-width: 650px;
+      animation: riseIn .75s ease both;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 18px;
+      color: #baf7f1;
+      font-size: 12px;
+      font-weight: 850;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 38px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent-3), #63e5dc);
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 760px;
+      font-family: "Arial Black", "Avenir Next", Impact, ui-sans-serif, sans-serif;
+      font-size: clamp(42px, 6.2vw, 80px);
+      line-height: .96;
+      letter-spacing: 0;
+      text-wrap: balance;
+    }
+
+    .hero h1 span {
+      color: transparent;
+      background: linear-gradient(90deg, #63e5dc, #f0c35a 48%, #ff7aa7);
+      background-clip: text;
+      -webkit-background-clip: text;
+    }
+
+    .subtitle {
+      margin: 18px 0 0;
+      max-width: 660px;
+      color: #d1dddd;
+      font-size: 16px;
+      line-height: 1.64;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      margin-top: 26px;
+    }
+
+    .hero-button,
+    .ghost-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 18px;
+      border-radius: 8px;
+      color: #071315;
+      background: #63e5dc;
+      font-weight: 850;
+      text-decoration: none;
+      box-shadow: 0 14px 32px rgba(99, 229, 220, .22);
+    }
+
+    .ghost-button {
+      color: #f7fbfb;
+      background: rgba(255, 255, 255, .10);
+      border: 1px solid rgba(255, 255, 255, .18);
+      box-shadow: none;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 28px;
+      max-width: 560px;
+    }
+
+    .stat {
+      padding: 12px;
+      border: 1px solid rgba(255, 255, 255, .14);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, .08);
+      backdrop-filter: blur(14px);
+    }
+
+    .stat strong {
+      display: block;
+      color: #fff;
+      font-size: 20px;
+      line-height: 1;
+    }
+
+    .stat span {
+      display: block;
+      margin-top: 7px;
+      color: #b8c8ca;
+      font-size: 12px;
+    }
+
+    .hero-visual {
+      position: relative;
+      min-height: 360px;
+      animation: floatIn .9s ease both;
+    }
+
+    .hero-art {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, .18);
+      box-shadow: 0 28px 90px rgba(0, 0, 0, .42);
+      filter: saturate(1.12) contrast(1.05);
+    }
+
+    .hero-disc {
+      position: absolute;
+      right: 34px;
+      bottom: 34px;
+      width: 154px;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at center, #10181c 0 16%, #63e5dc 17% 20%, transparent 21%),
+        repeating-radial-gradient(circle, rgba(255, 255, 255, .22) 0 2px, rgba(255, 255, 255, .04) 3px 9px),
+        conic-gradient(from 20deg, #161c22, #296b76, #e85d8a, #d69d28, #161c22);
+      border: 1px solid rgba(255, 255, 255, .22);
+      box-shadow: 0 20px 44px rgba(0, 0, 0, .35);
+      animation: spinDisc 13s linear infinite;
+    }
+
+    .floating-panel {
+      position: absolute;
+      left: -18px;
+      bottom: 52px;
+      width: 230px;
+      padding: 14px;
+      border: 1px solid rgba(255, 255, 255, .18);
+      border-radius: 8px;
+      background: rgba(12, 22, 27, .72);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 22px 50px rgba(0, 0, 0, .26);
+    }
+
+    .floating-panel span {
+      display: block;
+      color: #b8c8ca;
+      font-size: 12px;
+      margin-bottom: 10px;
+    }
+
+    .mini-bars {
+      display: flex;
+      align-items: end;
+      gap: 5px;
+      height: 72px;
+    }
+
+    .mini-bars i {
+      width: 100%;
+      border-radius: 999px 999px 2px 2px;
+      background: linear-gradient(180deg, #ff7aa7, #63e5dc);
+      animation: bounceBar 1.3s ease-in-out infinite;
+      animation-delay: calc(var(--i) * -90ms);
+    }
+
+    .intro {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin: -34px 20px 28px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .intro-card {
+      position: relative;
+      min-height: 136px;
+      padding: 18px 18px 16px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid rgba(17, 25, 29, .10);
+      background: rgba(251, 252, 252, .92);
+      box-shadow: 0 16px 40px rgba(19, 31, 36, .08);
+      backdrop-filter: blur(18px);
+    }
+
+    .intro-card::after {
+      content: "";
+      position: absolute;
+      inset: auto -20% -55% 26%;
+      height: 120px;
+      background: linear-gradient(90deg, transparent, rgba(99, 229, 220, .24), transparent);
+      transform: rotate(-8deg);
+      animation: sweep 4.8s ease-in-out infinite;
+    }
+
+    .intro-card b {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 17px;
+    }
+
+    .intro-card p {
+      position: relative;
+      z-index: 1;
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.58;
+    }
+
+    .tool-section {
+      margin-top: 24px;
+    }
+
+    .section-heading {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(220px, 360px);
+      gap: 18px;
+      align-items: end;
+      margin-bottom: 14px;
+      padding: 0 2px;
+    }
+
+    .section-kicker {
+      margin: 0 0 8px;
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 850;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .section-heading h2 {
+      margin: 0;
+      color: var(--deep);
+      font-family: "Arial Black", "Avenir Next", Impact, ui-sans-serif, sans-serif;
+      font-size: clamp(28px, 4vw, 48px);
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    .section-heading p:last-child {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.62;
+    }
+
+    @keyframes riseIn {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes floatIn {
+      from {
+        opacity: 0;
+        transform: translateY(18px) scale(.98);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes spinDisc {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes bounceBar {
+      0%, 100% {
+        height: 26%;
+      }
+      35% {
+        height: calc(32% + var(--i) * 7%);
+      }
+      65% {
+        height: calc(86% - var(--i) * 4%);
+      }
+    }
+
+    @keyframes sweep {
+      0%, 100% {
+        transform: translateX(-30%) rotate(-8deg);
+      }
+      50% {
+        transform: translateX(30%) rotate(-8deg);
+      }
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 36px;
+      padding: 0 14px;
+      border: 1px solid rgba(8, 125, 131, .24);
+      border-radius: 999px;
+      color: #075d61;
+      background: rgba(251, 252, 252, .82);
+      box-shadow: 0 8px 24px rgba(19, 31, 36, .06);
+      white-space: nowrap;
+    }
+
+    main {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 352px;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .primary-column {
+      display: grid;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .workspace,
+    .side,
+    .dropzone {
+      background: rgba(251, 252, 252, .94);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+
+    .workspace {
+      border-radius: 8px;
+      overflow: hidden;
+      scroll-margin-top: 24px;
+    }
+
+    .dropzone {
+      position: relative;
+      display: grid;
+      place-items: center;
+      min-height: 212px;
+      border-radius: 8px;
+      border-style: dashed;
+      padding: 30px;
+      text-align: center;
+      cursor: pointer;
+      overflow: hidden;
+      transition: border-color .2s ease, transform .2s ease, background .2s ease, box-shadow .2s ease;
+    }
+
+    .dropzone::before {
+      content: "";
+      position: absolute;
+      inset: 14px;
+      border-radius: 6px;
+      border: 1px solid rgba(8, 125, 131, .12);
+      pointer-events: none;
+    }
+
+    .dropzone:hover,
+    .dropzone.is-dragging {
+      border-color: var(--accent);
+      background: #ffffff;
+      box-shadow: 0 20px 54px rgba(8, 125, 131, .13);
+      transform: translateY(-1px);
+    }
+
+    .dropzone input {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    .upload-icon {
+      width: 60px;
+      height: 60px;
+      margin: 0 auto 16px;
+      border-radius: 50%;
+      background: var(--deep);
+      color: white;
+      display: grid;
+      place-items: center;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .14), 0 14px 28px rgba(17, 25, 29, .18);
+    }
+
+    .upload-icon svg,
+    .icon svg {
+      width: 22px;
+      height: 22px;
+      stroke: currentColor;
+      stroke-width: 2;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .drop-title {
+      margin: 0;
+      font-size: 24px;
+      font-weight: 760;
+    }
+
+    .drop-copy {
+      margin: 8px auto 0;
+      max-width: 560px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .editor {
+      display: none;
+    }
+
+    .editor.is-ready {
+      display: block;
+    }
+
+    .filebar {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--line);
+      background: var(--panel);
+      align-items: center;
+    }
+
+    .file-name {
+      min-width: 0;
+      font-weight: 760;
+      overflow-wrap: anywhere;
+    }
+
+    .file-meta {
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .status {
+      max-width: 360px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+      text-align: right;
+      padding: 8px 10px;
+      border-radius: 8px;
+      background: var(--panel-2);
+      border: 1px solid #e2e8e8;
+    }
+
+    .status.good {
+      color: #17614e;
+      background: #e8f6ef;
+      border-color: #cce9da;
+    }
+
+    .status.warn {
+      color: #9d4a0d;
+      background: #fff5da;
+      border-color: #f0dfa9;
+    }
+
+    .wave-wrap {
+      padding: 14px 14px 10px;
+      background: linear-gradient(180deg, var(--panel), #f2f6f5);
+    }
+
+    .wave-shell {
+      position: relative;
+      min-height: 336px;
+      border: 1px solid #263139;
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--deep);
+      user-select: none;
+      touch-action: none;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .04);
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: 336px;
+    }
+
+    .selection {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      background: rgba(8, 125, 131, .26);
+      border-left: 2px solid #50ddd6;
+      border-right: 2px solid #50ddd6;
+      pointer-events: none;
+    }
+
+    .selection::before,
+    .selection::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      width: 10px;
+      height: 44px;
+      border-radius: 999px;
+      background: #e7fffb;
+      border: 2px solid #50ddd6;
+      transform: translateY(-50%);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, .22);
+    }
+
+    .selection::before {
+      left: -7px;
+    }
+
+    .selection::after {
+      right: -7px;
+    }
+
+    .playhead {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--accent-3);
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, .08);
+      pointer-events: none;
+    }
+
+    .timeline {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 4px 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      padding: 12px 18px 16px;
+      background: var(--panel);
+      border-top: 1px solid var(--line);
+    }
+
+    .icon {
+      width: 42px;
+      height: 42px;
+      display: inline-grid;
+      place-items: center;
+      border: 1px solid #cfd8d8;
+      border-radius: 8px;
+      background: #ffffff;
+      color: var(--ink);
+      cursor: pointer;
+      transition: transform .16s ease, background .16s ease, border-color .16s ease;
+    }
+
+    .icon:hover:not(:disabled) {
+      transform: translateY(-1px);
+      border-color: var(--accent);
+      background: var(--accent-soft);
+    }
+
+    .icon.primary {
+      width: auto;
+      min-width: 132px;
+      padding: 0 16px;
+      display: inline-flex;
+      gap: 9px;
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+      font-weight: 760;
+      margin-left: auto;
+      box-shadow: 0 12px 24px rgba(8, 125, 131, .20);
+    }
+
+    .icon.primary:hover:not(:disabled) {
+      background: #066d72;
+      border-color: #066d72;
+    }
+
+    .icon.danger {
+      color: var(--accent-2);
+    }
+
+    button:disabled {
+      opacity: .45;
+      cursor: not-allowed;
+    }
+
+    .range-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+      padding: 16px 18px 18px;
+      border-top: 1px solid var(--line);
+      background: var(--panel-2);
+    }
+
+    label {
+      display: grid;
+      gap: 7px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    input[type="number"],
+    input[type="text"] {
+      width: 100%;
+      min-height: 42px;
+      border: 1px solid #cfd8d8;
+      border-radius: 8px;
+      background: #ffffff;
+      color: var(--ink);
+      padding: 0 12px;
+      outline: none;
+      transition: border-color .16s ease, box-shadow .16s ease;
+    }
+
+    input[type="number"]:focus,
+    input[type="text"]:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(8, 125, 131, .12);
+    }
+
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--accent);
+    }
+
+    .top-actions {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .language-switcher {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 38px;
+      padding: 0 10px;
+      border: 1px solid rgba(8, 125, 131, .24);
+      border-radius: 999px;
+      background: rgba(251, 252, 252, .9);
+      box-shadow: 0 8px 24px rgba(19, 31, 36, .06);
+    }
+
+    .language-switcher svg {
+      width: 17px;
+      height: 17px;
+      stroke: var(--accent);
+      stroke-width: 2;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      flex: 0 0 auto;
+    }
+
+    .language-switcher select {
+      min-height: 32px;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      color: var(--deep);
+      font: inherit;
+      font-size: 13px;
+      font-weight: 760;
+      cursor: pointer;
+    }
+
+    .side {
+      border-radius: 8px;
+      padding: 16px;
+      display: grid;
+      gap: 14px;
+      position: sticky;
+      top: 14px;
+    }
+
+    .side h2 {
+      margin: 0 0 10px;
+      font-size: 15px;
+      text-transform: uppercase;
+      color: #3f4b52;
+    }
+
+    .meter {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 8px;
+      padding: 11px 0;
+      border-bottom: 1px solid #e1e7e7;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .meter strong {
+      color: var(--ink);
+      font-weight: 760;
+      text-align: right;
+    }
+
+    .hint {
+      border-left: 3px solid var(--accent);
+      padding: 10px 12px;
+      background: rgba(8, 125, 131, .08);
+      color: #285250;
+      font-size: 13px;
+      line-height: 1.55;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .hint.warn {
+      border-left-color: var(--accent-3);
+      background: rgba(230, 179, 74, .14);
+      color: #6e4f11;
+    }
+
+    .zoom {
+      display: grid;
+      gap: 8px;
+    }
+
+    .toast {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      width: min(380px, calc(100% - 36px));
+      padding: 14px 16px;
+      border-radius: 8px;
+      background: #17211d;
+      color: #fff;
+      box-shadow: 0 16px 50px rgba(0, 0, 0, .25);
+      transform: translateY(20px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .2s ease, transform .2s ease;
+    }
+
+    .toast.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 900px) {
+      main {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        padding: 26px;
+      }
+
+      .hero-visual {
+        min-height: 320px;
+      }
+
+      .floating-panel {
+        left: 18px;
+      }
+
+      .intro {
+        grid-template-columns: 1fr;
+        margin: 14px 0 24px;
+      }
+
+      .section-heading {
+        grid-template-columns: 1fr;
+        align-items: start;
+      }
+
+      .badge {
+        justify-self: start;
+      }
+
+      .range-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .status {
+        text-align: left;
+      }
+
+      .filebar {
+        flex-direction: column;
+      }
+
+      .side {
+        position: static;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .app {
+        width: min(100% - 20px, 1240px);
+        padding-top: 14px;
+      }
+
+      header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .top-actions {
+        justify-content: flex-start;
+      }
+
+      h1 {
+        font-size: 42px;
+      }
+
+      .hero {
+        padding: 22px;
+      }
+
+      .section-heading {
+        margin-bottom: 12px;
+      }
+
+      .section-heading h2 {
+        font-size: 34px;
+      }
+
+      .subtitle {
+        font-size: 15px;
+      }
+
+      .hero-actions {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .hero-button,
+      .ghost-button {
+        width: 100%;
+      }
+
+      .hero-stats {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-visual {
+        min-height: 250px;
+      }
+
+      .hero-disc {
+        width: 108px;
+        right: 18px;
+        bottom: 18px;
+      }
+
+      .floating-panel {
+        width: 190px;
+        left: 12px;
+        bottom: 26px;
+      }
+
+      .dropzone {
+        min-height: 210px;
+        padding: 26px 22px;
+      }
+
+      .controls {
+        display: grid;
+        grid-template-columns: repeat(4, 42px);
+      }
+
+      .icon.primary {
+        grid-column: 1 / -1;
+        justify-content: center;
+        width: 100%;
+        margin-left: 0;
+      }
+
+      .side {
+        padding: 14px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
 </head>
 <body>
-<div class="app"><header><div class="brand"><span class="mark">♪</span>Sonic Cutter</div><div class="top"><label class="lang"><select id="lang"><option value="auto">Auto</option><option value="zh">中文</option><option value="en">English</option></select></label><div class="badge" data-i="privacyBadge">本地处理 · 不上传文件</div></div></header>
-<section class="hero"><div class="copy"><div class="eyebrow">Lossless Audio Studio</div><h1 data-i="heroTitle">把音乐切成<span>刚刚好</span>的片段</h1><p class="subtitle" data-i="heroSubtitle">上传音乐，拖拽波形选择片段，导出时保留原始音频数据。WAV 按采样块裁切，MP3 按音频帧裁切，全程不重新压缩。</p><div class="hero-actions"><a class="primary" href="#drop" data-i="startCta">开始切割</a><a class="ghost" href="#intro" data-i="learnCta">了解流程</a></div><div class="stats"><div class="stat"><strong>0%</strong><span data-i="stat1Label">额外压缩</span></div><div class="stat"><strong data-i="stat2Value">本地</strong><span data-i="stat2Label">浏览器内处理</span></div><div class="stat"><strong data-i="stat3Value">帧级</strong><span>MP3</span></div></div></div><div class="visual"><div class="orb"></div><div class="disc"></div><div class="panel"><span>Live waveform preview</span><div class="bars"><i style="--i:1"></i><i style="--i:2"></i><i style="--i:3"></i><i style="--i:4"></i><i style="--i:5"></i><i style="--i:6"></i><i style="--i:7"></i><i style="--i:8"></i><i style="--i:9"></i><i style="--i:10"></i><i style="--i:11"></i><i style="--i:12"></i></div></div></div></section>
-<section class="intro" id="intro"><article class="card"><b data-i="intro1Title">拖进音乐，马上看到波形</b><p data-i="intro1Text">浏览器读取本地文件生成预览，节奏、静音段和高潮位置都能直接看见。</p></article><article class="card"><b data-i="intro2Title">拖拽选区，精确到毫秒</b><p data-i="intro2Text">用波形快速框选，再用开始和结束时间微调，适合铃声、采样和片段整理。</p></article><article class="card"><b data-i="intro3Title">导出不重新压缩</b><p data-i="intro3Text">MP3 贴近音频帧，WAV 贴近采样块，尽可能保持原始音质和编码数据。</p></article></section>
-<section><div class="heading"><div><p class="kicker">Precision Workspace</p><h2 data-i="workbenchTitle">上传、选择、保存</h2></div><p data-i="workbenchText">核心操作集中在这里：左侧处理音频文件和波形选区，右侧实时查看片段长度、预计大小和导出提示。</p></div><main><section class="left"><label class="drop" id="drop"><input id="file" type="file" accept="audio/*,.mp3,.wav"><span class="upload">⇧</span><span class="drop-title" data-i="dropTitle">拖入音乐，或点击选择文件</span><span class="drop-copy" data-i="dropCopy">推荐 MP3 或 WAV。浏览器只读取本地文件用于波形预览，保存时直接从原文件数据中切出片段。</span></label><div class="workspace editor" id="editor"><div class="filebar"><div><div class="filename" id="fileName">未选择文件</div><div class="meta" id="fileMeta">--</div></div><div class="status" id="status">等待分析音频格式</div></div><div class="wave-wrap"><div class="wave" id="wave"><canvas id="canvas" width="1200" height="360"></canvas><div class="selection" id="sel"></div><div class="playhead" id="head"></div></div><div class="timeline"><span id="timeLeft">00:00.000</span><span id="timeRight">00:00.000</span></div></div><div class="controls"><button class="icon" id="play">▶</button><button class="icon" id="loop">↻</button><button class="icon" id="all">□</button><button class="icon" id="clear">×</button><button class="icon save" id="save">⇩ <span data-i="saveText">保存片段</span></button></div><div class="range"><label class="field"><span data-i="startInputLabel">开始时间</span><input id="start" type="number" min="0" step="0.001" value="0"></label><label class="field"><span data-i="endInputLabel">结束时间</span><input id="end" type="number" min="0" step="0.001" value="0"></label><label class="field"><span data-i="outputNameLabel">文件名</span><input id="outName" type="text" value="clip"></label></div></div></section><aside class="side"><section><h2 data-i="clipInfoTitle">片段信息</h2><div class="meter"><span data-i="meterStart">开始</span><strong id="startLabel">00:00.000</strong></div><div class="meter"><span data-i="meterEnd">结束</span><strong id="endLabel">00:00.000</strong></div><div class="meter"><span data-i="meterLength">长度</span><strong id="lenLabel">00:00.000</strong></div><div class="meter"><span data-i="meterSize">预计大小</span><strong id="sizeLabel">--</strong></div></section><section><h2 data-i="zoomTitle">波形缩放</h2><input id="zoom" type="range" min="1" max="8" step="0.25" value="1"></section><p class="hint" data-i="formatHint">MP3 会贴近最近的音频帧边界；WAV 会贴近最近的采样块边界。这是保持原始音质时应该接受的微小时间对齐。</p><p class="hint warn" data-i="formatWarn">AAC、M4A、FLAC、OGG 等容器在纯浏览器里要真正无损切割需要重写容器结构；当前版本会提示格式不支持无损导出。</p></aside></main></section></div><div class="toast" id="toast"></div>
-<script>
-const $=s=>document.querySelector(s),E={file:$('#file'),editor:$('#editor'),fileName:$('#fileName'),fileMeta:$('#fileMeta'),status:$('#status'),wave:$('#wave'),canvas:$('#canvas'),sel:$('#sel'),head:$('#head'),play:$('#play'),loop:$('#loop'),all:$('#all'),clear:$('#clear'),save:$('#save'),start:$('#start'),end:$('#end'),outName:$('#outName'),startLabel:$('#startLabel'),endLabel:$('#endLabel'),lenLabel:$('#lenLabel'),sizeLabel:$('#sizeLabel'),zoom:$('#zoom'),lang:$('#lang'),toast:$('#toast'),timeLeft:$('#timeLeft'),timeRight:$('#timeRight')},ctx=E.canvas.getContext('2d'),S={file:null,bytes:null,buffer:null,url:'',player:new Audio(),duration:0,start:0,end:0,zoom:1,offset:0,drag:null,loop:false,format:null,peaks:[],lang:'zh'};
-const ZH={privacyBadge:'本地处理 · 不上传文件',heroTitle:'把音乐切成<span>刚刚好</span>的片段',heroSubtitle:'上传音乐，拖拽波形选择片段，导出时保留原始音频数据。WAV 按采样块裁切，MP3 按音频帧裁切，全程不重新压缩。',startCta:'开始切割',learnCta:'了解流程',stat1Label:'额外压缩',stat2Value:'本地',stat2Label:'浏览器内处理',stat3Value:'帧级',intro1Title:'拖进音乐，马上看到波形',intro1Text:'浏览器读取本地文件生成预览，节奏、静音段和高潮位置都能直接看见。',intro2Title:'拖拽选区，精确到毫秒',intro2Text:'用波形快速框选，再用开始和结束时间微调，适合铃声、采样和片段整理。',intro3Title:'导出不重新压缩',intro3Text:'MP3 贴近音频帧，WAV 贴近采样块，尽可能保持原始音质和编码数据。',workbenchTitle:'上传、选择、保存',workbenchText:'核心操作集中在这里：左侧处理音频文件和波形选区，右侧实时查看片段长度、预计大小和导出提示。',dropTitle:'拖入音乐，或点击选择文件',dropCopy:'推荐 MP3 或 WAV。浏览器只读取本地文件用于波形预览，保存时直接从原文件数据中切出片段。',saveText:'保存片段',startInputLabel:'开始时间',endInputLabel:'结束时间',outputNameLabel:'文件名',clipInfoTitle:'片段信息',meterStart:'开始',meterEnd:'结束',meterLength:'长度',meterSize:'预计大小',zoomTitle:'波形缩放',formatHint:'MP3 会贴近最近的音频帧边界；WAV 会贴近最近的采样块边界。这是保持原始音质时应该接受的微小时间对齐。',formatWarn:'AAC、M4A、FLAC、OGG 等容器在纯浏览器里要真正无损切割需要重写容器结构；当前版本会提示格式不支持无损导出。',noFile:'未选择文件',waiting:'等待分析音频格式',wav:'WAV 原始采样数据切割，不改变采样率、位深或声道。',mp3:'MP3 原始帧切割，不解码、不重新压缩。',unsup:'此格式暂不支持纯浏览器无损导出，请使用 MP3 或 WAV。',invalid:'请选择音频文件。',decode:'浏览器无法解码这个音频，暂时不能生成波形预览。',short:'片段太短，无法生成有效文件。',saved:'已保存，实际对齐片段：',wave:'上传音频后显示波形',unknown:'未知类型'},EN={privacyBadge:'Local only · No upload',heroTitle:'Cut music into the <span>perfect</span> moment',heroSubtitle:'Upload a track, select a waveform range, and export from the original audio data. WAV aligns to sample blocks; MP3 aligns to audio frames with no recompression.',startCta:'Start cutting',learnCta:'How it works',stat1Label:'extra compression',stat2Value:'Local',stat2Label:'processed in browser',stat3Value:'Frame',intro1Title:'Drop music in and see the waveform',intro1Text:'The browser reads the local file for preview so rhythm, silence, and peaks are easy to spot.',intro2Title:'Drag a range, tune by milliseconds',intro2Text:'Select quickly on the waveform, then fine-tune start and end times.',intro3Title:'Export without recompression',intro3Text:'MP3 clips align to frames and WAV clips align to sample blocks to preserve original data.',workbenchTitle:'Upload, select, save',workbenchText:'Handle files and waveform ranges on the left, then track duration, size, and export notes on the right.',dropTitle:'Drop music here, or choose a file',dropCopy:'MP3 or WAV recommended. The browser only reads your local file for preview and saves a slice from the original data.',saveText:'Save clip',startInputLabel:'Start time',endInputLabel:'End time',outputNameLabel:'File name',clipInfoTitle:'Clip info',meterStart:'Start',meterEnd:'End',meterLength:'Length',meterSize:'Estimated size',zoomTitle:'Waveform zoom',noFile:'No file selected',waiting:'Waiting to analyze audio format',wav:'WAV is cut from original sample data without changing sample rate, bit depth, or channels.',mp3:'MP3 is cut from original frames without decoding or recompression.',unsup:'This format is not supported for browser-only lossless export. Please use MP3 or WAV.',invalid:'Please choose an audio file.',decode:'The browser could not decode this audio, so waveform preview is unavailable.',short:'The clip is too short to create a valid file.',saved:'Saved. Actual aligned range: ',wave:'Upload audio to show waveform',unknown:'Unknown type'};function T(k){return(S.lang==='zh'?ZH:EN)[k]||ZH[k]||k}function lang(l){S.lang=l==='zh'?'zh':'en';document.documentElement.lang=S.lang==='zh'?'zh-CN':'en';document.querySelectorAll('[data-i]').forEach(n=>{let k=n.dataset.i;n[k==='heroTitle'?'innerHTML':'textContent']=T(k)});if(!S.file){E.fileName.textContent=T('noFile');E.status.textContent=T('waiting')}else status();draw()}E.lang.onchange=()=>{if(E.lang.value==='auto'){localStorage.removeItem('sonic-lang');autoLang()}else{localStorage.setItem('sonic-lang',E.lang.value);lang(E.lang.value)}};async function autoLang(){let s=localStorage.getItem('sonic-lang');if(s){E.lang.value=s;lang(s);return}lang((navigator.language||'en').startsWith('zh')?'zh':'en');try{let d=await(await fetch('https://ipapi.co/json/')).json();lang(['CN','HK','MO','TW','SG'].includes(d.country_code)?'zh':'en')}catch(e){}}
-S.player.ontimeupdate=()=>{if(S.loop&&S.player.currentTime>=S.end){S.player.currentTime=S.start;S.player.play()}head()};E.file.onchange=e=>e.target.files[0]&&load(e.target.files[0]);$('#drop').ondrop=e=>{e.preventDefault();e.dataTransfer.files[0]&&load(e.dataTransfer.files[0])};['dragenter','dragover'].forEach(x=>$('#drop').addEventListener(x,e=>e.preventDefault()));E.wave.onpointerdown=down;window.onpointermove=move;window.onpointerup=()=>S.drag=null;window.onresize=()=>{resize();draw()};E.play.onclick=toggle;E.loop.onclick=()=>{S.loop=!S.loop;E.loop.style.background=S.loop?'rgba(8,125,131,.14)':'#fff'};E.all.onclick=()=>select(0,S.duration);E.clear.onclick=reset;E.save.onclick=save;E.zoom.oninput=()=>{S.zoom=+E.zoom.value;draw();overlay()};E.start.oninput=()=>select(+E.start.value,S.end);E.end.oninput=()=>select(S.start,+E.end.value);
-async function load(f){if(!f.type.startsWith('audio/')&&!/\.(mp3|wav)$/i.test(f.name))return toast(T('invalid'));reset(false);S.file=f;S.bytes=new Uint8Array(await f.arrayBuffer());S.format=detect(S.bytes,f);S.url=URL.createObjectURL(f);S.player.src=S.url;E.fileName.textContent=f.name;E.fileMeta.textContent=`${bytes(f.size)} · ${f.type||T('unknown')}`;E.outName.value=f.name.replace(/\.[^.]+$/,'')+'-clip';try{let ac=new(window.AudioContext||window.webkitAudioContext)();S.buffer=await ac.decodeAudioData(S.bytes.buffer.slice(0));await ac.close();S.duration=S.buffer.duration;S.start=0;S.end=S.duration;peaks();E.editor.classList.add('ready');status();resize();draw();sync()}catch(e){toast(T('decode'))}}function reset(clear=true){S.player.pause();S.player.removeAttribute('src');S.player.load();if(S.url)URL.revokeObjectURL(S.url);Object.assign(S,{file:null,bytes:null,buffer:null,url:'',duration:0,start:0,end:0,zoom:1,offset:0,drag:null,loop:false,format:null,peaks:[]});if(clear)E.file.value='';E.editor.classList.remove('ready');E.fileName.textContent=T('noFile');E.status.textContent=T('waiting');E.status.className='status';draw();sync()}function status(){let ok=S.format&&S.format.supported;E.save.disabled=!ok;E.status.className=ok?'status good':'status warn';E.status.textContent=ok?(S.format.kind==='wav'?T('wav'):T('mp3')):T('unsup')}function resize(){let r=E.wave.getBoundingClientRect(),d=devicePixelRatio||1;E.canvas.width=Math.max(1,r.width*d);E.canvas.height=Math.max(1,r.height*d);ctx.setTransform(d,0,0,d,0,0)}function peaks(){let ch=S.buffer.getChannelData(0),n=4000,step=Math.max(1,Math.floor(ch.length/n));S.peaks=[];for(let i=0;i<n;i++){let mi=1,ma=-1;for(let j=i*step;j<Math.min(ch.length,i*step+step);j++){mi=Math.min(mi,ch[j]);ma=Math.max(ma,ch[j])}S.peaks.push({mi,ma})}}function draw(){let r=E.wave.getBoundingClientRect(),w=r.width||1,h=r.height||336;ctx.clearRect(0,0,w,h);ctx.fillStyle='#11191d';ctx.fillRect(0,0,w,h);if(!S.peaks.length){ctx.fillStyle='#8fa3a5';ctx.textAlign='center';ctx.font='15px system-ui';ctx.fillText(T('wave'),w/2,h/2);return}ctx.strokeStyle='rgba(255,255,255,.065)';for(let i=0;i<8;i++){ctx.beginPath();ctx.moveTo(0,h/8*i);ctx.lineTo(w,h/8*i);ctx.stroke()}let vis=S.duration/S.zoom,ps=Math.floor(S.offset/S.duration*S.peaks.length),pe=Math.min(S.peaks.length,Math.ceil((S.offset+vis)/S.duration*S.peaks.length)),arr=S.peaks.slice(ps,pe),m=h/2;ctx.strokeStyle='#63e5dc';ctx.lineWidth=Math.max(1,w/arr.length);for(let x=0;x<w;x++){let p=arr[Math.floor(x/w*arr.length)]||{mi:0,ma:0};ctx.beginPath();ctx.moveTo(x,m+p.mi*h*.43);ctx.lineTo(x,m+p.ma*h*.43);ctx.stroke()}overlay();head()}function x2t(x){let r=E.wave.getBoundingClientRect();return clamp(S.offset+x/r.width*(S.duration/S.zoom),0,S.duration)}function t2x(t){let r=E.wave.getBoundingClientRect();return (t-S.offset)/(S.duration/S.zoom)*r.width}function down(e){if(!S.duration)return;let r=E.wave.getBoundingClientRect(),x=e.clientX-r.left,t=x2t(x),a=t2x(S.start),b=t2x(S.end);if(Math.abs(x-a)<14)S.drag='start';else if(Math.abs(x-b)<14)S.drag='end';else if(t>S.start&&t<S.end){S.drag='move';S.anchor=t;S.os=S.start;S.oe=S.end}else{S.drag='end';select(t,t+Math.min(10,S.duration-t))}E.wave.setPointerCapture(e.pointerId)}function move(e){if(!S.drag)return;let r=E.wave.getBoundingClientRect(),t=x2t(e.clientX-r.left);if(S.drag==='start')select(t,S.end);else if(S.drag==='end')select(S.start,t);else{let len=S.oe-S.os,ns=clamp(S.os+t-S.anchor,0,S.duration-len);select(ns,ns+len)}}function select(a,b){a=clamp(Number.isFinite(a)?a:0,0,S.duration);b=clamp(Number.isFinite(b)?b:S.duration,0,S.duration);if(b<a)[a,b]=[b,a];if(b-a<.02)b=Math.min(S.duration,a+.02);S.start=a;S.end=b;sync();overlay();head()}function sync(){E.start.max=E.end.max=S.duration||0;E.start.value=round(S.start);E.end.value=round(S.end);E.startLabel.textContent=time(S.start);E.endLabel.textContent=time(S.end);E.lenLabel.textContent=time(Math.max(0,S.end-S.start));E.timeLeft.textContent=time(S.offset);E.timeRight.textContent=time(Math.min(S.duration,S.offset+S.duration/S.zoom));E.sizeLabel.textContent=S.file&&S.duration?bytes(Math.round(S.file.size*(S.end-S.start)/S.duration)):'--'}function overlay(){if(!S.duration){E.sel.style.display='none';return}let r=E.wave.getBoundingClientRect(),l=clamp(t2x(S.start),0,r.width),rr=clamp(t2x(S.end),0,r.width);E.sel.style.display='block';E.sel.style.left=l+'px';E.sel.style.width=Math.max(0,rr-l)+'px'}function head(){if(!S.duration||!S.player.src){E.head.style.display='none';return}let r=E.wave.getBoundingClientRect(),x=t2x(S.player.currentTime||S.start);E.head.style.display=x>=0&&x<=r.width?'block':'none';E.head.style.left=clamp(x,0,r.width)+'px'}async function toggle(){if(!S.file)return;if(!S.player.paused){S.player.pause();E.play.textContent='▶';return}if(S.player.currentTime<S.start||S.player.currentTime>=S.end)S.player.currentTime=S.start;await S.player.play();E.play.textContent='Ⅱ'}
-function detect(b,f){if(txt(b,0,4)==='RIFF'&&txt(b,8,4)==='WAVE')return wavInfo(b);if(/\.mp3$/i.test(f.name)||f.type==='audio/mpeg'||hasFrame(b))return mp3Info(b);return{kind:'unknown',supported:false}}function wavInfo(b){let v=new DataView(b.buffer,b.byteOffset,b.byteLength),o=12,fmt=null,data=null;while(o+8<=b.length){let id=txt(b,o,4),sz=v.getUint32(o+4,true),s=o+8,e=s+sz;if(id==='fmt ')fmt={bytes:b.slice(o,e+sz%2),format:v.getUint16(s,true),byteRate:v.getUint32(s+8,true),block:v.getUint16(s+12,true)};if(id==='data')data={start:s,size:sz,end:e};o=e+sz%2}return{kind:'wav',supported:!!(fmt&&data&&[1,3].includes(fmt.format)&&fmt.block),fmt,data}}function id3(b){return b.length>=10&&txt(b,0,3)==='ID3'?10+((b[6]&127)<<21)+((b[7]&127)<<14)+((b[8]&127)<<7)+(b[9]&127):0}function hasFrame(b){for(let i=id3(b);i<Math.min(b.length-4,65536);i++)if(frame(b,i))return true;return false}function mp3Info(b){let o=id3(b),time=0,frames=[];while(o+4<b.length){let f=frame(b,o);if(!f){o++;continue}frames.push({start:o,end:o+f.length,time,duration:f.duration});time+=f.duration;o+=f.length}return{kind:'mp3',supported:frames.length>4,id3Size:id3(b),frames}}function frame(b,o){if(o+4>=b.length||b[o]!==255||(b[o+1]&224)!==224)return null;let vb=(b[o+1]>>3)&3,lb=(b[o+1]>>1)&3,bi=(b[o+2]>>4)&15,si=(b[o+2]>>2)&3,p=(b[o+2]>>1)&1;if(vb===1||lb===0||bi===0||bi===15||si===3)return null;let ver=vb===3?1:vb===2?2:2.5,layer=4-lb,sr={1:[44100,48000,32000],2:[22050,24000,16000],2.5:[11025,12000,8000]}[ver][si],br=bitrate(ver,layer)[bi]*1000,len,samp;if(layer===1){len=Math.floor((12*br/sr+p)*4);samp=384}else{let c=layer===3&&ver!==1?72:144;len=Math.floor(c*br/sr+p);samp=layer===3&&ver!==1?576:1152}return len&&o+len<=b.length?{length:len,duration:samp/sr}:null}function bitrate(v,l){if(l===1)return v===1?[0,32,64,96,128,160,192,224,256,288,320,352,384,416,448]:[0,32,48,56,64,80,96,112,128,144,160,176,192,224,256];if(l===2)return v===1?[0,32,48,56,64,80,96,112,128,160,192,224,256,320,384]:[0,8,16,24,32,40,48,56,64,80,96,112,128,144,160];return v===1?[0,32,40,48,56,64,80,96,112,128,160,192,224,256,320]:[0,8,16,24,32,40,48,56,64,80,96,112,128,144,160]}function save(){if(!S.format||!S.format.supported)return toast(T('unsup'));let r=S.format.kind==='wav'?outWav():outMp3();if(!r||!r.blob.size)return toast(T('short'));let u=URL.createObjectURL(r.blob),a=document.createElement('a');a.href=u;a.download=(E.outName.value||'clip').replace(/[\\/:*?"<>|]+/g,'-')+'.'+r.ext;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),1000);toast(T('saved')+time(r.actualStart)+' - '+time(r.actualEnd))}function outWav(){let{fmt,data}=S.format,so=Math.floor(S.start*fmt.byteRate/fmt.block)*fmt.block,eo=Math.ceil(S.end*fmt.byteRate/fmt.block)*fmt.block,ds=data.start+clamp(so,0,data.size),de=data.start+clamp(eo,0,data.size),clip=S.bytes.slice(ds,de),total=4+fmt.bytes.length+8+clip.length,out=new Uint8Array(8+total),v=new DataView(out.buffer);put(out,0,'RIFF');v.setUint32(4,total,true);put(out,8,'WAVE');out.set(fmt.bytes,12);let h=12+fmt.bytes.length;put(out,h,'data');v.setUint32(h+4,clip.length,true);out.set(clip,h+8);return{blob:new Blob([out],{type:'audio/wav'}),ext:'wav',actualStart:(ds-data.start)/fmt.byteRate,actualEnd:(de-data.start)/fmt.byteRate}}function outMp3(){let{frames,id3Size}=S.format,si=frames.findIndex(f=>f.time+f.duration>=S.start),ei=frames.findIndex(f=>f.time>=S.end);if(si<0)return null;let li=ei<0?frames.length-1:Math.max(si,ei-1),first=frames[si],last=frames[li],id=S.bytes.slice(0,id3Size),body=S.bytes.slice(first.start,last.end),out=new Uint8Array(id.length+body.length);out.set(id);out.set(body,id.length);return{blob:new Blob([out],{type:'audio/mpeg'}),ext:'mp3',actualStart:first.time,actualEnd:last.time+last.duration}}function txt(b,o,l){let s='';for(let i=0;i<l;i++)s+=String.fromCharCode(b[o+i]||0);return s}function put(b,o,s){for(let i=0;i<s.length;i++)b[o+i]=s.charCodeAt(i)}function clamp(v,a,b){return Math.min(b,Math.max(a,v))}function time(x){if(!Number.isFinite(x))return'00:00.000';let w=Math.floor(Math.max(0,x)),m=Math.floor(w/60),s=w%60,ms=Math.floor((x-w)*1000);return`${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}.${String(ms).padStart(3,'0')}`}function round(v){return String(Math.round(v*1000)/1000)}function bytes(n){let u=['B','KB','MB','GB'],i=0;while(n>=1024&&i<u.length-1){n/=1024;i++}return`${n.toFixed(n>=10||i===0?0:1)} ${u[i]}`}function toast(m){E.toast.textContent=m;E.toast.classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(()=>E.toast.classList.remove('show'),3200)}autoLang();resize();sync();
-</script>
+  <div class="app">
+    <header>
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M4 14v-4"></path><path d="M8 18V6"></path><path d="M12 21V3"></path><path d="M16 17V7"></path><path d="M20 13v-2"></path></svg>
+        </span>
+        Sonic Cutter
+      </div>
+      <div class="top-actions">
+        <label class="language-switcher" for="languageSelect">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z"></path><path d="M3.6 9h16.8"></path><path d="M3.6 15h16.8"></path><path d="M12 3a14 14 0 0 1 0 18"></path><path d="M12 3a14 14 0 0 0 0 18"></path></svg>
+          <select id="languageSelect" aria-label="Language">
+            <option value="auto">Auto</option>
+            <option value="zh">中文</option>
+            <option value="en">English</option>
+            <option value="ja">日本語</option>
+            <option value="ko">한국어</option>
+            <option value="fr">Français</option>
+            <option value="de">Deutsch</option>
+            <option value="es">Español</option>
+          </select>
+        </label>
+        <div class="badge" id="privacyBadge">本地处理 · 不上传文件</div>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow" id="eyebrow">Lossless Audio Studio</div>
+        <h1 id="heroTitle">把音乐切成<span>刚刚好</span>的片段</h1>
+        <p class="subtitle" id="heroSubtitle">上传音乐，拖拽波形选择片段，导出时保留原始音频数据。WAV 按采样块裁切，MP3 按音频帧裁切，全程不重新压缩。</p>
+        <div class="hero-actions">
+          <a class="hero-button" href="#dropzone" id="startCta">开始切割</a>
+          <a class="ghost-button" href="#intro" id="learnCta">了解流程</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat"><strong id="stat1Value">0%</strong><span id="stat1Label">额外压缩</span></div>
+          <div class="stat"><strong id="stat2Value">本地</strong><span id="stat2Label">浏览器内处理</span></div>
+          <div class="stat"><strong id="stat3Value">帧级</strong><span id="stat3Label">MP3 边界对齐</span></div>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <img class="hero-art" src="assets/sonic-hero.jpg" alt="">
+        <div class="hero-disc"></div>
+        <div class="floating-panel">
+          <span id="floatingLabel">Live waveform preview</span>
+          <div class="mini-bars">
+            <i style="--i: 1"></i>
+            <i style="--i: 2"></i>
+            <i style="--i: 3"></i>
+            <i style="--i: 4"></i>
+            <i style="--i: 5"></i>
+            <i style="--i: 6"></i>
+            <i style="--i: 7"></i>
+            <i style="--i: 8"></i>
+            <i style="--i: 9"></i>
+            <i style="--i: 10"></i>
+            <i style="--i: 11"></i>
+            <i style="--i: 12"></i>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="intro" id="intro" aria-label="功能介绍">
+      <article class="intro-card">
+        <b id="intro1Title">拖进音乐，马上看到波形</b>
+        <p id="intro1Text">浏览器读取本地文件生成预览，节奏、静音段和高潮位置都能直接看见。</p>
+      </article>
+      <article class="intro-card">
+        <b id="intro2Title">拖拽选区，精确到毫秒</b>
+        <p id="intro2Text">用波形快速框选，再用开始和结束时间微调，适合铃声、采样和片段整理。</p>
+      </article>
+      <article class="intro-card">
+        <b id="intro3Title">导出不重新压缩</b>
+        <p id="intro3Text">MP3 贴近音频帧，WAV 贴近采样块，尽可能保持原始音质和编码数据。</p>
+      </article>
+    </section>
+
+    <section class="tool-section">
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker" id="workbenchKicker">Precision Workspace</p>
+          <h2 id="workbenchTitle">上传、选择、保存</h2>
+        </div>
+        <p id="workbenchText">核心操作集中在这里：左侧处理音频文件和波形选区，右侧实时查看片段长度、预计大小和导出提示。</p>
+      </div>
+
+      <main>
+        <section class="primary-column">
+        <label class="dropzone" id="dropzone">
+          <input id="fileInput" type="file" accept="audio/*,.mp3,.wav">
+          <span class="upload-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 16V4"></path><path d="m7 9 5-5 5 5"></path><path d="M20 16v4H4v-4"></path></svg>
+          </span>
+          <span class="drop-title" id="dropTitle">拖入音乐，或点击选择文件</span>
+          <span class="drop-copy" id="dropCopy">推荐 MP3 或 WAV。浏览器只读取本地文件用于波形预览，保存时直接从原文件数据中切出片段。</span>
+        </label>
+
+        <div class="workspace editor" id="editor">
+          <div class="filebar">
+            <div>
+              <div class="file-name" id="fileName">未选择文件</div>
+              <div class="file-meta" id="fileMeta">--</div>
+            </div>
+            <div class="status" id="qualityStatus">等待分析音频格式</div>
+          </div>
+
+          <div class="wave-wrap">
+            <div class="wave-shell" id="waveShell">
+              <canvas id="waveCanvas" width="1200" height="360"></canvas>
+              <div class="selection" id="selection"></div>
+              <div class="playhead" id="playhead"></div>
+            </div>
+            <div class="timeline">
+              <span id="timeLeft">00:00.000</span>
+              <span id="timeRight">00:00.000</span>
+            </div>
+          </div>
+
+          <div class="controls">
+            <button class="icon" id="playBtn" title="播放或暂停">
+              <svg viewBox="0 0 24 24" id="playIcon"><path d="M8 5v14l11-7z"></path></svg>
+            </button>
+            <button class="icon" id="loopBtn" title="循环试听选区">
+              <svg viewBox="0 0 24 24"><path d="M17 2l4 4-4 4"></path><path d="M3 11V9a3 3 0 0 1 3-3h15"></path><path d="M7 22l-4-4 4-4"></path><path d="M21 13v2a3 3 0 0 1-3 3H3"></path></svg>
+            </button>
+            <button class="icon" id="fullBtn" title="选择整首">
+              <svg viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2v3"></path><path d="M16 3h3a2 2 0 0 1 2 2v3"></path><path d="M8 21H5a2 2 0 0 1-2-2v-3"></path><path d="M16 21h3a2 2 0 0 0 2-2v-3"></path></svg>
+            </button>
+            <button class="icon danger" id="clearBtn" title="重新上传">
+              <svg viewBox="0 0 24 24"><path d="M3 6h18"></path><path d="M8 6V4h8v2"></path><path d="m19 6-1 14H6L5 6"></path><path d="M10 11v5"></path><path d="M14 11v5"></path></svg>
+            </button>
+            <button class="icon primary" id="saveBtn">
+              <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><path d="M7 10l5 5 5-5"></path><path d="M12 15V3"></path></svg>
+              <span id="saveText">保存片段</span>
+            </button>
+          </div>
+
+          <div class="range-grid">
+            <label>
+              <span id="startInputLabel">开始时间</span>
+              <input id="startInput" type="number" min="0" step="0.001" value="0">
+            </label>
+            <label>
+              <span id="endInputLabel">结束时间</span>
+              <input id="endInput" type="number" min="0" step="0.001" value="0">
+            </label>
+            <label>
+              <span id="outputNameLabel">文件名</span>
+              <input id="outputName" type="text" value="clip">
+            </label>
+          </div>
+        </div>
+        </section>
+
+        <aside class="side">
+        <section>
+          <h2 id="clipInfoTitle">片段信息</h2>
+          <div class="meter"><span id="meterStart">开始</span><strong id="startLabel">00:00.000</strong></div>
+          <div class="meter"><span id="meterEnd">结束</span><strong id="endLabel">00:00.000</strong></div>
+          <div class="meter"><span id="meterLength">长度</span><strong id="lengthLabel">00:00.000</strong></div>
+          <div class="meter"><span id="meterSize">预计大小</span><strong id="sizeLabel">--</strong></div>
+        </section>
+
+        <section class="zoom">
+          <h2 id="zoomTitle">波形缩放</h2>
+          <input id="zoomRange" type="range" min="1" max="8" step="0.25" value="1">
+        </section>
+
+        <p class="hint" id="formatHint">MP3 会贴近最近的音频帧边界；WAV 会贴近最近的采样块边界。这是保持原始音质时应该接受的微小时间对齐。</p>
+        <p class="hint warn" id="formatWarn">AAC、M4A、FLAC、OGG 等容器在纯浏览器里要真正无损切割需要重写容器结构；当前版本会提示格式不支持无损导出。</p>
+        </aside>
+      </main>
+    </section>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    const els = {
+      dropzone: document.querySelector("#dropzone"),
+      fileInput: document.querySelector("#fileInput"),
+      editor: document.querySelector("#editor"),
+      fileName: document.querySelector("#fileName"),
+      fileMeta: document.querySelector("#fileMeta"),
+      qualityStatus: document.querySelector("#qualityStatus"),
+      waveShell: document.querySelector("#waveShell"),
+      canvas: document.querySelector("#waveCanvas"),
+      selection: document.querySelector("#selection"),
+      playhead: document.querySelector("#playhead"),
+      timeLeft: document.querySelector("#timeLeft"),
+      timeRight: document.querySelector("#timeRight"),
+      playBtn: document.querySelector("#playBtn"),
+      playIcon: document.querySelector("#playIcon"),
+      loopBtn: document.querySelector("#loopBtn"),
+      fullBtn: document.querySelector("#fullBtn"),
+      clearBtn: document.querySelector("#clearBtn"),
+      saveBtn: document.querySelector("#saveBtn"),
+      startInput: document.querySelector("#startInput"),
+      endInput: document.querySelector("#endInput"),
+      outputName: document.querySelector("#outputName"),
+      startLabel: document.querySelector("#startLabel"),
+      endLabel: document.querySelector("#endLabel"),
+      lengthLabel: document.querySelector("#lengthLabel"),
+      sizeLabel: document.querySelector("#sizeLabel"),
+      zoomRange: document.querySelector("#zoomRange"),
+      languageSelect: document.querySelector("#languageSelect"),
+      toast: document.querySelector("#toast")
+    };
+
+    const ctx = els.canvas.getContext("2d");
+    const state = {
+      file: null,
+      bytes: null,
+      audioBuffer: null,
+      audioUrl: "",
+      player: new Audio(),
+      duration: 0,
+      start: 0,
+      end: 0,
+      zoom: 1,
+      offset: 0,
+      dragging: null,
+      loop: false,
+      format: null,
+      peaks: [],
+      lang: "zh",
+      languageMode: "auto"
+    };
+
+    const translations = {
+      zh: {
+        title: "无损音频切割",
+        auto: "自动",
+        privacyBadge: "本地处理 · 不上传文件",
+        eyebrow: "Lossless Audio Studio",
+        heroTitle: "把音乐切成<span>刚刚好</span>的片段",
+        heroSubtitle: "上传音乐，拖拽波形选择片段，导出时保留原始音频数据。WAV 按采样块裁切，MP3 按音频帧裁切，全程不重新压缩。",
+        startCta: "开始切割",
+        learnCta: "了解流程",
+        stat1Value: "0%",
+        stat1Label: "额外压缩",
+        stat2Value: "本地",
+        stat2Label: "浏览器内处理",
+        stat3Value: "帧级",
+        stat3Label: "MP3 边界对齐",
+        floatingLabel: "实时波形预览",
+        introLabel: "功能介绍",
+        intro1Title: "拖进音乐，马上看到波形",
+        intro1Text: "浏览器读取本地文件生成预览，节奏、静音段和高潮位置都能直接看见。",
+        intro2Title: "拖拽选区，精确到毫秒",
+        intro2Text: "用波形快速框选，再用开始和结束时间微调，适合铃声、采样和片段整理。",
+        intro3Title: "导出不重新压缩",
+        intro3Text: "MP3 贴近音频帧，WAV 贴近采样块，尽可能保持原始音质和编码数据。",
+        workbenchKicker: "Precision Workspace",
+        workbenchTitle: "上传、选择、保存",
+        workbenchText: "核心操作集中在这里：左侧处理音频文件和波形选区，右侧实时查看片段长度、预计大小和导出提示。",
+        dropTitle: "拖入音乐，或点击选择文件",
+        dropCopy: "推荐 MP3 或 WAV。浏览器只读取本地文件用于波形预览，保存时直接从原文件数据中切出片段。",
+        noFile: "未选择文件",
+        waitingStatus: "等待分析音频格式",
+        playTitle: "播放或暂停",
+        loopTitle: "循环试听选区",
+        fullTitle: "选择整首",
+        clearTitle: "重新上传",
+        saveText: "保存片段",
+        startInputLabel: "开始时间",
+        endInputLabel: "结束时间",
+        outputNameLabel: "文件名",
+        clipInfoTitle: "片段信息",
+        meterStart: "开始",
+        meterEnd: "结束",
+        meterLength: "长度",
+        meterSize: "预计大小",
+        zoomTitle: "波形缩放",
+        formatHint: "MP3 会贴近最近的音频帧边界；WAV 会贴近最近的采样块边界。这是保持原始音质时应该接受的微小时间对齐。",
+        formatWarn: "AAC、M4A、FLAC、OGG 等容器在纯浏览器里要真正无损切割需要重写容器结构；当前版本会提示格式不支持无损导出。",
+        wavStatus: "WAV 原始采样数据切割，不改变采样率、位深或声道。",
+        mp3Status: "MP3 原始帧切割，不解码、不重新压缩。",
+        unsupportedStatus: "此格式暂不支持纯浏览器无损导出，请使用 MP3 或 WAV。",
+        invalidAudio: "请选择音频文件。",
+        decodeFail: "浏览器无法解码这个音频，暂时不能生成波形预览。",
+        unsupportedToast: "当前格式不支持无损导出，请换用 MP3 或 WAV。",
+        tooShort: "片段太短，无法生成有效文件。",
+        savedPrefix: "已保存，实际对齐片段：",
+        waveEmpty: "上传音频后显示波形",
+        unknownType: "未知类型"
+      },
+      en: {
+        title: "Lossless Audio Cutter",
+        auto: "Auto",
+        privacyBadge: "Local only · No upload",
+        eyebrow: "Lossless Audio Studio",
+        heroTitle: "Cut music into the <span>perfect</span> moment",
+        heroSubtitle: "Upload a track, select a waveform range, and export from the original audio data. WAV is aligned to sample blocks; MP3 is aligned to audio frames with no recompression.",
+        startCta: "Start cutting",
+        learnCta: "How it works",
+        stat1Value: "0%",
+        stat1Label: "extra compression",
+        stat2Value: "Local",
+        stat2Label: "processed in browser",
+        stat3Value: "Frame",
+        stat3Label: "MP3 boundary aligned",
+        floatingLabel: "Live waveform preview",
+        introLabel: "Features",
+        intro1Title: "Drop music in and see the waveform",
+        intro1Text: "The browser reads the local file for preview so rhythm, silence, and peaks are easy to spot.",
+        intro2Title: "Drag a range, tune by milliseconds",
+        intro2Text: "Select quickly on the waveform, then fine-tune start and end times for samples, ringtones, or edits.",
+        intro3Title: "Export without recompression",
+        intro3Text: "MP3 clips align to frames and WAV clips align to sample blocks to preserve the original data as much as possible.",
+        workbenchKicker: "Precision Workspace",
+        workbenchTitle: "Upload, select, save",
+        workbenchText: "The core flow lives here: handle files and waveform ranges on the left, then track duration, size, and export notes on the right.",
+        dropTitle: "Drop music here, or choose a file",
+        dropCopy: "MP3 or WAV recommended. The browser only reads your local file for preview and saves a slice from the original data.",
+        noFile: "No file selected",
+        waitingStatus: "Waiting to analyze audio format",
+        playTitle: "Play or pause",
+        loopTitle: "Loop selected range",
+        fullTitle: "Select full track",
+        clearTitle: "Upload again",
+        saveText: "Save clip",
+        startInputLabel: "Start time",
+        endInputLabel: "End time",
+        outputNameLabel: "File name",
+        clipInfoTitle: "Clip info",
+        meterStart: "Start",
+        meterEnd: "End",
+        meterLength: "Length",
+        meterSize: "Estimated size",
+        zoomTitle: "Waveform zoom",
+        formatHint: "MP3 snaps to the nearest audio frame; WAV snaps to the nearest sample block. This tiny alignment is the right tradeoff for keeping original quality.",
+        formatWarn: "AAC, M4A, FLAC, OGG and similar containers need container rewriting for true browser-only lossless cuts; this version will mark them unsupported.",
+        wavStatus: "WAV is cut from original sample data without changing sample rate, bit depth, or channels.",
+        mp3Status: "MP3 is cut from original frames without decoding or recompression.",
+        unsupportedStatus: "This format is not supported for browser-only lossless export. Please use MP3 or WAV.",
+        invalidAudio: "Please choose an audio file.",
+        decodeFail: "The browser could not decode this audio, so waveform preview is unavailable.",
+        unsupportedToast: "This format cannot be exported losslessly here. Please use MP3 or WAV.",
+        tooShort: "The clip is too short to create a valid file.",
+        savedPrefix: "Saved. Actual aligned range: ",
+        waveEmpty: "Upload audio to show waveform",
+        unknownType: "Unknown type"
+      },
+      ja: {
+        title: "ロスレス音声カッター",
+        auto: "自動",
+        privacyBadge: "ローカル処理 · アップロードなし",
+        eyebrow: "Lossless Audio Studio",
+        heroTitle: "音楽を<span>ちょうどいい</span>瞬間に切り出す",
+        heroSubtitle: "音楽をアップロードし、波形上で範囲を選択して、元の音声データから書き出します。WAV はサンプルブロック、MP3 は音声フレームに合わせ、再圧縮しません。",
+        startCta: "切り出し開始",
+        learnCta: "流れを見る",
+        stat1Value: "0%",
+        stat1Label: "追加圧縮",
+        stat2Value: "ローカル",
+        stat2Label: "ブラウザ内処理",
+        stat3Value: "フレーム",
+        stat3Label: "MP3 境界に整列",
+        floatingLabel: "リアルタイム波形プレビュー",
+        introLabel: "機能紹介",
+        intro1Title: "音楽を入れるとすぐ波形表示",
+        intro1Text: "ブラウザがローカルファイルを読み取り、リズム、無音、盛り上がりを見つけやすくします。",
+        intro2Title: "ドラッグ選択、ミリ秒単位で調整",
+        intro2Text: "波形で素早く範囲を選び、開始・終了時間で細かく調整できます。",
+        intro3Title: "再圧縮せずに書き出し",
+        intro3Text: "MP3 はフレーム、WAV はサンプルブロックに合わせ、元データをできるだけ保ちます。",
+        workbenchKicker: "Precision Workspace",
+        workbenchTitle: "アップロード、選択、保存",
+        workbenchText: "中心操作をここに集約しました。左でファイルと波形範囲を扱い、右で長さ、サイズ、書き出し情報を確認できます。",
+        dropTitle: "音楽をドロップ、またはファイルを選択",
+        dropCopy: "MP3 または WAV 推奨。プレビュー用にローカルファイルを読み取り、元データから切り出して保存します。",
+        noFile: "ファイル未選択",
+        waitingStatus: "音声形式を解析待ち",
+        playTitle: "再生 / 一時停止",
+        loopTitle: "選択範囲をループ",
+        fullTitle: "全体を選択",
+        clearTitle: "再アップロード",
+        saveText: "クリップ保存",
+        startInputLabel: "開始時間",
+        endInputLabel: "終了時間",
+        outputNameLabel: "ファイル名",
+        clipInfoTitle: "クリップ情報",
+        meterStart: "開始",
+        meterEnd: "終了",
+        meterLength: "長さ",
+        meterSize: "推定サイズ",
+        zoomTitle: "波形ズーム",
+        formatHint: "MP3 は近い音声フレームへ、WAV は近いサンプルブロックへ合わせます。音質維持のためのわずかな時間調整です。",
+        formatWarn: "AAC、M4A、FLAC、OGG などは真のロスレス切り出しにコンテナ再構成が必要なため、この版では非対応です。",
+        wavStatus: "WAV はサンプルレート、ビット深度、チャンネルを変えずに元データから切り出します。",
+        mp3Status: "MP3 はデコードや再圧縮なしで元フレームから切り出します。",
+        unsupportedStatus: "この形式はブラウザのみのロスレス書き出しに未対応です。MP3 または WAV を使用してください。",
+        invalidAudio: "音声ファイルを選択してください。",
+        decodeFail: "ブラウザがこの音声をデコードできず、波形プレビューを生成できません。",
+        unsupportedToast: "この形式はここではロスレス書き出しできません。MP3 または WAV を使用してください。",
+        tooShort: "クリップが短すぎて有効なファイルを作成できません。",
+        savedPrefix: "保存しました。実際の整列範囲：",
+        waveEmpty: "音声をアップロードすると波形を表示します",
+        unknownType: "不明な形式"
+      },
+      ko: {
+        title: "무손실 오디오 커터",
+        auto: "자동",
+        privacyBadge: "로컬 처리 · 업로드 없음",
+        eyebrow: "Lossless Audio Studio",
+        heroTitle: "음악을 <span>딱 맞는</span> 순간으로 자르기",
+        heroSubtitle: "음악을 업로드하고 파형에서 구간을 선택한 뒤 원본 오디오 데이터에서 내보냅니다. WAV는 샘플 블록, MP3는 오디오 프레임에 맞추며 재압축하지 않습니다.",
+        startCta: "자르기 시작",
+        learnCta: "흐름 보기",
+        stat1Value: "0%",
+        stat1Label: "추가 압축",
+        stat2Value: "로컬",
+        stat2Label: "브라우저 내 처리",
+        stat3Value: "프레임",
+        stat3Label: "MP3 경계 정렬",
+        floatingLabel: "실시간 파형 미리보기",
+        introLabel: "기능 소개",
+        intro1Title: "음악을 넣으면 바로 파형 표시",
+        intro1Text: "브라우저가 로컬 파일을 읽어 리듬, 무음 구간, 피크를 쉽게 확인할 수 있게 합니다.",
+        intro2Title: "드래그 선택, 밀리초 단위 조정",
+        intro2Text: "파형에서 빠르게 선택하고 시작/종료 시간을 세밀하게 조정하세요.",
+        intro3Title: "재압축 없이 내보내기",
+        intro3Text: "MP3는 프레임에, WAV는 샘플 블록에 맞춰 원본 데이터를 최대한 유지합니다.",
+        workbenchKicker: "Precision Workspace",
+        workbenchTitle: "업로드, 선택, 저장",
+        workbenchText: "핵심 작업을 한곳에 모았습니다. 왼쪽에서 파일과 파형 구간을 다루고 오른쪽에서 길이, 크기, 내보내기 정보를 확인합니다.",
+        dropTitle: "음악을 드롭하거나 파일 선택",
+        dropCopy: "MP3 또는 WAV 권장. 브라우저가 로컬 파일을 미리보기용으로 읽고 원본 데이터에서 잘라 저장합니다.",
+        noFile: "선택된 파일 없음",
+        waitingStatus: "오디오 형식 분석 대기 중",
+        playTitle: "재생 또는 일시정지",
+        loopTitle: "선택 구간 반복",
+        fullTitle: "전체 트랙 선택",
+        clearTitle: "다시 업로드",
+        saveText: "클립 저장",
+        startInputLabel: "시작 시간",
+        endInputLabel: "종료 시간",
+        outputNameLabel: "파일 이름",
+        clipInfoTitle: "클립 정보",
+        meterStart: "시작",
+        meterEnd: "종료",
+        meterLength: "길이",
+        meterSize: "예상 크기",
+        zoomTitle: "파형 확대",
+        formatHint: "MP3는 가까운 오디오 프레임에, WAV는 가까운 샘플 블록에 맞춥니다. 원본 음질 유지를 위한 작은 시간 정렬입니다.",
+        formatWarn: "AAC, M4A, FLAC, OGG 등은 진짜 무손실 자르기에 컨테이너 재작성 필요가 있어 현재 버전에서는 지원하지 않습니다.",
+        wavStatus: "WAV는 샘플레이트, 비트 깊이, 채널을 바꾸지 않고 원본 샘플 데이터에서 잘라냅니다.",
+        mp3Status: "MP3는 디코딩이나 재압축 없이 원본 프레임에서 잘라냅니다.",
+        unsupportedStatus: "이 형식은 브라우저만으로 무손실 내보내기를 지원하지 않습니다. MP3 또는 WAV를 사용하세요.",
+        invalidAudio: "오디오 파일을 선택하세요.",
+        decodeFail: "브라우저가 이 오디오를 디코딩할 수 없어 파형 미리보기를 만들 수 없습니다.",
+        unsupportedToast: "이 형식은 여기서 무손실 내보내기를 할 수 없습니다. MP3 또는 WAV를 사용하세요.",
+        tooShort: "클립이 너무 짧아 유효한 파일을 만들 수 없습니다.",
+        savedPrefix: "저장됨. 실제 정렬 구간: ",
+        waveEmpty: "오디오를 업로드하면 파형이 표시됩니다",
+        unknownType: "알 수 없는 형식"
+      },
+      fr: {
+        title: "Découpe Audio Sans Perte",
+        auto: "Auto",
+        privacyBadge: "Local · Aucun téléversement",
+        eyebrow: "Lossless Audio Studio",
+        heroTitle: "Découpez la musique au <span>moment parfait</span>",
+        heroSubtitle: "Importez un morceau, sélectionnez une zone sur la forme d’onde et exportez depuis les données audio d’origine. WAV est aligné sur les blocs d’échantillons, MP3 sur les trames, sans recompression.",
+        startCta: "Commencer",
+        learnCta: "Voir le flux",
+        stat1Value: "0%",
+        stat1Label: "compression ajoutée",
+        stat2Value: "Local",
+        stat2Label: "dans le navigateur",
+        stat3Value: "Trame",
+        stat3Label: "alignement MP3",
+        floatingLabel: "Aperçu de forme d’onde",
+        introLabel: "Fonctionnalités",
+        intro1Title: "Déposez un son, voyez la forme d’onde",
+        intro1Text: "Le navigateur lit le fichier localement pour repérer rythme, silences et pics.",
+        intro2Title: "Sélectionnez et ajustez à la milliseconde",
+        intro2Text: "Choisissez vite sur la forme d’onde, puis affinez le début et la fin.",
+        intro3Title: "Export sans recompression",
+        intro3Text: "MP3 s’aligne sur les trames et WAV sur les blocs pour préserver les données d’origine.",
+        workbenchKicker: "Precision Workspace",
+        workbenchTitle: "Importer, sélectionner, enregistrer",
+        workbenchText: "Le flux principal est ici : gérez le fichier et la sélection à gauche, puis consultez durée, taille et notes d’export à droite.",
+        dropTitle: "Déposez une musique ou choisissez un fichier",
+        dropCopy: "MP3 ou WAV recommandé. Le navigateur lit le fichier localement pour l’aperçu et sauvegarde une tranche des données d’origine.",
+        noFile: "Aucun fichier sélectionné",
+        waitingStatus: "Analyse du format audio en attente",
+        playTitle: "Lire ou mettre en pause",
+        loopTitle: "Lire la sélection en boucle",
+        fullTitle: "Sélectionner tout le morceau",
+        clearTitle: "Importer à nouveau",
+        saveText: "Enregistrer",
+        startInputLabel: "Début",
+        endInputLabel: "Fin",
+        outputNameLabel: "Nom du fichier",
+        clipInfoTitle: "Infos du clip",
+        meterStart: "Début",
+        meterEnd: "Fin",
+        meterLength: "Durée",
+        meterSize: "Taille estimée",
+        zoomTitle: "Zoom de forme d’onde",
+        formatHint: "MP3 se cale sur la trame la plus proche ; WAV sur le bloc d’échantillons le plus proche. Ce léger alignement préserve la qualité originale.",
+        formatWarn: "AAC, M4A, FLAC, OGG et autres conteneurs demandent une réécriture pour une vraie découpe sans perte dans le navigateur ; cette version les marque non pris en charge.",
+        wavStatus: "WAV est découpé depuis les échantillons d’origine sans changer fréquence, profondeur ou canaux.",
+        mp3Status: "MP3 est découpé depuis les trames d’origine sans décodage ni recompression.",
+        unsupportedStatus: "Ce format n’est pas pris en charge pour un export sans perte dans le navigateur. Utilisez MP3 ou WAV.",
+        invalidAudio: "Choisissez un fichier audio.",
+        decodeFail: "Le navigateur ne peut pas décoder cet audio ; l’aperçu de forme d’onde est indisponible.",
+        unsupportedToast: "Ce format ne peut pas être exporté sans perte ici. Utilisez MP3 ou WAV.",
+        tooShort: "Le clip est trop court pour créer un fichier valide.",
+        savedPrefix: "Enregistré. Plage alignée réelle : ",
+        waveEmpty: "Importez un audio pour afficher la forme d’onde",
+        unknownType: "Type inconnu"
+      },
+      de: {
+        title: "Verlustfreier Audio-Cutter",
+        auto: "Automatisch",
+        privacyBadge: "Lokal · Kein Upload",
+        eyebrow: "Lossless Audio Studio",
+        heroTitle: "Schneide Musik auf den <span>perfekten</span> Moment",
+        heroSubtitle: "Lade einen Track hoch, wähle einen Bereich in der Wellenform und exportiere aus den Originaldaten. WAV wird an Sample-Blöcken, MP3 an Audio-Frames ausgerichtet, ohne Neukomprimierung.",
+        startCta: "Loslegen",
+        learnCta: "Ablauf ansehen",
+        stat1Value: "0%",
+        stat1Label: "zusätzliche Kompression",
+        stat2Value: "Lokal",
+        stat2Label: "im Browser verarbeitet",
+        stat3Value: "Frame",
+        stat3Label: "MP3-Grenzen",
+        floatingLabel: "Live-Wellenform",
+        introLabel: "Funktionen",
+        intro1Title: "Musik ablegen und Wellenform sehen",
+        intro1Text: "Der Browser liest die lokale Datei für die Vorschau, damit Rhythmus, Stille und Peaks sichtbar werden.",
+        intro2Title: "Bereich ziehen, millisekundengenau anpassen",
+        intro2Text: "Wähle schnell in der Wellenform und justiere Start und Ende exakt nach.",
+        intro3Title: "Export ohne Neukomprimierung",
+        intro3Text: "MP3 richtet sich an Frames aus, WAV an Sample-Blöcken, um Originaldaten möglichst zu erhalten.",
+        workbenchKicker: "Precision Workspace",
+        workbenchTitle: "Hochladen, auswählen, speichern",
+        workbenchText: "Der Kernablauf sitzt hier: links Datei und Wellenbereich bearbeiten, rechts Länge, Größe und Exporthinweise prüfen.",
+        dropTitle: "Musik hier ablegen oder Datei wählen",
+        dropCopy: "MP3 oder WAV empfohlen. Der Browser liest nur die lokale Datei für die Vorschau und speichert einen Ausschnitt der Originaldaten.",
+        noFile: "Keine Datei ausgewählt",
+        waitingStatus: "Warte auf Analyse des Audioformats",
+        playTitle: "Abspielen oder pausieren",
+        loopTitle: "Auswahl wiederholen",
+        fullTitle: "Ganzen Track auswählen",
+        clearTitle: "Erneut hochladen",
+        saveText: "Clip speichern",
+        startInputLabel: "Startzeit",
+        endInputLabel: "Endzeit",
+        outputNameLabel: "Dateiname",
+        clipInfoTitle: "Clip-Info",
+        meterStart: "Start",
+        meterEnd: "Ende",
+        meterLength: "Länge",
+        meterSize: "Geschätzte Größe",
+        zoomTitle: "Wellenform-Zoom",
+        formatHint: "MP3 rastet am nächsten Audio-Frame ein; WAV am nächsten Sample-Block. Diese kleine Ausrichtung erhält die Originalqualität.",
+        formatWarn: "AAC, M4A, FLAC, OGG und ähnliche Container benötigen für echtes verlustfreies Schneiden eine Container-Neuschreibung; diese Version meldet sie als nicht unterstützt.",
+        wavStatus: "WAV wird aus Original-Sampledaten geschnitten, ohne Samplerate, Bittiefe oder Kanäle zu ändern.",
+        mp3Status: "MP3 wird aus Original-Frames geschnitten, ohne Dekodierung oder Neukomprimierung.",
+        unsupportedStatus: "Dieses Format wird für verlustfreien Browser-Export nicht unterstützt. Bitte MP3 oder WAV verwenden.",
+        invalidAudio: "Bitte eine Audiodatei auswählen.",
+        decodeFail: "Der Browser konnte dieses Audio nicht dekodieren; die Wellenformvorschau ist nicht verfügbar.",
+        unsupportedToast: "Dieses Format kann hier nicht verlustfrei exportiert werden. Bitte MP3 oder WAV verwenden.",
+        tooShort: "Der Clip ist zu kurz, um eine gültige Datei zu erstellen.",
+        savedPrefix: "Gespeichert. Tatsächlich ausgerichteter Bereich: ",
+        waveEmpty: "Audio hochladen, um die Wellenform zu sehen",
+        unknownType: "Unbekannter Typ"
+      },
+      es: {
+        title: "Cortador de Audio Sin Pérdida",
+        auto: "Automático",
+        privacyBadge: "Local · Sin subir archivos",
+        eyebrow: "Lossless Audio Studio",
+        heroTitle: "Corta la música en el <span>momento perfecto</span>",
+        heroSubtitle: "Sube una pista, selecciona un tramo en la onda y exporta desde los datos originales. WAV se alinea a bloques de muestra y MP3 a fotogramas de audio, sin recomprimir.",
+        startCta: "Empezar",
+        learnCta: "Ver flujo",
+        stat1Value: "0%",
+        stat1Label: "compresión extra",
+        stat2Value: "Local",
+        stat2Label: "procesado en navegador",
+        stat3Value: "Frame",
+        stat3Label: "alineación MP3",
+        floatingLabel: "Vista previa de onda",
+        introLabel: "Funciones",
+        intro1Title: "Arrastra música y ve la onda",
+        intro1Text: "El navegador lee el archivo local para mostrar ritmo, silencios y picos con claridad.",
+        intro2Title: "Selecciona y ajusta al milisegundo",
+        intro2Text: "Marca rápido en la onda y afina inicio y final para samples, tonos o recortes.",
+        intro3Title: "Exporta sin recomprimir",
+        intro3Text: "MP3 se alinea a frames y WAV a bloques de muestra para conservar los datos originales.",
+        workbenchKicker: "Precision Workspace",
+        workbenchTitle: "Sube, selecciona, guarda",
+        workbenchText: "El flujo principal está aquí: gestiona el archivo y la selección a la izquierda, y revisa duración, tamaño y notas de exportación a la derecha.",
+        dropTitle: "Suelta música o elige un archivo",
+        dropCopy: "Se recomienda MP3 o WAV. El navegador solo lee tu archivo local para la vista previa y guarda un corte de los datos originales.",
+        noFile: "Ningún archivo seleccionado",
+        waitingStatus: "Esperando análisis del formato",
+        playTitle: "Reproducir o pausar",
+        loopTitle: "Repetir selección",
+        fullTitle: "Seleccionar pista completa",
+        clearTitle: "Subir de nuevo",
+        saveText: "Guardar clip",
+        startInputLabel: "Inicio",
+        endInputLabel: "Final",
+        outputNameLabel: "Nombre de archivo",
+        clipInfoTitle: "Info del clip",
+        meterStart: "Inicio",
+        meterEnd: "Final",
+        meterLength: "Duración",
+        meterSize: "Tamaño estimado",
+        zoomTitle: "Zoom de onda",
+        formatHint: "MP3 se ajusta al frame de audio más cercano; WAV al bloque de muestra más cercano. Esta pequeña alineación conserva la calidad original.",
+        formatWarn: "AAC, M4A, FLAC, OGG y contenedores similares requieren reescritura para cortes realmente sin pérdida en navegador; esta versión los marcará como no compatibles.",
+        wavStatus: "WAV se corta desde muestras originales sin cambiar frecuencia, profundidad de bits ni canales.",
+        mp3Status: "MP3 se corta desde frames originales sin decodificar ni recomprimir.",
+        unsupportedStatus: "Este formato no admite exportación sin pérdida solo en navegador. Usa MP3 o WAV.",
+        invalidAudio: "Elige un archivo de audio.",
+        decodeFail: "El navegador no pudo decodificar este audio; la vista previa de onda no está disponible.",
+        unsupportedToast: "Este formato no se puede exportar sin pérdida aquí. Usa MP3 o WAV.",
+        tooShort: "El clip es demasiado corto para crear un archivo válido.",
+        savedPrefix: "Guardado. Rango alineado real: ",
+        waveEmpty: "Sube audio para mostrar la onda",
+        unknownType: "Tipo desconocido"
+      }
+    };
+
+    state.player.addEventListener("timeupdate", () => {
+      if (!state.duration) return;
+      if (state.loop && state.player.currentTime >= state.end) {
+        state.player.currentTime = state.start;
+        state.player.play();
+      }
+      updatePlayhead();
+    });
+
+    state.player.addEventListener("ended", () => {
+      setPlayButton(false);
+      updatePlayhead();
+    });
+
+    els.languageSelect.addEventListener("change", () => {
+      const value = els.languageSelect.value;
+      if (value === "auto") {
+        storageRemove("sonic-cutter-language");
+        state.languageMode = "auto";
+        initializeLanguage(true);
+        return;
+      }
+      storageSet("sonic-cutter-language", value);
+      state.languageMode = "manual";
+      applyLanguage(value);
+    });
+
+    els.fileInput.addEventListener("change", (event) => {
+      if (event.target.files[0]) loadFile(event.target.files[0]);
+    });
+
+    ["dragenter", "dragover"].forEach((name) => {
+      els.dropzone.addEventListener(name, (event) => {
+        event.preventDefault();
+        els.dropzone.classList.add("is-dragging");
+      });
+    });
+
+    ["dragleave", "drop"].forEach((name) => {
+      els.dropzone.addEventListener(name, (event) => {
+        event.preventDefault();
+        els.dropzone.classList.remove("is-dragging");
+      });
+    });
+
+    els.dropzone.addEventListener("drop", (event) => {
+      const file = event.dataTransfer.files[0];
+      if (file) loadFile(file);
+    });
+
+    els.waveShell.addEventListener("pointerdown", beginSelection);
+    window.addEventListener("pointermove", moveSelection);
+    window.addEventListener("pointerup", endSelection);
+    window.addEventListener("resize", () => {
+      resizeCanvas();
+      drawWaveform();
+    });
+
+    els.playBtn.addEventListener("click", togglePlay);
+    els.loopBtn.addEventListener("click", () => {
+      state.loop = !state.loop;
+      els.loopBtn.style.background = state.loop ? "rgba(8, 125, 131, .14)" : "#ffffff";
+    });
+    els.fullBtn.addEventListener("click", () => setSelection(0, state.duration));
+    els.clearBtn.addEventListener("click", resetApp);
+    els.saveBtn.addEventListener("click", saveClip);
+    els.zoomRange.addEventListener("input", () => {
+      state.zoom = Number(els.zoomRange.value);
+      state.offset = Math.min(state.offset, Math.max(0, state.duration - visibleDuration()));
+      drawWaveform();
+      updateSelectionOverlay();
+    });
+
+    els.startInput.addEventListener("input", () => {
+      setSelection(Number(els.startInput.value), state.end);
+    });
+
+    els.endInput.addEventListener("input", () => {
+      setSelection(state.start, Number(els.endInput.value));
+    });
+
+    async function loadFile(file) {
+      if (!file.type.startsWith("audio/") && !/\.(mp3|wav)$/i.test(file.name)) {
+        showToast(t("invalidAudio"));
+        return;
+      }
+
+      resetPlayback();
+      state.file = file;
+      state.bytes = new Uint8Array(await file.arrayBuffer());
+      state.format = detectFormat(state.bytes, file);
+      state.audioUrl = URL.createObjectURL(file);
+      state.player.src = state.audioUrl;
+      els.fileName.textContent = file.name;
+      els.fileMeta.textContent = `${formatBytes(file.size)} · ${file.type || t("unknownType")}`;
+      els.outputName.value = cleanName(file.name.replace(/\.[^.]+$/, "")) + "-clip";
+
+      try {
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        state.audioBuffer = await audioContext.decodeAudioData(state.bytes.buffer.slice(0));
+        await audioContext.close();
+        state.duration = state.audioBuffer.duration;
+        state.start = 0;
+        state.end = state.duration;
+        buildPeaks();
+        els.editor.classList.add("is-ready");
+        updateFormatStatus();
+        resizeCanvas();
+        drawWaveform();
+        syncInputs();
+      } catch (error) {
+        showToast(t("decodeFail"));
+        console.error(error);
+      }
+    }
+
+    function resetApp() {
+      resetPlayback();
+      if (state.audioUrl) URL.revokeObjectURL(state.audioUrl);
+      Object.assign(state, {
+        file: null,
+        bytes: null,
+        audioBuffer: null,
+        audioUrl: "",
+        duration: 0,
+        start: 0,
+        end: 0,
+        zoom: 1,
+        offset: 0,
+        dragging: null,
+        loop: false,
+        format: null,
+        peaks: []
+      });
+      els.fileInput.value = "";
+      els.editor.classList.remove("is-ready");
+      els.fileName.textContent = t("noFile");
+      els.qualityStatus.textContent = t("waitingStatus");
+      els.qualityStatus.className = "status";
+      syncInputs();
+      drawWaveform();
+    }
+
+    function resetPlayback() {
+      state.player.pause();
+      state.player.removeAttribute("src");
+      state.player.load();
+      setPlayButton(false);
+    }
+
+    function updateFormatStatus() {
+      const canSave = state.format && state.format.supported;
+      els.saveBtn.disabled = !canSave;
+      els.qualityStatus.className = canSave ? "status good" : "status warn";
+      if (canSave && state.format.kind === "wav") {
+        els.qualityStatus.textContent = t("wavStatus");
+      } else if (canSave && state.format.kind === "mp3") {
+        els.qualityStatus.textContent = t("mp3Status");
+      } else {
+        els.qualityStatus.textContent = t("unsupportedStatus");
+      }
+    }
+
+    function resizeCanvas() {
+      const rect = els.waveShell.getBoundingClientRect();
+      const ratio = window.devicePixelRatio || 1;
+      els.canvas.width = Math.max(1, Math.floor(rect.width * ratio));
+      els.canvas.height = Math.max(1, Math.floor(rect.height * ratio));
+      ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+    }
+
+    function buildPeaks() {
+      const channel = state.audioBuffer.getChannelData(0);
+      const bucketCount = 4000;
+      const samplesPerBucket = Math.max(1, Math.floor(channel.length / bucketCount));
+      state.peaks = [];
+      for (let i = 0; i < bucketCount; i++) {
+        const start = i * samplesPerBucket;
+        const end = Math.min(channel.length, start + samplesPerBucket);
+        let min = 1;
+        let max = -1;
+        for (let j = start; j < end; j++) {
+          const value = channel[j];
+          if (value < min) min = value;
+          if (value > max) max = value;
+        }
+        state.peaks.push({ min, max });
+      }
+    }
+
+    function drawWaveform() {
+      const rect = els.waveShell.getBoundingClientRect();
+      const width = rect.width || 1;
+      const height = rect.height || 320;
+      ctx.clearRect(0, 0, width, height);
+      ctx.fillStyle = "#11191d";
+      ctx.fillRect(0, 0, width, height);
+
+      if (!state.peaks.length) {
+        ctx.fillStyle = "#8fa3a5";
+        ctx.textAlign = "center";
+        ctx.font = "15px system-ui";
+        ctx.fillText(t("waveEmpty"), width / 2, height / 2);
+        return;
+      }
+
+      const mid = height / 2;
+      const visible = visibleDuration();
+      const startRatio = state.offset / state.duration;
+      const endRatio = (state.offset + visible) / state.duration;
+      const peakStart = Math.floor(startRatio * state.peaks.length);
+      const peakEnd = Math.min(state.peaks.length, Math.ceil(endRatio * state.peaks.length));
+      const visiblePeaks = state.peaks.slice(peakStart, peakEnd);
+
+      ctx.strokeStyle = "rgba(255,255,255,.065)";
+      ctx.lineWidth = 1;
+      for (let i = 0; i < 8; i++) {
+        const y = (height / 8) * i;
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(width, y);
+        ctx.stroke();
+      }
+
+      ctx.strokeStyle = "#63e5dc";
+      ctx.lineWidth = Math.max(1, width / visiblePeaks.length);
+      for (let x = 0; x < width; x++) {
+        const index = Math.floor((x / width) * visiblePeaks.length);
+        const peak = visiblePeaks[index] || { min: 0, max: 0 };
+        const y1 = mid + peak.min * (height * .43);
+        const y2 = mid + peak.max * (height * .43);
+        ctx.beginPath();
+        ctx.moveTo(x, y1);
+        ctx.lineTo(x, y2);
+        ctx.stroke();
+      }
+
+      updateSelectionOverlay();
+      updatePlayhead();
+    }
+
+    function visibleDuration() {
+      return state.duration / state.zoom;
+    }
+
+    function timeToX(time) {
+      const rect = els.waveShell.getBoundingClientRect();
+      return ((time - state.offset) / visibleDuration()) * rect.width;
+    }
+
+    function xToTime(x) {
+      const rect = els.waveShell.getBoundingClientRect();
+      return clamp(state.offset + (x / rect.width) * visibleDuration(), 0, state.duration);
+    }
+
+    function beginSelection(event) {
+      if (!state.duration) return;
+      const rect = els.waveShell.getBoundingClientRect();
+      const x = event.clientX - rect.left;
+      const time = xToTime(x);
+      const startX = timeToX(state.start);
+      const endX = timeToX(state.end);
+      const edgeDistance = 14;
+
+      if (Math.abs(x - startX) < edgeDistance) {
+        state.dragging = "start";
+      } else if (Math.abs(x - endX) < edgeDistance) {
+        state.dragging = "end";
+      } else if (time > state.start && time < state.end) {
+        state.dragging = "move";
+        state.dragAnchor = time;
+        state.originalStart = state.start;
+        state.originalEnd = state.end;
+      } else {
+        state.dragging = "end";
+        setSelection(time, time + Math.min(10, state.duration - time));
+      }
+      els.waveShell.setPointerCapture(event.pointerId);
+    }
+
+    function moveSelection(event) {
+      if (!state.dragging || !state.duration) return;
+      const rect = els.waveShell.getBoundingClientRect();
+      const time = xToTime(event.clientX - rect.left);
+
+      if (state.dragging === "start") {
+        setSelection(time, state.end);
+      } else if (state.dragging === "end") {
+        setSelection(state.start, time);
+      } else if (state.dragging === "move") {
+        const delta = time - state.dragAnchor;
+        const length = state.originalEnd - state.originalStart;
+        let nextStart = clamp(state.originalStart + delta, 0, state.duration - length);
+        setSelection(nextStart, nextStart + length);
+      }
+    }
+
+    function endSelection() {
+      state.dragging = null;
+    }
+
+    function setSelection(start, end) {
+      if (!state.duration) return;
+      let nextStart = clamp(Number.isFinite(start) ? start : 0, 0, state.duration);
+      let nextEnd = clamp(Number.isFinite(end) ? end : state.duration, 0, state.duration);
+      if (nextEnd < nextStart) [nextStart, nextEnd] = [nextEnd, nextStart];
+      if (nextEnd - nextStart < 0.02) {
+        nextEnd = Math.min(state.duration, nextStart + 0.02);
+      }
+      state.start = nextStart;
+      state.end = nextEnd;
+      syncInputs();
+      updateSelectionOverlay();
+      updatePlayhead();
+    }
+
+    function syncInputs() {
+      els.startInput.max = String(state.duration || 0);
+      els.endInput.max = String(state.duration || 0);
+      els.startInput.value = roundTime(state.start);
+      els.endInput.value = roundTime(state.end);
+      els.startLabel.textContent = formatTime(state.start);
+      els.endLabel.textContent = formatTime(state.end);
+      els.lengthLabel.textContent = formatTime(Math.max(0, state.end - state.start));
+      els.timeLeft.textContent = formatTime(state.offset);
+      els.timeRight.textContent = formatTime(Math.min(state.duration, state.offset + visibleDuration()));
+      els.sizeLabel.textContent = estimateSize();
+    }
+
+    function updateSelectionOverlay() {
+      if (!state.duration) {
+        els.selection.style.display = "none";
+        return;
+      }
+      els.selection.style.display = "block";
+      const rect = els.waveShell.getBoundingClientRect();
+      const left = clamp(timeToX(state.start), 0, rect.width);
+      const right = clamp(timeToX(state.end), 0, rect.width);
+      els.selection.style.left = `${left}px`;
+      els.selection.style.width = `${Math.max(0, right - left)}px`;
+      syncInputs();
+    }
+
+    function updatePlayhead() {
+      if (!state.duration || !state.player.src) {
+        els.playhead.style.display = "none";
+        return;
+      }
+      const x = timeToX(state.player.currentTime || state.start);
+      const rect = els.waveShell.getBoundingClientRect();
+      els.playhead.style.display = x >= 0 && x <= rect.width ? "block" : "none";
+      els.playhead.style.left = `${clamp(x, 0, rect.width)}px`;
+    }
+
+    async function togglePlay() {
+      if (!state.file) return;
+      if (!state.player.paused) {
+        state.player.pause();
+        setPlayButton(false);
+        return;
+      }
+      if (state.player.currentTime < state.start || state.player.currentTime >= state.end) {
+        state.player.currentTime = state.start;
+      }
+      await state.player.play();
+      setPlayButton(true);
+    }
+
+    function setPlayButton(isPlaying) {
+      els.playIcon.innerHTML = isPlaying
+        ? '<path d="M8 5v14"></path><path d="M16 5v14"></path>'
+        : '<path d="M8 5v14l11-7z"></path>';
+    }
+
+    function detectFormat(bytes, file) {
+      if (bytes.length > 12 && textAt(bytes, 0, 4) === "RIFF" && textAt(bytes, 8, 4) === "WAVE") {
+        return parseWav(bytes);
+      }
+      if (/\.mp3$/i.test(file.name) || file.type === "audio/mpeg" || hasMp3Frame(bytes)) {
+        return parseMp3(bytes);
+      }
+      return { kind: "unknown", supported: false };
+    }
+
+    function parseWav(bytes) {
+      const view = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength);
+      let offset = 12;
+      let fmt = null;
+      let data = null;
+
+      while (offset + 8 <= bytes.length) {
+        const id = textAt(bytes, offset, 4);
+        const size = view.getUint32(offset + 4, true);
+        const start = offset + 8;
+        const end = start + size;
+        if (id === "fmt ") {
+          fmt = {
+            start,
+            size,
+            bytes: bytes.slice(offset, end + (size % 2)),
+            audioFormat: view.getUint16(start, true),
+            channels: view.getUint16(start + 2, true),
+            sampleRate: view.getUint32(start + 4, true),
+            byteRate: view.getUint32(start + 8, true),
+            blockAlign: view.getUint16(start + 12, true),
+            bitsPerSample: view.getUint16(start + 14, true)
+          };
+        }
+        if (id === "data") {
+          data = { start, size, end };
+        }
+        offset = end + (size % 2);
+      }
+
+      const supported = Boolean(fmt && data && [1, 3].includes(fmt.audioFormat) && fmt.blockAlign > 0);
+      return { kind: "wav", supported, fmt, data };
+    }
+
+    function parseMp3(bytes) {
+      const id3Size = readId3Size(bytes);
+      const frames = [];
+      let offset = id3Size;
+      let time = 0;
+
+      while (offset + 4 < bytes.length) {
+        const frame = readMp3Frame(bytes, offset);
+        if (!frame) {
+          offset += 1;
+          continue;
+        }
+        frames.push({ start: offset, end: offset + frame.length, time, duration: frame.duration });
+        time += frame.duration;
+        offset += frame.length;
+      }
+      return { kind: "mp3", supported: frames.length > 4, id3Size, frames };
+    }
+
+    function hasMp3Frame(bytes) {
+      const limit = Math.min(bytes.length - 4, 65536);
+      for (let i = readId3Size(bytes); i < limit; i++) {
+        if (readMp3Frame(bytes, i)) return true;
+      }
+      return false;
+    }
+
+    function readId3Size(bytes) {
+      if (bytes.length < 10 || textAt(bytes, 0, 3) !== "ID3") return 0;
+      return 10 + ((bytes[6] & 0x7f) << 21) + ((bytes[7] & 0x7f) << 14) + ((bytes[8] & 0x7f) << 7) + (bytes[9] & 0x7f);
+    }
+
+    function readMp3Frame(bytes, offset) {
+      if (offset + 4 >= bytes.length || bytes[offset] !== 0xff || (bytes[offset + 1] & 0xe0) !== 0xe0) return null;
+      const versionBits = (bytes[offset + 1] >> 3) & 0x03;
+      const layerBits = (bytes[offset + 1] >> 1) & 0x03;
+      const bitrateIndex = (bytes[offset + 2] >> 4) & 0x0f;
+      const sampleIndex = (bytes[offset + 2] >> 2) & 0x03;
+      const padding = (bytes[offset + 2] >> 1) & 0x01;
+      if (versionBits === 1 || layerBits === 0 || bitrateIndex === 0 || bitrateIndex === 15 || sampleIndex === 3) return null;
+
+      const version = versionBits === 3 ? 1 : versionBits === 2 ? 2 : 2.5;
+      const layer = 4 - layerBits;
+      const sampleRates = {
+        1: [44100, 48000, 32000],
+        2: [22050, 24000, 16000],
+        2.5: [11025, 12000, 8000]
+      };
+      const bitrateTable = getBitrateTable(version, layer);
+      const bitrate = bitrateTable[bitrateIndex] * 1000;
+      const sampleRate = sampleRates[version][sampleIndex];
+      let length;
+      let samples;
+
+      if (layer === 1) {
+        length = Math.floor((12 * bitrate / sampleRate + padding) * 4);
+        samples = 384;
+      } else {
+        const coefficient = layer === 3 && version !== 1 ? 72 : 144;
+        length = Math.floor(coefficient * bitrate / sampleRate + padding);
+        samples = layer === 3 && version !== 1 ? 576 : 1152;
+      }
+
+      if (!length || offset + length > bytes.length) return null;
+      return { length, duration: samples / sampleRate };
+    }
+
+    function getBitrateTable(version, layer) {
+      if (layer === 1) {
+        return version === 1
+          ? [0, 32, 64, 96, 128, 160, 192, 224, 256, 288, 320, 352, 384, 416, 448]
+          : [0, 32, 48, 56, 64, 80, 96, 112, 128, 144, 160, 176, 192, 224, 256];
+      }
+      if (layer === 2) {
+        return version === 1
+          ? [0, 32, 48, 56, 64, 80, 96, 112, 128, 160, 192, 224, 256, 320, 384]
+          : [0, 8, 16, 24, 32, 40, 48, 56, 64, 80, 96, 112, 128, 144, 160];
+      }
+      return version === 1
+        ? [0, 32, 40, 48, 56, 64, 80, 96, 112, 128, 160, 192, 224, 256, 320]
+        : [0, 8, 16, 24, 32, 40, 48, 56, 64, 80, 96, 112, 128, 144, 160];
+    }
+
+    function saveClip() {
+      if (!state.format || !state.format.supported) {
+        showToast(t("unsupportedToast"));
+        return;
+      }
+
+      let result;
+      if (state.format.kind === "wav") result = exportWav();
+      if (state.format.kind === "mp3") result = exportMp3();
+      if (!result || !result.blob.size) {
+        showToast(t("tooShort"));
+        return;
+      }
+
+      const url = URL.createObjectURL(result.blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = `${cleanName(els.outputName.value || "clip")}.${result.ext}`;
+      document.body.append(link);
+      link.click();
+      link.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+      showToast(`${t("savedPrefix")}${formatTime(result.actualStart)} - ${formatTime(result.actualEnd)}`);
+    }
+
+    function exportWav() {
+      const { fmt, data } = state.format;
+      const startOffset = Math.floor((state.start * fmt.byteRate) / fmt.blockAlign) * fmt.blockAlign;
+      const endOffset = Math.ceil((state.end * fmt.byteRate) / fmt.blockAlign) * fmt.blockAlign;
+      const dataStart = data.start + clamp(startOffset, 0, data.size);
+      const dataEnd = data.start + clamp(endOffset, 0, data.size);
+      const clipData = state.bytes.slice(dataStart, dataEnd);
+      const totalSize = 4 + fmt.bytes.length + 8 + clipData.length;
+      const out = new Uint8Array(8 + totalSize);
+      const view = new DataView(out.buffer);
+
+      writeText(out, 0, "RIFF");
+      view.setUint32(4, totalSize, true);
+      writeText(out, 8, "WAVE");
+      out.set(fmt.bytes, 12);
+      const dataHeader = 12 + fmt.bytes.length;
+      writeText(out, dataHeader, "data");
+      view.setUint32(dataHeader + 4, clipData.length, true);
+      out.set(clipData, dataHeader + 8);
+
+      return {
+        blob: new Blob([out], { type: "audio/wav" }),
+        ext: "wav",
+        actualStart: (dataStart - data.start) / fmt.byteRate,
+        actualEnd: (dataEnd - data.start) / fmt.byteRate
+      };
+    }
+
+    function exportMp3() {
+      const { frames, id3Size } = state.format;
+      const startIndex = frames.findIndex((frame) => frame.time + frame.duration >= state.start);
+      let endIndex = frames.findIndex((frame) => frame.time >= state.end);
+      if (startIndex < 0) return null;
+      const lastIndex = endIndex < 0 ? frames.length - 1 : Math.max(startIndex, endIndex - 1);
+      const first = frames[startIndex];
+      const last = frames[lastIndex];
+      const id3 = state.bytes.slice(0, id3Size);
+      const body = state.bytes.slice(first.start, last.end);
+      const out = new Uint8Array(id3.length + body.length);
+      out.set(id3, 0);
+      out.set(body, id3.length);
+      return {
+        blob: new Blob([out], { type: "audio/mpeg" }),
+        ext: "mp3",
+        actualStart: first.time,
+        actualEnd: last.time + last.duration
+      };
+    }
+
+    function estimateSize() {
+      if (!state.file || !state.duration) return "--";
+      const ratio = Math.max(0, state.end - state.start) / state.duration;
+      return formatBytes(Math.max(0, Math.round(state.file.size * ratio)));
+    }
+
+    function formatTime(seconds) {
+      if (!Number.isFinite(seconds)) return "00:00.000";
+      const whole = Math.floor(Math.max(0, seconds));
+      const minutes = Math.floor(whole / 60);
+      const secs = whole % 60;
+      const ms = Math.floor((seconds - whole) * 1000);
+      return `${String(minutes).padStart(2, "0")}:${String(secs).padStart(2, "0")}.${String(ms).padStart(3, "0")}`;
+    }
+
+    function roundTime(value) {
+      return String(Math.round(value * 1000) / 1000);
+    }
+
+    function formatBytes(bytes) {
+      const units = ["B", "KB", "MB", "GB"];
+      let size = bytes;
+      let unit = 0;
+      while (size >= 1024 && unit < units.length - 1) {
+        size /= 1024;
+        unit += 1;
+      }
+      return `${size.toFixed(size >= 10 || unit === 0 ? 0 : 1)} ${units[unit]}`;
+    }
+
+    function cleanName(name) {
+      return name.trim().replace(/[\\/:*?"<>|]+/g, "-").replace(/\s+/g, " ") || "clip";
+    }
+
+    function clamp(value, min, max) {
+      return Math.min(max, Math.max(min, value));
+    }
+
+    function textAt(bytes, offset, length) {
+      let text = "";
+      for (let i = 0; i < length; i++) text += String.fromCharCode(bytes[offset + i] || 0);
+      return text;
+    }
+
+    function writeText(bytes, offset, text) {
+      for (let i = 0; i < text.length; i++) bytes[offset + i] = text.charCodeAt(i);
+    }
+
+    function t(key) {
+      return (translations[state.lang] && translations[state.lang][key]) || translations.en[key] || translations.zh[key] || key;
+    }
+
+    function applyLanguage(lang) {
+      const nextLang = translations[lang] ? lang : "en";
+      state.lang = nextLang;
+      document.documentElement.lang = {
+        zh: "zh-CN",
+        en: "en",
+        ja: "ja",
+        ko: "ko",
+        fr: "fr",
+        de: "de",
+        es: "es"
+      }[nextLang];
+      document.title = t("title");
+
+      const htmlKeys = ["heroTitle"];
+      const textKeys = [
+        "privacyBadge", "eyebrow", "heroSubtitle", "startCta", "learnCta",
+        "stat1Value", "stat1Label", "stat2Value", "stat2Label", "stat3Value", "stat3Label",
+        "floatingLabel", "intro1Title", "intro1Text", "intro2Title", "intro2Text",
+        "intro3Title", "intro3Text", "workbenchKicker", "workbenchTitle", "workbenchText",
+        "dropTitle", "dropCopy", "saveText",
+        "startInputLabel", "endInputLabel", "outputNameLabel", "clipInfoTitle",
+        "meterStart", "meterEnd", "meterLength", "meterSize", "zoomTitle",
+        "formatHint", "formatWarn"
+      ];
+
+      htmlKeys.forEach((key) => {
+        const element = document.querySelector(`#${key}`);
+        if (element) element.innerHTML = t(key);
+      });
+      textKeys.forEach((key) => {
+        const element = document.querySelector(`#${key}`);
+        if (element) element.textContent = t(key);
+      });
+
+      document.querySelector("#intro").setAttribute("aria-label", t("introLabel"));
+      els.languageSelect.querySelector('option[value="auto"]').textContent = t("auto");
+      els.playBtn.title = t("playTitle");
+      els.loopBtn.title = t("loopTitle");
+      els.fullBtn.title = t("fullTitle");
+      els.clearBtn.title = t("clearTitle");
+
+      if (!state.file) {
+        els.fileName.textContent = t("noFile");
+        els.qualityStatus.textContent = t("waitingStatus");
+      } else {
+        els.fileMeta.textContent = `${formatBytes(state.file.size)} · ${state.file.type || t("unknownType")}`;
+        updateFormatStatus();
+      }
+      drawWaveform();
+    }
+
+    async function initializeLanguage(forceIpLookup = false) {
+      const saved = storageGet("sonic-cutter-language");
+      if (saved && translations[saved] && !forceIpLookup) {
+        state.languageMode = "manual";
+        els.languageSelect.value = saved;
+        applyLanguage(saved);
+        return;
+      }
+
+      state.languageMode = "auto";
+      els.languageSelect.value = "auto";
+      applyLanguage(resolveBrowserLanguage());
+
+      const detected = await detectLanguageByIp();
+      if (state.languageMode === "auto" && detected) {
+        applyLanguage(detected);
+      }
+    }
+
+    async function detectLanguageByIp() {
+      const controller = new AbortController();
+      const timer = setTimeout(() => controller.abort(), 2200);
+      try {
+        if (typeof fetch !== "function") return "";
+        const response = await fetch("https://ipapi.co/json/", {
+          signal: controller.signal,
+          cache: "no-store"
+        });
+        if (!response.ok) return "";
+        const data = await response.json();
+        return languageFromCountry(String(data.country_code || data.country || "").toUpperCase());
+      } catch (error) {
+        return "";
+      } finally {
+        clearTimeout(timer);
+      }
+    }
+
+    function resolveBrowserLanguage() {
+      const lang = String((typeof navigator !== "undefined" && (navigator.language || navigator.userLanguage)) || "en").toLowerCase();
+      if (lang.startsWith("zh")) return "zh";
+      if (lang.startsWith("ja")) return "ja";
+      if (lang.startsWith("ko")) return "ko";
+      if (lang.startsWith("fr")) return "fr";
+      if (lang.startsWith("de")) return "de";
+      if (lang.startsWith("es")) return "es";
+      return "en";
+    }
+
+    function storageGet(key) {
+      try {
+        return window.localStorage.getItem(key);
+      } catch (error) {
+        return null;
+      }
+    }
+
+    function storageSet(key, value) {
+      try {
+        window.localStorage.setItem(key, value);
+      } catch (error) {
+      }
+    }
+
+    function storageRemove(key) {
+      try {
+        window.localStorage.removeItem(key);
+      } catch (error) {
+      }
+    }
+
+    function languageFromCountry(country) {
+      if (["CN", "HK", "MO", "TW", "SG"].includes(country)) return "zh";
+      if (country === "JP") return "ja";
+      if (country === "KR") return "ko";
+      if (["FR", "BE", "MC", "LU"].includes(country)) return "fr";
+      if (["DE", "AT", "CH"].includes(country)) return "de";
+      if (["ES", "MX", "AR", "CL", "CO", "PE", "VE", "UY", "PY", "BO", "EC", "CR", "PA", "DO", "GT", "HN", "NI", "SV"].includes(country)) return "es";
+      return "en";
+    }
+
+    function showToast(message) {
+      els.toast.textContent = message;
+      els.toast.classList.add("is-visible");
+      clearTimeout(showToast.timer);
+      showToast.timer = setTimeout(() => els.toast.classList.remove("is-visible"), 3200);
+    }
+
+    initializeLanguage();
+    resizeCanvas();
+    syncInputs();
+  </script>
 </body>
 </html>
