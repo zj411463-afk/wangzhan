@@ -1016,9 +1016,25 @@
 
     .converter-actions {
       display: grid;
-      grid-template-columns: minmax(160px, 220px) 1fr;
+      grid-template-columns: minmax(140px, 180px) minmax(160px, 220px) 1fr;
       gap: 12px;
       align-items: end;
+    }
+
+    .format-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .format-chip {
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(8, 125, 131, .18);
+      background: rgba(8, 125, 131, .08);
+      color: #075d61;
+      font-size: 12px;
+      font-weight: 760;
     }
 
     .converter-notes {
@@ -1600,7 +1616,25 @@
               <span id="converterFileName" data-i18n="converterNoFile">未选择转换文件</span>
               <span id="converterStatus" data-i18n="converterStatusReady">准备转换</span>
             </div>
+            <div class="format-chips" aria-label="Supported conversion formats" data-i18n-aria="converterFormatsAria">
+              <span class="format-chip">M4A</span>
+              <span class="format-chip">WAV</span>
+              <span class="format-chip">FLAC</span>
+              <span class="format-chip">OGG</span>
+              <span class="format-chip">AAC</span>
+              <span class="format-chip">MP3</span>
+            </div>
             <div class="converter-actions">
+              <label>
+                <span data-i18n="converterOutputFormat">输出格式</span>
+                <select id="converterOutput">
+                  <option value="mp3">MP3</option>
+                  <option value="wav">WAV</option>
+                  <option value="flac">FLAC</option>
+                  <option value="ogg">OGG</option>
+                  <option value="m4a">AAC / M4A</option>
+                </select>
+              </label>
               <label>
                 <span data-i18n="converterBitrate">MP3 码率</span>
                 <select id="converterBitrate">
@@ -1612,7 +1646,7 @@
               </label>
               <button class="icon primary" id="convertBtn" type="button">
                 <svg viewBox="0 0 24 24"><path d="M4 7h11"></path><path d="m12 4 3 3-3 3"></path><path d="M20 17H9"></path><path d="m12 20-3-3 3-3"></path></svg>
-                <span data-i18n="converterButton">转换并下载 MP3</span>
+                <span data-i18n="converterButton">转换并下载</span>
               </button>
             </div>
           </div>
@@ -1772,6 +1806,7 @@
       converterInput: document.querySelector("#converterInput"),
       converterFileName: document.querySelector("#converterFileName"),
       converterStatus: document.querySelector("#converterStatus"),
+      converterOutput: document.querySelector("#converterOutput"),
       converterBitrate: document.querySelector("#converterBitrate"),
       convertBtn: document.querySelector("#convertBtn"),
       toast: document.querySelector("#toast")
@@ -1806,21 +1841,23 @@
       zh: {
         metaDescription: "免费的在线无损音频切割工具，支持 MP3 按帧剪切、WAV 按采样块裁剪。文件只在浏览器本地处理，不上传服务器、无需注册，适合制作铃声、采样和音乐片段。",
         converterKicker: "格式转换",
-        converterTitle: "普通音频转 MP3",
-        converterText: "把你有权处理的未加密音频转换成 MP3。适合普通 M4A、WAV、FLAC、OGG、AAC 等文件；不支持破解平台加密格式。",
+        converterTitle: "本地音频格式转换",
+        converterText: "把你有权处理的未加密音频在本地转换为 MP3、WAV、FLAC、OGG 或 AAC/M4A。支持常见音频，不支持破解平台加密格式。",
         converterDropTitle: "选择要转换的音频文件",
         converterDropCopy: "转换在浏览器本地执行。第一次使用会加载 FFmpeg 核心，文件越大等待越久。",
         converterNoFile: "未选择转换文件",
         converterStatusReady: "准备转换",
+        converterOutputFormat: "输出格式",
+        converterFormatsAria: "支持转换的格式",
         converterBitrate: "MP3 码率",
-        converterButton: "转换并下载 MP3",
+        converterButton: "转换并下载",
         converterNoteTitle: "关于音质",
         converterNoteText: "转 MP3 必须重新编码，所以不是无损。想保持音质，优先使用原 MP3/WAV 的无损切割功能。",
         converterEncryptedTitle: "平台加密格式",
         converterEncryptedText: "网易云 .ncm、酷狗 .kgm、QQ 音乐 .qmc* 等加密文件不支持解密或绕过保护。请使用无 DRM 的合法音频文件。",
         converterEncryptedStatus: "检测到平台加密格式，无法转换。",
         converterLoading: "正在加载转换核心...",
-        converterConverting: "正在转换 MP3，请稍候...",
+        converterConverting: "正在转换音频，请稍候...",
         converterDone: "转换完成，已开始下载。",
         converterFailed: "转换失败。请确认文件未加密且格式可被 FFmpeg 读取。",
         converterChooseAudio: "请先选择要转换的音频文件。",
@@ -1879,21 +1916,23 @@
       en: {
         metaDescription: "Free online lossless audio cutter for MP3 frame-based cutting and WAV sample-block trimming. Files are processed locally in your browser with no upload and no signup.",
         converterKicker: "Format Converter",
-        converterTitle: "Convert regular audio to MP3",
-        converterText: "Convert unencrypted audio you have the right to process into MP3. Works for common M4A, WAV, FLAC, OGG, AAC and similar files; it does not break protected platform formats.",
+        converterTitle: "Local audio format converter",
+        converterText: "Convert unencrypted audio you have the right to process into MP3, WAV, FLAC, OGG, or AAC/M4A locally. It supports common audio files but does not break protected platform formats.",
         converterDropTitle: "Choose an audio file to convert",
         converterDropCopy: "Conversion runs locally in the browser. The first run loads the FFmpeg core, and larger files take longer.",
         converterNoFile: "No conversion file selected",
         converterStatusReady: "Ready to convert",
+        converterOutputFormat: "Output format",
+        converterFormatsAria: "Supported conversion formats",
         converterBitrate: "MP3 bitrate",
-        converterButton: "Convert and download MP3",
+        converterButton: "Convert and download",
         converterNoteTitle: "About quality",
         converterNoteText: "MP3 conversion requires re-encoding, so it is not lossless. To preserve quality, use lossless MP3/WAV cutting when possible.",
         converterEncryptedTitle: "Protected platform formats",
         converterEncryptedText: "Encrypted NetEase .ncm, Kugou .kgm, QQ Music .qmc* and similar files are not decrypted or bypassed. Use legal DRM-free audio files.",
         converterEncryptedStatus: "Protected platform format detected; cannot convert.",
         converterLoading: "Loading conversion core...",
-        converterConverting: "Converting to MP3. Please wait...",
+        converterConverting: "Converting audio. Please wait...",
         converterDone: "Conversion finished. Download started.",
         converterFailed: "Conversion failed. Make sure the file is unencrypted and readable by FFmpeg.",
         converterChooseAudio: "Choose an audio file to convert first.",
@@ -1952,21 +1991,23 @@
       ja: {
         metaDescription: "無料のオンラインロスレス音声カッター。MP3 はフレーム単位、WAV はサンプルブロック単位で切り出し、ファイルはブラウザ内で処理されます。",
         converterKicker: "形式変換",
-        converterTitle: "通常音声を MP3 に変換",
+        converterTitle: "ローカル音声形式変換",
         converterText: "処理する権利のある暗号化されていない音声を MP3 に変換します。一般的な M4A、WAV、FLAC、OGG、AAC などに対応し、保護された配信形式の解除はしません。",
         converterDropTitle: "変換する音声ファイルを選択",
         converterDropCopy: "変換はブラウザ内で行います。初回は FFmpeg コアを読み込むため、大きいファイルほど時間がかかります。",
         converterNoFile: "変換ファイル未選択",
         converterStatusReady: "変換準備完了",
+        converterOutputFormat: "出力形式",
+        converterFormatsAria: "対応変換形式",
         converterBitrate: "MP3 ビットレート",
-        converterButton: "MP3 に変換してダウンロード",
+        converterButton: "変換してダウンロード",
         converterNoteTitle: "音質について",
         converterNoteText: "MP3 変換は再エンコードが必要なためロスレスではありません。音質を保つなら、可能な限り MP3/WAV のロスレス切り出しを使ってください。",
         converterEncryptedTitle: "保護された配信形式",
         converterEncryptedText: "网易云 .ncm、酷狗 .kgm、QQ Music .qmc* などの暗号化ファイルの解除や回避には対応しません。DRM なしの合法的な音声を使用してください。",
         converterEncryptedStatus: "保護された配信形式を検出したため変換できません。",
         converterLoading: "変換コアを読み込み中...",
-        converterConverting: "MP3 に変換中です。お待ちください...",
+        converterConverting: "音声を変換中です。お待ちください...",
         converterDone: "変換完了。ダウンロードを開始しました。",
         converterFailed: "変換に失敗しました。ファイルが暗号化されておらず FFmpeg で読める形式か確認してください。",
         converterChooseAudio: "先に変換する音声ファイルを選択してください。",
@@ -2025,21 +2066,23 @@
       ko: {
         metaDescription: "무료 온라인 무손실 오디오 커터입니다. MP3는 프레임 기준, WAV는 샘플 블록 기준으로 자르며 파일은 브라우저 로컬에서 처리됩니다.",
         converterKicker: "형식 변환",
-        converterTitle: "일반 오디오를 MP3로 변환",
+        converterTitle: "로컬 오디오 형식 변환",
         converterText: "처리 권한이 있는 암호화되지 않은 오디오를 MP3로 변환합니다. 일반 M4A, WAV, FLAC, OGG, AAC 등에 적합하며 보호된 플랫폼 형식을 우회하지 않습니다.",
         converterDropTitle: "변환할 오디오 파일 선택",
         converterDropCopy: "변환은 브라우저 로컬에서 실행됩니다. 처음 사용할 때 FFmpeg 코어를 불러오며 파일이 클수록 오래 걸립니다.",
         converterNoFile: "변환 파일이 선택되지 않음",
         converterStatusReady: "변환 준비 완료",
+        converterOutputFormat: "출력 형식",
+        converterFormatsAria: "지원 변환 형식",
         converterBitrate: "MP3 비트레이트",
-        converterButton: "MP3로 변환하고 다운로드",
+        converterButton: "변환하고 다운로드",
         converterNoteTitle: "음질 안내",
         converterNoteText: "MP3 변환은 재인코딩이 필요하므로 무손실이 아닙니다. 음질 보존이 중요하면 가능한 경우 MP3/WAV 무손실 자르기를 사용하세요.",
         converterEncryptedTitle: "보호된 플랫폼 형식",
         converterEncryptedText: "网易云 .ncm, 酷狗 .kgm, QQ Music .qmc* 같은 암호화 파일은 해독하거나 우회하지 않습니다. DRM 없는 합법 오디오를 사용하세요.",
         converterEncryptedStatus: "보호된 플랫폼 형식이 감지되어 변환할 수 없습니다.",
         converterLoading: "변환 코어를 불러오는 중...",
-        converterConverting: "MP3로 변환 중입니다. 잠시 기다려 주세요...",
+        converterConverting: "오디오를 변환 중입니다. 잠시 기다려 주세요...",
         converterDone: "변환 완료. 다운로드를 시작했습니다.",
         converterFailed: "변환 실패. 파일이 암호화되지 않았고 FFmpeg에서 읽을 수 있는지 확인하세요.",
         converterChooseAudio: "먼저 변환할 오디오 파일을 선택하세요.",
@@ -2098,21 +2141,23 @@
       fr: {
         metaDescription: "Outil gratuit de découpe audio sans perte en ligne. MP3 aligné sur les trames, WAV aligné sur les blocs d'échantillons, traitement local dans le navigateur.",
         converterKicker: "Convertisseur",
-        converterTitle: "Convertir un audio standard en MP3",
+        converterTitle: "Convertisseur audio local",
         converterText: "Convertissez en MP3 les fichiers audio non chiffrés que vous avez le droit de traiter. Convient aux M4A, WAV, FLAC, OGG, AAC courants ; ne contourne pas les formats protégés.",
         converterDropTitle: "Choisir un fichier audio à convertir",
         converterDropCopy: "La conversion se fait localement dans le navigateur. Le premier usage charge le noyau FFmpeg ; les gros fichiers prennent plus de temps.",
         converterNoFile: "Aucun fichier de conversion choisi",
         converterStatusReady: "Prêt à convertir",
+        converterOutputFormat: "Format de sortie",
+        converterFormatsAria: "Formats de conversion pris en charge",
         converterBitrate: "Débit MP3",
-        converterButton: "Convertir et télécharger le MP3",
+        converterButton: "Convertir et télécharger",
         converterNoteTitle: "À propos de la qualité",
         converterNoteText: "La conversion MP3 réencode le son, elle n'est donc pas sans perte. Pour préserver la qualité, utilisez la découpe sans perte MP3/WAV si possible.",
         converterEncryptedTitle: "Formats de plateformes protégés",
         converterEncryptedText: "Les fichiers chiffrés NetEase .ncm, Kugou .kgm, QQ Music .qmc* et similaires ne sont pas déchiffrés ni contournés. Utilisez des fichiers légaux sans DRM.",
         converterEncryptedStatus: "Format protégé détecté ; conversion impossible.",
         converterLoading: "Chargement du moteur de conversion...",
-        converterConverting: "Conversion en MP3. Veuillez patienter...",
+        converterConverting: "Conversion audio. Veuillez patienter...",
         converterDone: "Conversion terminée. Téléchargement lancé.",
         converterFailed: "Échec de la conversion. Vérifiez que le fichier n'est pas chiffré et qu'il est lisible par FFmpeg.",
         converterChooseAudio: "Choisissez d'abord un fichier audio à convertir.",
@@ -2171,21 +2216,23 @@
       de: {
         metaDescription: "Kostenloser verlustfreier Online-Audio-Cutter. MP3 wird an Frames, WAV an Sample-Blöcken geschnitten. Dateien bleiben lokal im Browser.",
         converterKicker: "Formatkonverter",
-        converterTitle: "Normales Audio in MP3 konvertieren",
+        converterTitle: "Lokaler Audioformat-Konverter",
         converterText: "Konvertiere unverschlüsselte Audiodateien, die du verarbeiten darfst, in MP3. Geeignet für gängige M4A, WAV, FLAC, OGG, AAC; geschützte Plattformformate werden nicht umgangen.",
         converterDropTitle: "Audiodatei zum Konvertieren wählen",
         converterDropCopy: "Die Konvertierung läuft lokal im Browser. Beim ersten Mal wird der FFmpeg-Kern geladen; große Dateien dauern länger.",
         converterNoFile: "Keine Konvertierungsdatei gewählt",
         converterStatusReady: "Bereit zum Konvertieren",
+        converterOutputFormat: "Ausgabeformat",
+        converterFormatsAria: "Unterstützte Konvertierungsformate",
         converterBitrate: "MP3-Bitrate",
-        converterButton: "In MP3 konvertieren und laden",
+        converterButton: "Konvertieren und laden",
         converterNoteTitle: "Zur Qualität",
         converterNoteText: "MP3-Konvertierung erfordert Neukodierung und ist nicht verlustfrei. Für beste Qualität nutze nach Möglichkeit den verlustfreien MP3/WAV-Schnitt.",
         converterEncryptedTitle: "Geschützte Plattformformate",
         converterEncryptedText: "Verschlüsselte NetEase .ncm, Kugou .kgm, QQ Music .qmc* und ähnliche Dateien werden nicht entschlüsselt oder umgangen. Nutze legale DRM-freie Audiodateien.",
         converterEncryptedStatus: "Geschütztes Plattformformat erkannt; Konvertierung nicht möglich.",
         converterLoading: "Konvertierungskern wird geladen...",
-        converterConverting: "Konvertiere zu MP3. Bitte warten...",
+        converterConverting: "Konvertiere Audio. Bitte warten...",
         converterDone: "Konvertierung fertig. Download gestartet.",
         converterFailed: "Konvertierung fehlgeschlagen. Prüfe, ob die Datei unverschlüsselt und für FFmpeg lesbar ist.",
         converterChooseAudio: "Wähle zuerst eine Audiodatei zum Konvertieren.",
@@ -2244,21 +2291,23 @@
       es: {
         metaDescription: "Cortador de audio online sin pérdida y gratis. MP3 se corta por frames y WAV por bloques de muestra. Los archivos se procesan localmente en el navegador.",
         converterKicker: "Convertidor",
-        converterTitle: "Convertir audio normal a MP3",
+        converterTitle: "Convertidor local de audio",
         converterText: "Convierte a MP3 audio no cifrado que tengas derecho a procesar. Sirve para M4A, WAV, FLAC, OGG, AAC comunes; no rompe formatos protegidos de plataformas.",
         converterDropTitle: "Elige un archivo de audio",
         converterDropCopy: "La conversión se ejecuta localmente en el navegador. La primera vez carga el núcleo FFmpeg; los archivos grandes tardan más.",
         converterNoFile: "Ningún archivo de conversión seleccionado",
         converterStatusReady: "Listo para convertir",
+        converterOutputFormat: "Formato de salida",
+        converterFormatsAria: "Formatos de conversión compatibles",
         converterBitrate: "Bitrate MP3",
-        converterButton: "Convertir y descargar MP3",
+        converterButton: "Convertir y descargar",
         converterNoteTitle: "Sobre la calidad",
         converterNoteText: "Convertir a MP3 requiere recodificar, así que no es sin pérdida. Para conservar calidad, usa el corte sin pérdida de MP3/WAV cuando sea posible.",
         converterEncryptedTitle: "Formatos protegidos",
         converterEncryptedText: "Los archivos cifrados NetEase .ncm, Kugou .kgm, QQ Music .qmc* y similares no se descifran ni se evaden. Usa audio legal sin DRM.",
         converterEncryptedStatus: "Formato protegido detectado; no se puede convertir.",
         converterLoading: "Cargando núcleo de conversión...",
-        converterConverting: "Convirtiendo a MP3. Espera un momento...",
+        converterConverting: "Convirtiendo audio. Espera un momento...",
         converterDone: "Conversión terminada. Descarga iniciada.",
         converterFailed: "Error de conversión. Confirma que el archivo no esté cifrado y que FFmpeg pueda leerlo.",
         converterChooseAudio: "Elige primero un archivo de audio para convertir.",
@@ -2808,6 +2857,7 @@
     els.clearBtn.addEventListener("click", resetApp);
     els.saveBtn.addEventListener("click", saveClip);
     els.convertBtn.addEventListener("click", convertToMp3);
+    els.converterOutput.addEventListener("change", updateConverterControls);
     els.zoomRange.addEventListener("input", () => {
       state.zoom = Number(els.zoomRange.value);
       state.offset = Math.min(state.offset, Math.max(0, state.duration - visibleDuration()));
@@ -2834,6 +2884,11 @@
       }
       els.converterStatus.textContent = t("converterStatusReady");
       els.converterStatus.className = "";
+    }
+
+    function updateConverterControls() {
+      const isMp3 = els.converterOutput.value === "mp3";
+      els.converterBitrate.disabled = !isMp3;
     }
 
     function isProtectedMusicFormat(name) {
@@ -2884,15 +2939,16 @@
         els.converterStatus.textContent = t("converterConverting");
         const ext = (file.name.split(".").pop() || "audio").replace(/[^a-z0-9]/gi, "").toLowerCase() || "audio";
         const inputName = `input-${Date.now()}.${ext}`;
-        const outputName = `converted-${Date.now()}.mp3`;
+        const target = els.converterOutput.value;
+        const outputName = `converted-${Date.now()}.${target}`;
         await state.ffmpeg.writeFile(inputName, await state.ffmpegFetchFile(file));
-        await state.ffmpeg.exec(["-i", inputName, "-vn", "-codec:a", "libmp3lame", "-b:a", els.converterBitrate.value, outputName]);
+        await state.ffmpeg.exec(buildConversionArgs(inputName, outputName, target));
         const output = await state.ffmpeg.readFile(outputName);
-        const blob = new Blob([output], { type: "audio/mpeg" });
+        const blob = new Blob([output], { type: getOutputMime(target) });
         const url = URL.createObjectURL(blob);
         const link = document.createElement("a");
         link.href = url;
-        link.download = `${cleanName(file.name.replace(/\.[^.]+$/, ""))}.mp3`;
+        link.download = `${cleanName(file.name.replace(/\.[^.]+$/, ""))}.${target}`;
         document.body.append(link);
         link.click();
         link.remove();
@@ -2912,6 +2968,24 @@
         state.converting = false;
         els.convertBtn.disabled = false;
       }
+    }
+
+    function buildConversionArgs(inputName, outputName, target) {
+      if (target === "wav") return ["-i", inputName, "-vn", "-codec:a", "pcm_s16le", outputName];
+      if (target === "flac") return ["-i", inputName, "-vn", "-codec:a", "flac", outputName];
+      if (target === "ogg") return ["-i", inputName, "-vn", "-codec:a", "libvorbis", "-q:a", "5", outputName];
+      if (target === "m4a") return ["-i", inputName, "-vn", "-codec:a", "aac", "-b:a", "192k", outputName];
+      return ["-i", inputName, "-vn", "-codec:a", "libmp3lame", "-b:a", els.converterBitrate.value, outputName];
+    }
+
+    function getOutputMime(target) {
+      return {
+        mp3: "audio/mpeg",
+        wav: "audio/wav",
+        flac: "audio/flac",
+        ogg: "audio/ogg",
+        m4a: "audio/mp4"
+      }[target] || "application/octet-stream";
     }
 
     async function loadFile(file) {
@@ -3629,6 +3703,7 @@
     }
 
     initializeLanguage();
+    updateConverterControls();
     resizeCanvas();
     syncInputs();
   </script>
