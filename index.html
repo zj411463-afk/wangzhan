@@ -7,22 +7,30 @@
   <meta name="description" content="免费的在线无损音频切割工具，支持 MP3 按帧剪切、WAV 按采样块裁剪。文件只在浏览器本地处理，不上传服务器、无需注册，适合制作铃声、采样和音乐片段。">
   <meta name="keywords" content="音频切割, MP3剪切, WAV裁剪, 在线音频剪辑, 无损音频切割, 音乐裁剪, 铃声制作, audio cutter, mp3 cutter, wav cutter">
   <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://zj411463-afk.github.io/wangzhan/">
   <meta name="theme-color" content="#087d83">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zj411463-afk.github.io/wangzhan/">
   <meta property="og:title" content="在线无损音频切割工具">
   <meta property="og:description" content="上传 MP3 或 WAV，选择波形片段并本地导出。尽量保持原始音质，不重新压缩。">
-  <meta property="og:image" content="assets/sonic-hero.jpg">
+  <meta property="og:image" content="https://zj411463-afk.github.io/wangzhan/assets/sonic-hero.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="在线无损音频切割工具">
   <meta name="twitter:description" content="浏览器本地完成 MP3/WAV 音频切割，不上传文件。">
-  <meta name="twitter:image" content="assets/sonic-hero.jpg">
+  <meta name="twitter:image" content="https://zj411463-afk.github.io/wangzhan/assets/sonic-hero.jpg">
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@graph": [
         {
+          "@type": "WebSite",
+          "name": "Sonic Cutter",
+          "url": "https://zj411463-afk.github.io/wangzhan/"
+        },
+        {
           "@type": "WebApplication",
           "name": "Sonic Cutter",
+          "url": "https://zj411463-afk.github.io/wangzhan/",
           "applicationCategory": "MultimediaApplication",
           "operatingSystem": "Web browser",
           "description": "在线无损音频切割工具，支持 MP3 按音频帧剪切、WAV 按采样块裁剪，文件在浏览器本地处理。",
@@ -64,6 +72,14 @@
               "acceptedAnswer": {
                 "@type": "Answer",
                 "text": "为了保持原始音质，MP3 需要贴近音频帧边界，WAV 需要贴近采样块边界，因此实际导出时间可能出现毫秒级对齐。"
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "支持哪些音频格式无损导出？",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "当前重点支持 MP3 和 WAV 的无损导出。其他格式可以用于预览，但暂不作为无损导出格式。"
               }
             }
           ]
@@ -135,7 +151,7 @@
     }
 
     .app {
-      width: min(1240px, calc(100% - 32px));
+      width: min(1280px, calc(100% - 32px));
       margin: 0 auto;
       padding: 14px 0 52px;
     }
@@ -182,10 +198,10 @@
     .hero {
       position: relative;
       display: grid;
-      grid-template-columns: minmax(0, 1.08fr) minmax(340px, .92fr);
-      gap: 34px;
+      grid-template-columns: minmax(0, 1.12fr) minmax(320px, .88fr);
+      gap: 28px;
       align-items: center;
-      min-height: 468px;
+      min-height: 402px;
       margin-bottom: 0;
       padding: clamp(24px, 4vw, 44px);
       border-radius: 8px;
@@ -238,7 +254,7 @@
       margin: 0;
       max-width: 760px;
       font-family: "Arial Black", "Avenir Next", Impact, ui-sans-serif, sans-serif;
-      font-size: clamp(42px, 6.2vw, 80px);
+      font-size: clamp(40px, 5.5vw, 70px);
       line-height: .96;
       letter-spacing: 0;
       text-wrap: balance;
@@ -321,7 +337,7 @@
 
     .hero-visual {
       position: relative;
-      min-height: 360px;
+      min-height: 310px;
       animation: floatIn .9s ease both;
     }
 
@@ -341,7 +357,7 @@
       position: absolute;
       right: 34px;
       bottom: 34px;
-      width: 154px;
+      width: 138px;
       aspect-ratio: 1;
       border-radius: 50%;
       background:
@@ -356,7 +372,7 @@
     .floating-panel {
       position: absolute;
       left: -18px;
-      bottom: 52px;
+      bottom: 34px;
       width: 230px;
       padding: 14px;
       border: 1px solid rgba(255, 255, 255, .18);
@@ -392,14 +408,14 @@
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 12px;
-      margin: -34px 20px 28px;
+      margin: -24px 20px 18px;
       position: relative;
       z-index: 2;
     }
 
     .intro-card {
       position: relative;
-      min-height: 136px;
+      min-height: 118px;
       padding: 18px 18px 16px;
       border-radius: 8px;
       overflow: hidden;
@@ -436,6 +452,23 @@
 
     .tool-section {
       margin-top: 24px;
+    }
+
+    .workbench-section {
+      margin-top: 16px;
+      padding: 22px;
+      border: 1px solid rgba(17, 25, 29, .10);
+      border-radius: 8px;
+      background: rgba(251, 252, 252, .72);
+      box-shadow: 0 18px 48px rgba(19, 31, 36, .08);
+    }
+
+    .workbench-section .section-heading {
+      margin-bottom: 18px;
+    }
+
+    .workbench-section .section-heading h2 {
+      font-size: clamp(30px, 4.25vw, 52px);
     }
 
     .section-heading {
@@ -537,13 +570,38 @@
 
     main {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) 352px;
-      gap: 18px;
+      grid-template-columns: minmax(0, 1fr) 316px;
+      gap: 20px;
       align-items: start;
     }
 
     main.is-empty {
       grid-template-columns: 1fr;
+    }
+
+    main.is-empty .primary-column {
+      width: min(100%, 980px);
+      justify-self: center;
+    }
+
+    main.is-empty .dropzone {
+      min-height: 318px;
+      padding: 42px 30px;
+    }
+
+    main.is-empty .upload-icon {
+      width: 72px;
+      height: 72px;
+      margin-bottom: 20px;
+    }
+
+    main.is-empty .drop-title {
+      font-size: 28px;
+    }
+
+    main.is-empty .drop-copy {
+      max-width: 620px;
+      font-size: 15px;
     }
 
     .primary-column {
@@ -570,7 +628,7 @@
       position: relative;
       display: grid;
       place-items: center;
-      min-height: 212px;
+      min-height: 226px;
       border-radius: 8px;
       border-style: dashed;
       padding: 30px;
@@ -701,7 +759,7 @@
 
     .wave-shell {
       position: relative;
-      min-height: 336px;
+      min-height: 372px;
       border: 1px solid #263139;
       border-radius: 8px;
       overflow: hidden;
@@ -714,7 +772,7 @@
     canvas {
       display: block;
       width: 100%;
-      height: 336px;
+      height: 372px;
     }
 
     .selection {
@@ -799,6 +857,39 @@
       padding: 12px 18px 16px;
       background: var(--panel);
       border-top: 1px solid var(--line);
+    }
+
+    .preset-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      padding: 14px 18px 0;
+      border-top: 1px solid var(--line);
+      background: var(--panel-2);
+    }
+
+    .preset-row span {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 760;
+      margin-right: 2px;
+    }
+
+    .preset {
+      min-height: 34px;
+      padding: 0 12px;
+      border: 1px solid #cfd8d8;
+      border-radius: 999px;
+      background: #fff;
+      color: var(--ink);
+      cursor: pointer;
+      font-weight: 760;
+    }
+
+    .preset:hover {
+      border-color: var(--accent);
+      background: var(--accent-soft);
     }
 
     .icon {
@@ -1367,7 +1458,7 @@
       }
 
       .hero-visual {
-        min-height: 320px;
+        min-height: 280px;
       }
 
       .floating-panel {
@@ -1376,12 +1467,16 @@
 
       .intro {
         grid-template-columns: 1fr;
-        margin: 14px 0 24px;
+        margin: 14px 0 18px;
       }
 
       .section-heading {
         grid-template-columns: 1fr;
         align-items: start;
+      }
+
+      .workbench-section {
+        padding: 18px;
       }
 
       .badge {
@@ -1481,7 +1576,7 @@
       }
 
       .hero-visual {
-        min-height: 250px;
+        min-height: 230px;
       }
 
       .hero-disc {
@@ -1497,8 +1592,16 @@
       }
 
       .dropzone {
-        min-height: 210px;
+        min-height: 220px;
         padding: 26px 22px;
+      }
+
+      main.is-empty .dropzone {
+        min-height: 268px;
+      }
+
+      main.is-empty .drop-title {
+        font-size: 24px;
       }
 
       .controls {
@@ -1576,7 +1679,7 @@
         </div>
       </div>
       <div class="hero-visual" aria-hidden="true">
-        <img class="hero-art" src="assets/sonic-hero.jpg" alt="">
+        <img class="hero-art" src="assets/sonic-hero.jpg" alt="Sonic Cutter 音频波形编辑界面预览">
         <div class="hero-disc"></div>
         <div class="floating-panel">
           <span id="floatingLabel">Live waveform preview</span>
@@ -1613,7 +1716,7 @@
       </article>
     </section>
 
-    <section class="tool-section">
+    <section class="tool-section workbench-section">
       <div class="section-heading">
         <div>
           <p class="section-kicker" id="workbenchKicker">Precision Workspace</p>
@@ -1676,6 +1779,13 @@
               <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><path d="M7 10l5 5 5-5"></path><path d="M12 15V3"></path></svg>
               <span id="saveText">保存片段</span>
             </button>
+          </div>
+
+          <div class="preset-row">
+            <span id="presetLabel">快速时长</span>
+            <button class="preset" type="button" data-duration="15">15s</button>
+            <button class="preset" type="button" data-duration="30">30s</button>
+            <button class="preset" type="button" data-duration="60">60s</button>
           </div>
 
           <div class="range-grid">
@@ -1927,8 +2037,8 @@
           <p data-i18n="faq3A">为了不重新压缩，MP3 需要对齐到音频帧，WAV 需要对齐到采样块，因此可能出现毫秒级的边界差异。</p>
         </details>
         <details>
-          <summary data-i18n="faq4Q">可以部署到 Cloudflare Pages 吗？</summary>
-          <p data-i18n="faq4A">可以。这个网站是纯静态页面，只需要部署 index.html 和 assets/sonic-hero.jpg，就能在 Cloudflare Pages 上运行。</p>
+          <summary data-i18n="faq4Q">支持哪些音频格式无损导出？</summary>
+          <p data-i18n="faq4A">当前重点支持 MP3 和 WAV 的无损导出。M4A、AAC、FLAC、OGG 等格式暂不作为无损导出格式。</p>
         </details>
       </div>
     </section>
@@ -2101,8 +2211,8 @@
         faq2A: "不会。音频文件只在你的浏览器本地处理，页面不会把音乐上传到服务器。",
         faq3Q: "为什么导出的开始或结束时间可能有一点点偏差？",
         faq3A: "为了不重新压缩，MP3 需要对齐到音频帧，WAV 需要对齐到采样块，因此可能出现毫秒级的边界差异。",
-        faq4Q: "可以部署到 Cloudflare Pages 吗？",
-        faq4A: "可以。这个网站是纯静态页面，只需要部署 index.html 和 assets/sonic-hero.jpg，就能在 Cloudflare Pages 上运行。"
+        faq4Q: "支持哪些音频格式无损导出？",
+        faq4A: "当前重点支持 MP3 和 WAV 的无损导出。M4A、AAC、FLAC、OGG 等格式暂不作为无损导出格式。"
       },
       en: {
         metaDescription: "Free online lossless audio cutter for MP3 frame-based cutting and WAV sample-block trimming. Files are processed locally in your browser with no upload and no signup.",
@@ -2198,8 +2308,8 @@
         faq2A: "No. Audio is processed in your browser and the page does not upload your music.",
         faq3Q: "Why can the exported start or end time be slightly different?",
         faq3A: "To avoid recompression, MP3 aligns to audio frames and WAV aligns to sample blocks, which can create millisecond-level boundary differences.",
-        faq4Q: "Can this be deployed to Cloudflare Pages?",
-        faq4A: "Yes. This is a static site. Deploy index.html and assets/sonic-hero.jpg, plus robots.txt and sitemap.xml."
+        faq4Q: "Which formats support lossless export?",
+        faq4A: "This version focuses on lossless MP3 and WAV export. M4A, AAC, FLAC, and OGG are not exposed as lossless export formats yet."
       },
       ja: {
         metaDescription: "無料のオンラインロスレス音声カッター。MP3 はフレーム単位、WAV はサンプルブロック単位で切り出し、ファイルはブラウザ内で処理されます。",
@@ -2295,8 +2405,8 @@
         faq2A: "いいえ。音声はブラウザ内で処理され、このページは音楽をアップロードしません。",
         faq3Q: "書き出し時間に少し差が出るのはなぜですか？",
         faq3A: "再圧縮を避けるため、MP3 はフレーム、WAV はサンプルブロックに合わせるので、ミリ秒単位の差が出ることがあります。",
-        faq4Q: "Cloudflare Pages にデプロイできますか？",
-        faq4A: "できます。静的サイトなので index.html、assets/sonic-hero.jpg、robots.txt、sitemap.xml を配置すれば動きます。"
+        faq4Q: "どの形式をロスレスで書き出せますか？",
+        faq4A: "現在は MP3 と WAV のロスレス書き出しを重視しています。M4A、AAC、FLAC、OGG はまだロスレス書き出し形式として公開していません。"
       },
       ko: {
         metaDescription: "무료 온라인 무손실 오디오 커터입니다. MP3는 프레임 기준, WAV는 샘플 블록 기준으로 자르며 파일은 브라우저 로컬에서 처리됩니다.",
@@ -2392,8 +2502,8 @@
         faq2A: "아니요. 오디오는 브라우저에서 처리되며 페이지가 음악을 업로드하지 않습니다.",
         faq3Q: "내보낸 시작/종료 시간이 조금 달라지는 이유는?",
         faq3A: "재압축을 피하려면 MP3는 프레임, WAV는 샘플 블록에 맞춰야 해서 밀리초 수준의 차이가 생길 수 있습니다.",
-        faq4Q: "Cloudflare Pages에 배포할 수 있나요?",
-        faq4A: "가능합니다. 정적 사이트이므로 index.html, assets/sonic-hero.jpg, robots.txt, sitemap.xml을 배포하면 됩니다."
+        faq4Q: "어떤 형식을 무손실로 내보낼 수 있나요?",
+        faq4A: "현재는 MP3와 WAV 무손실 내보내기에 집중합니다. M4A, AAC, FLAC, OGG는 아직 무손실 내보내기 형식으로 공개하지 않았습니다."
       },
       fr: {
         metaDescription: "Outil gratuit de découpe audio sans perte en ligne. MP3 aligné sur les trames, WAV aligné sur les blocs d'échantillons, traitement local dans le navigateur.",
@@ -2489,8 +2599,8 @@
         faq2A: "Non. L'audio est traité dans votre navigateur et la page ne téléverse pas votre musique.",
         faq3Q: "Pourquoi le début ou la fin exportés peuvent-ils différer légèrement ?",
         faq3A: "Pour éviter la recompression, MP3 s'aligne sur les trames et WAV sur les blocs d'échantillons, ce qui peut créer un écart de quelques millisecondes.",
-        faq4Q: "Peut-on déployer sur Cloudflare Pages ?",
-        faq4A: "Oui. C'est un site statique : déployez index.html, assets/sonic-hero.jpg, robots.txt et sitemap.xml."
+        faq4Q: "Quels formats prennent en charge l'export sans perte ?",
+        faq4A: "Cette version se concentre sur l'export sans perte MP3 et WAV. M4A, AAC, FLAC et OGG ne sont pas encore proposés comme formats d'export sans perte."
       },
       de: {
         metaDescription: "Kostenloser verlustfreier Online-Audio-Cutter. MP3 wird an Frames, WAV an Sample-Blöcken geschnitten. Dateien bleiben lokal im Browser.",
@@ -2586,8 +2696,8 @@
         faq2A: "Nein. Audio wird im Browser verarbeitet und diese Seite lädt deine Musik nicht hoch.",
         faq3Q: "Warum kann die exportierte Start- oder Endzeit leicht abweichen?",
         faq3A: "Um Neukomprimierung zu vermeiden, richtet sich MP3 an Frames und WAV an Sample-Blöcken aus. Dadurch können Millisekunden-Abweichungen entstehen.",
-        faq4Q: "Kann ich das auf Cloudflare Pages deployen?",
-        faq4A: "Ja. Es ist eine statische Website: deploye index.html, assets/sonic-hero.jpg, robots.txt und sitemap.xml."
+        faq4Q: "Welche Formate unterstützen verlustfreien Export?",
+        faq4A: "Diese Version konzentriert sich auf verlustfreien MP3- und WAV-Export. M4A, AAC, FLAC und OGG werden noch nicht als verlustfreie Exportformate angeboten."
       },
       es: {
         metaDescription: "Cortador de audio online sin pérdida y gratis. MP3 se corta por frames y WAV por bloques de muestra. Los archivos se procesan localmente en el navegador.",
@@ -2683,8 +2793,8 @@
         faq2A: "No. El audio se procesa en tu navegador y la página no sube tu música.",
         faq3Q: "¿Por qué el inicio o final exportado puede variar un poco?",
         faq3A: "Para evitar recompresión, MP3 se alinea a frames y WAV a bloques de muestra, lo que puede crear diferencias de milisegundos.",
-        faq4Q: "¿Se puede desplegar en Cloudflare Pages?",
-        faq4A: "Sí. Es un sitio estático: despliega index.html, assets/sonic-hero.jpg, robots.txt y sitemap.xml."
+        faq4Q: "¿Qué formatos permiten exportación sin pérdida?",
+        faq4A: "Esta versión se centra en exportar MP3 y WAV sin pérdida. M4A, AAC, FLAC y OGG todavía no se ofrecen como formatos de exportación sin pérdida."
       }
     };
 
@@ -2721,6 +2831,7 @@
         waitingStatus: "等待分析音频格式",
         playTitle: "播放或暂停",
         seekLabel: "播放进度",
+        presetLabel: "快速时长",
         loopTitle: "循环试听选区",
         fullTitle: "选择整首",
         clearTitle: "重新上传",
@@ -2743,7 +2854,8 @@
         decodeFail: "浏览器无法解码这个音频，暂时不能生成波形预览。",
         unsupportedToast: "当前格式不支持无损导出，请换用 MP3 或 WAV。",
         tooShort: "片段太短，无法生成有效文件。",
-        savedPrefix: "已保存，实际对齐片段：",
+        savedPrefix: "已开始下载",
+        savedRangePrefix: "实际对齐片段：",
         waveEmpty: "上传音频后显示波形",
         unknownType: "未知类型"
       },
@@ -2779,6 +2891,7 @@
         waitingStatus: "Waiting to analyze audio format",
         playTitle: "Play or pause",
         seekLabel: "Playback",
+        presetLabel: "Quick length",
         loopTitle: "Loop selected range",
         fullTitle: "Select full track",
         clearTitle: "Upload again",
@@ -2801,7 +2914,8 @@
         decodeFail: "The browser could not decode this audio, so waveform preview is unavailable.",
         unsupportedToast: "This format cannot be exported losslessly here. Please use MP3 or WAV.",
         tooShort: "The clip is too short to create a valid file.",
-        savedPrefix: "Saved. Actual aligned range: ",
+        savedPrefix: "Download started",
+        savedRangePrefix: "Actual aligned range: ",
         waveEmpty: "Upload audio to show waveform",
         unknownType: "Unknown type"
       },
@@ -2837,6 +2951,7 @@
         waitingStatus: "音声形式を解析待ち",
         playTitle: "再生 / 一時停止",
         seekLabel: "再生位置",
+        presetLabel: "クイック長さ",
         loopTitle: "選択範囲をループ",
         fullTitle: "全体を選択",
         clearTitle: "再アップロード",
@@ -2859,7 +2974,8 @@
         decodeFail: "ブラウザがこの音声をデコードできず、波形プレビューを生成できません。",
         unsupportedToast: "この形式はここではロスレス書き出しできません。MP3 または WAV を使用してください。",
         tooShort: "クリップが短すぎて有効なファイルを作成できません。",
-        savedPrefix: "保存しました。実際の整列範囲：",
+        savedPrefix: "ダウンロードを開始しました",
+        savedRangePrefix: "実際の整列範囲：",
         waveEmpty: "音声をアップロードすると波形を表示します",
         unknownType: "不明な形式"
       },
@@ -2895,6 +3011,7 @@
         waitingStatus: "오디오 형식 분석 대기 중",
         playTitle: "재생 또는 일시정지",
         seekLabel: "재생 위치",
+        presetLabel: "빠른 길이",
         loopTitle: "선택 구간 반복",
         fullTitle: "전체 트랙 선택",
         clearTitle: "다시 업로드",
@@ -2917,7 +3034,8 @@
         decodeFail: "브라우저가 이 오디오를 디코딩할 수 없어 파형 미리보기를 만들 수 없습니다.",
         unsupportedToast: "이 형식은 여기서 무손실 내보내기를 할 수 없습니다. MP3 또는 WAV를 사용하세요.",
         tooShort: "클립이 너무 짧아 유효한 파일을 만들 수 없습니다.",
-        savedPrefix: "저장됨. 실제 정렬 구간: ",
+        savedPrefix: "다운로드를 시작했습니다",
+        savedRangePrefix: "실제 정렬 구간: ",
         waveEmpty: "오디오를 업로드하면 파형이 표시됩니다",
         unknownType: "알 수 없는 형식"
       },
@@ -2953,6 +3071,7 @@
         waitingStatus: "Analyse du format audio en attente",
         playTitle: "Lire ou mettre en pause",
         seekLabel: "Lecture",
+        presetLabel: "Durée rapide",
         loopTitle: "Lire la sélection en boucle",
         fullTitle: "Sélectionner tout le morceau",
         clearTitle: "Importer à nouveau",
@@ -2975,7 +3094,8 @@
         decodeFail: "Le navigateur ne peut pas décoder cet audio ; l’aperçu de forme d’onde est indisponible.",
         unsupportedToast: "Ce format ne peut pas être exporté sans perte ici. Utilisez MP3 ou WAV.",
         tooShort: "Le clip est trop court pour créer un fichier valide.",
-        savedPrefix: "Enregistré. Plage alignée réelle : ",
+        savedPrefix: "Téléchargement lancé",
+        savedRangePrefix: "Plage alignée réelle : ",
         waveEmpty: "Importez un audio pour afficher la forme d’onde",
         unknownType: "Type inconnu"
       },
@@ -3011,6 +3131,7 @@
         waitingStatus: "Warte auf Analyse des Audioformats",
         playTitle: "Abspielen oder pausieren",
         seekLabel: "Wiedergabe",
+        presetLabel: "Schnelle Länge",
         loopTitle: "Auswahl wiederholen",
         fullTitle: "Ganzen Track auswählen",
         clearTitle: "Erneut hochladen",
@@ -3033,7 +3154,8 @@
         decodeFail: "Der Browser konnte dieses Audio nicht dekodieren; die Wellenformvorschau ist nicht verfügbar.",
         unsupportedToast: "Dieses Format kann hier nicht verlustfrei exportiert werden. Bitte MP3 oder WAV verwenden.",
         tooShort: "Der Clip ist zu kurz, um eine gültige Datei zu erstellen.",
-        savedPrefix: "Gespeichert. Tatsächlich ausgerichteter Bereich: ",
+        savedPrefix: "Download gestartet",
+        savedRangePrefix: "Tatsächlich ausgerichteter Bereich: ",
         waveEmpty: "Audio hochladen, um die Wellenform zu sehen",
         unknownType: "Unbekannter Typ"
       },
@@ -3069,6 +3191,7 @@
         waitingStatus: "Esperando análisis del formato",
         playTitle: "Reproducir o pausar",
         seekLabel: "Reproducción",
+        presetLabel: "Duración rápida",
         loopTitle: "Repetir selección",
         fullTitle: "Seleccionar pista completa",
         clearTitle: "Subir de nuevo",
@@ -3091,7 +3214,8 @@
         decodeFail: "El navegador no pudo decodificar este audio; la vista previa de onda no está disponible.",
         unsupportedToast: "Este formato no se puede exportar sin pérdida aquí. Usa MP3 o WAV.",
         tooShort: "El clip es demasiado corto para crear un archivo válido.",
-        savedPrefix: "Guardado. Rango alineado real: ",
+        savedPrefix: "Descarga iniciada",
+        savedRangePrefix: "Rango alineado real: ",
         waveEmpty: "Sube audio para mostrar la onda",
         unknownType: "Tipo desconocido"
       }
@@ -3213,6 +3337,15 @@
 
     els.endInput.addEventListener("input", () => {
       setSelection(state.start, Number(els.endInput.value));
+    });
+
+    document.querySelectorAll(".preset").forEach((button) => {
+      button.addEventListener("click", () => {
+        if (!state.duration) return;
+        const seconds = Number(button.dataset.duration);
+        const start = clamp(state.player.currentTime || state.start, 0, state.duration);
+        setSelection(start, Math.min(state.duration, start + seconds));
+      });
     });
 
     els.seekRange.addEventListener("pointerdown", () => {
@@ -3855,12 +3988,13 @@
       const url = URL.createObjectURL(result.blob);
       const link = document.createElement("a");
       link.href = url;
-      link.download = `${cleanName(els.outputName.value || "clip")}.${result.ext}`;
+      const fileName = `${cleanName(els.outputName.value || "clip")}.${result.ext}`;
+      link.download = fileName;
       document.body.append(link);
       link.click();
       link.remove();
       setTimeout(() => URL.revokeObjectURL(url), 1000);
-      showToast(`${t("savedPrefix")}${formatTime(result.actualStart)} - ${formatTime(result.actualEnd)}`);
+      showToast(`${t("savedPrefix")}: ${fileName}. ${t("savedRangePrefix")}${formatTime(result.actualStart)} - ${formatTime(result.actualEnd)}`);
     }
 
     function exportWav() {
@@ -3994,7 +4128,7 @@
         "floatingLabel", "intro1Title", "intro1Text", "intro2Title", "intro2Text",
         "intro3Title", "intro3Text", "workbenchKicker", "workbenchTitle", "workbenchText",
         "dropTitle", "dropCopy", "saveText",
-        "seekLabel",
+        "seekLabel", "presetLabel",
         "startInputLabel", "endInputLabel", "outputNameLabel", "clipInfoTitle",
         "meterStart", "meterEnd", "meterLength", "meterSize", "zoomTitle",
         "formatHint", "formatWarn"
