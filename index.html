@@ -195,6 +195,17 @@
       stroke-linejoin: round;
     }
 
+    .header-link {
+      color: var(--deep);
+      font-size: 14px;
+      font-weight: 760;
+      text-decoration: none;
+    }
+
+    .header-link:hover {
+      color: var(--accent);
+    }
+
     .hero {
       position: relative;
       display: grid;
@@ -1242,6 +1253,7 @@
       cursor: pointer;
       box-shadow: var(--shadow);
       transition: transform .16s ease, border-color .16s ease, background .16s ease;
+      text-decoration: none;
     }
 
     .task-card:hover {
@@ -1646,6 +1658,7 @@
         Sonic Cutter
       </div>
       <div class="top-actions">
+        <a class="header-link" href="video-to-audio.html" data-i18n="videoNav">视频转音频</a>
         <label class="language-switcher" for="languageSelect">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z"></path><path d="M3.6 9h16.8"></path><path d="M3.6 15h16.8"></path><path d="M12 3a14 14 0 0 1 0 18"></path><path d="M12 3a14 14 0 0 0 0 18"></path></svg>
           <select id="languageSelect" aria-label="Language">
@@ -1935,6 +1948,10 @@
           <strong data-i18n="taskWavCutTitle">WAV 精准裁剪</strong>
           <span data-i18n="taskWavCutText">按采样块导出录音片段，适合素材整理和细致剪辑。</span>
         </button>
+        <a class="task-card" href="video-to-audio.html">
+          <strong data-i18n="taskVideoTitle">视频提取音频</strong>
+          <span data-i18n="taskVideoText">进入独立页面，把视频中的声音导出为 MP3 或 WAV。</span>
+        </a>
       </div>
     </section>
 
@@ -2162,6 +2179,9 @@
       taskMp3CutText: "直接选中高潮、副歌或铃声片段，尽量不重新压缩。",
       taskWavCutTitle: "WAV 精准裁剪",
       taskWavCutText: "按采样块导出录音片段，适合素材整理和细致剪辑。",
+      taskVideoTitle: "视频提取音频",
+      taskVideoText: "进入独立页面，把视频中的声音导出为 MP3 或 WAV。",
+      videoNav: "视频转音频",
         seoKicker: "搜索指南",
         seoTitle: "在线无损音频切割、MP3剪切与WAV裁剪",
         seoIntro: "Sonic Cutter 是一个免费的在线音频切割工具，适合快速裁剪音乐片段、制作手机铃声、整理采样素材和导出播客片段。工具优先保留原始音频数据：MP3 按音频帧边界剪切，WAV 按采样块边界裁剪，导出过程不重新编码、不重新压缩。",
@@ -2259,6 +2279,9 @@
       taskMp3CutText: "Keep a hook, chorus, or ringtone clip while avoiding unnecessary recompression.",
       taskWavCutTitle: "Precise WAV trimming",
       taskWavCutText: "Export clips on sample blocks for production work and careful editing.",
+      taskVideoTitle: "Extract audio from video",
+      taskVideoText: "Open the dedicated page and export video audio as MP3 or WAV.",
+      videoNav: "Video to audio",
         seoKicker: "SEO Guide",
         seoTitle: "Online lossless audio cutting, MP3 cutting, and WAV trimming",
         seoIntro: "Sonic Cutter is a free online audio cutter for trimming music, making ringtones, organizing samples, and exporting podcast clips. It preserves original audio data whenever possible: MP3 is cut on frame boundaries, WAV is cut on sample blocks, and exports are not re-encoded.",
@@ -2356,6 +2379,9 @@
       taskMp3CutText: "サビや着信音部分を選び、不要な再圧縮を避けます。",
       taskWavCutTitle: "WAV を精密にトリミング",
       taskWavCutText: "サンプルブロック単位で書き出し、素材整理や細かな編集に向きます。",
+      taskVideoTitle: "動画から音声を抽出",
+      taskVideoText: "専用ページで、動画の音声を MP3 または WAV として書き出します。",
+      videoNav: "動画を音声へ",
         seoKicker: "SEO ガイド",
         seoTitle: "オンラインでロスレス音声切り出し、MP3 カット、WAV トリミング",
         seoIntro: "Sonic Cutter は音楽の一部切り出し、着信音作成、サンプル整理、ポッドキャスト編集に使える無料のオンライン音声カッターです。MP3 はフレーム境界、WAV はサンプルブロックで切り出し、再エンコードを避けます。",
@@ -2453,6 +2479,9 @@
       taskMp3CutText: "후렴, 하이라이트, 벨소리 구간을 고르고 불필요한 재압축을 피합니다.",
       taskWavCutTitle: "WAV 정밀 자르기",
       taskWavCutText: "샘플 블록 기준으로 내보내 소재 정리와 세밀한 편집에 적합합니다.",
+      taskVideoTitle: "동영상에서 오디오 추출",
+      taskVideoText: "전용 페이지에서 동영상 오디오를 MP3 또는 WAV로 내보냅니다.",
+      videoNav: "동영상 오디오",
         seoKicker: "SEO 가이드",
         seoTitle: "온라인 무손실 오디오 자르기, MP3 커터, WAV 트리머",
         seoIntro: "Sonic Cutter는 음악 클립, 벨소리, 샘플, 팟캐스트 구간을 빠르게 자르는 무료 온라인 오디오 커터입니다. MP3는 프레임 경계, WAV는 샘플 블록 기준으로 잘라 재인코딩을 피합니다.",
@@ -2550,6 +2579,9 @@
       taskMp3CutText: "Gardez un refrain, un hook ou une sonnerie sans recompression inutile.",
       taskWavCutTitle: "Rognage WAV précis",
       taskWavCutText: "Exportez par blocs d'échantillons pour la production et les montages précis.",
+      taskVideoTitle: "Extraire l'audio d'une vidéo",
+      taskVideoText: "Ouvrez la page dédiée et exportez l'audio vidéo en MP3 ou WAV.",
+      videoNav: "Vidéo vers audio",
         seoKicker: "Guide SEO",
         seoTitle: "Découpe audio sans perte en ligne, découpe MP3 et rognage WAV",
         seoIntro: "Sonic Cutter est un outil gratuit pour découper de la musique, créer des sonneries, organiser des samples et exporter des extraits de podcast. MP3 est découpé sur les trames, WAV sur les blocs d'échantillons, sans réencodage.",
@@ -2647,6 +2679,9 @@
       taskMp3CutText: "Behalte Hook, Refrain oder Klingelton und vermeide unnötige Neukomprimierung.",
       taskWavCutTitle: "WAV präzise trimmen",
       taskWavCutText: "Exportiere an Sample-Blöcken für Produktion und feine Bearbeitung.",
+      taskVideoTitle: "Audio aus Video extrahieren",
+      taskVideoText: "Öffne die eigene Seite und exportiere Video-Audio als MP3 oder WAV.",
+      videoNav: "Video zu Audio",
         seoKicker: "SEO-Leitfaden",
         seoTitle: "Verlustfreies Audio online schneiden, MP3 schneiden und WAV trimmen",
         seoIntro: "Sonic Cutter ist ein kostenloser Online-Audio-Cutter für Musikclips, Klingeltöne, Samples und Podcast-Ausschnitte. MP3 wird an Frame-Grenzen, WAV an Sample-Blöcken geschnitten, ohne neu zu kodieren.",
@@ -2744,6 +2779,9 @@
       taskMp3CutText: "Conserva un estribillo, hook o tono evitando recomprimir de más.",
       taskWavCutTitle: "Recorte WAV preciso",
       taskWavCutText: "Exporta por bloques de muestra para producción y edición detallada.",
+      taskVideoTitle: "Extraer audio de video",
+      taskVideoText: "Abre la página dedicada y exporta el audio del video como MP3 o WAV.",
+      videoNav: "Video a audio",
         seoKicker: "Guía SEO",
         seoTitle: "Cortar audio online sin pérdida, cortar MP3 y recortar WAV",
         seoIntro: "Sonic Cutter es un cortador de audio online gratuito para recortar música, crear tonos, organizar samples y exportar fragmentos de podcast. MP3 se corta por límites de frame y WAV por bloques de muestra, sin recodificar.",

@@ -1,0 +1,756 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>视频提取音频工具｜在线视频转 MP3、MP4 提取声音</title>
+  <meta name="description" content="免费在线视频提取音频工具，支持从 MP4、MOV、WebM 等视频中导出 MP3 或 WAV。由服务器快速处理视频音轨，适合提取采访、课程、配乐和原声。">
+  <meta name="keywords" content="视频提取音频, 视频转音频, 视频转MP3, MP4转MP3, 提取视频声音, video to audio, video to mp3">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://zj411463-afk.github.io/wangzhan/video-to-audio.html">
+  <meta name="theme-color" content="#087d83">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zj411463-afk.github.io/wangzhan/video-to-audio.html">
+  <meta property="og:title" content="视频提取音频工具">
+  <meta property="og:description" content="上传视频，快速提取 MP3 或 WAV 音频，适合课程、采访、配乐和原声素材。">
+  <meta property="og:image" content="https://zj411463-afk.github.io/wangzhan/assets/sonic-hero.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="视频提取音频工具">
+  <meta name="twitter:description" content="在线从 MP4、MOV、WebM 视频中提取 MP3 或 WAV 音频。">
+  <meta name="twitter:image" content="https://zj411463-afk.github.io/wangzhan/assets/sonic-hero.jpg">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebApplication",
+          "name": "视频提取音频工具",
+          "url": "https://zj411463-afk.github.io/wangzhan/video-to-audio.html",
+          "applicationCategory": "MultimediaApplication",
+          "operatingSystem": "Web browser",
+          "description": "在线视频提取音频工具，可从视频文件中导出 MP3 或 WAV，由服务器快速处理视频音轨。",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          },
+          "featureList": [
+            "Extract audio from video",
+            "MP4 to MP3",
+            "MP4 to WAV",
+            "Server-side FFmpeg processing",
+            "Large video upload"
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "这个视频提取音频工具免费吗？",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "免费。你可以在浏览器中选择视频，并导出 MP3 或 WAV 音频。"
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "视频转音频一定需要服务器吗？",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "当前版本使用服务器端原生 FFmpeg 处理视频音轨，适合比浏览器本地处理更快地完成视频转音频。"
+              }
+            }
+          ]
+        },
+        {
+          "@type": "HowTo",
+          "name": "如何从视频中提取音频",
+          "step": [
+            {
+              "@type": "HowToStep",
+              "name": "上传视频",
+              "text": "选择 MP4、MOV、WebM 或其他常见视频文件。"
+            },
+            {
+              "@type": "HowToStep",
+              "name": "选择输出格式",
+              "text": "选择导出为 MP3 或 WAV。"
+            },
+            {
+              "@type": "HowToStep",
+              "name": "下载音频",
+              "text": "等待浏览器处理完成后，将提取好的音频保存到本地。"
+            }
+          ]
+        }
+      ]
+    }
+  </script>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #edf2f0;
+      --ink: #141a1f;
+      --muted: #65717a;
+      --line: #d7dee0;
+      --panel: #fbfcfc;
+      --accent: #087d83;
+      --accent-2: #c94056;
+      --accent-3: #d69d28;
+      --deep: #11191d;
+      --shadow: 0 18px 48px rgba(19, 31, 36, .12);
+      font-family: "Avenir Next", "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 72% 4%, rgba(232, 93, 138, .18), transparent 28%),
+        radial-gradient(circle at 18% 12%, rgba(8, 125, 131, .20), transparent 26%),
+        linear-gradient(180deg, #f8fbfb 0, rgba(248, 251, 251, 0) 520px),
+        linear-gradient(90deg, rgba(8, 125, 131, .08) 0 1px, transparent 1px 96px),
+        linear-gradient(0deg, rgba(20, 26, 31, .045) 0 1px, transparent 1px 96px),
+        var(--bg);
+      color: var(--ink);
+    }
+
+    .app {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 14px 0 52px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 12px;
+      padding: 8px 0;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--deep);
+      font-size: 15px;
+      font-weight: 820;
+      text-decoration: none;
+    }
+
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: #fff;
+      background: linear-gradient(135deg, var(--deep), var(--accent));
+      box-shadow: 0 10px 22px rgba(8, 125, 131, .22);
+    }
+
+    .brand-mark svg {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+      stroke-width: 2;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .nav a {
+      color: var(--deep);
+      font-weight: 760;
+      font-size: 14px;
+      text-decoration: none;
+    }
+
+    .nav a:hover { color: var(--accent); }
+
+    .hero {
+      position: relative;
+      min-height: 392px;
+      display: grid;
+      align-items: end;
+      overflow: hidden;
+      border-radius: 8px;
+      padding: clamp(24px, 4vw, 42px);
+      background:
+        linear-gradient(115deg, rgba(17, 25, 29, .98) 0%, rgba(17, 25, 29, .88) 48%, rgba(17, 25, 29, .58) 100%),
+        url("assets/sonic-hero.jpg") center / cover no-repeat;
+      box-shadow: 0 28px 80px rgba(12, 22, 27, .28);
+      color: #f7fbfb;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 18px;
+      color: #baf7f1;
+      font-size: 12px;
+      font-weight: 850;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 38px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent-3), #63e5dc);
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 760px;
+      font-family: "Arial Black", "Avenir Next", Impact, ui-sans-serif, sans-serif;
+      font-size: clamp(38px, 5vw, 64px);
+      line-height: .98;
+      letter-spacing: 0;
+    }
+
+    .hero p {
+      max-width: 680px;
+      margin: 18px 0 0;
+      color: #d1dddd;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 18px;
+      border-radius: 8px;
+      color: #071315;
+      background: #63e5dc;
+      font-weight: 850;
+      text-decoration: none;
+    }
+
+    .button.secondary {
+      color: #f7fbfb;
+      border: 1px solid rgba(255, 255, 255, .18);
+      background: rgba(255, 255, 255, .10);
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(300px, .8fr);
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .panel {
+      border: 1px solid rgba(17, 25, 29, .10);
+      border-radius: 8px;
+      background: rgba(251, 252, 252, .94);
+      box-shadow: var(--shadow);
+    }
+
+    .feature-panel {
+      padding: 24px;
+    }
+
+    .section-kicker {
+      margin: 0 0 8px;
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 850;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 28px;
+      line-height: 1.08;
+    }
+
+    .feature-panel > p,
+    .side-panel p,
+    .faq p {
+      color: var(--muted);
+      line-height: 1.72;
+    }
+
+    .step-grid,
+    .card-grid {
+      display: grid;
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .step-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .step,
+    .mini-card {
+      padding: 18px;
+      border-radius: 8px;
+      border: 1px solid #dfe7e7;
+      background: #fff;
+    }
+
+    .step strong,
+    .mini-card strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--deep);
+    }
+
+    .step span,
+    .mini-card span {
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    .side-panel {
+      display: grid;
+      align-content: start;
+      gap: 14px;
+      padding: 24px;
+    }
+
+    .extractor {
+      display: grid;
+      gap: 14px;
+    }
+
+    .dropzone {
+      display: grid;
+      gap: 10px;
+      min-height: 168px;
+      align-content: center;
+      justify-items: center;
+      border: 1px dashed rgba(8, 125, 131, .4);
+      border-radius: 8px;
+      color: var(--muted);
+      background: linear-gradient(180deg, rgba(223, 244, 242, .72), rgba(255, 255, 255, .86));
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .dropzone input {
+      display: none;
+    }
+
+    .dropzone strong {
+      color: var(--deep);
+      font-size: 18px;
+    }
+
+    .dropzone.is-dragging {
+      border-color: var(--accent);
+      background: linear-gradient(180deg, rgba(223, 244, 242, 1), #fff);
+    }
+
+    .file-status {
+      display: grid;
+      gap: 5px;
+      padding: 14px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, .84);
+      border: 1px solid var(--line);
+    }
+
+    .file-status strong {
+      color: var(--deep);
+    }
+
+    .file-status span {
+      color: var(--muted);
+      line-height: 1.5;
+      font-size: 14px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 12px;
+    }
+
+    label.control {
+      display: grid;
+      gap: 7px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 760;
+    }
+
+    select,
+    input[type="text"] {
+      width: 100%;
+      min-height: 42px;
+      padding: 0 12px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink);
+    }
+
+    .action-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .action-row button {
+      border: 0;
+      cursor: pointer;
+    }
+
+    .action-row button:disabled {
+      cursor: not-allowed;
+      opacity: .58;
+    }
+
+    .progress {
+      overflow: hidden;
+      height: 10px;
+      border-radius: 999px;
+      background: #dfe7e7;
+    }
+
+    .progress span {
+      display: block;
+      width: 0;
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), #63e5dc);
+      transition: width .18s ease;
+    }
+
+    .note {
+      padding: 14px;
+      border-radius: 8px;
+      border: 1px solid rgba(214, 157, 40, .28);
+      background: rgba(214, 157, 40, .10);
+      color: #785512;
+      line-height: 1.65;
+      font-size: 14px;
+    }
+
+    .card-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .faq {
+      margin-top: 18px;
+      padding: 24px;
+    }
+
+    details + details {
+      border-top: 1px solid var(--line);
+    }
+
+    summary {
+      cursor: pointer;
+      padding: 16px 0;
+      font-weight: 760;
+    }
+
+    details p {
+      margin: 0 0 16px;
+    }
+
+    @media (max-width: 860px) {
+      .grid,
+      .step-grid,
+      .card-grid,
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      header {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .hero {
+        min-height: 360px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header>
+      <a class="brand" href="index.html">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M4 14v-4"></path><path d="M8 18V6"></path><path d="M12 21V3"></path><path d="M16 17V7"></path><path d="M20 13v-2"></path></svg>
+        </span>
+        Sonic Cutter
+      </a>
+      <nav class="nav" aria-label="Main navigation">
+        <a href="index.html">音频切割</a>
+        <a href="index.html#converter">音频转换</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div>
+        <div class="eyebrow">Video To Audio</div>
+        <h1>从视频里，提取真正想听的声音</h1>
+        <p>上传 MP4、MOV、WebM 等视频，由服务器快速提取 MP3 或 WAV 音频。适合整理采访、课程、配乐和你有权处理的视频素材。</p>
+        <div class="hero-actions">
+          <a class="button" href="#extractor">开始提取</a>
+          <a class="button secondary" href="index.html">音频切割</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid" id="details">
+      <article class="panel feature-panel">
+        <p class="section-kicker">How It Works</p>
+        <h2>三步完成视频提取音频</h2>
+        <p>当前版本使用服务器端 FFmpeg 处理视频音轨，比浏览器本地处理更适合较大的视频文件。选择视频、确定输出格式，然后下载提取好的音频即可。</p>
+        <div class="step-grid">
+          <article class="step">
+            <strong>上传视频</strong>
+            <span>支持 MP4、MOV、WebM、MKV 等常见视频文件。</span>
+          </article>
+          <article class="step">
+            <strong>选择输出</strong>
+            <span>按需求导出 MP3 或 WAV。</span>
+          </article>
+          <article class="step">
+            <strong>下载音频</strong>
+            <span>处理完成后直接保存到本地设备。</span>
+          </article>
+        </div>
+      </article>
+
+      <aside class="panel side-panel" id="extractor">
+        <div class="extractor">
+          <label class="dropzone" id="dropzone">
+            <input id="videoInput" type="file" accept="video/*,.mp4,.mov,.m4v,.webm,.mkv,.avi">
+            <strong>拖入视频，或点击选择文件</strong>
+            <span>支持常见视频格式，上传到服务器后快速提取音频</span>
+          </label>
+          <div class="file-status">
+            <strong id="fileName">未选择视频</strong>
+            <span id="status">选择视频后即可开始提取音频。</span>
+          </div>
+          <div class="form-grid">
+            <label class="control">
+              输出格式
+              <select id="outputFormat">
+                <option value="mp3">MP3</option>
+                <option value="wav">WAV</option>
+              </select>
+            </label>
+            <label class="control">
+              文件名
+              <input id="outputName" type="text" value="audio-from-video">
+            </label>
+          </div>
+          <div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
+          <div class="action-row">
+            <button class="button" id="extractBtn" type="button" disabled>提取并下载</button>
+          </div>
+          <div class="note">视频文件越大，提取所需时间通常越久。请保持页面打开，等待处理完成后再下载音频。</div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="card-grid" aria-label="使用场景">
+      <article class="mini-card">
+        <strong>提取采访录音</strong>
+        <span>把会议、采访、课程视频中的声音单独保存，便于整理和转写。</span>
+      </article>
+      <article class="mini-card">
+        <strong>保存视频配乐</strong>
+        <span>从你有权处理的视频中导出背景音乐、旁白或原声片段。</span>
+      </article>
+      <article class="mini-card">
+        <strong>进入后续剪辑</strong>
+        <span>把视频里的音轨先导出，再交给音频切割或编辑流程继续处理。</span>
+      </article>
+    </section>
+
+    <section class="panel faq" aria-label="常见问题">
+      <h2>常见问题</h2>
+      <details>
+        <summary>这个视频提取音频工具免费吗？</summary>
+        <p>免费。你可以直接上传视频，并导出 MP3 或 WAV 音频。</p>
+      </details>
+      <details>
+        <summary>文件会上传到服务器吗？</summary>
+        <p>会。为了提升处理速度，视频会上传到服务器提取音频，处理完成后临时文件会自动删除。</p>
+      </details>
+      <details>
+        <summary>为什么大视频仍然需要等待？</summary>
+        <p>视频需要先上传，再由服务器提取或转码音频。文件越大，上传和处理时间通常越长。</p>
+      </details>
+    </section>
+  </div>
+  <script>
+    const els = {
+      dropzone: document.querySelector("#dropzone"),
+      videoInput: document.querySelector("#videoInput"),
+      fileName: document.querySelector("#fileName"),
+      status: document.querySelector("#status"),
+      outputFormat: document.querySelector("#outputFormat"),
+      outputName: document.querySelector("#outputName"),
+      progressBar: document.querySelector("#progressBar"),
+      extractBtn: document.querySelector("#extractBtn")
+    };
+
+    const state = {
+      file: null,
+      working: false
+    };
+
+    const API_ENDPOINT = "https://api.tomp3.xyz/api/extract-audio";
+
+    els.videoInput.addEventListener("change", (event) => {
+      const [file] = event.target.files || [];
+      if (file) chooseFile(file);
+    });
+
+    ["dragenter", "dragover"].forEach((name) => {
+      els.dropzone.addEventListener(name, (event) => {
+        event.preventDefault();
+        els.dropzone.classList.add("is-dragging");
+      });
+    });
+
+    ["dragleave", "drop"].forEach((name) => {
+      els.dropzone.addEventListener(name, (event) => {
+        event.preventDefault();
+        els.dropzone.classList.remove("is-dragging");
+      });
+    });
+
+    els.dropzone.addEventListener("drop", (event) => {
+      const [file] = event.dataTransfer.files || [];
+      if (file) chooseFile(file);
+    });
+
+    els.extractBtn.addEventListener("click", extractAudio);
+
+    function chooseFile(file) {
+      if (!file.type.startsWith("video/") && !/\.(mp4|mov|m4v|webm|mkv|avi)$/i.test(file.name)) {
+        updateStatus("请选择视频文件。");
+        return;
+      }
+      state.file = file;
+      els.fileName.textContent = `${file.name} · ${formatBytes(file.size)}`;
+      els.outputName.value = file.name.replace(/\.[^.]+$/, "") || "audio-from-video";
+      els.extractBtn.disabled = false;
+      els.progressBar.style.width = "0%";
+      updateStatus("视频已选择，可以开始提取。");
+    }
+
+    function extractAudio() {
+      if (!state.file || state.working) return;
+      state.working = true;
+      els.extractBtn.disabled = true;
+      const format = els.outputFormat.value;
+      const outputName = `${safeName(els.outputName.value || "audio-from-video")}.${format}`;
+
+      const formData = new FormData();
+      formData.append("video", state.file);
+      formData.append("format", format);
+      formData.append("name", safeName(els.outputName.value || "audio-from-video"));
+
+      const request = new XMLHttpRequest();
+      request.open("POST", API_ENDPOINT);
+      request.responseType = "blob";
+      request.timeout = 1000 * 60 * 20;
+
+      request.upload.onprogress = (event) => {
+        if (!event.lengthComputable) {
+          updateStatus("正在上传视频...");
+          return;
+        }
+        const pct = Math.max(1, Math.min(95, Math.round((event.loaded / event.total) * 95)));
+        els.progressBar.style.width = `${pct}%`;
+        updateStatus(`正在上传视频... ${pct}%`);
+      };
+
+      request.onload = () => {
+        if (request.status >= 200 && request.status < 300) {
+          els.progressBar.style.width = "100%";
+          downloadBlob(request.response, outputName, format === "mp3" ? "audio/mpeg" : "audio/wav");
+          updateStatus(`提取完成，已开始下载 ${outputName}`);
+        } else {
+          updateStatus("提取失败。请确认视频格式可读取，或稍后再试。");
+        }
+        finishRequest();
+      };
+
+      request.onerror = () => {
+        updateStatus("无法连接视频处理服务器。请稍后再试。");
+        finishRequest();
+      };
+
+      request.ontimeout = () => {
+        updateStatus("处理超时。请尝试更小的视频文件。");
+        finishRequest();
+      };
+
+      updateStatus("正在上传视频...");
+      request.send(formData);
+    }
+
+    function downloadBlob(data, name, type) {
+      const blob = new Blob([data], { type });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = name;
+      link.click();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    }
+
+    function finishRequest() {
+      state.working = false;
+      els.extractBtn.disabled = !state.file;
+    }
+
+    function safeName(name) {
+      return name.trim().replace(/[\\/:*?"<>|]+/g, "-") || "audio-from-video";
+    }
+
+    function formatBytes(bytes) {
+      if (!bytes) return "0 B";
+      const units = ["B", "KB", "MB", "GB"];
+      const index = Math.min(Math.floor(Math.log(bytes) / Math.log(1024)), units.length - 1);
+      return `${(bytes / (1024 ** index)).toFixed(index ? 1 : 0)} ${units[index]}`;
+    }
+
+    function updateStatus(text) {
+      els.status.textContent = text;
+    }
+  </script>
+</body>
+</html>
