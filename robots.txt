@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://zj411463-afk.github.io/wangzhan/sitemap.xml
+Sitemap: https://www.tomp3.xyz/sitemap.xml
