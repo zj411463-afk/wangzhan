@@ -41,6 +41,18 @@ jobs:
       - name: Verify public website
         run: |
           curl --fail --silent --show-error --retry 3 --retry-delay 2 --output /dev/null https://www.tomp3.xyz/
+          english_ready=false
+          for attempt in 1 2 3 4 5; do
+            if curl --fail --silent --show-error --max-time 15 --output "$RUNNER_TEMP/sonic-english.html" https://www.tomp3.xyz/en/ && grep -q 'rel="canonical" href="https://www.tomp3.xyz/en/"' "$RUNNER_TEMP/sonic-english.html"; then
+              english_ready=true
+              break
+            fi
+            sleep 3
+          done
+          if [ "$english_ready" != "true" ]; then
+            echo "::error::English page or its canonical URL is unavailable"
+            exit 1
+          fi
           for attempt in 1 2 3 4 5; do
             status=$(curl --silent --show-error --output /dev/null --write-out '%{http_code}' https://www.tomp3.xyz/__missing_page_check__)
             if [ "$status" = "404" ]; then exit 0; fi

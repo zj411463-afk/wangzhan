@@ -8,7 +8,7 @@ if (existsSync(output) && readdirSync(output).length) {
 
 const files = [
   "index.html", "video-to-audio.html", "404.html", "robots.txt", "sitemap.xml",
-  "_worker.js", "assets/sonic-hero.jpg"
+  "_worker.js", "assets/sonic-hero.jpg", "en/index.html"
 ];
 for (const file of files) {
   const destination = path.join(output, file);

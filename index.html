@@ -8,6 +8,9 @@
   <meta name="keywords" content="音频切割, MP3剪切, WAV裁剪, 在线音频剪辑, 无损音频切割, 音乐裁剪, 铃声制作, audio cutter, mp3 cutter, wav cutter">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://www.tomp3.xyz/">
+  <link rel="alternate" hreflang="zh-CN" href="https://www.tomp3.xyz/">
+  <link rel="alternate" hreflang="en" href="https://www.tomp3.xyz/en/">
+  <link rel="alternate" hreflang="x-default" href="https://www.tomp3.xyz/">
   <meta name="theme-color" content="#087d83">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.tomp3.xyz/">
@@ -80,6 +83,14 @@
               "acceptedAnswer": {
                 "@type": "Answer",
                 "text": "当前重点支持 MP3 和 WAV 的无损导出。M4A、AAC、FLAC、OGG 等格式暂不作为无损导出格式。"
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "无重新压缩能恢复 MP3 音质吗？",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "不能。剪切时不重新压缩可以保留原有编码数据，但无法恢复原 MP3 压缩时已经丢失的信息。"
               }
             }
           ]
@@ -1443,6 +1454,19 @@
       font-weight: 780;
     }
 
+    .locale-links {
+      display: flex;
+      gap: 16px;
+      padding: 20px 2px 0;
+      font-size: 14px;
+    }
+
+    .locale-links a {
+      color: var(--accent);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
     .faq details p {
       margin-top: 8px;
     }
@@ -1842,7 +1866,7 @@
     <section class="hero">
       <div class="hero-copy">
         <div class="eyebrow" id="eyebrow">Lossless Audio Studio</div>
-        <h1 id="heroTitle">把音乐切成<span>刚刚好</span>的片段</h1>
+        <h1 id="heroTitle">在线音频剪切：<span>MP3 与 WAV</span></h1>
         <p class="subtitle" id="heroSubtitle">上传音乐，拖拽波形选择片段，导出时保留原始音频数据。WAV 按采样块裁切，MP3 按音频帧裁切，全程不重新压缩。</p>
         <div class="hero-actions">
           <a class="hero-button" href="#dropzone" id="startCta">开始切割</a>
@@ -2007,7 +2031,7 @@
 
     <section class="seo-section" aria-labelledby="seoTitle">
       <div>
-        <p class="section-kicker" data-i18n="seoKicker">SEO Guide</p>
+        <p class="section-kicker" data-i18n="seoKicker">音频剪切指南</p>
         <h2 id="seoTitle" data-i18n="seoTitle">在线无损音频切割、MP3剪切与WAV裁剪</h2>
       </div>
       <p data-i18n="seoIntro">Sonic Cutter 是一个免费的在线音频切割工具，适合快速裁剪音乐片段、制作手机铃声、整理采样素材和导出播客片段。工具优先保留原始音频数据：MP3 按音频帧边界剪切，WAV 按采样块边界裁剪，导出过程不重新编码、不重新压缩。</p>
@@ -2107,8 +2131,16 @@
           <summary data-i18n="faq4Q">支持哪些音频格式无损导出？</summary>
           <p data-i18n="faq4A">当前重点支持 MP3 和 WAV 的无损导出。M4A、AAC、FLAC、OGG 等格式暂不作为无损导出格式。</p>
         </details>
+        <details>
+          <summary data-i18n="faq5Q">无重新压缩能恢复 MP3 音质吗？</summary>
+          <p data-i18n="faq5A">不能。剪切时不重新压缩可以保留原有编码数据，但无法恢复原 MP3 压缩时已经丢失的信息。</p>
+        </details>
       </div>
     </section>
+    <nav class="locale-links" aria-label="Language versions">
+      <a href="./" hreflang="zh-CN" lang="zh-CN">中文</a>
+      <a href="en/" hreflang="en" lang="en">English</a>
+    </nav>
   </div>
 
   <div class="toast" id="toast"></div>
@@ -2237,7 +2269,7 @@
       taskVideoTitle: "视频提取音频",
       taskVideoText: "进入独立页面，把视频中的声音导出为 MP3 或 WAV。",
       videoNav: "视频转音频",
-        seoKicker: "搜索指南",
+        seoKicker: "音频剪切指南",
         seoTitle: "在线无损音频切割、MP3剪切与WAV裁剪",
         seoIntro: "Sonic Cutter 是一个免费的在线音频切割工具，适合快速裁剪音乐片段、制作手机铃声、整理采样素材和导出播客片段。工具优先保留原始音频数据：MP3 按音频帧边界剪切，WAV 按采样块边界裁剪，导出过程不重新编码、不重新压缩。",
         stepAria: "如何在线切割音频",
@@ -2287,7 +2319,9 @@
         faq3Q: "为什么导出的开始或结束时间可能有一点点偏差？",
         faq3A: "为了不重新压缩，MP3 需要对齐到音频帧，WAV 需要对齐到采样块，因此可能出现毫秒级的边界差异。",
         faq4Q: "支持哪些音频格式无损导出？",
-        faq4A: "当前重点支持 MP3 和 WAV 的无损导出。M4A、AAC、FLAC、OGG 等格式暂不作为无损导出格式。"
+        faq4A: "当前重点支持 MP3 和 WAV 的无损导出。M4A、AAC、FLAC、OGG 等格式暂不作为无损导出格式。",
+        faq5Q: "无重新压缩能恢复 MP3 音质吗？",
+        faq5A: "不能。剪切时不重新压缩可以保留原有编码数据，但无法恢复原 MP3 压缩时已经丢失的信息。"
       },
       en: {
         metaDescription: "Free online lossless audio cutter for MP3 frame-based cutting and WAV sample-block trimming. Files are processed locally in your browser with no upload and no signup.",
@@ -2337,7 +2371,7 @@
       taskVideoTitle: "Extract audio from video",
       taskVideoText: "Open the dedicated page and export video audio as MP3 or WAV.",
       videoNav: "Video to audio",
-        seoKicker: "SEO Guide",
+        seoKicker: "Audio Cutting Guide",
         seoTitle: "Online lossless audio cutting, MP3 cutting, and WAV trimming",
         seoIntro: "Sonic Cutter is a free online audio cutter for trimming music, making ringtones, organizing samples, and exporting podcast clips. It preserves original audio data whenever possible: MP3 is cut on frame boundaries, WAV is cut on sample blocks, and exports are not re-encoded.",
         stepAria: "How to cut audio online",
@@ -2387,7 +2421,9 @@
         faq3Q: "Why can the exported start or end time be slightly different?",
         faq3A: "To avoid recompression, MP3 aligns to audio frames and WAV aligns to sample blocks, which can create millisecond-level boundary differences.",
         faq4Q: "Which formats support lossless export?",
-        faq4A: "This version focuses on lossless MP3 and WAV export. M4A, AAC, FLAC, and OGG are not exposed as lossless export formats yet."
+        faq4A: "This version focuses on lossless MP3 and WAV export. M4A, AAC, FLAC, and OGG are not exposed as lossless export formats yet.",
+        faq5Q: "Can cutting without recompression restore MP3 quality?",
+        faq5A: "No. Cutting without recompression preserves the existing encoded data, but it cannot restore information lost when the MP3 was originally compressed."
       },
       ja: {
         metaDescription: "無料のオンラインロスレス音声カッター。MP3 はフレーム単位、WAV はサンプルブロック単位で切り出し、ファイルはブラウザ内で処理されます。",
@@ -2437,7 +2473,7 @@
       taskVideoTitle: "動画から音声を抽出",
       taskVideoText: "専用ページで、動画の音声を MP3 または WAV として書き出します。",
       videoNav: "動画を音声へ",
-        seoKicker: "SEO ガイド",
+        seoKicker: "音声カットガイド",
         seoTitle: "オンラインでロスレス音声切り出し、MP3 カット、WAV トリミング",
         seoIntro: "Sonic Cutter は音楽の一部切り出し、着信音作成、サンプル整理、ポッドキャスト編集に使える無料のオンライン音声カッターです。MP3 はフレーム境界、WAV はサンプルブロックで切り出し、再エンコードを避けます。",
         stepAria: "オンラインで音声を切り出す方法",
@@ -2487,7 +2523,9 @@
         faq3Q: "書き出し時間に少し差が出るのはなぜですか？",
         faq3A: "再圧縮を避けるため、MP3 はフレーム、WAV はサンプルブロックに合わせるので、ミリ秒単位の差が出ることがあります。",
         faq4Q: "どの形式をロスレスで書き出せますか？",
-        faq4A: "現在は MP3 と WAV のロスレス書き出しを重視しています。M4A、AAC、FLAC、OGG はまだロスレス書き出し形式として公開していません。"
+        faq4A: "現在は MP3 と WAV のロスレス書き出しを重視しています。M4A、AAC、FLAC、OGG はまだロスレス書き出し形式として公開していません。",
+        faq5Q: "再圧縮せずに切り出すと MP3 の音質は回復しますか？",
+        faq5A: "いいえ。再圧縮しないことで既存のデータは保てますが、元の MP3 圧縮時に失われた情報は復元できません。"
       },
       ko: {
         metaDescription: "무료 온라인 무손실 오디오 커터입니다. MP3는 프레임 기준, WAV는 샘플 블록 기준으로 자르며 파일은 브라우저 로컬에서 처리됩니다.",
@@ -2537,7 +2575,7 @@
       taskVideoTitle: "동영상에서 오디오 추출",
       taskVideoText: "전용 페이지에서 동영상 오디오를 MP3 또는 WAV로 내보냅니다.",
       videoNav: "동영상 오디오",
-        seoKicker: "SEO 가이드",
+        seoKicker: "오디오 자르기 안내",
         seoTitle: "온라인 무손실 오디오 자르기, MP3 커터, WAV 트리머",
         seoIntro: "Sonic Cutter는 음악 클립, 벨소리, 샘플, 팟캐스트 구간을 빠르게 자르는 무료 온라인 오디오 커터입니다. MP3는 프레임 경계, WAV는 샘플 블록 기준으로 잘라 재인코딩을 피합니다.",
         stepAria: "온라인에서 오디오를 자르는 방법",
@@ -2587,7 +2625,9 @@
         faq3Q: "내보낸 시작/종료 시간이 조금 달라지는 이유는?",
         faq3A: "재압축을 피하려면 MP3는 프레임, WAV는 샘플 블록에 맞춰야 해서 밀리초 수준의 차이가 생길 수 있습니다.",
         faq4Q: "어떤 형식을 무손실로 내보낼 수 있나요?",
-        faq4A: "현재는 MP3와 WAV 무손실 내보내기에 집중합니다. M4A, AAC, FLAC, OGG는 아직 무손실 내보내기 형식으로 공개하지 않았습니다."
+        faq4A: "현재는 MP3와 WAV 무손실 내보내기에 집중합니다. M4A, AAC, FLAC, OGG는 아직 무손실 내보내기 형식으로 공개하지 않았습니다.",
+        faq5Q: "재압축 없이 자르면 MP3 음질이 복원되나요?",
+        faq5A: "아니요. 재압축하지 않으면 기존 인코딩 데이터는 유지되지만 원래 MP3 압축 때 손실된 정보는 복원할 수 없습니다."
       },
       fr: {
         metaDescription: "Outil gratuit de découpe audio sans perte en ligne. MP3 aligné sur les trames, WAV aligné sur les blocs d'échantillons, traitement local dans le navigateur.",
@@ -2637,7 +2677,7 @@
       taskVideoTitle: "Extraire l'audio d'une vidéo",
       taskVideoText: "Ouvrez la page dédiée et exportez l'audio vidéo en MP3 ou WAV.",
       videoNav: "Vidéo vers audio",
-        seoKicker: "Guide SEO",
+        seoKicker: "Guide de découpe audio",
         seoTitle: "Découpe audio sans perte en ligne, découpe MP3 et rognage WAV",
         seoIntro: "Sonic Cutter est un outil gratuit pour découper de la musique, créer des sonneries, organiser des samples et exporter des extraits de podcast. MP3 est découpé sur les trames, WAV sur les blocs d'échantillons, sans réencodage.",
         stepAria: "Comment découper un audio en ligne",
@@ -2687,7 +2727,9 @@
         faq3Q: "Pourquoi le début ou la fin exportés peuvent-ils différer légèrement ?",
         faq3A: "Pour éviter la recompression, MP3 s'aligne sur les trames et WAV sur les blocs d'échantillons, ce qui peut créer un écart de quelques millisecondes.",
         faq4Q: "Quels formats prennent en charge l'export sans perte ?",
-        faq4A: "Cette version se concentre sur l'export sans perte MP3 et WAV. M4A, AAC, FLAC et OGG ne sont pas encore proposés comme formats d'export sans perte."
+        faq4A: "Cette version se concentre sur l'export sans perte MP3 et WAV. M4A, AAC, FLAC et OGG ne sont pas encore proposés comme formats d'export sans perte.",
+        faq5Q: "Une découpe sans recompression restaure-t-elle la qualité MP3 ?",
+        faq5A: "Non. Elle préserve les données encodées existantes, mais ne restaure pas les informations perdues lors de la compression initiale du MP3."
       },
       de: {
         metaDescription: "Kostenloser verlustfreier Online-Audio-Cutter. MP3 wird an Frames, WAV an Sample-Blöcken geschnitten. Dateien bleiben lokal im Browser.",
@@ -2737,7 +2779,7 @@
       taskVideoTitle: "Audio aus Video extrahieren",
       taskVideoText: "Öffne die eigene Seite und exportiere Video-Audio als MP3 oder WAV.",
       videoNav: "Video zu Audio",
-        seoKicker: "SEO-Leitfaden",
+        seoKicker: "Audio-Schnittanleitung",
         seoTitle: "Verlustfreies Audio online schneiden, MP3 schneiden und WAV trimmen",
         seoIntro: "Sonic Cutter ist ein kostenloser Online-Audio-Cutter für Musikclips, Klingeltöne, Samples und Podcast-Ausschnitte. MP3 wird an Frame-Grenzen, WAV an Sample-Blöcken geschnitten, ohne neu zu kodieren.",
         stepAria: "So schneidest du Audio online",
@@ -2787,7 +2829,9 @@
         faq3Q: "Warum kann die exportierte Start- oder Endzeit leicht abweichen?",
         faq3A: "Um Neukomprimierung zu vermeiden, richtet sich MP3 an Frames und WAV an Sample-Blöcken aus. Dadurch können Millisekunden-Abweichungen entstehen.",
         faq4Q: "Welche Formate unterstützen verlustfreien Export?",
-        faq4A: "Diese Version konzentriert sich auf verlustfreien MP3- und WAV-Export. M4A, AAC, FLAC und OGG werden noch nicht als verlustfreie Exportformate angeboten."
+        faq4A: "Diese Version konzentriert sich auf verlustfreien MP3- und WAV-Export. M4A, AAC, FLAC und OGG werden noch nicht als verlustfreie Exportformate angeboten.",
+        faq5Q: "Stellt Schneiden ohne Neukomprimierung die MP3-Qualität wieder her?",
+        faq5A: "Nein. Die vorhandenen kodierten Daten bleiben erhalten, aber bei der ursprünglichen MP3-Komprimierung verlorene Informationen lassen sich nicht wiederherstellen."
       },
       es: {
         metaDescription: "Cortador de audio online sin pérdida y gratis. MP3 se corta por frames y WAV por bloques de muestra. Los archivos se procesan localmente en el navegador.",
@@ -2837,7 +2881,7 @@
       taskVideoTitle: "Extraer audio de video",
       taskVideoText: "Abre la página dedicada y exporta el audio del video como MP3 o WAV.",
       videoNav: "Video a audio",
-        seoKicker: "Guía SEO",
+        seoKicker: "Guía para cortar audio",
         seoTitle: "Cortar audio online sin pérdida, cortar MP3 y recortar WAV",
         seoIntro: "Sonic Cutter es un cortador de audio online gratuito para recortar música, crear tonos, organizar samples y exportar fragmentos de podcast. MP3 se corta por límites de frame y WAV por bloques de muestra, sin recodificar.",
         stepAria: "Cómo cortar audio online",
@@ -2887,7 +2931,9 @@
         faq3Q: "¿Por qué el inicio o final exportado puede variar un poco?",
         faq3A: "Para evitar recompresión, MP3 se alinea a frames y WAV a bloques de muestra, lo que puede crear diferencias de milisegundos.",
         faq4Q: "¿Qué formatos permiten exportación sin pérdida?",
-        faq4A: "Esta versión se centra en exportar MP3 y WAV sin pérdida. M4A, AAC, FLAC y OGG todavía no se ofrecen como formatos de exportación sin pérdida."
+        faq4A: "Esta versión se centra en exportar MP3 y WAV sin pérdida. M4A, AAC, FLAC y OGG todavía no se ofrecen como formatos de exportación sin pérdida.",
+        faq5Q: "¿Cortar sin recomprimir recupera la calidad de un MP3?",
+        faq5A: "No. Cortar sin recomprimir conserva los datos codificados existentes, pero no recupera la información perdida durante la compresión original del MP3."
       }
     };
 
@@ -2897,7 +2943,7 @@
         auto: "自动",
         privacyBadge: "本地处理 · 不上传文件",
         eyebrow: "无损音频工作室",
-        heroTitle: "把音乐切成<span>刚刚好</span>的片段",
+        heroTitle: "在线音频剪切：<span>MP3 与 WAV</span>",
         heroSubtitle: "上传音乐，拖拽波形选择片段，导出时保留原始音频数据。WAV 按采样块裁切，MP3 按音频帧裁切，全程不重新压缩。",
         startCta: "开始切割",
         learnCta: "了解流程",
@@ -2959,7 +3005,7 @@
         auto: "Auto",
         privacyBadge: "Local only · No upload",
         eyebrow: "Lossless Audio Studio",
-        heroTitle: "Cut music into the <span>perfect</span> moment",
+        heroTitle: "Online <span>MP3 &amp; WAV</span> Audio Cutter",
         heroSubtitle: "Upload a track, select a waveform range, and export from the original audio data. WAV is aligned to sample blocks; MP3 is aligned to audio frames with no recompression.",
         startCta: "Start cutting",
         learnCta: "How it works",
@@ -4389,6 +4435,12 @@
     }
 
     async function initializeLanguage(forceIpLookup = false) {
+      if (document.documentElement.dataset.pageLanguage === "en" && !forceIpLookup) {
+        state.languageMode = "manual";
+        els.languageSelect.value = "en";
+        applyLanguage("en");
+        return;
+      }
       const saved = storageGet("sonic-cutter-language");
       if (saved && translations[saved] && !forceIpLookup) {
         state.languageMode = "manual";
