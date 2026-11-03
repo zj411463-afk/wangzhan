@@ -922,6 +922,22 @@
       background: var(--accent-soft);
     }
 
+    .icon.preview {
+      width: auto;
+      min-width: 126px;
+      padding: 0 12px;
+      display: inline-flex;
+      gap: 8px;
+      border-color: var(--accent);
+      color: var(--accent);
+      font-weight: 760;
+      white-space: nowrap;
+    }
+
+    .icon.preview.is-active {
+      background: var(--accent-soft);
+    }
+
     .icon.primary {
       width: auto;
       min-width: 132px;
@@ -1621,6 +1637,12 @@
         grid-template-columns: repeat(4, 42px);
       }
 
+      .icon.preview {
+        grid-column: 1 / -1;
+        width: 100%;
+        justify-content: center;
+      }
+
       .icon.primary {
         grid-column: 1 / -1;
         justify-content: center;
@@ -1775,7 +1797,7 @@
           </div>
 
           <div class="controls">
-            <button class="icon" id="playBtn" title="播放或暂停">
+            <button class="icon" id="playBtn" type="button" title="播放或暂停">
               <svg viewBox="0 0 24 24" id="playIcon"><path d="M8 5v14l11-7z"></path></svg>
             </button>
             <button class="icon" id="loopBtn" title="循环试听选区">
@@ -1786,6 +1808,10 @@
             </button>
             <button class="icon danger" id="clearBtn" title="重新上传">
               <svg viewBox="0 0 24 24"><path d="M3 6h18"></path><path d="M8 6V4h8v2"></path><path d="m19 6-1 14H6L5 6"></path><path d="M10 11v5"></path><path d="M14 11v5"></path></svg>
+            </button>
+            <button class="icon preview" id="previewBtn" type="button" aria-pressed="false" disabled>
+              <svg viewBox="0 0 24 24" id="previewIcon" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
+              <span id="previewText">试听选区</span>
             </button>
             <button class="icon primary" id="saveBtn">
               <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><path d="M7 10l5 5 5-5"></path><path d="M12 15V3"></path></svg>
@@ -2077,6 +2103,9 @@
       seekTime: document.querySelector("#seekTime"),
       playBtn: document.querySelector("#playBtn"),
       playIcon: document.querySelector("#playIcon"),
+      previewBtn: document.querySelector("#previewBtn"),
+      previewIcon: document.querySelector("#previewIcon"),
+      previewText: document.querySelector("#previewText"),
       loopBtn: document.querySelector("#loopBtn"),
       fullBtn: document.querySelector("#fullBtn"),
       clearBtn: document.querySelector("#clearBtn"),
@@ -2116,6 +2145,8 @@
       dragging: null,
       seeking: false,
       loop: false,
+      previewing: false,
+      previewFrame: 0,
       format: null,
       peaks: [],
       lang: "zh",
@@ -2863,6 +2894,8 @@
         noFile: "未选择文件",
         waitingStatus: "等待分析音频格式",
         playTitle: "播放或暂停",
+        previewSelection: "试听选区",
+        stopPreview: "停止试听",
         seekLabel: "播放进度",
         presetLabel: "快速时长",
         loopTitle: "循环试听选区",
@@ -2923,6 +2956,8 @@
         noFile: "No file selected",
         waitingStatus: "Waiting to analyze audio format",
         playTitle: "Play or pause",
+        previewSelection: "Preview selection",
+        stopPreview: "Stop preview",
         seekLabel: "Playback",
         presetLabel: "Quick length",
         loopTitle: "Loop selected range",
@@ -2983,6 +3018,8 @@
         noFile: "ファイル未選択",
         waitingStatus: "音声形式を解析待ち",
         playTitle: "再生 / 一時停止",
+        previewSelection: "選択範囲を試聴",
+        stopPreview: "試聴を停止",
         seekLabel: "再生位置",
         presetLabel: "クイック長さ",
         loopTitle: "選択範囲をループ",
@@ -3043,6 +3080,8 @@
         noFile: "선택된 파일 없음",
         waitingStatus: "오디오 형식 분석 대기 중",
         playTitle: "재생 또는 일시정지",
+        previewSelection: "선택 구간 미리듣기",
+        stopPreview: "미리듣기 중지",
         seekLabel: "재생 위치",
         presetLabel: "빠른 길이",
         loopTitle: "선택 구간 반복",
@@ -3103,6 +3142,8 @@
         noFile: "Aucun fichier sélectionné",
         waitingStatus: "Analyse du format audio en attente",
         playTitle: "Lire ou mettre en pause",
+        previewSelection: "Écouter la sélection",
+        stopPreview: "Arrêter l'écoute",
         seekLabel: "Lecture",
         presetLabel: "Durée rapide",
         loopTitle: "Lire la sélection en boucle",
@@ -3163,6 +3204,8 @@
         noFile: "Keine Datei ausgewählt",
         waitingStatus: "Warte auf Analyse des Audioformats",
         playTitle: "Abspielen oder pausieren",
+        previewSelection: "Auswahl anhören",
+        stopPreview: "Vorschau stoppen",
         seekLabel: "Wiedergabe",
         presetLabel: "Schnelle Länge",
         loopTitle: "Auswahl wiederholen",
@@ -3223,6 +3266,8 @@
         noFile: "Ningún archivo seleccionado",
         waitingStatus: "Esperando análisis del formato",
         playTitle: "Reproducir o pausar",
+        previewSelection: "Escuchar selección",
+        stopPreview: "Detener escucha",
         seekLabel: "Reproducción",
         presetLabel: "Duración rápida",
         loopTitle: "Repetir selección",
@@ -3256,7 +3301,9 @@
 
     state.player.addEventListener("timeupdate", () => {
       if (!state.duration) return;
-      if (state.loop && state.player.currentTime >= state.end) {
+      if (state.previewing && state.player.currentTime >= state.end) {
+        finishPreviewAtEnd();
+      } else if (!state.previewing && state.loop && !state.player.paused && state.player.currentTime >= state.end) {
         state.player.currentTime = state.start;
         state.player.play();
       }
@@ -3265,6 +3312,7 @@
     });
 
     state.player.addEventListener("ended", () => {
+      stopPreview();
       setPlayButton(false);
       updatePlayhead();
     });
@@ -3337,6 +3385,7 @@
     });
 
     els.playBtn.addEventListener("click", togglePlay);
+    els.previewBtn.addEventListener("click", previewSelection);
     els.loopBtn.addEventListener("click", () => {
       state.loop = !state.loop;
       els.loopBtn.style.background = state.loop ? "rgba(8, 125, 131, .14)" : "#ffffff";
@@ -3387,6 +3436,11 @@
 
     els.seekRange.addEventListener("input", () => {
       if (!state.duration) return;
+      if (state.previewing) {
+        state.player.pause();
+        stopPreview();
+        setPlayButton(false);
+      }
       const nextTime = clamp(Number(els.seekRange.value), 0, state.duration);
       state.player.currentTime = nextTime;
       els.seekTime.textContent = formatTime(nextTime);
@@ -3591,6 +3645,7 @@
         state.duration = state.audioBuffer.duration;
         state.start = 0;
         state.end = state.duration;
+        els.previewBtn.disabled = false;
         buildPeaks();
         els.editor.classList.add("is-ready");
         els.workbenchMain.classList.remove("is-empty");
@@ -3638,9 +3693,11 @@
     }
 
     function resetPlayback() {
+      stopPreview();
       state.player.pause();
       state.player.removeAttribute("src");
       state.player.load();
+      els.previewBtn.disabled = true;
       setPlayButton(false);
     }
 
@@ -3805,6 +3862,11 @@
       }
       state.start = nextStart;
       state.end = nextEnd;
+      if (state.previewing && (state.player.currentTime < state.start || state.player.currentTime >= state.end)) {
+        state.player.pause();
+        stopPreview();
+        setPlayButton(false);
+      }
       syncInputs();
       updateSelectionOverlay();
       updatePlayhead();
@@ -3857,6 +3919,7 @@
 
     async function togglePlay() {
       if (!state.file) return;
+      stopPreview();
       if (!state.player.paused) {
         state.player.pause();
         setPlayButton(false);
@@ -3869,6 +3932,70 @@
       }
       await state.player.play();
       setPlayButton(true);
+    }
+
+    async function previewSelection() {
+      if (!state.file || !state.duration) return;
+      if (state.previewing) {
+        state.player.pause();
+        stopPreview();
+        setPlayButton(false);
+        return;
+      }
+      state.player.pause();
+      setPlayButton(false);
+      state.player.currentTime = state.start;
+      syncSeekControl();
+      updatePlayhead();
+      state.previewing = true;
+      updatePreviewButton();
+      try {
+        await state.player.play();
+        if (state.previewing) {
+          setPlayButton(true);
+          state.previewFrame = requestAnimationFrame(watchPreviewEnd);
+        }
+      } catch (error) {
+        stopPreview();
+        console.error(error);
+      }
+    }
+
+    function watchPreviewEnd() {
+      if (!state.previewing) return;
+      if (state.player.currentTime >= state.end) {
+        finishPreviewAtEnd();
+      } else if (state.player.paused) {
+        stopPreview();
+        setPlayButton(false);
+      } else {
+        state.previewFrame = requestAnimationFrame(watchPreviewEnd);
+      }
+    }
+
+    function finishPreviewAtEnd() {
+      state.player.pause();
+      stopPreview();
+      state.player.currentTime = state.end;
+      setPlayButton(false);
+      syncSeekControl();
+      updatePlayhead();
+    }
+
+    function stopPreview() {
+      state.previewing = false;
+      cancelAnimationFrame(state.previewFrame);
+      state.previewFrame = 0;
+      updatePreviewButton();
+    }
+
+    function updatePreviewButton() {
+      els.previewBtn.classList.toggle("is-active", state.previewing);
+      els.previewBtn.setAttribute("aria-pressed", String(state.previewing));
+      els.previewText.textContent = t(state.previewing ? "stopPreview" : "previewSelection");
+      els.previewIcon.innerHTML = state.previewing
+        ? '<path d="M8 5v14"></path><path d="M16 5v14"></path>'
+        : '<path d="M8 5v14l11-7z"></path>';
     }
 
     function setPlayButton(isPlaying) {
@@ -4185,6 +4312,7 @@
       document.querySelector("#intro").setAttribute("aria-label", t("introLabel"));
       els.languageSelect.querySelector('option[value="auto"]').textContent = t("auto");
       els.playBtn.title = t("playTitle");
+      updatePreviewButton();
       els.loopBtn.title = t("loopTitle");
       els.fullBtn.title = t("fullTitle");
       els.clearBtn.title = t("clearTitle");
