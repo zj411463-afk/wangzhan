@@ -3299,6 +3299,21 @@
       }
     };
 
+    const trackedEvents = new Set();
+    function trackFunnel(event) {
+      if (location.protocol === "file:" || trackedEvents.has(event)) return;
+      trackedEvents.add(event);
+      fetch("/__events", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ event }),
+        credentials: "omit",
+        keepalive: true,
+        referrerPolicy: "no-referrer"
+      }).catch(() => {});
+    }
+    trackFunnel("page_open");
+
     state.player.addEventListener("timeupdate", () => {
       if (!state.duration) return;
       if (state.previewing && state.player.currentTime >= state.end) {
@@ -3655,6 +3670,7 @@
         drawWaveform();
         syncInputs();
         syncSeekControl();
+        trackFunnel("file_ready");
       } catch (error) {
         showToast(t("decodeFail"));
         console.error(error);
@@ -3952,6 +3968,7 @@
       try {
         await state.player.play();
         if (state.previewing) {
+          trackFunnel("preview_started");
           setPlayButton(true);
           state.previewFrame = requestAnimationFrame(watchPreviewEnd);
         }
@@ -4152,6 +4169,7 @@
       link.download = fileName;
       document.body.append(link);
       link.click();
+      trackFunnel("download_started");
       link.remove();
       setTimeout(() => URL.revokeObjectURL(url), 1000);
       showToast(`${t("savedPrefix")}: ${fileName}. ${t("savedRangePrefix")}${formatTime(result.actualStart)} - ${formatTime(result.actualEnd)}`);
