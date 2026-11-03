@@ -10,6 +10,11 @@
   <link rel="canonical" href="https://www.tomp3.xyz/">
   <link rel="alternate" hreflang="zh-CN" href="https://www.tomp3.xyz/">
   <link rel="alternate" hreflang="en" href="https://www.tomp3.xyz/en/">
+  <link rel="alternate" hreflang="ja" href="https://www.tomp3.xyz/ja/">
+  <link rel="alternate" hreflang="ko" href="https://www.tomp3.xyz/ko/">
+  <link rel="alternate" hreflang="fr" href="https://www.tomp3.xyz/fr/">
+  <link rel="alternate" hreflang="de" href="https://www.tomp3.xyz/de/">
+  <link rel="alternate" hreflang="es" href="https://www.tomp3.xyz/es/">
   <link rel="alternate" hreflang="x-default" href="https://www.tomp3.xyz/">
   <meta name="theme-color" content="#087d83">
   <meta property="og:type" content="website">
@@ -1456,6 +1461,7 @@
 
     .locale-links {
       display: flex;
+      flex-wrap: wrap;
       gap: 16px;
       padding: 20px 2px 0;
       font-size: 14px;
@@ -2138,8 +2144,13 @@
       </div>
     </section>
     <nav class="locale-links" aria-label="Language versions">
-      <a href="./" hreflang="zh-CN" lang="zh-CN">中文</a>
-      <a href="en/" hreflang="en" lang="en">English</a>
+      <a href="./" hreflang="zh-CN" lang="zh-CN" data-locale="zh">中文</a>
+      <a href="en/" hreflang="en" lang="en" data-locale="en">English</a>
+      <a href="ja/" hreflang="ja" lang="ja" data-locale="ja">日本語</a>
+      <a href="ko/" hreflang="ko" lang="ko" data-locale="ko">한국어</a>
+      <a href="fr/" hreflang="fr" lang="fr" data-locale="fr">Français</a>
+      <a href="de/" hreflang="de" lang="de" data-locale="de">Deutsch</a>
+      <a href="es/" hreflang="es" lang="es" data-locale="es">Español</a>
     </nav>
   </div>
 
@@ -3063,11 +3074,11 @@
         unknownType: "Unknown type"
       },
       ja: {
-        title: "ロスレス音声カッター",
+        title: "オンライン音声カッター | MP3・WAVを再圧縮せずにカット",
         auto: "自動",
         privacyBadge: "ローカル処理 · アップロードなし",
         eyebrow: "ロスレス音声スタジオ",
-        heroTitle: "音楽を<span>ちょうどいい</span>瞬間に切り出す",
+        heroTitle: "オンライン<span>MP3・WAV</span>音声カッター",
         heroSubtitle: "音楽をアップロードし、波形上で範囲を選択して、元の音声データから書き出します。WAV はサンプルブロック、MP3 は音声フレームに合わせ、再圧縮しません。",
         startCta: "切り出し開始",
         learnCta: "流れを見る",
@@ -3125,11 +3136,11 @@
         unknownType: "不明な形式"
       },
       ko: {
-        title: "무손실 오디오 커터",
+        title: "온라인 오디오 자르기 | MP3·WAV 무재인코딩 편집",
         auto: "자동",
         privacyBadge: "로컬 처리 · 업로드 없음",
         eyebrow: "무손실 오디오 스튜디오",
-        heroTitle: "음악을 <span>딱 맞는</span> 순간으로 자르기",
+        heroTitle: "온라인 <span>MP3·WAV</span> 오디오 자르기",
         heroSubtitle: "음악을 업로드하고 파형에서 구간을 선택한 뒤 원본 오디오 데이터에서 내보냅니다. WAV는 샘플 블록, MP3는 오디오 프레임에 맞추며 재압축하지 않습니다.",
         startCta: "자르기 시작",
         learnCta: "흐름 보기",
@@ -3187,11 +3198,11 @@
         unknownType: "알 수 없는 형식"
       },
       fr: {
-        title: "Découpe Audio Sans Perte",
+        title: "Couper un fichier audio en ligne | MP3 et WAV sans réencodage",
         auto: "Auto",
         privacyBadge: "Local · Aucun téléversement",
         eyebrow: "Studio audio sans perte",
-        heroTitle: "Découpez la musique au <span>moment parfait</span>",
+        heroTitle: "Découpe audio <span>MP3 et WAV</span> en ligne",
         heroSubtitle: "Importez un morceau, sélectionnez une zone sur la forme d’onde et exportez depuis les données audio d’origine. WAV est aligné sur les blocs d’échantillons, MP3 sur les trames, sans recompression.",
         startCta: "Commencer",
         learnCta: "Voir le flux",
@@ -3249,11 +3260,11 @@
         unknownType: "Type inconnu"
       },
       de: {
-        title: "Verlustfreier Audio-Cutter",
+        title: "Audio online schneiden | MP3 und WAV ohne Neukodierung",
         auto: "Automatisch",
         privacyBadge: "Lokal · Kein Upload",
         eyebrow: "Studio für verlustfreies Audio",
-        heroTitle: "Schneide Musik auf den <span>perfekten</span> Moment",
+        heroTitle: "<span>MP3 und WAV</span> online schneiden",
         heroSubtitle: "Lade einen Track hoch, wähle einen Bereich in der Wellenform und exportiere aus den Originaldaten. WAV wird an Sample-Blöcken, MP3 an Audio-Frames ausgerichtet, ohne Neukomprimierung.",
         startCta: "Loslegen",
         learnCta: "Ablauf ansehen",
@@ -3311,11 +3322,11 @@
         unknownType: "Unbekannter Typ"
       },
       es: {
-        title: "Cortador de Audio Sin Pérdida",
+        title: "Cortar audio en línea | MP3 y WAV sin recodificar",
         auto: "Automático",
         privacyBadge: "Local · Sin subir archivos",
         eyebrow: "Estudio de audio sin pérdida",
-        heroTitle: "Corta la música en el <span>momento perfecto</span>",
+        heroTitle: "Cortar audio <span>MP3 y WAV</span> en línea",
         heroSubtitle: "Sube una pista, selecciona un tramo en la onda y exporta desde los datos originales. WAV se alinea a bloques de muestra y MP3 a fotogramas de audio, sin recomprimir.",
         startCta: "Empezar",
         learnCta: "Ver flujo",
@@ -4435,10 +4446,11 @@
     }
 
     async function initializeLanguage(forceIpLookup = false) {
-      if (document.documentElement.dataset.pageLanguage === "en" && !forceIpLookup) {
+      const pageLanguage = document.documentElement.dataset.pageLanguage;
+      if (pageLanguage && translations[pageLanguage] && !forceIpLookup) {
         state.languageMode = "manual";
-        els.languageSelect.value = "en";
-        applyLanguage("en");
+        els.languageSelect.value = pageLanguage;
+        applyLanguage(pageLanguage);
         return;
       }
       const saved = storageGet("sonic-cutter-language");

@@ -8,4 +8,9 @@
     <loc>https://www.tomp3.xyz/en/</loc>
     <lastmod>2026-11-03</lastmod>
   </url>
+  <url><loc>https://www.tomp3.xyz/ja/</loc><lastmod>2026-11-03</lastmod></url>
+  <url><loc>https://www.tomp3.xyz/ko/</loc><lastmod>2026-11-03</lastmod></url>
+  <url><loc>https://www.tomp3.xyz/fr/</loc><lastmod>2026-11-03</lastmod></url>
+  <url><loc>https://www.tomp3.xyz/de/</loc><lastmod>2026-11-03</lastmod></url>
+  <url><loc>https://www.tomp3.xyz/es/</loc><lastmod>2026-11-03</lastmod></url>
 </urlset>
