@@ -52,26 +52,26 @@
           "mainEntity": [
             {
               "@type": "Question",
-              "name": "这个音频切割工具会上传我的音乐吗？",
+              "name": "这个在线音频切割工具免费吗？",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "不会。文件会在浏览器本地读取、预览和导出，不上传到服务器。"
+                "text": "免费。你可以直接在浏览器中上传音频、选择片段并保存到本地。"
               }
             },
             {
               "@type": "Question",
-              "name": "MP3 和 WAV 都能无损切割吗？",
+              "name": "文件会上传到服务器吗？",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "支持 MP3 按音频帧边界切割、WAV 按采样块边界切割，导出时不重新压缩。"
+                "text": "不会。音频文件只在你的浏览器本地处理，页面不会把音乐上传到服务器。"
               }
             },
             {
               "@type": "Question",
-              "name": "为什么切出的时间可能有极小偏差？",
+              "name": "为什么导出的开始或结束时间可能有一点点偏差？",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "为了保持原始音质，MP3 需要贴近音频帧边界，WAV 需要贴近采样块边界，因此实际导出时间可能出现毫秒级对齐。"
+                "text": "为了不重新压缩，MP3 需要对齐到音频帧，WAV 需要对齐到采样块，因此可能出现毫秒级的边界差异。"
               }
             },
             {
@@ -79,7 +79,7 @@
               "name": "支持哪些音频格式无损导出？",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "当前重点支持 MP3 和 WAV 的无损导出。其他格式可以用于预览，但暂不作为无损导出格式。"
+                "text": "当前重点支持 MP3 和 WAV 的无损导出。M4A、AAC、FLAC、OGG 等格式暂不作为无损导出格式。"
               }
             }
           ]
@@ -213,7 +213,7 @@
       gap: 28px;
       align-items: center;
       min-height: 402px;
-      margin-bottom: 0;
+      margin: 30px 0 0;
       padding: clamp(24px, 4vw, 44px);
       border-radius: 8px;
       overflow: hidden;
@@ -466,12 +466,8 @@
     }
 
     .workbench-section {
-      margin-top: 16px;
-      padding: 22px;
-      border: 1px solid rgba(17, 25, 29, .10);
-      border-radius: 8px;
-      background: rgba(251, 252, 252, .72);
-      box-shadow: 0 18px 48px rgba(19, 31, 36, .08);
+      margin-top: 8px;
+      padding: 0;
     }
 
     .workbench-section .section-heading {
@@ -479,7 +475,8 @@
     }
 
     .workbench-section .section-heading h2 {
-      font-size: clamp(30px, 4.25vw, 52px);
+      font-size: 32px;
+      line-height: 1.2;
     }
 
     .section-heading {
@@ -596,8 +593,8 @@
     }
 
     main.is-empty .dropzone {
-      min-height: 318px;
-      padding: 42px 30px;
+      min-height: 250px;
+      padding: 30px;
     }
 
     main.is-empty .upload-icon {
@@ -698,6 +695,7 @@
 
     .drop-title {
       margin: 0;
+      color: var(--ink);
       font-size: 24px;
       font-weight: 760;
     }
@@ -706,6 +704,7 @@
       margin: 8px auto 0;
       max-width: 560px;
       color: var(--muted);
+      font-weight: 450;
       line-height: 1.55;
     }
 
@@ -1504,7 +1503,7 @@
       }
 
       .workbench-section {
-        padding: 18px;
+        padding: 0;
       }
 
       .badge {
@@ -1573,6 +1572,14 @@
         font-size: 42px;
       }
 
+      .workbench-section .section-heading h2 {
+        font-size: 26px;
+      }
+
+      .workbench-section .section-heading p:last-child {
+        font-size: 13px;
+      }
+
       .hero {
         padding: 22px;
       }
@@ -1625,7 +1632,8 @@
       }
 
       main.is-empty .dropzone {
-        min-height: 268px;
+        min-height: 220px;
+        padding: 24px 18px;
       }
 
       main.is-empty .drop-title {
@@ -1634,7 +1642,28 @@
 
       .controls {
         display: grid;
-        grid-template-columns: repeat(4, 42px);
+        grid-template-columns: repeat(4, 44px);
+        padding: 12px;
+      }
+
+      .controls .icon {
+        height: 44px;
+      }
+
+      .controls .icon:not(.preview):not(.primary) {
+        width: 44px;
+      }
+
+      .wave-shell {
+        min-height: 230px;
+      }
+
+      .wave-shell canvas {
+        height: 230px;
+      }
+
+      input[type="number"], input[type="text"], select {
+        font-size: 16px;
       }
 
       .icon.preview {
@@ -1697,72 +1726,19 @@
       </div>
     </header>
 
-    <section class="hero">
-      <div class="hero-copy">
-        <div class="eyebrow" id="eyebrow">Lossless Audio Studio</div>
-        <h1 id="heroTitle">把音乐切成<span>刚刚好</span>的片段</h1>
-        <p class="subtitle" id="heroSubtitle">上传音乐，拖拽波形选择片段，导出时保留原始音频数据。WAV 按采样块裁切，MP3 按音频帧裁切，全程不重新压缩。</p>
-        <div class="hero-actions">
-          <a class="hero-button" href="#dropzone" id="startCta">开始切割</a>
-          <a class="ghost-button" href="#intro" id="learnCta">了解流程</a>
-        </div>
-        <div class="hero-stats">
-          <div class="stat"><strong id="stat1Value">0%</strong><span id="stat1Label">额外压缩</span></div>
-          <div class="stat"><strong id="stat2Value">本地</strong><span id="stat2Label">浏览器内处理</span></div>
-          <div class="stat"><strong id="stat3Value">帧级</strong><span id="stat3Label">MP3 边界对齐</span></div>
-        </div>
-      </div>
-      <div class="hero-visual" aria-hidden="true">
-        <img class="hero-art" src="assets/sonic-hero.jpg" alt="Sonic Cutter 音频波形编辑界面预览">
-        <div class="hero-disc"></div>
-        <div class="floating-panel">
-          <span id="floatingLabel">Live waveform preview</span>
-          <div class="mini-bars">
-            <i style="--i: 1"></i>
-            <i style="--i: 2"></i>
-            <i style="--i: 3"></i>
-            <i style="--i: 4"></i>
-            <i style="--i: 5"></i>
-            <i style="--i: 6"></i>
-            <i style="--i: 7"></i>
-            <i style="--i: 8"></i>
-            <i style="--i: 9"></i>
-            <i style="--i: 10"></i>
-            <i style="--i: 11"></i>
-            <i style="--i: 12"></i>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="intro" id="intro" aria-label="功能介绍">
-      <article class="intro-card">
-        <b id="intro1Title">拖进音乐，马上看到波形</b>
-        <p id="intro1Text">浏览器读取本地文件生成预览，节奏、静音段和高潮位置都能直接看见。</p>
-      </article>
-      <article class="intro-card">
-        <b id="intro2Title">拖拽选区，精确到毫秒</b>
-        <p id="intro2Text">用波形快速框选，再用开始和结束时间微调，适合铃声、采样和片段整理。</p>
-      </article>
-      <article class="intro-card">
-        <b id="intro3Title">导出不重新压缩</b>
-        <p id="intro3Text">MP3 贴近音频帧，WAV 贴近采样块，尽可能保持原始音质和编码数据。</p>
-      </article>
-    </section>
-
     <section class="tool-section workbench-section">
       <div class="section-heading">
         <div>
           <p class="section-kicker" id="workbenchKicker">Precision Workspace</p>
           <h2 id="workbenchTitle">上传、选择、保存</h2>
         </div>
-        <p id="workbenchText">核心操作集中在这里：左侧处理音频文件和波形选区，右侧实时查看片段长度、预计大小和导出提示。</p>
+        <p id="workbenchText">选择音频、调整波形，试听选区后保存片段。</p>
       </div>
 
       <main id="workbenchMain" class="is-empty">
         <section class="primary-column">
         <label class="dropzone" id="dropzone" tabindex="-1">
-          <input id="fileInput" type="file" accept="audio/*,.mp3,.wav">
+          <input id="fileInput" type="file" accept="audio/*,.mp3,.wav" aria-labelledby="dropTitle dropCopy">
           <span class="upload-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24"><path d="M12 16V4"></path><path d="m7 9 5-5 5 5"></path><path d="M20 16v4H4v-4"></path></svg>
           </span>
@@ -1861,6 +1837,59 @@
         <p class="hint warn" id="formatWarn">AAC、M4A、FLAC、OGG 等容器在纯浏览器里要真正无损切割需要重写容器结构；当前版本会提示格式不支持无损导出。</p>
         </aside>
       </main>
+    </section>
+
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow" id="eyebrow">Lossless Audio Studio</div>
+        <h1 id="heroTitle">把音乐切成<span>刚刚好</span>的片段</h1>
+        <p class="subtitle" id="heroSubtitle">上传音乐，拖拽波形选择片段，导出时保留原始音频数据。WAV 按采样块裁切，MP3 按音频帧裁切，全程不重新压缩。</p>
+        <div class="hero-actions">
+          <a class="hero-button" href="#dropzone" id="startCta">开始切割</a>
+          <a class="ghost-button" href="#intro" id="learnCta">了解流程</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat"><strong id="stat1Value">0%</strong><span id="stat1Label">额外压缩</span></div>
+          <div class="stat"><strong id="stat2Value">本地</strong><span id="stat2Label">浏览器内处理</span></div>
+          <div class="stat"><strong id="stat3Value">帧级</strong><span id="stat3Label">MP3 边界对齐</span></div>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <img class="hero-art" src="assets/sonic-hero.jpg" alt="Sonic Cutter 音频波形编辑界面预览">
+        <div class="hero-disc"></div>
+        <div class="floating-panel">
+          <span id="floatingLabel">Live waveform preview</span>
+          <div class="mini-bars">
+            <i style="--i: 1"></i>
+            <i style="--i: 2"></i>
+            <i style="--i: 3"></i>
+            <i style="--i: 4"></i>
+            <i style="--i: 5"></i>
+            <i style="--i: 6"></i>
+            <i style="--i: 7"></i>
+            <i style="--i: 8"></i>
+            <i style="--i: 9"></i>
+            <i style="--i: 10"></i>
+            <i style="--i: 11"></i>
+            <i style="--i: 12"></i>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="intro" id="intro" aria-label="功能介绍">
+      <article class="intro-card">
+        <b id="intro1Title">拖进音乐，马上看到波形</b>
+        <p id="intro1Text">浏览器读取本地文件生成预览，节奏、静音段和高潮位置都能直接看见。</p>
+      </article>
+      <article class="intro-card">
+        <b id="intro2Title">拖拽选区，精确到毫秒</b>
+        <p id="intro2Text">用波形快速框选，再用开始和结束时间微调，适合铃声、采样和片段整理。</p>
+      </article>
+      <article class="intro-card">
+        <b id="intro3Title">导出不重新压缩</b>
+        <p id="intro3Text">MP3 贴近音频帧，WAV 贴近采样块，尽可能保持原始音质和编码数据。</p>
+      </article>
     </section>
 
     <section class="tool-section" id="converter">
@@ -2888,7 +2917,7 @@
         intro3Text: "MP3 贴近音频帧，WAV 贴近采样块，尽可能保持原始音质和编码数据。",
         workbenchKicker: "精准工作台",
         workbenchTitle: "上传、选择、保存",
-        workbenchText: "核心操作集中在这里：左侧处理音频文件和波形选区，右侧实时查看片段长度、预计大小和导出提示。",
+        workbenchText: "选择音频、调整波形，试听选区后保存片段。",
         dropTitle: "拖入音乐，或点击选择文件",
         dropCopy: "推荐 MP3 或 WAV。浏览器只读取本地文件用于波形预览，保存时直接从原文件数据中切出片段。",
         noFile: "未选择文件",
@@ -2950,7 +2979,7 @@
         intro3Text: "MP3 clips align to frames and WAV clips align to sample blocks to preserve the original data as much as possible.",
         workbenchKicker: "Precision Workspace",
         workbenchTitle: "Upload, select, save",
-        workbenchText: "The core flow lives here: handle files and waveform ranges on the left, then track duration, size, and export notes on the right.",
+        workbenchText: "Choose an audio file, adjust the waveform, preview your selection, and save the clip.",
         dropTitle: "Drop music here, or choose a file",
         dropCopy: "MP3 or WAV recommended. The browser only reads your local file for preview and saves a slice from the original data.",
         noFile: "No file selected",
@@ -3012,7 +3041,7 @@
         intro3Text: "MP3 はフレーム、WAV はサンプルブロックに合わせ、元データをできるだけ保ちます。",
         workbenchKicker: "精密ワークスペース",
         workbenchTitle: "アップロード、選択、保存",
-        workbenchText: "中心操作をここに集約しました。左でファイルと波形範囲を扱い、右で長さ、サイズ、書き出し情報を確認できます。",
+        workbenchText: "音声を選び、波形を調整して、選択範囲を試聴してから保存できます。",
         dropTitle: "音楽をドロップ、またはファイルを選択",
         dropCopy: "MP3 または WAV 推奨。プレビュー用にローカルファイルを読み取り、元データから切り出して保存します。",
         noFile: "ファイル未選択",
@@ -3074,7 +3103,7 @@
         intro3Text: "MP3는 프레임에, WAV는 샘플 블록에 맞춰 원본 데이터를 최대한 유지합니다.",
         workbenchKicker: "정밀 작업 공간",
         workbenchTitle: "업로드, 선택, 저장",
-        workbenchText: "핵심 작업을 한곳에 모았습니다. 왼쪽에서 파일과 파형 구간을 다루고 오른쪽에서 길이, 크기, 내보내기 정보를 확인합니다.",
+        workbenchText: "오디오를 선택하고 파형을 조정한 뒤 선택 구간을 미리 듣고 저장하세요.",
         dropTitle: "음악을 드롭하거나 파일 선택",
         dropCopy: "MP3 또는 WAV 권장. 브라우저가 로컬 파일을 미리보기용으로 읽고 원본 데이터에서 잘라 저장합니다.",
         noFile: "선택된 파일 없음",
@@ -3136,7 +3165,7 @@
         intro3Text: "MP3 s’aligne sur les trames et WAV sur les blocs pour préserver les données d’origine.",
         workbenchKicker: "Espace de précision",
         workbenchTitle: "Importer, sélectionner, enregistrer",
-        workbenchText: "Le flux principal est ici : gérez le fichier et la sélection à gauche, puis consultez durée, taille et notes d’export à droite.",
+        workbenchText: "Choisissez un fichier audio, ajustez la forme d’onde, écoutez la sélection et enregistrez l’extrait.",
         dropTitle: "Déposez une musique ou choisissez un fichier",
         dropCopy: "MP3 ou WAV recommandé. Le navigateur lit le fichier localement pour l’aperçu et sauvegarde une tranche des données d’origine.",
         noFile: "Aucun fichier sélectionné",
@@ -3198,7 +3227,7 @@
         intro3Text: "MP3 richtet sich an Frames aus, WAV an Sample-Blöcken, um Originaldaten möglichst zu erhalten.",
         workbenchKicker: "Präzisions-Arbeitsbereich",
         workbenchTitle: "Hochladen, auswählen, speichern",
-        workbenchText: "Der Kernablauf sitzt hier: links Datei und Wellenbereich bearbeiten, rechts Länge, Größe und Exporthinweise prüfen.",
+        workbenchText: "Audiodatei auswählen, Wellenform anpassen, Auswahl anhören und den Ausschnitt speichern.",
         dropTitle: "Musik hier ablegen oder Datei wählen",
         dropCopy: "MP3 oder WAV empfohlen. Der Browser liest nur die lokale Datei für die Vorschau und speichert einen Ausschnitt der Originaldaten.",
         noFile: "Keine Datei ausgewählt",
@@ -3260,7 +3289,7 @@
         intro3Text: "MP3 se alinea a frames y WAV a bloques de muestra para conservar los datos originales.",
         workbenchKicker: "Espacio de precisión",
         workbenchTitle: "Sube, selecciona, guarda",
-        workbenchText: "El flujo principal está aquí: gestiona el archivo y la selección a la izquierda, y revisa duración, tamaño y notas de exportación a la derecha.",
+        workbenchText: "Elige un audio, ajusta la onda, escucha la selección y guarda el fragmento.",
         dropTitle: "Suelta música o elige un archivo",
         dropCopy: "Se recomienda MP3 o WAV. El navegador solo lee tu archivo local para la vista previa y guarda un corte de los datos originales.",
         noFile: "Ningún archivo seleccionado",
@@ -3470,6 +3499,7 @@
     });
 
     function setConverterFile(file) {
+      if (els.converterInput.disabled) return;
       state.converterFile = file;
       els.converterFileName.textContent = `${file.name} · ${formatBytes(file.size)}`;
       if (isProtectedMusicFormat(file.name)) {

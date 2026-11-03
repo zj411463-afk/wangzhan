@@ -40,10 +40,21 @@ test("rejects unexpected event data and cross-origin posts", async () => {
   assert.equal((await worker.fetch(eventRequest({ event: "page_open" }, { origin: "https://example.com" }), env)).status, 403);
   assert.equal((await worker.fetch(eventRequest(null, { method: "GET" }), env)).status, 405);
   assert.equal((await worker.fetch(eventRequest({ event: "page_open" }), { ASSETS: env.ASSETS })).status, 503);
+  const oversized = new Request(`${origin}/__events`, {
+    method: "POST",
+    headers: { Origin: origin, "Content-Type": "application/json" },
+    body: new ReadableStream({ start(controller) { controller.enqueue(new Uint8Array(65)); controller.close(); } }),
+    duplex: "half"
+  });
+  assert.equal((await worker.fetch(oversized, env)).status, 413);
 });
 
 test("keeps the existing site route intact", async () => {
-  assert.equal((await worker.fetch(new Request(`${origin}/`), env)).status, 200);
+  const page = await worker.fetch(new Request(`${origin}/`), env);
+  assert.equal(page.status, 200);
+  assert.equal(page.headers.get("X-Content-Type-Options"), "nosniff");
+  assert.equal(page.headers.get("X-Frame-Options"), "DENY");
+  assert.match(page.headers.get("Content-Security-Policy"), /frame-ancestors 'none'/);
   const redirect = await worker.fetch(new Request("https://tomp3.xyz/"), env);
   assert.equal(redirect.status, 301);
   assert.equal(redirect.headers.get("Location"), `${origin}/`);

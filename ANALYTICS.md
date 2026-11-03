@@ -16,6 +16,12 @@ dataset. These are action counts, not unique people or a user-level cohort.
 Local `file://` previews do not send events. If the Analytics Engine binding is
 unavailable, the editor still works but the event is not recorded.
 
+Before the first deployment, enable Analytics Engine for the Cloudflare account
+in Workers & Pages > Analytics Engine. The Pages deployment will fail with
+`You need to enable Analytics Engine` until this account-level switch is on.
+After enabling it, rerun the failed GitHub Actions deployment; the dataset is
+created automatically on the first recorded event.
+
 To inspect the last seven days, query the dataset with a Cloudflare API token
 that has Account Analytics Read permission:
 

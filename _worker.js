@@ -23,8 +23,22 @@ export default {
 
       let payload;
       try {
-        const body = await request.text();
-        if (body.length > 64) return new Response(null, { status: 413 });
+        if (!request.body) return new Response(null, { status: 400 });
+        const reader = request.body.getReader();
+        const decoder = new TextDecoder();
+        let body = "";
+        let size = 0;
+        while (true) {
+          const { value, done } = await reader.read();
+          if (done) break;
+          size += value.byteLength;
+          if (size > 64) {
+            reader.cancel().catch(() => {});
+            return new Response(null, { status: 413 });
+          }
+          body += decoder.decode(value, { stream: true });
+        }
+        body += decoder.decode();
         payload = JSON.parse(body);
       } catch {
         return new Response(null, { status: 400 });
@@ -40,6 +54,13 @@ export default {
       return new Response(null, { status: 204, headers: { "Cache-Control": "no-store" } });
     }
 
-    return env.ASSETS.fetch(request);
+    const response = await env.ASSETS.fetch(request);
+    const headers = new Headers(response.headers);
+    headers.set("X-Content-Type-Options", "nosniff");
+    headers.set("X-Frame-Options", "DENY");
+    headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
+    headers.set("Permissions-Policy", "camera=(), microphone=(), geolocation=()");
+    headers.set("Content-Security-Policy", "base-uri 'self'; object-src 'none'; frame-ancestors 'none'");
+    return new Response(response.body, { status: response.status, statusText: response.statusText, headers });
   },
 };

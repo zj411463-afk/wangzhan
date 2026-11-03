@@ -19,7 +19,10 @@ jobs:
         run: node .github/scripts/check-audio-only.js
 
       - name: Check anonymous funnel
-        run: node --test .github/scripts/check-funnel.mjs
+        run: node --test .github/scripts/check-funnel.mjs .github/scripts/check-release.mjs
+
+      - name: Prepare public files
+        run: node .github/scripts/build-pages.js
 
       - name: Require Cloudflare deployment credentials
         run: |
@@ -33,4 +36,15 @@ jobs:
         with:
           apiToken: ${{ env.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ env.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy . --project-name=wangzhan --branch=main
+          command: pages deploy dist --project-name=wangzhan --branch=main
+
+      - name: Verify public website
+        run: |
+          curl --fail --silent --show-error --retry 3 --retry-delay 2 --output /dev/null https://www.tomp3.xyz/
+          for attempt in 1 2 3 4 5; do
+            status=$(curl --silent --show-error --output /dev/null --write-out '%{http_code}' https://www.tomp3.xyz/__missing_page_check__)
+            if [ "$status" = "404" ]; then exit 0; fi
+            sleep 3
+          done
+          echo "::error::Expected HTTP 404 for a missing page, got $status"
+          exit 1
