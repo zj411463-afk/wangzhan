@@ -356,7 +356,7 @@
       pointer-events: none;
       overflow: hidden;
       transform: scale(1.04);
-      animation: heroDrift 22s ease-in-out infinite alternate;
+      animation: heroDrift 14s ease-in-out infinite alternate;
       will-change: transform;
     }
 
@@ -381,7 +381,17 @@
       mask-image: linear-gradient(90deg, transparent 35%, #000 50%, transparent 65%);
       mask-size: 250% 100%;
       mask-repeat: no-repeat;
-      animation: heroSignal 9s ease-in-out infinite;
+      animation: heroSignal 5.5s ease-in-out infinite;
+    }
+
+    .hero-wave {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      opacity: .9;
+      mix-blend-mode: screen;
+      pointer-events: none;
     }
 
     .intro {
@@ -1709,6 +1719,7 @@
     @media (prefers-reduced-motion: reduce) {
       .hero-visual, .hero-glow, .dropzone .upload-icon svg { animation: none !important; }
       .hero-glow { opacity: 0; }
+      .hero-wave { display: none; }
       *,
       *::before,
       *::after {
@@ -1764,6 +1775,7 @@
       <div class="hero-visual" aria-hidden="true">
         <img class="hero-art" src="../assets/sonic-hero.jpg" alt="Vista previa del editor de onda Sonic Cutter">
         <div class="hero-glow"></div>
+        <canvas class="hero-wave" id="heroWave" aria-hidden="true" width="1" height="1"></canvas>
       </div>
     </section>
 
@@ -4576,6 +4588,80 @@
       showToast.timer = setTimeout(() => els.toast.classList.remove("is-visible"), 3200);
     }
 
+    function startHeroMotion() {
+      const canvas = document.querySelector("#heroWave");
+      const surface = canvas.getContext("2d");
+      if (!surface) return;
+      const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+      const trace = new Path2D("M330 300 C390 300 420 268 458 257 C486 250 489 233 521 225 C550 207 554 257 588 242 C614 232 601 188 627 198 C657 211 674 230 713 224 C758 217 792 242 822 221 C855 192 872 236 920 214");
+      let width = 0, height = 0, ratio = 1, frame = 0, lastPaint = 0, visible = true;
+
+      function resize() {
+        width = canvas.clientWidth;
+        height = canvas.clientHeight;
+        ratio = Math.min(window.devicePixelRatio || 1, 1.5);
+        canvas.width = Math.max(1, Math.round(width * ratio));
+        canvas.height = Math.max(1, Math.round(height * ratio));
+      }
+
+      function paint(now) {
+        frame = 0;
+        if (!visible || document.hidden || reduced.matches) return;
+        if (now - lastPaint >= 33 && width && height) {
+          lastPaint = now;
+          surface.setTransform(1, 0, 0, 1, 0, 0);
+          surface.clearRect(0, 0, canvas.width, canvas.height);
+          // Project the traces into the same 900 x 480 cover framing as the artwork.
+          const scale = Math.max(width / 900, height / 480);
+          surface.setTransform(ratio * scale, 0, 0, ratio * scale, ratio * (width - 900 * scale) / 2, ratio * (height - 480 * scale) / 2);
+          const color = surface.createLinearGradient(330, 0, 920, 0);
+          color.addColorStop(0, "rgba(99,229,220,0)");
+          color.addColorStop(.35, "rgba(99,229,220,.8)");
+          color.addColorStop(.65, "#b8fff1");
+          color.addColorStop(1, "#e18cbf");
+          const time = now / 1000;
+          for (let index = 0; index < 3; index++) {
+            surface.save();
+            surface.translate(0, Math.sin(time * 1.4 + index) * 7 + (index - 1) * 12);
+            surface.strokeStyle = color;
+            surface.shadowColor = "#63e5dc";
+            surface.shadowBlur = 12;
+            surface.lineWidth = 1.2;
+            surface.globalAlpha = .18;
+            surface.setLineDash([]);
+            surface.stroke(trace);
+            surface.globalAlpha = .85 - index * .15;
+            surface.lineWidth = 2.2 - index * .3;
+            surface.setLineDash([18 + index * 6, 220 + index * 40]);
+            surface.lineDashOffset = -time * (90 + index * 20) + index * 75;
+            surface.stroke(trace);
+            surface.restore();
+          }
+        }
+        frame = requestAnimationFrame(paint);
+      }
+
+      function update() {
+        cancelAnimationFrame(frame);
+        frame = 0;
+        if (visible && !document.hidden && !reduced.matches) {
+          resize();
+          frame = requestAnimationFrame(paint);
+        }
+      }
+      resize();
+      window.addEventListener("resize", resize);
+      if (typeof ResizeObserver === "function") new ResizeObserver(resize).observe(canvas.closest(".hero"));
+      document.addEventListener("visibilitychange", update);
+      reduced.addEventListener("change", update);
+      if (typeof IntersectionObserver === "function") {
+        const observer = new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; update(); });
+        observer.observe(canvas.closest(".hero"));
+      }
+      update();
+    }
+
+    startHeroMotion();
     initializeLanguage();
     resizeCanvas();
     syncInputs();
