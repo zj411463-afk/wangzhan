@@ -1454,6 +1454,12 @@
       font-weight: 780;
     }
 
+    .resource-section { padding: 32px 0; border-top: 1px solid var(--line); }
+    .resource-section h2 { font-size: 22px; margin: 0 0 18px; }
+    .resource-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 28px; }
+    .resource-grid a { color: var(--accent); line-height: 1.65; overflow-wrap: anywhere; text-underline-offset: 4px; padding: 8px 0; }
+    @media (max-width: 640px) { .resource-grid { grid-template-columns: minmax(0, 1fr); } }
+
     .locale-links {
       display: flex;
       flex-wrap: wrap;
@@ -2138,6 +2144,15 @@
         </details>
       </div>
     </section>
+    <!-- resources:start -->
+    <section class="resource-section" aria-labelledby="resourceHeading">
+      <h2 id="resourceHeading" data-resource="heading">오디오 자르기 활용 사례와 안내</h2>
+      <div class="resource-grid"><a data-resource="ringtone" href="/ko/scenes/ringtone/">MP3·WAV 구간을 잘라 온라인으로 벨소리 만들기</a>
+      <a data-resource="podcast" href="/ko/scenes/podcast/">팟캐스트·인터뷰·강의 녹음 구간 자르기</a>
+      <a data-resource="mp3" href="/ko/guides/cut-mp3/">MP3 자르는 방법: 시간 선택·미리듣기·저장</a>
+      <a data-resource="speech" href="/ko/guides/cut-podcast/">팟캐스트와 인터뷰에서 단어를 끊지 않고 구간 저장하기</a></div>
+    </section>
+    <!-- resources:end -->
     <nav class="locale-links" aria-label="Language versions">
       <a href="../" hreflang="zh-CN" lang="zh-CN" data-locale="zh">中文</a>
       <a href="../en/" hreflang="en" lang="en" data-locale="en">English</a>
@@ -2152,6 +2167,9 @@
   <div class="toast" id="toast"></div>
 
   <script>
+    // resource-copy:start
+    const resourceTranslations = {"zh":{"heading":"音频剪切场景与教程","ringtone":"在线制作铃声：剪切 MP3 和 WAV 音乐片段","podcast":"播客片段剪切：截取采访、课程与语音录音","mp3":"如何剪切 MP3：选取时间、试听并保存片段","speech":"如何截取播客与采访录音：保留完整语句"},"en":{"heading":"Audio cutting use cases and guides","ringtone":"Make a ringtone online from an MP3 or WAV clip","podcast":"Trim podcast clips, interviews and lecture recordings","mp3":"How to cut an MP3: select, preview and save a clip","speech":"How to cut a podcast or interview without clipping words"},"ja":{"heading":"音声カットの利用シーンとガイド","ringtone":"MP3・WAVから着信音用の音声をオンラインで切り出す","podcast":"ポッドキャスト・インタビュー・講義の音声を切り出す","mp3":"MP3をカットする方法：時間指定・試聴・保存","speech":"ポッドキャストや会話を単語の途中で切らずに保存する方法"},"ko":{"heading":"오디오 자르기 활용 사례와 안내","ringtone":"MP3·WAV 구간을 잘라 온라인으로 벨소리 만들기","podcast":"팟캐스트·인터뷰·강의 녹음 구간 자르기","mp3":"MP3 자르는 방법: 시간 선택·미리듣기·저장","speech":"팟캐스트와 인터뷰에서 단어를 끊지 않고 구간 저장하기"},"fr":{"heading":"Usages et tutoriels de découpe audio","ringtone":"Créer une sonnerie en ligne à partir d’un MP3 ou WAV","podcast":"Découper des extraits de podcast, d’entretien ou de cours","mp3":"Comment couper un MP3 : sélectionner, écouter et enregistrer","speech":"Couper un podcast ou un entretien sans tronquer les mots"},"de":{"heading":"Anwendungen und Anleitungen zum Audioschnitt","ringtone":"Klingelton online aus einem MP3- oder WAV-Ausschnitt erstellen","podcast":"Podcast-Ausschnitte, Interviews und Vorlesungen schneiden","mp3":"MP3 schneiden: Bereich wählen, anhören und speichern","speech":"Podcast oder Interview schneiden, ohne Wörter abzutrennen"},"es":{"heading":"Usos y tutoriales para cortar audio","ringtone":"Crear un tono de llamada online con un MP3 o WAV","podcast":"Recortar fragmentos de pódcast, entrevistas y clases","mp3":"Cómo cortar un MP3: seleccionar, escuchar y guardar","speech":"Cómo cortar un pódcast o entrevista sin truncar palabras"}};
+    // resource-copy:end
     const els = {
       dropzone: document.querySelector("#dropzone"),
       fileInput: document.querySelector("#fileInput"),
@@ -4380,6 +4398,14 @@
       document.querySelector('meta[name="description"]').setAttribute("content", t("metaDescription"));
       document.querySelector('meta[property="og:description"]').setAttribute("content", t("metaDescription"));
       document.querySelector('meta[name="twitter:description"]').setAttribute("content", t("metaDescription"));
+      document.querySelector('meta[property="og:title"]').content = document.title;
+      document.querySelector('meta[name="twitter:title"]').content = document.title;
+      document.querySelectorAll("[data-resource]").forEach((element) => {
+        const key = element.dataset.resource;
+        element.textContent = resourceTranslations[nextLang][key];
+        const routes = { ringtone: "scenes/ringtone/", podcast: "scenes/podcast/", mp3: "guides/cut-mp3/", speech: "guides/cut-podcast/" };
+        if (routes[key]) element.setAttribute("href", `/${nextLang === "zh" ? "" : `${nextLang}/`}${routes[key]}`);
+      });
 
       const htmlKeys = ["heroTitle"];
       const textKeys = [

@@ -15,6 +15,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Generate localized scene pages and tutorials
+        run: node .github/scripts/render-content.cjs
+
       - name: Check audio-only release
         run: node .github/scripts/check-audio-only.js
 
@@ -55,6 +58,7 @@ jobs:
               exit 1
             fi
           done
+          node .github/scripts/check-content-live.mjs
           for attempt in 1 2 3 4 5; do
             status=$(curl --silent --show-error --output /dev/null --write-out '%{http_code}' https://www.tomp3.xyz/__missing_page_check__)
             if [ "$status" = "404" ]; then exit 0; fi

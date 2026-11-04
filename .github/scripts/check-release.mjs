@@ -4,6 +4,8 @@ import { tmpdir } from "node:os";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
 import { test } from "node:test";
+import { createRequire } from "node:module";
+const { contentFiles, locales: contentLocales, routes, sitePath } = createRequire(import.meta.url)("../content-pages.cjs");
 
 test("deployment contains only public site files", () => {
   const output = mkdtempSync(path.join(tmpdir(), "sonic-pages-"));
@@ -12,9 +14,9 @@ test("deployment contains only public site files", () => {
     assert.equal(result.status, 0, result.stderr);
     const locales = ["en", "ja", "ko", "fr", "de", "es"];
     assert.deepEqual(readdirSync(output).sort(), [
-      "404.html", "_worker.js", "assets", ...locales, "index.html", "robots.txt", "sitemap.xml", "video-to-audio.html"
+      "404.html", "_worker.js", "assets", ...locales, "scenes", "guides", "index.html", "robots.txt", "sitemap.xml", "video-to-audio.html"
     ].sort());
-    assert.deepEqual(readdirSync(path.join(output, "assets")), ["sonic-hero.jpg"]);
+    assert.deepEqual(readdirSync(path.join(output, "assets")).sort(), ["audio-selection.png", "reading.css", "sonic-hero.jpg"]);
     assert.match(readFileSync(path.join(output, "404.html"), "utf8"), /name="robots" content="noindex"/);
     const home = readFileSync(path.join(output, "index.html"), "utf8");
     const script = (html) => html.match(/<script>([\s\S]*?)<\/script>/)?.[1];
@@ -44,6 +46,57 @@ test("deployment contains only public site files", () => {
     assert.match(english, /Cutting without recompression preserves the existing encoded data/);
     const chineseFaq = schema(home)["@graph"].find((item) => item["@type"] === "FAQPage");
     assert.ok(chineseFaq.mainEntity.some((item) => item.name === "无重新压缩能恢复 MP3 音质吗？"));
+
+    const titles = new Set();
+    const descriptions = new Set();
+    const publicPages = ["index.html", ...locales.map((locale) => `${locale}/index.html`), ...contentFiles];
+    const pages = new Map(publicPages.map((file) => [file, readFileSync(path.join(output, file), "utf8")]));
+    for (const [file, html] of pages) {
+      const title = html.match(/<title>([^<]+)<\/title>/)?.[1];
+      const description = html.match(/<meta name="description" content="([^"]+)"/)?.[1];
+      assert.ok(title && description, `Missing metadata: ${file}`);
+      assert.ok(!titles.has(title), `Duplicate title: ${file}`);
+      assert.ok(!descriptions.has(description), `Duplicate description: ${file}`);
+      titles.add(title);
+      descriptions.add(description);
+      assert.equal([...html.matchAll(/<h1\b/g)].length, 1, `Expected one H1: ${file}`);
+      const route = `/${file.replace(/index\.html$/, "")}`;
+      assert.ok(sitemap.includes(`<loc>https://www.tomp3.xyz${route}</loc>`), `Not in sitemap: ${file}`);
+      assert.ok(html.includes(`rel="canonical" href="https://www.tomp3.xyz${route}"`), `Invalid canonical: ${file}`);
+      assert.ok(!html.includes('name="robots" content="noindex'), `Unexpected noindex: ${file}`);
+      const base = new URL(route, "https://www.tomp3.xyz");
+      for (const match of html.matchAll(/<(a|img)\b[^>]*\b(href|src)="([^"]+)"/g)) {
+        const target = new URL(match[3], base);
+        if (target.origin !== base.origin) continue;
+        const targetFile = target.pathname.endsWith("/") ? `${target.pathname}index.html` : target.pathname;
+        const absolute = path.join(output, targetFile);
+        assert.ok(readFileSync(absolute).length, `Broken link in ${file}: ${match[3]}`);
+        if (target.hash && targetFile.endsWith(".html")) {
+          assert.ok(readFileSync(absolute, "utf8").includes(`id="${target.hash.slice(1)}"`), `Broken fragment in ${file}: ${match[3]}`);
+        }
+      }
+      for (const image of html.matchAll(/<img\b[^>]*>/g)) assert.match(image[0], /\balt="[^"]+"/, `Missing image alt: ${file}`);
+    }
+    for (const locale of contentLocales) {
+      const homeFile = `${sitePath(locale).slice(1)}index.html`;
+      const homeHtml = pages.get(homeFile);
+      for (const key of Object.keys(routes)) {
+        const file = `${sitePath(locale, key).slice(1)}index.html`;
+        const html = pages.get(file);
+        assert.ok(homeHtml.includes(`href="${sitePath(locale, key)}"`), `Homepage must link to ${file}`);
+        assert.ok(html.includes(`href="${sitePath(locale)}#workbenchMain"`), `Missing tool link: ${file}`);
+        assert.ok(html.includes(`href="${sitePath(locale, key === "ringtone" ? "mp3" : key === "podcast" ? "speech" : key === "mp3" ? "ringtone" : "podcast")}"`), `Missing contextual link: ${file}`);
+        for (const alternate of contentLocales) assert.ok(html.includes(`href="https://www.tomp3.xyz${sitePath(alternate, key)}"`), `Missing language alternate: ${file}`);
+        const graph = schema(html)["@graph"];
+        assert.ok(graph.some((item) => item["@type"] === "BreadcrumbList"));
+        if (["mp3", "speech"].includes(key)) {
+          assert.ok(graph.some((item) => item["@type"] === "Article"));
+          const howTo = graph.find((item) => item["@type"] === "HowTo");
+          assert.equal(howTo.step.length, 4);
+          for (const step of howTo.step) assert.ok(html.includes(step.url.split("#")[1]));
+        }
+      }
+    }
   } finally {
     rmSync(output, { recursive: true, force: true });
   }

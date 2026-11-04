@@ -1,5 +1,6 @@
 const { copyFileSync, existsSync, mkdirSync, readdirSync } = require("node:fs");
 const path = require("node:path");
+const { contentFiles } = require("../content-pages.cjs");
 
 const output = process.argv[2] || "dist";
 if (existsSync(output) && readdirSync(output).length) {
@@ -8,7 +9,8 @@ if (existsSync(output) && readdirSync(output).length) {
 
 const files = [
   "index.html", "video-to-audio.html", "404.html", "robots.txt", "sitemap.xml",
-  "_worker.js", "assets/sonic-hero.jpg",
+  "_worker.js", "assets/sonic-hero.jpg", "assets/audio-selection.png", "assets/reading.css",
+  ...contentFiles,
   ...["en", "ja", "ko", "fr", "de", "es"].map((locale) => `${locale}/index.html`)
 ];
 for (const file of files) {

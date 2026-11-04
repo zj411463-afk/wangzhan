@@ -1,0 +1,72 @@
+:root {
+  color-scheme: light dark;
+  --paper: #fff;
+  --ink: #141a1f;
+  --muted: #59646c;
+  --line: #d7dee0;
+  --accent: #087d83;
+  --surface: #f4f7f6;
+  font-family: "Avenir Next", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+* { box-sizing: border-box; letter-spacing: 0; }
+html { scroll-padding-top: 24px; }
+body { margin: 0; color: var(--ink); background: var(--paper); font-size: 16px; line-height: 1.75; }
+a { color: var(--accent); text-underline-offset: 4px; overflow-wrap: anywhere; }
+a:hover { text-decoration-thickness: 2px; }
+a:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
+.site-header, footer { width: min(1160px, calc(100% - 48px)); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 24px 0; }
+.site-header { border-bottom: 1px solid var(--line); }
+.brand { font-size: 22px; font-weight: 750; color: var(--ink); text-decoration: none; line-height: 1.3; }
+.brand span { display: block; color: var(--muted); font-size: 13px; font-weight: 500; margin-top: 4px; }
+.site-header nav, .locale-links { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+.site-header nav > a { font-size: 14px; }
+.tool-link { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 10px 18px; color: #fff; background: var(--accent); border-radius: 6px; text-decoration: none; font-weight: 650; }
+.tool-link:hover { background: #09666b; text-decoration: none; }
+.reading-layout { width: min(1160px, calc(100% - 48px)); margin: 0 auto; display: grid; grid-template-columns: 236px minmax(0, 740px); gap: 64px; padding: 44px 0 72px; }
+aside { align-self: start; position: sticky; top: 24px; font-size: 14px; }
+aside nav, .aside-related { display: grid; gap: 12px; }
+aside a { display: block; color: var(--muted); text-decoration: none; line-height: 1.6; padding: 4px 0; }
+.aside-related { border-top: 1px solid var(--line); margin-top: 28px; padding-top: 20px; }
+.eyebrow { color: var(--muted); font-size: 13px; font-weight: 600; margin: 0 0 16px; }
+.breadcrumbs { display: flex; gap: 10px; flex-wrap: wrap; font-size: 13px; color: var(--muted); margin-bottom: 28px; }
+main { min-width: 0; }
+h1 { font-size: 38px; line-height: 1.35; font-weight: 700; margin: 0 0 20px; overflow-wrap: anywhere; }
+h2 { font-size: 23px; line-height: 1.5; font-weight: 650; margin: 0 0 12px; overflow-wrap: anywhere; }
+p { margin: 0 0 20px; }
+.lead { font-size: 18px; color: var(--muted); line-height: 1.8; }
+figure { margin: 32px 0 44px; }
+figure img { display: block; width: 100%; height: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; }
+figcaption { color: var(--muted); font-size: 13px; padding-top: 10px; }
+section { margin-top: 32px; }
+.related, .references { border-top: 1px solid var(--line); padding-top: 24px; }
+ul { padding-left: 22px; }
+li { margin: 12px 0; }
+footer { border-top: 1px solid var(--line); align-items: flex-start; font-size: 13px; }
+.locale-links { gap: 16px; }
+.locale-links [aria-current] { font-weight: 750; text-decoration: none; color: var(--ink); }
+.skip-link { position: fixed; top: -100px; left: 16px; padding: 12px; background: var(--paper); z-index: 10; }
+.skip-link:focus { top: 10px; }
+@media (max-width: 900px) {
+  .reading-layout { grid-template-columns: minmax(0, 1fr); gap: 24px; max-width: 740px; padding-top: 28px; }
+  aside { position: static; border-bottom: 1px solid var(--line); padding-bottom: 16px; }
+  aside nav { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px 20px; }
+  .aside-related { display: none; }
+  footer { flex-direction: column; }
+}
+@media (max-width: 600px) {
+  .site-header, .reading-layout, footer { width: calc(100% - 32px); }
+  .site-header { flex-direction: column; align-items: flex-start; gap: 16px; padding: 20px 0; }
+  .site-header nav { gap: 12px 20px; }
+  .brand { font-size: 20px; }
+  .brand span { display: inline; margin-left: 10px; }
+  h1 { font-size: 28px; }
+  h2 { font-size: 21px; }
+  .lead { font-size: 17px; }
+  aside nav { grid-template-columns: minmax(0, 1fr); }
+  aside a, .locale-links a { min-height: 44px; display: flex; align-items: center; }
+  figure { margin: 28px 0; }
+}
+@media (prefers-color-scheme: dark) {
+  :root { --paper: #141718; --ink: #f1f4f3; --muted: #b3bdb9; --line: #343c3a; --accent: #72d8ca; --surface: #202726; }
+  .tool-link { background: #087d83; color: #fff; }
+}
