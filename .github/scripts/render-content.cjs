@@ -3,6 +3,9 @@ const path = require("node:path");
 const { locales, languageNames, routes, sitePath, content } = require("../content-pages.cjs");
 const origin = "https://www.tomp3.xyz";
 const updated = "2026-11-04";
+const image = fs.readFileSync("assets/audio-selection.png");
+const imageWidth = image.readUInt32BE(16);
+const imageHeight = image.readUInt32BE(20);
 const escape = (value) => String(value).replace(/[&<>"']/g, (character) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[character]);
 const lang = (locale) => locale === "zh" ? "zh-CN" : locale;
 const link = (url, text) => `<a href="${escape(url)}">${escape(text)}</a>`;
@@ -88,7 +91,7 @@ ${alternates(key)}
         <h1>${escape(page.title)}</h1>
         <p class="lead">${escape(page.intro)}</p>
         <a class="tool-link" href="${sitePath(locale)}#workbenchMain">${escape(open)}</a>
-        <figure><a href="${sitePath(locale)}#workbenchMain"><img src="/assets/audio-selection.png" width="864" height="770" alt="${escape(copy.image)}" decoding="async"></a><figcaption>${escape(copy.caption)}</figcaption></figure>
+        <figure><a href="${sitePath(locale)}#workbenchMain"><img src="/assets/audio-selection.png" width="${imageWidth}" height="${imageHeight}" alt="${escape(copy.image)}" decoding="async"></a><figcaption>${escape(copy.caption)}</figcaption></figure>
         ${sections.map(([heading, body], index) => `<section id="section-${index + 1}"><h2>${isGuide && index < page.steps.length ? `${index + 1}. ` : ""}${escape(heading)}</h2><p>${escape(body)}</p></section>`).join("\n")}
         <section class="related"><h2>${escape(more)}</h2><ul>${related[key].map((other) => `<li>${link(sitePath(locale, other), copy.pages[other].title)}</li>`).join("")}</ul><p>${link(`${sitePath(locale)}#workbenchMain`, open)}</p></section>
         <section class="references"><h2>${escape(refs)}</h2><ul>${references.filter((_, index) => key === "ringtone" || key === "mp3" || index === 2).map(([href, title]) => `<li>${link(href, title)}</li>`).join("")}</ul></section>

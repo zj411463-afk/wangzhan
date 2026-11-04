@@ -146,13 +146,7 @@
     body {
       margin: 0;
       min-height: 100vh;
-      background:
-        radial-gradient(circle at 72% 4%, rgba(232, 93, 138, .18), transparent 28%),
-        radial-gradient(circle at 18% 12%, rgba(8, 125, 131, .20), transparent 26%),
-        linear-gradient(180deg, #f8fbfb 0, rgba(248, 251, 251, 0) 520px),
-        linear-gradient(90deg, rgba(8, 125, 131, .08) 0 1px, transparent 1px 96px),
-        linear-gradient(0deg, rgba(20, 26, 31, .045) 0 1px, transparent 1px 96px),
-        var(--bg);
+      background: var(--bg);
       color: var(--ink);
     }
 
@@ -219,19 +213,16 @@
 
     .hero {
       position: relative;
-      display: grid;
-      grid-template-columns: minmax(0, 1.12fr) minmax(320px, .88fr);
-      gap: 28px;
-      align-items: center;
-      min-height: 402px;
-      margin: 30px 0 0;
-      padding: clamp(24px, 4vw, 44px);
+      display: block;
+      min-height: 300px;
+      margin: 8px 0 28px;
+      padding: 32px 40px;
       border-radius: 8px;
       overflow: hidden;
       background:
         linear-gradient(115deg, rgba(17, 25, 29, .98) 0%, rgba(17, 25, 29, .92) 44%, rgba(17, 25, 29, .58) 100%),
         url("../assets/sonic-hero.jpg") center / cover no-repeat;
-      box-shadow: 0 28px 80px rgba(12, 22, 27, .28);
+      box-shadow: none;
       color: #f7fbfb;
       isolation: isolate;
     }
@@ -249,7 +240,7 @@
     }
 
     .hero-copy {
-      max-width: 650px;
+      max-width: 940px;
       animation: riseIn .75s ease both;
     }
 
@@ -257,11 +248,11 @@
       display: inline-flex;
       align-items: center;
       gap: 9px;
-      margin-bottom: 18px;
+      margin-bottom: 12px;
       color: #baf7f1;
       font-size: 12px;
       font-weight: 850;
-      letter-spacing: .12em;
+      letter-spacing: 0;
       text-transform: uppercase;
     }
 
@@ -274,10 +265,11 @@
 
     h1 {
       margin: 0;
-      max-width: 760px;
-      font-family: "Arial Black", "Avenir Next", Impact, ui-sans-serif, sans-serif;
-      font-size: clamp(40px, 5.5vw, 70px);
-      line-height: .96;
+      max-width: 940px;
+      font-family: inherit;
+      font-size: 46px;
+      font-weight: 750;
+      line-height: 1.16;
       letter-spacing: 0;
       text-wrap: balance;
     }
@@ -290,8 +282,8 @@
     }
 
     .subtitle {
-      margin: 18px 0 0;
-      max-width: 660px;
+      margin: 14px 0 0;
+      max-width: 700px;
       color: #d1dddd;
       font-size: 16px;
       line-height: 1.64;
@@ -302,7 +294,7 @@
       flex-wrap: wrap;
       gap: 12px;
       align-items: center;
-      margin-top: 26px;
+      margin-top: 20px;
     }
 
     .hero-button,
@@ -328,25 +320,21 @@
     }
 
     .hero-stats {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 10px;
-      margin-top: 28px;
-      max-width: 560px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 28px;
+      margin-top: 24px;
+      max-width: 700px;
     }
 
     .stat {
-      padding: 12px;
-      border: 1px solid rgba(255, 255, 255, .14);
-      border-radius: 8px;
-      background: rgba(255, 255, 255, .08);
-      backdrop-filter: blur(14px);
+      padding: 0;
     }
 
     .stat strong {
       display: block;
       color: #fff;
-      font-size: 20px;
+      font-size: 17px;
       line-height: 1;
     }
 
@@ -358,9 +346,7 @@
     }
 
     .hero-visual {
-      position: relative;
-      min-height: 310px;
-      animation: floatIn .9s ease both;
+      display: none;
     }
 
     .hero-art {
@@ -430,14 +416,14 @@
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 12px;
-      margin: -24px 20px 18px;
+      margin: 24px 0 18px;
       position: relative;
       z-index: 2;
     }
 
     .intro-card {
       position: relative;
-      min-height: 118px;
+      min-height: 106px;
       padding: 18px 18px 16px;
       border-radius: 8px;
       overflow: hidden;
@@ -477,16 +463,18 @@
     }
 
     .workbench-section {
-      margin-top: 8px;
+      margin-top: 0;
       padding: 0;
     }
 
     .workbench-section .section-heading {
-      margin-bottom: 18px;
+      margin-bottom: 16px;
     }
 
     .workbench-section .section-heading h2 {
-      font-size: 32px;
+      font-size: 26px;
+      font-family: inherit;
+      font-weight: 720;
       line-height: 1.2;
     }
 
@@ -504,7 +492,7 @@
       color: var(--accent);
       font-size: 12px;
       font-weight: 850;
-      letter-spacing: .12em;
+      letter-spacing: 0;
       text-transform: uppercase;
     }
 
@@ -589,7 +577,7 @@
 
     main {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) 316px;
+      grid-template-columns: minmax(0, 1fr) 260px;
       gap: 20px;
       align-items: start;
     }
@@ -599,28 +587,28 @@
     }
 
     main.is-empty .primary-column {
-      width: min(100%, 980px);
+      width: 100%;
       justify-self: center;
     }
 
     main.is-empty .dropzone {
-      min-height: 250px;
-      padding: 30px;
+      min-height: 200px;
+      padding: 28px 36px;
     }
 
     main.is-empty .upload-icon {
-      width: 72px;
-      height: 72px;
-      margin-bottom: 20px;
+      width: 64px;
+      height: 64px;
+      margin: 0;
     }
 
     main.is-empty .drop-title {
-      font-size: 28px;
+      font-size: 23px;
     }
 
     main.is-empty .drop-copy {
-      max-width: 620px;
-      font-size: 15px;
+      max-width: 540px;
+      font-size: 14px;
     }
 
     .primary-column {
@@ -634,7 +622,7 @@
     .dropzone {
       background: rgba(251, 252, 252, .94);
       border: 1px solid var(--line);
-      box-shadow: var(--shadow);
+      box-shadow: 0 3px 12px rgba(19, 31, 36, .04);
     }
 
     .workspace {
@@ -645,26 +633,29 @@
 
     .dropzone {
       position: relative;
-      display: grid;
-      place-items: center;
-      min-height: 226px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      min-height: 200px;
       border-radius: 8px;
       border-style: dashed;
-      padding: 30px;
-      text-align: center;
+      padding: 28px 36px;
+      text-align: left;
       cursor: pointer;
       overflow: hidden;
       transition: border-color .2s ease, transform .2s ease, background .2s ease, box-shadow .2s ease;
     }
 
-    .dropzone::before {
-      content: "";
-      position: absolute;
-      inset: 14px;
-      border-radius: 6px;
-      border: 1px solid rgba(8, 125, 131, .12);
-      pointer-events: none;
-    }
+    .upload-content { display: flex; align-items: center; gap: 24px; min-width: 0; }
+    .upload-text { display: grid; gap: 8px; min-width: 0; }
+    .file-types { display: flex; gap: 8px; margin-top: 4px; }
+    .file-types span { border: 1px solid var(--line); border-radius: 4px; padding: 3px 7px; font-size: 11px; color: var(--muted); background: #fff; }
+    .upload-action { display: inline-flex; align-items: center; justify-content: center; min-height: 46px; min-width: 150px; padding: 12px 22px; border-radius: 6px; color: white; background: var(--accent); font-size: 14px; font-weight: 700; text-align: center; flex: 0 0 auto; }
+    .dropzone:focus-within { outline: 3px solid rgba(8, 125, 131, .3); outline-offset: 4px; }
+    .dropzone.is-loading { opacity: .65; cursor: progress; }
+    #workbenchMain:not(.is-empty) .dropzone { display: none; }
+    .replace-button { width: 38px; height: 38px; flex: 0 0 auto; border-radius: 6px; }
 
     .dropzone:hover,
     .dropzone.is-dragging {
@@ -679,18 +670,19 @@
       inset: 0;
       opacity: 0;
       cursor: pointer;
+      z-index: 1;
     }
 
     .upload-icon {
       width: 60px;
       height: 60px;
-      margin: 0 auto 16px;
-      border-radius: 50%;
-      background: var(--deep);
-      color: white;
+      margin: 0;
+      border-radius: 8px;
+      background: var(--accent-soft);
+      color: var(--accent);
       display: grid;
       place-items: center;
-      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .14), 0 14px 28px rgba(17, 25, 29, .18);
+      flex: 0 0 auto;
     }
 
     .upload-icon svg,
@@ -707,12 +699,12 @@
     .drop-title {
       margin: 0;
       color: var(--ink);
-      font-size: 24px;
-      font-weight: 760;
+      font-size: 23px;
+      font-weight: 700;
     }
 
     .drop-copy {
-      margin: 8px auto 0;
+      margin: 0;
       max-width: 560px;
       color: var(--muted);
       font-weight: 450;
@@ -728,14 +720,16 @@
     }
 
     .filebar {
-      display: flex;
-      justify-content: space-between;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 330px) 44px;
       gap: 12px;
       padding: 16px 18px;
       border-bottom: 1px solid var(--line);
       background: var(--panel);
       align-items: center;
     }
+
+    .filebar > div:first-child { flex: 1; min-width: 0; }
 
     .file-name {
       min-width: 0;
@@ -750,7 +744,7 @@
     }
 
     .status {
-      max-width: 360px;
+      max-width: 330px;
       color: var(--muted);
       font-size: 13px;
       line-height: 1.45;
@@ -780,7 +774,7 @@
 
     .wave-shell {
       position: relative;
-      min-height: 372px;
+      min-height: 290px;
       border: 1px solid #263139;
       border-radius: 8px;
       overflow: hidden;
@@ -793,7 +787,7 @@
     canvas {
       display: block;
       width: 100%;
-      height: 372px;
+      height: 290px;
     }
 
     .selection {
@@ -901,7 +895,7 @@
       min-height: 34px;
       padding: 0 12px;
       border: 1px solid #cfd8d8;
-      border-radius: 999px;
+      border-radius: 6px;
       background: #fff;
       color: var(--ink);
       cursor: pointer;
@@ -914,13 +908,13 @@
     }
 
     .icon {
-      width: 42px;
-      height: 42px;
+      width: 44px;
+      height: 44px;
       display: inline-grid;
       place-items: center;
       border: 1px solid #cfd8d8;
-      border-radius: 8px;
-      background: #ffffff;
+      border-radius: 6px;
+      background: #f3f7f6;
       color: var(--ink);
       cursor: pointer;
       transition: transform .16s ease, background .16s ease, border-color .16s ease;
@@ -959,7 +953,7 @@
       border-color: var(--accent);
       font-weight: 760;
       margin-left: auto;
-      box-shadow: 0 12px 24px rgba(8, 125, 131, .20);
+      box-shadow: none;
     }
 
     .icon.primary:hover:not(:disabled) {
@@ -1510,9 +1504,8 @@
       }
 
       .hero {
-        grid-template-columns: 1fr;
         min-height: auto;
-        padding: 26px;
+        padding: 28px;
       }
 
       .hero-visual {
@@ -1542,16 +1535,19 @@
       }
 
       .range-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
+      .range-grid label:last-child { grid-column: 1 / -1; }
 
       .status {
         text-align: left;
       }
 
       .filebar {
-        flex-direction: column;
+        grid-template-columns: minmax(0, 1fr) 44px;
       }
+      .filebar .status { grid-column: 1 / -1; grid-row: 2; max-width: none; text-align: left; }
+      .filebar .replace-button { grid-column: 2; grid-row: 1; }
 
       .side {
         position: static;
@@ -1596,15 +1592,22 @@
       }
 
       .top-actions {
-        justify-content: flex-start;
+        width: 100%;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        gap: 8px;
       }
+      .language-switcher { min-width: 0; flex: 0 1 140px; }
+      .language-switcher select { min-width: 0; }
+      .top-actions .badge { min-width: 0; flex: 1; padding: 6px 9px; white-space: normal; font-size: 11px; line-height: 1.4; box-shadow: none; }
 
       h1 {
-        font-size: 42px;
+        font-size: 32px;
+        overflow-wrap: anywhere;
       }
 
       .workbench-section .section-heading h2 {
-        font-size: 26px;
+        font-size: 24px;
       }
 
       .workbench-section .section-heading p:last-child {
@@ -1612,7 +1615,7 @@
       }
 
       .hero {
-        padding: 22px;
+        padding: 24px 20px;
       }
 
       .section-heading {
@@ -1629,17 +1632,24 @@
 
       .hero-actions {
         align-items: stretch;
-        flex-direction: column;
+        gap: 8px;
       }
 
       .hero-button,
       .ghost-button {
-        width: 100%;
+        flex: 1;
+        min-width: 0;
+        padding: 10px;
+        font-size: 13px;
+        text-align: center;
       }
 
       .hero-stats {
-        grid-template-columns: 1fr;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
       }
+      .stat span { line-height: 1.5; overflow-wrap: anywhere; }
 
       .hero-visual {
         min-height: 230px;
@@ -1658,22 +1668,28 @@
       }
 
       .dropzone {
-        min-height: 220px;
-        padding: 26px 22px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 20px;
+        min-height: 200px;
+        padding: 24px 20px;
       }
 
       main.is-empty .dropzone {
-        min-height: 220px;
-        padding: 24px 18px;
+        min-height: 200px;
+        padding: 24px 20px;
       }
 
       main.is-empty .drop-title {
-        font-size: 24px;
+        font-size: 20px;
       }
+      .upload-content { gap: 14px; align-items: flex-start; }
+      main.is-empty .upload-icon { width: 42px; height: 42px; }
+      .upload-action { width: 100%; min-width: 0; }
 
       .controls {
         display: grid;
-        grid-template-columns: repeat(4, 44px);
+        grid-template-columns: repeat(4, minmax(0, 1fr));
         padding: 12px;
       }
 
@@ -1700,6 +1716,7 @@
       .icon.preview {
         grid-column: 1 / -1;
         width: 100%;
+        min-width: 0;
         justify-content: center;
       }
 
@@ -1707,6 +1724,7 @@
         grid-column: 1 / -1;
         justify-content: center;
         width: 100%;
+        min-width: 0;
         margin-left: 0;
       }
 
@@ -1757,119 +1775,6 @@
       </div>
     </header>
 
-    <section class="tool-section workbench-section">
-      <div class="section-heading">
-        <div>
-          <p class="section-kicker" id="workbenchKicker">Präzisions-Arbeitsbereich</p>
-          <h2 id="workbenchTitle">Hochladen, auswählen, speichern</h2>
-        </div>
-        <p id="workbenchText">Audiodatei auswählen, Wellenform anpassen, Auswahl anhören und den Ausschnitt speichern.</p>
-      </div>
-
-      <main id="workbenchMain" class="is-empty">
-        <section class="primary-column">
-        <label class="dropzone" id="dropzone" tabindex="-1">
-          <input id="fileInput" type="file" accept="audio/*,.mp3,.wav" aria-labelledby="dropTitle dropCopy">
-          <span class="upload-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24"><path d="M12 16V4"></path><path d="m7 9 5-5 5 5"></path><path d="M20 16v4H4v-4"></path></svg>
-          </span>
-          <span class="drop-title" id="dropTitle">Musik hier ablegen oder Datei wählen</span>
-          <span class="drop-copy" id="dropCopy">MP3 oder WAV empfohlen. Der Browser liest nur die lokale Datei für die Vorschau und speichert einen Ausschnitt der Originaldaten.</span>
-        </label>
-
-        <div class="workspace editor" id="editor">
-          <div class="filebar">
-            <div>
-              <div class="file-name" id="fileName">Keine Datei ausgewählt</div>
-              <div class="file-meta" id="fileMeta">--</div>
-            </div>
-            <div class="status" id="qualityStatus">Warte auf Analyse des Audioformats</div>
-          </div>
-
-          <div class="wave-wrap">
-            <div class="wave-shell" id="waveShell">
-              <canvas id="waveCanvas" width="1" height="1"></canvas>
-              <div class="selection" id="selection"></div>
-              <div class="playhead" id="playhead"></div>
-            </div>
-            <div class="timeline">
-              <span id="timeLeft">00:00.000</span>
-              <span id="timeRight">00:00.000</span>
-            </div>
-            <div class="seek-row">
-              <label for="seekRange" id="seekLabel">Wiedergabe</label>
-              <input id="seekRange" type="range" min="0" max="0" step="0.001" value="0">
-              <strong id="seekTime">00:00.000</strong>
-            </div>
-          </div>
-
-          <div class="controls">
-            <button class="icon" id="playBtn" type="button" title="Abspielen oder pausieren">
-              <svg viewBox="0 0 24 24" id="playIcon"><path d="M8 5v14l11-7z"></path></svg>
-            </button>
-            <button class="icon" id="loopBtn" title="Auswahl wiederholen">
-              <svg viewBox="0 0 24 24"><path d="M17 2l4 4-4 4"></path><path d="M3 11V9a3 3 0 0 1 3-3h15"></path><path d="M7 22l-4-4 4-4"></path><path d="M21 13v2a3 3 0 0 1-3 3H3"></path></svg>
-            </button>
-            <button class="icon" id="fullBtn" title="Ganzen Track auswählen">
-              <svg viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2v3"></path><path d="M16 3h3a2 2 0 0 1 2 2v3"></path><path d="M8 21H5a2 2 0 0 1-2-2v-3"></path><path d="M16 21h3a2 2 0 0 0 2-2v-3"></path></svg>
-            </button>
-            <button class="icon danger" id="clearBtn" title="Erneut hochladen">
-              <svg viewBox="0 0 24 24"><path d="M3 6h18"></path><path d="M8 6V4h8v2"></path><path d="m19 6-1 14H6L5 6"></path><path d="M10 11v5"></path><path d="M14 11v5"></path></svg>
-            </button>
-            <button class="icon preview" id="previewBtn" type="button" aria-pressed="false" disabled="">
-              <svg viewBox="0 0 24 24" id="previewIcon" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
-              <span id="previewText">Auswahl anhören</span>
-            </button>
-            <button class="icon primary" id="saveBtn">
-              <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><path d="M7 10l5 5 5-5"></path><path d="M12 15V3"></path></svg>
-              <span id="saveText">Clip speichern</span>
-            </button>
-          </div>
-
-          <div class="preset-row">
-            <span id="presetLabel">Schnelle Länge</span>
-            <button class="preset" type="button" data-duration="15">15s</button>
-            <button class="preset" type="button" data-duration="30">30s</button>
-            <button class="preset" type="button" data-duration="60">60s</button>
-          </div>
-
-          <div class="range-grid">
-            <label>
-              <span id="startInputLabel">Startzeit</span>
-              <input id="startInput" type="number" min="0" step="0.001" value="0" max="0">
-            </label>
-            <label>
-              <span id="endInputLabel">Endzeit</span>
-              <input id="endInput" type="number" min="0" step="0.001" value="0" max="0">
-            </label>
-            <label>
-              <span id="outputNameLabel">Dateiname</span>
-              <input id="outputName" type="text" value="clip">
-            </label>
-          </div>
-        </div>
-        </section>
-
-        <aside class="side">
-        <section>
-          <h2 id="clipInfoTitle">Clip-Info</h2>
-          <div class="meter"><span id="meterStart">Start</span><strong id="startLabel">00:00.000</strong></div>
-          <div class="meter"><span id="meterEnd">Ende</span><strong id="endLabel">00:00.000</strong></div>
-          <div class="meter"><span id="meterLength">Länge</span><strong id="lengthLabel">00:00.000</strong></div>
-          <div class="meter"><span id="meterSize">Geschätzte Größe</span><strong id="sizeLabel">--</strong></div>
-        </section>
-
-        <section class="zoom">
-          <h2 id="zoomTitle">Wellenform-Zoom</h2>
-          <input id="zoomRange" type="range" min="1" max="8" step="0.25" value="1">
-        </section>
-
-        <p class="hint" id="formatHint">MP3 rastet am nächsten Audio-Frame ein; WAV am nächsten Sample-Block. Diese kleine Ausrichtung erhält die Originalqualität.</p>
-        <p class="hint warn" id="formatWarn">AAC, M4A, FLAC, OGG und ähnliche Container benötigen für echtes verlustfreies Schneiden eine Container-Neuschreibung; diese Version meldet sie als nicht unterstützt.</p>
-        </aside>
-      </main>
-    </section>
-
     <section class="hero">
       <div class="hero-copy">
         <div class="eyebrow" id="eyebrow">Studio für verlustfreies Audio</div>
@@ -1906,6 +1811,123 @@
           </div>
         </div>
       </div>
+    </section>
+
+    <section class="tool-section workbench-section">
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker" id="workbenchKicker">Präzisions-Arbeitsbereich</p>
+          <h2 id="workbenchTitle">Arbeitsbereich für Audioschnitt</h2>
+        </div>
+        <p id="workbenchText">Audiodatei auswählen, Wellenform anpassen, Auswahl anhören und den Ausschnitt speichern.</p>
+      </div>
+
+      <main id="workbenchMain" class="is-empty">
+        <section class="primary-column">
+        <label class="dropzone" id="dropzone" tabindex="-1">
+          <input id="fileInput" type="file" accept="audio/*,.mp3,.wav" aria-labelledby="dropTitle dropCopy">
+          <span class="upload-content"><span class="upload-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 16V4"></path><path d="m7 9 5-5 5 5"></path><path d="M20 16v4H4v-4"></path></svg>
+          </span>
+          <span class="upload-text"><span class="drop-title" id="dropTitle">Audio hier ablegen</span>
+          <span class="drop-copy" id="dropCopy">MP3 und WAV. Verarbeitung auf deinem Gerät.</span>
+          <span class="file-types" aria-hidden="true"><span>MP3</span><span>WAV</span></span></span></span>
+          <span class="upload-action" id="chooseAudio" aria-hidden="true">Audio auswählen</span>
+        </label>
+
+        <div class="workspace editor" id="editor">
+          <div class="filebar">
+            <div>
+              <div class="file-name" id="fileName">Keine Datei ausgewählt</div>
+              <div class="file-meta" id="fileMeta">--</div>
+            </div>
+            <div class="status" id="qualityStatus">Warte auf Analyse des Audioformats</div>
+            <button class="icon replace-button" id="replaceBtn" type="button" title="Audio wechseln" aria-label="Audio wechseln">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4"></path><path d="m7 9 5-5 5 5"></path><path d="M20 16v4H4v-4"></path></svg>
+            </button>
+          </div>
+
+          <div class="wave-wrap">
+            <div class="wave-shell" id="waveShell">
+              <canvas id="waveCanvas" width="1" height="1"></canvas>
+              <div class="selection" id="selection"></div>
+              <div class="playhead" id="playhead"></div>
+            </div>
+            <div class="timeline">
+              <span id="timeLeft">00:00.000</span>
+              <span id="timeRight">00:00.000</span>
+            </div>
+            <div class="seek-row">
+              <label for="seekRange" id="seekLabel">Wiedergabe</label>
+              <input id="seekRange" type="range" min="0" max="0" step="0.001" value="0">
+              <strong id="seekTime">00:00.000</strong>
+            </div>
+          </div>
+
+          <div class="preset-row">
+            <span id="presetLabel">Schnelle Länge</span>
+            <button class="preset" type="button" data-duration="15">15s</button>
+            <button class="preset" type="button" data-duration="30">30s</button>
+            <button class="preset" type="button" data-duration="60">60s</button>
+          </div>
+
+          <div class="range-grid">
+            <label>
+              <span id="startInputLabel">Startzeit</span>
+              <input id="startInput" type="number" min="0" step="0.001" value="0" max="0">
+            </label>
+            <label>
+              <span id="endInputLabel">Endzeit</span>
+              <input id="endInput" type="number" min="0" step="0.001" value="0" max="0">
+            </label>
+            <label>
+              <span id="outputNameLabel">Dateiname</span>
+              <input id="outputName" type="text" value="clip">
+            </label>
+          </div>
+          <div class="controls">
+            <button class="icon" id="playBtn" type="button" title="Abspielen oder pausieren">
+              <svg viewBox="0 0 24 24" id="playIcon"><path d="M8 5v14l11-7z"></path></svg>
+            </button>
+            <button class="icon" id="loopBtn" title="Auswahl wiederholen" aria-pressed="false">
+              <svg viewBox="0 0 24 24"><path d="M17 2l4 4-4 4"></path><path d="M3 11V9a3 3 0 0 1 3-3h15"></path><path d="M7 22l-4-4 4-4"></path><path d="M21 13v2a3 3 0 0 1-3 3H3"></path></svg>
+            </button>
+            <button class="icon" id="fullBtn" title="Ganzen Track auswählen">
+              <svg viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2v3"></path><path d="M16 3h3a2 2 0 0 1 2 2v3"></path><path d="M8 21H5a2 2 0 0 1-2-2v-3"></path><path d="M16 21h3a2 2 0 0 0 2-2v-3"></path></svg>
+            </button>
+            <button class="icon danger" id="clearBtn" title="Erneut hochladen">
+              <svg viewBox="0 0 24 24"><path d="M3 6h18"></path><path d="M8 6V4h8v2"></path><path d="m19 6-1 14H6L5 6"></path><path d="M10 11v5"></path><path d="M14 11v5"></path></svg>
+            </button>
+            <button class="icon preview" id="previewBtn" type="button" aria-pressed="false" disabled="">
+              <svg viewBox="0 0 24 24" id="previewIcon" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
+              <span id="previewText">Auswahl anhören</span>
+            </button>
+            <button class="icon primary" id="saveBtn">
+              <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><path d="M7 10l5 5 5-5"></path><path d="M12 15V3"></path></svg>
+              <span id="saveText">Clip speichern</span>
+            </button>
+          </div>
+        </div>
+        </section>
+
+        <aside class="side">
+        <section>
+          <h2 id="clipInfoTitle">Clip-Info</h2>
+          <div class="meter"><span id="meterStart">Start</span><strong id="startLabel">00:00.000</strong></div>
+          <div class="meter"><span id="meterEnd">Ende</span><strong id="endLabel">00:00.000</strong></div>
+          <div class="meter"><span id="meterLength">Länge</span><strong id="lengthLabel">00:00.000</strong></div>
+          <div class="meter"><span id="meterSize">Geschätzte Größe</span><strong id="sizeLabel">--</strong></div>
+        </section>
+
+        <section class="zoom">
+          <h2 id="zoomTitle">Wellenform-Zoom</h2>
+          <input id="zoomRange" type="range" min="1" max="8" step="0.25" value="1">
+        </section>
+
+        <p class="hint" id="formatHint">MP3 rastet am nächsten Audio-Frame ein; WAV am nächsten Sample-Block. Diese kleine Ausrichtung erhält die Originalqualität.</p>
+        <p class="hint warn" id="formatWarn">AAC, M4A, FLAC, OGG und ähnliche Container benötigen für echtes verlustfreies Schneiden eine Container-Neuschreibung; diese Version meldet sie als nicht unterstützt.</p>
+        </aside>
+      </main>
     </section>
 
     <section class="intro" id="intro" aria-label="Funktionen">
@@ -2170,9 +2192,19 @@
     // resource-copy:start
     const resourceTranslations = {"zh":{"heading":"音频剪切场景与教程","ringtone":"在线制作铃声：剪切 MP3 和 WAV 音乐片段","podcast":"播客片段剪切：截取采访、课程与语音录音","mp3":"如何剪切 MP3：选取时间、试听并保存片段","speech":"如何截取播客与采访录音：保留完整语句"},"en":{"heading":"Audio cutting use cases and guides","ringtone":"Make a ringtone online from an MP3 or WAV clip","podcast":"Trim podcast clips, interviews and lecture recordings","mp3":"How to cut an MP3: select, preview and save a clip","speech":"How to cut a podcast or interview without clipping words"},"ja":{"heading":"音声カットの利用シーンとガイド","ringtone":"MP3・WAVから着信音用の音声をオンラインで切り出す","podcast":"ポッドキャスト・インタビュー・講義の音声を切り出す","mp3":"MP3をカットする方法：時間指定・試聴・保存","speech":"ポッドキャストや会話を単語の途中で切らずに保存する方法"},"ko":{"heading":"오디오 자르기 활용 사례와 안내","ringtone":"MP3·WAV 구간을 잘라 온라인으로 벨소리 만들기","podcast":"팟캐스트·인터뷰·강의 녹음 구간 자르기","mp3":"MP3 자르는 방법: 시간 선택·미리듣기·저장","speech":"팟캐스트와 인터뷰에서 단어를 끊지 않고 구간 저장하기"},"fr":{"heading":"Usages et tutoriels de découpe audio","ringtone":"Créer une sonnerie en ligne à partir d’un MP3 ou WAV","podcast":"Découper des extraits de podcast, d’entretien ou de cours","mp3":"Comment couper un MP3 : sélectionner, écouter et enregistrer","speech":"Couper un podcast ou un entretien sans tronquer les mots"},"de":{"heading":"Anwendungen und Anleitungen zum Audioschnitt","ringtone":"Klingelton online aus einem MP3- oder WAV-Ausschnitt erstellen","podcast":"Podcast-Ausschnitte, Interviews und Vorlesungen schneiden","mp3":"MP3 schneiden: Bereich wählen, anhören und speichern","speech":"Podcast oder Interview schneiden, ohne Wörter abzutrennen"},"es":{"heading":"Usos y tutoriales para cortar audio","ringtone":"Crear un tono de llamada online con un MP3 o WAV","podcast":"Recortar fragmentos de pódcast, entrevistas y clases","mp3":"Cómo cortar un MP3: seleccionar, escuchar y guardar","speech":"Cómo cortar un pódcast o entrevista sin truncar palabras"}};
     // resource-copy:end
+    const workspaceTranslations = {
+      zh: { workbenchTitle: "音频剪切工作台", dropTitle: "把音频拖到这里", dropCopy: "支持 MP3 和 WAV，文件在你的设备上处理。", chooseAudio: "选择音频文件", replaceAudio: "更换音频", loadingAudio: "正在读取音频..." },
+      en: { workbenchTitle: "Audio cutting workspace", dropTitle: "Drop your audio here", dropCopy: "MP3 and WAV. Processed on your device.", chooseAudio: "Choose audio", replaceAudio: "Replace audio", loadingAudio: "Reading your audio..." },
+      ja: { workbenchTitle: "音声カットのワークスペース", dropTitle: "ここに音声をドロップ", dropCopy: "MP3・WAVに対応。ファイルは端末内で処理します。", chooseAudio: "音声ファイルを選択", replaceAudio: "音声を変更", loadingAudio: "音声を読み込み中..." },
+      ko: { workbenchTitle: "오디오 편집 작업 공간", dropTitle: "여기에 오디오를 놓으세요", dropCopy: "MP3·WAV 지원. 파일은 기기 안에서 처리됩니다.", chooseAudio: "오디오 파일 선택", replaceAudio: "오디오 변경", loadingAudio: "오디오 읽는 중..." },
+      fr: { workbenchTitle: "Espace de découpe audio", dropTitle: "Déposez votre audio ici", dropCopy: "MP3 et WAV. Traitement sur votre appareil.", chooseAudio: "Choisir un audio", replaceAudio: "Changer l’audio", loadingAudio: "Lecture du fichier..." },
+      de: { workbenchTitle: "Arbeitsbereich für Audioschnitt", dropTitle: "Audio hier ablegen", dropCopy: "MP3 und WAV. Verarbeitung auf deinem Gerät.", chooseAudio: "Audio auswählen", replaceAudio: "Audio wechseln", loadingAudio: "Audio wird geladen..." },
+      es: { workbenchTitle: "Espacio de edición de audio", dropTitle: "Arrastra tu audio aquí", dropCopy: "MP3 y WAV. Procesado en tu dispositivo.", chooseAudio: "Elegir audio", replaceAudio: "Cambiar audio", loadingAudio: "Leyendo el audio..." }
+    };
     const els = {
       dropzone: document.querySelector("#dropzone"),
       fileInput: document.querySelector("#fileInput"),
+      replaceBtn: document.querySelector("#replaceBtn"),
       editor: document.querySelector("#editor"),
       workbenchMain: document.querySelector("#workbenchMain"),
       fileName: document.querySelector("#fileName"),
@@ -3447,6 +3479,13 @@
     els.fileInput.addEventListener("change", (event) => {
       if (event.target.files[0]) loadFile(event.target.files[0]);
     });
+    els.replaceBtn.addEventListener("click", () => els.fileInput.click());
+    document.querySelector("#startCta").addEventListener("click", (event) => {
+      if (state.file) {
+        event.preventDefault();
+        els.editor.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    });
 
     els.converterInput.addEventListener("change", (event) => {
       if (event.target.files[0]) setConverterFile(event.target.files[0]);
@@ -3502,6 +3541,7 @@
     els.previewBtn.addEventListener("click", previewSelection);
     els.loopBtn.addEventListener("click", () => {
       state.loop = !state.loop;
+      els.loopBtn.setAttribute("aria-pressed", String(state.loop));
       els.loopBtn.style.background = state.loop ? "rgba(8, 125, 131, .14)" : "#ffffff";
     });
     els.fullBtn.addEventListener("click", () => setSelection(0, state.duration));
@@ -3516,8 +3556,9 @@
           showToast(t("converterUnavailable"));
           return;
         }
-        els.dropzone.scrollIntoView({ behavior: "smooth", block: "center" });
-        els.dropzone.focus({ preventScroll: true });
+        const target = state.file ? els.editor : els.dropzone;
+        target.scrollIntoView({ behavior: "smooth", block: "center" });
+        if (!state.file) els.dropzone.focus({ preventScroll: true });
       });
     });
     els.zoomRange.addEventListener("input", () => {
@@ -3738,25 +3779,30 @@
     }
 
     async function loadFile(file) {
+      if (els.dropzone.getAttribute("aria-busy") === "true") return;
       if (!file.type.startsWith("audio/") && !/\.(mp3|wav)$/i.test(file.name)) {
         showToast(t("invalidAudio"));
         return;
       }
 
-      resetPlayback();
-      state.file = file;
-      state.bytes = new Uint8Array(await file.arrayBuffer());
-      state.format = detectFormat(state.bytes, file);
-      state.audioUrl = URL.createObjectURL(file);
-      state.player.src = state.audioUrl;
-      els.fileName.textContent = file.name;
-      els.fileMeta.textContent = `${formatBytes(file.size)} · ${file.type || t("unknownType")}`;
-      els.outputName.value = cleanName(file.name.replace(/\.[^.]+$/, "")) + "-clip";
-
+      resetApp();
+      els.dropzone.setAttribute("aria-busy", "true");
+      els.dropzone.classList.add("is-loading");
+      els.fileInput.disabled = true;
+      els.replaceBtn.disabled = true;
+      document.querySelector("#chooseAudio").textContent = t("loadingAudio");
+      let audioContext;
       try {
-        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        state.file = file;
+        state.bytes = new Uint8Array(await file.arrayBuffer());
+        state.format = detectFormat(state.bytes, file);
+        state.audioUrl = URL.createObjectURL(file);
+        state.player.src = state.audioUrl;
+        els.fileName.textContent = file.name;
+        els.fileMeta.textContent = `${formatBytes(file.size)} · ${file.type || t("unknownType")}`;
+        els.outputName.value = cleanName(file.name.replace(/\.[^.]+$/, "")) + "-clip";
+        audioContext = new (window.AudioContext || window.webkitAudioContext)();
         state.audioBuffer = await audioContext.decodeAudioData(state.bytes.buffer.slice(0));
-        await audioContext.close();
         state.duration = state.audioBuffer.duration;
         state.start = 0;
         state.end = state.duration;
@@ -3771,9 +3817,18 @@
         syncInputs();
         syncSeekControl();
         trackFunnel("file_ready");
+        els.editor.scrollIntoView({ block: "start" });
       } catch (error) {
+        resetApp();
         showToast(t("decodeFail"));
         console.error(error);
+      } finally {
+        if (audioContext) await audioContext.close().catch(() => {});
+        els.dropzone.setAttribute("aria-busy", "false");
+        els.dropzone.classList.remove("is-loading");
+        els.fileInput.disabled = false;
+        els.replaceBtn.disabled = false;
+        document.querySelector("#chooseAudio").textContent = t("chooseAudio");
       }
     }
 
@@ -3797,6 +3852,9 @@
         peaks: []
       });
       els.fileInput.value = "";
+      els.zoomRange.value = "1";
+      els.loopBtn.style.removeProperty("background");
+      els.loopBtn.setAttribute("aria-pressed", "false");
       els.editor.classList.remove("is-ready");
       els.workbenchMain.classList.add("is-empty");
       els.side.classList.remove("is-ready");
@@ -4373,7 +4431,8 @@
     }
 
     function t(key) {
-      return (translations[state.lang] && translations[state.lang][key])
+      return workspaceTranslations[state.lang]?.[key]
+        || (translations[state.lang] && translations[state.lang][key])
         || (seoTranslations[state.lang] && seoTranslations[state.lang][key])
         || translations.en[key]
         || seoTranslations.en[key]
@@ -4413,7 +4472,7 @@
         "stat1Value", "stat1Label", "stat2Value", "stat2Label", "stat3Value", "stat3Label",
         "floatingLabel", "intro1Title", "intro1Text", "intro2Title", "intro2Text",
         "intro3Title", "intro3Text", "workbenchKicker", "workbenchTitle", "workbenchText",
-        "dropTitle", "dropCopy", "saveText",
+        "dropTitle", "dropCopy", "chooseAudio", "saveText",
         "seekLabel", "presetLabel",
         "startInputLabel", "endInputLabel", "outputNameLabel", "clipInfoTitle",
         "meterStart", "meterEnd", "meterLength", "meterSize", "zoomTitle",
@@ -4442,6 +4501,8 @@
       els.loopBtn.title = t("loopTitle");
       els.fullBtn.title = t("fullTitle");
       els.clearBtn.title = t("clearTitle");
+      els.replaceBtn.title = t("replaceAudio");
+      els.replaceBtn.setAttribute("aria-label", t("replaceAudio"));
 
       if (!state.file) {
         els.fileName.textContent = t("noFile");
