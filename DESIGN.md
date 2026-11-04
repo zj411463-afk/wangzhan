@@ -12,7 +12,7 @@ growing for translations. Two smooth thin canvas waves use a six-second cycle,
 not rapid beats. Pause offscreen and when hidden; honor reduced-motion.
 This ambient animation does not measure user audio.
 
-Loaded workbench: large light waveform left and 270px settings column right,
+Loaded workbench: large light waveform left and 310px settings column right,
 with presets, numeric inputs, filename, preview and save. Playback transport
 sits under the waveform. Do not fabricate stereo data: retain combined peaks.
 Keep audio parsing, selection, export and anonymous tracking unchanged.
@@ -32,6 +32,19 @@ changes, keeping URLs, metadata and internal links intact. See SEO.md.
 Keep the unopened converter inside a collapsed details section, preserving its
 content and controls without dominating the cutter page. Existing tutorial and
 scene content stays available; do not invent new conversion capabilities.
+
+Typography follows the larger page proportions: desktop hero 58px, supporting
+copy 18px, workbench heading 34px, upload title 34px and upload copy 18px.
+Mobile uses a 32px hero, 26px workbench heading and 16px upload copy. No fluid
+viewport-based type scaling. Keep compact labels at 14px and numeric fields
+at 17px with tabular numerals. Field unit `s` means seconds, not HH:MM formatting.
+
+The continuous pale settings strip groups presets, input fields and actions.
+Presets share one equal-width row; exact matching lengths use aria-pressed.
+Inputs are 50px high, preview/save at least 54px. Transport uses restrained
+46px icon buttons with a distinct 52px circular play control. Use subtle pressed,
+hover and visible keyboard focus states. Do not add a custom dialog just for
+decoration: native file selection and existing localized download notices remain.
 
 Reusable UI check: run `.github/scripts/check-editor-ui.cjs` with NODE_PATH and
 CHROME_PATH configured as for render-locales.cjs. It checks seven languages at

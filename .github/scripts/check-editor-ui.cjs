@@ -7,7 +7,7 @@ const { pathToFileURL } = require("node:url");
 const { chromium } = require("playwright");
 
 function fixture() {
-  const rate = 22050, samples = rate * 8;
+  const rate = 22050, samples = rate * 32;
   const wav = Buffer.alloc(44 + samples * 2);
   wav.write("RIFF"); wav.writeUInt32LE(wav.length - 8, 4);
   wav.write("WAVEfmt ", 8); wav.writeUInt32LE(16, 16);
@@ -56,13 +56,22 @@ function fixture() {
         await page.screenshot({ path: path.join(output, "empty-desktop.png") });
       }
       await page.setViewportSize({ width: 1440, height: 1000 });
+      if (locale === "zh") {
+        const chooser = page.waitForEvent("filechooser");
+        await page.locator("#fileInput").click();
+        await chooser;
+      }
       await page.setInputFiles("#fileInput", { name: "studio-test.wav", mimeType: "audio/wav", buffer: fixture() });
       await page.waitForSelector("#editor.is-ready");
       await page.waitForFunction(() => document.querySelector("#dropzone").getAttribute("aria-busy") === "false");
+      await page.locator('.preset[data-duration="15"]').click();
+      assert.equal(await page.locator('.preset[data-duration="15"]').getAttribute("aria-pressed"), "true");
       await page.locator("#startInput").fill("1");
       await page.locator("#startInput").dispatchEvent("input");
       await page.locator("#endInput").fill("3");
       await page.locator("#endInput").dispatchEvent("input");
+      assert.equal(await page.locator('.preset[data-duration="15"]').getAttribute("aria-pressed"), "false");
+      assert(await page.locator("#startInput").evaluate(input => input.getBoundingClientRect().height >= 50));
       const geometry = await page.evaluate(() => {
         const wave = document.querySelector(".wave-wrap").getBoundingClientRect();
         const controls = document.querySelector(".controls").getBoundingClientRect();
@@ -87,7 +96,10 @@ function fixture() {
         await page.setViewportSize({ width, height: 844 });
         assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `${locale} overflow at ${width}`);
         const action = await page.locator("#saveBtn").boundingBox();
-        assert(action.width >= 44 && action.height >= 44);
+        assert(action.width >= 44 && action.height >= 53.99, `${locale} action size at ${width}: ${JSON.stringify(action)}`);
+        assert(await page.locator("#saveBtn").evaluate(button => parseFloat(getComputedStyle(button).minHeight) >= 54));
+        assert(await page.locator("#saveBtn").evaluate(button => button.scrollWidth <= button.clientWidth + 1));
+        assert(await page.locator("#previewBtn").evaluate(button => button.scrollWidth <= button.clientWidth + 1));
       }
       if (locale === "zh") {
         await page.setViewportSize({ width: 390, height: 844 });
