@@ -15,8 +15,10 @@ The desktop introduction is at least 450px high, with full-bleed moving artwork
 and an image-aligned light sweep. The glow uses the same artwork and cover
 framing as the image; both move together. Do not overlay detached equalizer bars
 or a second illustration. Flowing canvas traces use the artwork's source
-coordinates and the same cover mapping; pause their animation offscreen and
-when the page is hidden. Use a mint title accent rather than rainbow text.
+coordinates and the same cover mapping, with an obvious pulsing amplitude and
+a soft filled waveform body. The ambient beat is decorative, not a measurement
+of the user's audio. Pause animation offscreen and when the page is hidden.
+Use a mint title accent rather than rainbow text.
 Honor reduced-motion preferences. Keep the image unframed and text readable
 over its dark overlay.
 

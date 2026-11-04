@@ -4598,7 +4598,6 @@
       const surface = canvas.getContext("2d");
       if (!surface) return;
       const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
-      const trace = new Path2D("M330 300 C390 300 420 268 458 257 C486 250 489 233 521 225 C550 207 554 257 588 242 C614 232 601 188 627 198 C657 211 674 230 713 224 C758 217 792 242 822 221 C855 192 872 236 920 214");
       let width = 0, height = 0, ratio = 1, frame = 0, lastPaint = 0, visible = true;
 
       function resize() {
@@ -4625,21 +4624,44 @@
           color.addColorStop(.65, "#b8fff1");
           color.addColorStop(1, "#e18cbf");
           const time = now / 1000;
+          const beat = Math.pow((Math.sin(time * Math.PI * 3.2) + 1) / 2, 2);
+          const amplitude = 20 + beat * 68;
+          const upper = [], lower = [];
+          for (let x = 390; x <= 930; x += 3) {
+            const position = (x - 390) / 540;
+            const envelope = Math.pow(Math.sin(position * Math.PI), 1.3);
+            const energy = .25 + .75 * Math.abs(Math.sin(x * .075 - time * 6) * Math.sin(x * .025 + time * 2));
+            const center = 232 + Math.sin(position * 8 - time * 1.5) * 9;
+            const height = amplitude * envelope * energy;
+            upper.push([x, center - height]);
+            lower.push([x, center + height]);
+          }
+          surface.beginPath();
+          upper.forEach(([x, y], index) => index ? surface.lineTo(x, y) : surface.moveTo(x, y));
+          lower.reverse().forEach(([x, y]) => surface.lineTo(x, y));
+          surface.closePath();
+          surface.fillStyle = color;
+          surface.globalAlpha = .24;
+          surface.fill();
+          surface.globalAlpha = 1;
           for (let index = 0; index < 3; index++) {
             surface.save();
-            surface.translate(0, Math.sin(time * 1.4 + index) * 7 + (index - 1) * 12);
             surface.strokeStyle = color;
             surface.shadowColor = "#63e5dc";
-            surface.shadowBlur = 12;
-            surface.lineWidth = 1.2;
-            surface.globalAlpha = .18;
-            surface.setLineDash([]);
-            surface.stroke(trace);
-            surface.globalAlpha = .85 - index * .15;
-            surface.lineWidth = 2.2 - index * .3;
-            surface.setLineDash([18 + index * 6, 220 + index * 40]);
-            surface.lineDashOffset = -time * (90 + index * 20) + index * 75;
-            surface.stroke(trace);
+            surface.shadowBlur = 14;
+            surface.lineWidth = 2.6 - index * .5;
+            surface.globalAlpha = .95 - index * .2;
+            surface.beginPath();
+            for (let x = 390; x <= 930; x += 3) {
+              const position = (x - 390) / 540;
+              const envelope = Math.pow(Math.sin(position * Math.PI), 1.3);
+              const carrier = Math.sin(position * 30 - time * 5 + index * .8) * .72 + Math.sin(position * 61 + time * 3) * .28;
+              const center = 232 + Math.sin(position * 8 - time * 1.5) * 9;
+              const y = center + carrier * amplitude * envelope * (1 - index * .18);
+              if (x === 390) surface.moveTo(x, y);
+              else surface.lineTo(x, y);
+            }
+            surface.stroke();
             surface.restore();
           }
         }
