@@ -1,13 +1,13 @@
 # Sonic Cutter interface
 
-Approved direction C: compact photographic studio banner above a large light
+Approved direction C: generous photographic studio banner above a large light
 audio workbench. Palette: white, cool gray `#f3f6f5`, ink `#141a1f`, teal
 `#087d83`, mint selection and restrained pink ambient audio traces.
 Use Inter / Avenir Next / system sans, medium-weight headings, zero tracking.
 Keep controls at 6px radius; sections are unframed, not nested cards.
 
 Banner asset: `assets/sonic-studio.jpg`. Headphones left, mixing desk right,
-quiet center for localized H1. Banner around 240px desktop / 200px mobile,
+quiet center for localized H1. Banner around 480px desktop / 280px mobile,
 growing for translations. Two smooth thin canvas waves use a six-second cycle,
 not rapid beats. Pause offscreen and when hidden; honor reduced-motion.
 This ambient animation does not measure user audio.
@@ -18,8 +18,10 @@ sits under the waveform. Do not fabricate stereo data: retain combined peaks.
 Keep audio parsing, selection, export and anonymous tracking unchanged.
 
 At 900px stack waveform and settings. At 560px give preview/save separate
-full-width actions and keep inputs at 16px. Empty upload area at least 320px
-desktop / 280px mobile. Waveform 360px desktop / 280px mobile. Test all seven
+full-width actions and keep inputs at 16px. Empty upload area at least 420px
+desktop / 360px mobile, centered vertically: icon, introduction, then a wide
+selection button below. Section introduction sits under its title, not at the
+far right. Waveform 360px desktop / 280px mobile. Test all seven
 languages at 320px. Use localized accessible names for icon controls.
 
 Regenerate localized editor snapshots after source changes. The generator,

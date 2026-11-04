@@ -35,6 +35,27 @@ function fixture() {
       await page.goto(pathToFileURL(path.resolve(locale === "zh" ? "index.html" : `${locale}/index.html`)).href);
       await page.selectOption("#languageSelect", locale);
       assert(await page.locator(".hero-art").evaluate(img => img.complete && img.naturalWidth > 0));
+      for (const width of [1440, 320, 390, 768]) {
+        await page.setViewportSize({ width, height: 1000 });
+        const empty = await page.evaluate(() => {
+          const box = selector => document.querySelector(selector).getBoundingClientRect();
+          const title = box("#dropTitle"), copy = box("#dropCopy"), action = box("#chooseAudio");
+          return { below: action.top >= copy.bottom, centered: Math.abs((title.left + title.width / 2) - (action.left + action.width / 2)) < 2,
+            actionWidth: action.width, heroHeight: box(".hero").height, dropHeight: box("#dropzone").height,
+            overflow: document.documentElement.scrollWidth > innerWidth };
+        });
+        assert(empty.below && empty.centered && !empty.overflow, `${locale} empty layout at ${width}`);
+        assert(empty.actionWidth >= 200 && empty.heroHeight >= (width > 560 ? 480 : 280));
+        assert(empty.dropHeight >= (width > 560 ? 420 : 360));
+      }
+      if (locale === "zh") {
+        await page.screenshot({ path: path.join(output, "empty-tablet.png") });
+        await page.setViewportSize({ width: 390, height: 844 });
+        await page.screenshot({ path: path.join(output, "empty-mobile.png") });
+        await page.setViewportSize({ width: 1440, height: 1100 });
+        await page.screenshot({ path: path.join(output, "empty-desktop.png") });
+      }
+      await page.setViewportSize({ width: 1440, height: 1000 });
       await page.setInputFiles("#fileInput", { name: "studio-test.wav", mimeType: "audio/wav", buffer: fixture() });
       await page.waitForSelector("#editor.is-ready");
       await page.waitForFunction(() => document.querySelector("#dropzone").getAttribute("aria-busy") === "false");

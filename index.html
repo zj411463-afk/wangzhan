@@ -1721,13 +1721,13 @@
       }
     }
 
-    /* C direction: compact photographic header and a wide, light editing surface. */
+    /* C direction: generous photographic header and a wide, light editing surface. */
     body { background: #f3f6f5; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
     .brand, h1, h2, h3, .section-heading h2, .seo-section h2, .drop-title { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; font-weight: 650; }
-    .hero { min-height: 240px; padding: 44px 24px 64px; margin: 8px 0 28px; border-radius: 6px; display: grid; place-items: center; text-align: center; }
+    .hero { min-height: 480px; padding: 64px 32px 96px; margin: 8px 0 28px; border-radius: 6px; display: grid; place-items: center; text-align: center; }
     .hero::before { background: rgba(10, 19, 21, .22); }
     .hero-copy { max-width: 760px; }
-    .hero h1 { font-size: 40px; max-width: 760px; }
+    .hero h1 { font-size: 44px; max-width: 760px; }
     .hero h1 span { color: #b7eee5; }
     .hero .subtitle { margin: 12px auto 0; max-width: 680px; font-size: 14px; line-height: 1.65; color: #e0e9e8; }
     .hero .eyebrow, .hero-actions, .hero-stats, .hero-glow { display: none; }
@@ -1735,8 +1735,14 @@
     .hero-art { filter: none; }
     .hero-wave { opacity: .85; }
     #workbenchMain { grid-template-columns: minmax(0, 1fr); gap: 0; }
-    .workbench-section .section-heading { margin-bottom: 16px; }
+    .workbench-section .section-heading { grid-template-columns: 1fr; gap: 10px; margin-bottom: 20px; }
     .workbench-section .section-heading h2 { font-size: 28px; }
+    main.is-empty .dropzone { min-height: 420px; padding: 44px 32px; flex-direction: column; justify-content: center; align-items: center; gap: 26px; text-align: center; }
+    main.is-empty .upload-content { flex-direction: column; align-items: center; gap: 20px; width: 100%; }
+    main.is-empty .upload-text { justify-items: center; gap: 10px; }
+    main.is-empty .drop-copy { max-width: 640px; }
+    main.is-empty .file-types { justify-content: center; }
+    main.is-empty .upload-action { width: min(100%, 320px); min-height: 54px; font-size: 16px; }
     .workspace { border-radius: 6px; box-shadow: none; background: #fff; }
     .editor.is-ready { display: grid; grid-template-columns: minmax(0, 1fr) 270px; align-items: start; }
     .filebar { grid-column: 1 / -1; background: #fff; padding: 18px 22px; }
@@ -1783,7 +1789,7 @@
     }
     @media (max-width: 560px) {
       header { margin-bottom: 16px; }
-      .hero { min-height: 200px; padding: 28px 18px 52px; }
+      .hero { min-height: 280px; padding: 40px 18px 64px; }
       .hero h1 { font-size: 27px; line-height: 1.25; }
       .hero .subtitle { font-size: 12px; line-height: 1.6; }
       .hero-art { object-position: 42% center; }
@@ -1798,7 +1804,8 @@
       .controls .icon.preview, .controls .icon.primary { grid-column: 1; }
       .side section:first-child { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .seek-row { gap: 6px; }
-      main.is-empty .dropzone { min-height: 280px; }
+      main.is-empty .dropzone { min-height: 360px; padding: 32px 20px; gap: 24px; }
+      main.is-empty .upload-icon { width: 60px; height: 60px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
