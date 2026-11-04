@@ -12,8 +12,11 @@ above the workbench in actual HTML order, including localized snapshots. At mobi
 widths, keep an indication of the following workbench in the first viewport.
 
 The desktop introduction is at least 450px high, with full-bleed moving artwork
-and subtle equalizer bars. Honor reduced-motion preferences. Keep the image
-unframed and text readable over its dark overlay.
+and an image-aligned light sweep. The glow uses the same artwork and cover
+framing as the image; both move together. Do not overlay detached equalizer bars
+or a second illustration. Use a mint title accent rather than rainbow text.
+Honor reduced-motion preferences. Keep the image unframed and text readable
+over its dark overlay.
 
 The empty workbench is a full-width file drop target with one border, at least
 320px high on desktop and 300px on mobile, and a clear file-selection action.
