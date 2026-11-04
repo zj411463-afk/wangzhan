@@ -16,13 +16,14 @@ test("deployment contains only public site files", () => {
     assert.deepEqual(readdirSync(output).sort(), [
       "404.html", "_worker.js", "assets", ...locales, "scenes", "guides", "index.html", "robots.txt", "sitemap.xml", "video-to-audio.html"
     ].sort());
-    assert.deepEqual(readdirSync(path.join(output, "assets")).sort(), ["audio-selection.png", "reading.css", "sonic-hero.jpg", "sonic-studio.jpg"]);
+    assert.deepEqual(readdirSync(path.join(output, "assets")).sort(), ["audio-selection.png", "reading.css", "sonic-hero.jpg", "sonic-lavender.jpg", "sonic-studio.jpg"]);
     assert.match(readFileSync(path.join(output, "404.html"), "utf8"), /name="robots" content="noindex"/);
     const home = readFileSync(path.join(output, "index.html"), "utf8");
     const script = (html) => html.match(/<script>([\s\S]*?)<\/script>/)?.[1];
     assert.ok(script(home));
     const style = (html) => html.match(/<style>([\s\S]*?)<\/style>/)?.[1];
     const ids = (html) => [...html.matchAll(/\bid="([^"]+)"/g)].map((match) => match[1]).sort();
+    assert.equal(new Set(ids(home)).size, ids(home).length, "Editor controls must keep unique IDs for event wiring");
     const schema = (html) => JSON.parse(html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1]);
     const sitemap = readFileSync(path.join(output, "sitemap.xml"), "utf8");
     for (const locale of locales) {

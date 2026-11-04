@@ -1,53 +1,40 @@
 # Sonic Cutter interface
 
-Approved direction C: generous photographic studio banner above a large light
-audio workbench. Palette: white, cool gray `#f3f6f5`, ink `#141a1f`, teal
-`#087d83`, mint selection and restrained pink ambient audio traces.
-Use Inter / Avenir Next / system sans, medium-weight headings, zero tracking.
-Keep controls at 6px radius; sections are unframed, not nested cards.
+The user's lavender reference (2026-11-04) supersedes the previous teal direction.
+Change the header, hero and editor layout; preserve the lower introduction,
+scene/tutorial links, FAQ and SEO content layout. Lower sections only inherit
+the coordinated palette: lavender-white `#f6f3ff`, white tools, ink `#17152d`,
+muted `#706c8b`, primary violet `#7643e8`, soft selection `#eee6ff`.
+Use system sans with zero tracking. Keep controls at 6px and the editor at 8px.
 
-Banner asset: `assets/sonic-studio.jpg`. Headphones left, mixing desk right,
-quiet center for localized H1. Banner around 480px desktop / 280px mobile,
-growing for translations. Two smooth thin canvas waves use a six-second cycle,
-not rapid beats. Pause offscreen and when hidden; honor reduced-motion.
-This ambient animation does not measure user audio.
+Hero asset: `assets/sonic-lavender.jpg`, generated bitmap headphones on the right
+with empty space on the left. Desktop copy stays within 65% of the width. Keep
+the entire headphones visible with contain framing. At 600px and below, place
+the image at the bottom beneath the text. Hero is at least 300px desktop / 320px
+mobile and grows for translated text. Retain the original H1 and SEO metadata.
+Ambient canvas waves stay slow (six seconds), decorative, paused offscreen and
+when hidden, disabled for reduced-motion. They do not measure uploaded audio.
 
-Loaded workbench: large light waveform left and 310px settings column right,
-with presets, numeric inputs, filename, preview and save. Playback transport
-sits under the waveform. Do not fabricate stereo data: retain combined peaks.
-Keep audio parsing, selection, export and anonymous tracking unchanged.
+Loaded editor order: file header, five-point timeline, full-width waveform,
+seek slider, horizontal editing footer. Footer groups existing playback icons,
+start/end numeric inputs, duration output, filename, presets, preview and save.
+At 1100px use two footer columns; at 600px stack all sections. Keep preview a
+distinct accessible action, not hidden behind ordinary playback. Never fabricate
+stereo data: use the existing combined peaks. Inputs remain numeric seconds.
 
-At 900px stack waveform and settings. At 560px give preview/save separate
-full-width actions and keep inputs at 16px. Empty upload area at least 420px
-desktop / 360px mobile, centered vertically: icon, introduction, then a wide
-selection button below. Section introduction sits under its title, not at the
-far right. Waveform 360px desktop / 280px mobile. Test all seven
-languages at 320px. Use localized accessible names for icon controls.
+Preserve IDs and listener wiring for fileInput, previewBtn, saveBtn and transport
+controls. The original anonymous events remain page_open, file_ready,
+preview_started and download_started, deduplicated per page. Do not send filenames
+or audio. `check-funnel-ui.cjs` exercises this flow against a local mock endpoint
+without polluting production analytics. Export continues to slice original data.
 
-Regenerate localized editor snapshots after source changes. The generator,
-public allowlist and release tests must include the new banner asset. Update
-`assets/audio-selection.png` and regenerate scene/tutorial content after visual
-changes, keeping URLs, metadata and internal links intact. See SEO.md.
+Keep unopened conversion controls in the existing collapsed section. Do not add
+unavailable conversion, merging or volume tools merely because the reference has
+them. Header links point to the real cutter and existing introduction section.
 
-Keep the unopened converter inside a collapsed details section, preserving its
-content and controls without dominating the cutter page. Existing tutorial and
-scene content stays available; do not invent new conversion capabilities.
-
-Typography follows the larger page proportions: desktop hero 58px, supporting
-copy 18px, workbench heading 34px, upload title 34px and upload copy 18px.
-Mobile uses a 32px hero, 26px workbench heading and 16px upload copy. No fluid
-viewport-based type scaling. Keep compact labels at 14px and numeric fields
-at 17px with tabular numerals. Field unit `s` means seconds, not HH:MM formatting.
-
-The continuous pale settings strip groups presets, input fields and actions.
-Presets share one equal-width row; exact matching lengths use aria-pressed.
-Inputs are 50px high, preview/save at least 54px. Transport uses restrained
-46px icon buttons with a distinct 52px circular play control. Use subtle pressed,
-hover and visible keyboard focus states. Do not add a custom dialog just for
-decoration: native file selection and existing localized download notices remain.
-
-Reusable UI check: run `.github/scripts/check-editor-ui.cjs` with NODE_PATH and
-CHROME_PATH configured as for render-locales.cjs. It checks seven languages at
-320/390/768px, desktop column geometry, preview stopping, and byte-identical WAV
-sample export. It also refreshes the English tutorial editor screenshot; run
-render-content.cjs afterwards so image dimensions stay synchronized.
+Regenerate seven localized editor snapshots after source changes. Update localized
+image alts, public asset allowlist and release tests when changing the hero asset.
+Run check-editor-ui.cjs for desktop, 320/390/768px mobile, native file selection,
+preview stopping, preset states and byte-preserving WAV export. It refreshes the
+English editor screenshot; run render-content.cjs afterwards. Check release and
+anonymous funnel tests before publishing. See SEO.md for generation commands.

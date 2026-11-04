@@ -5,12 +5,12 @@ const { pathToFileURL } = require("node:url");
 const { chromium } = require("playwright");
 const locales = ["en", "ja", "ko", "fr", "de", "es"];
 const imageAlts = {
-  en: "Headphones and mixing console in a recording studio",
-  ja: "録音スタジオのヘッドホンとミキサー",
-  ko: "녹음실의 헤드폰과 믹싱 콘솔",
-  fr: "Casque et console de mixage dans un studio",
-  de: "Kopfhörer und Mischpult in einem Tonstudio",
-  es: "Auriculares y mesa de mezclas en un estudio"
+  en: "Lavender headphones and flowing audio waves",
+  ja: "ラベンダー色のヘッドホンと音の波",
+  ko: "라벤더색 헤드폰과 오디오 파형",
+  fr: "Casque lavande et ondes audio",
+  de: "Lavendelfarbene Kopfhörer und Klangwellen",
+  es: "Auriculares lavanda y ondas de audio"
 };
 
 (async () => {
@@ -35,7 +35,7 @@ const imageAlts = {
       document.querySelectorAll(".locale-links a[data-locale]").forEach((link) => {
         link.setAttribute("href", link.dataset.locale === "zh" ? "../" : `../${link.dataset.locale}/`);
       });
-      document.querySelector(".hero-art").setAttribute("src", "../assets/sonic-studio.jpg");
+      document.querySelector(".hero-art").setAttribute("src", "../assets/sonic-lavender.jpg");
       document.querySelector(".hero-art").setAttribute("alt", imageAlt);
       const style = document.querySelector("head style");
       style.textContent = style.textContent.replaceAll('url("assets/sonic-hero.jpg")', 'url("../assets/sonic-hero.jpg")');

@@ -1848,6 +1848,134 @@
       .section-heading h2, .seo-section h2 { font-size: 25px; }
     }
 
+    /* User-approved lavender reference: compact hero and a horizontal cutting desk. */
+    :root { --bg: #f6f3ff; --ink: #17152d; --muted: #706c8b; --line: #e7e0f4; --panel: #fff; --panel-2: #f7f4fd; --accent: #7643e8; --accent-soft: #eee6ff; --deep: #201a39; }
+    body { background: #f6f3ff; color: var(--ink); }
+    header { gap: 24px; }
+    .brand { color: #19152f; font-size: 23px; }
+    .brand-mark { background: transparent; color: var(--accent); box-shadow: none; border-radius: 0; }
+    .brand-mark svg { width: 30px; height: 30px; }
+    .header-nav { display: flex; gap: 28px; margin-right: auto; align-self: stretch; }
+    .header-nav a { display: inline-flex; align-items: center; min-height: 44px; color: var(--muted); font-size: 15px; font-weight: 600; text-decoration: none; border-bottom: 2px solid transparent; }
+    .header-nav a:hover, .header-nav a.is-current { color: var(--ink); border-color: var(--accent); }
+    .language-switcher, .badge { border-color: #e4dcf7; background: #ffffffa6; box-shadow: none; }
+    .badge { color: #706080; }
+    .hero { min-height: 300px; margin: 0 0 20px; padding: 32px 20px; color: var(--ink); text-align: left; place-items: center start; background: #f6f3ff; border-radius: 0; }
+    .hero::before { display: none; }
+    .hero-copy { max-width: 820px; width: 65%; }
+    .hero h1 { font-size: 46px; max-width: 820px; line-height: 1.2; }
+    .hero h1 span { color: #4d2a92; }
+    .hero .subtitle { margin: 16px 0 0; max-width: 740px; color: #5c5674; font-size: 17px; line-height: 1.8; }
+    .hero-art { object-fit: contain; object-position: right center; }
+    .hero-wave { opacity: .35; mix-blend-mode: multiply; }
+    .hero-stats { display: flex; flex-wrap: wrap; gap: 12px; max-width: none; margin-top: 24px; padding: 0; border: 0; }
+    .stat { display: flex; align-items: center; gap: 8px; padding: 10px 14px; border-radius: 6px; background: #ffffffbf; }
+    .stat strong { color: #6534c4; font-size: 16px; }
+    .stat span { color: #514b68; font-size: 12px; margin: 0; }
+    .workbench-section .section-heading { gap: 6px; margin-bottom: 16px; }
+    .workbench-section .section-heading h2 { font-size: 24px; }
+    .workbench-section .section-heading p:last-child { font-size: 14px; }
+    .workbench-section .section-kicker { display: none; }
+    .workspace, .dropzone { border-color: #eae3f7; border-radius: 8px; box-shadow: 0 12px 40px #6439b50a; }
+    main.is-empty .dropzone:hover .upload-action { background: #6433ce; box-shadow: 0 6px 18px #7643e826; }
+    main.is-empty .upload-action { box-shadow: 0 4px 12px #7643e81a; }
+    .dropzone:focus-within { outline-color: #7643e859; }
+    .dropzone:hover, .dropzone.is-dragging { border-color: #a27be7; box-shadow: 0 12px 32px #7643e812; }
+    .task-card:hover { border-color: #baa0eb; }
+    .editor.is-ready { display: block; }
+    .filebar { grid-template-columns: minmax(0, 1fr) minmax(0, 330px) auto; padding: 22px 28px; }
+    .filebar .status.good { background: #f5f0ff; color: #654a91; border-color: #e9dff8; }
+    .replace-button { width: auto; min-height: 46px; padding: 0 14px; display: inline-flex; gap: 8px; font-size: 14px; font-weight: 600; background: #fff; }
+    .wave-wrap { display: flex; flex-direction: column; padding: 18px 28px 14px; }
+    .timeline { order: -1; padding: 0 0 12px; color: #514966; font-size: 12px; }
+    .wave-shell { min-height: 220px; border: 0; background: #fcfbff; border-radius: 0; }
+    .wave-shell canvas { height: 220px; }
+    .selection { background: #9256f521; border-color: #9454f2; }
+    .selection::before, .selection::after { top: auto; bottom: -2px; transform: none; width: 9px; height: 26px; border: 2px solid #9250f5; border-radius: 3px; background: #d9c3ff; box-shadow: none; }
+    .selection::before { left: -6px; }
+    .selection::after { right: -6px; }
+    .playhead { background: #6032b5; }
+    .seek-row { padding-top: 12px; }
+    .editor-footer { display: grid; grid-template-columns: 240px minmax(0, 1fr) 220px; gap: 18px 24px; padding: 16px 28px 28px; align-items: start; }
+    .editor-settings { display: contents; }
+    .transport { grid-column: 1; grid-row: 1; margin: 0; padding: 0; border: 0; gap: 8px; }
+    .transport .icon { border-radius: 50%; background: #f4f0fc; border-color: transparent; color: #655880; }
+    .transport #playBtn { background: #7945ef; border-color: #7945ef; color: #fff; margin-right: 2px; }
+    .transport #loopBtn[aria-pressed="true"] { background: #e8dbff; border-color: #9b78ed; color: #6336bc; }
+    .transport .danger { margin-left: 0; }
+    .preset-row { grid-column: 1; grid-row: 2; }
+    .preset { border-color: #e5ddf4; box-shadow: none; }
+    .preset[aria-pressed="true"] { color: #6032b5; background: #eee5ff; border-color: #956ce7; box-shadow: none; }
+    .range-grid { grid-column: 2; grid-row: 1 / 3; grid-template-columns: repeat(3, minmax(0, 1fr)); padding: 0; gap: 14px; }
+    .range-grid label { min-width: 0; font-size: 13px; gap: 8px; }
+    .range-grid input { min-width: 0; min-height: 50px; border-color: #e3daf5; background: #fcfaff; font-size: 16px; box-shadow: none; }
+    .range-grid label:last-child { grid-column: 1 / -1; }
+    .clip-duration { display: grid; gap: 8px; min-width: 0; font-size: 13px; font-weight: 600; color: var(--muted); }
+    .clip-duration output { min-height: 50px; display: flex; align-items: center; padding: 0 12px; background: #f6f2fc; border-radius: 6px; font-size: 16px; color: #4f4665; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+    .controls { grid-column: 3; grid-row: 1 / 3; padding: 0; margin: 0; border: 0; gap: 12px; }
+    .controls .icon.preview { color: #7140cf; border-color: #e2d5fa; background: #fff; }
+    .controls .icon.preview:hover:not(:disabled), .controls .icon.preview.is-active { background: #eee5ff; border-color: #a07ae7; }
+    .controls .icon.primary { background: #7945ef; border-color: #7945ef; box-shadow: 0 5px 14px #7643e81a; }
+    .controls .icon.primary:hover:not(:disabled) { background: #6934d9; border-color: #6934d9; box-shadow: 0 7px 16px #7643e826; }
+    input[type="number"]:focus, input[type="text"]:focus, select:focus { border-color: #9c76e5; box-shadow: 0 0 0 3px #7643e818; }
+    button:focus-visible, summary:focus-visible, a:focus-visible { outline-color: #7643e859; }
+    .side section:first-child { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .side .meter { border-color: #e0d5f4; }
+    .side h2 { color: #5c5274; }
+    .hint, .converter-note { background: #7643e80a; color: #65527c; border-left-color: #ad8be8; }
+    .hint.warn, .converter-note.warn { background: #fff7e8; color: #786244; border-left-color: #d4b77e; }
+    .compare-table th { background: #f0ebfa; }
+    .step-card::before { background: #7744d7; }
+    .task-card, .seo-item, .faq details { border-color: #e7e0f4; }
+    .toast { background: #302345; border-color: #594070; box-shadow: 0 10px 30px #603b8d26; }
+    @media (max-width: 1100px) {
+      .top-actions .badge { display: none; }
+      .header-nav { gap: 20px; }
+      .hero h1 { font-size: 40px; }
+      .editor-footer { grid-template-columns: minmax(220px, 1fr) minmax(0, 1fr); }
+      .range-grid { grid-column: 1 / -1; grid-row: 3; }
+      .controls { grid-column: 2; grid-row: 1 / 3; }
+    }
+    @media (max-width: 900px) {
+      header { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 10px; align-items: center; }
+      .top-actions { grid-column: 2; grid-row: 1; width: auto; }
+      .header-nav { grid-column: 1 / -1; }
+    }
+    @media (max-width: 600px) {
+      header { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 10px; align-items: center; }
+      .brand { font-size: 19px; gap: 7px; }
+      .brand-mark { width: 30px; height: 36px; }
+      .top-actions { grid-column: 2; grid-row: 1; width: auto; }
+      .language-switcher { max-width: 130px; padding: 0 6px; }
+      .language-switcher select { font-size: 12px; }
+      .header-nav { grid-column: 1 / -1; gap: 24px; }
+      .header-nav a { min-height: 40px; font-size: 14px; }
+      .hero { min-height: 320px; padding: 22px 10px 120px; }
+      .hero-copy { width: 100%; }
+      .hero h1 { font-size: 30px; }
+      .hero .subtitle { font-size: 14px; margin-top: 12px; line-height: 1.75; }
+      .hero-art { object-fit: contain; object-position: right bottom; }
+      .hero-stats { gap: 6px; margin-top: 16px; }
+      .stat { padding: 8px; flex: 1; min-width: 0; display: grid; gap: 5px; }
+      .stat strong { font-size: 14px; }
+      .stat span { font-size: 11px; line-height: 1.4; overflow-wrap: anywhere; }
+      .filebar { grid-template-columns: minmax(0, 1fr) auto; padding: 16px; }
+      .filebar .status { grid-column: 1 / -1; }
+      .replace-button { padding: 0 10px; }
+      .replace-button span { display: none; }
+      .wave-wrap { padding: 16px 12px 10px; }
+      .wave-shell { min-height: 200px; }
+      .wave-shell canvas { height: 200px; }
+      #timeQuarter, #timeThreeQuarter { display: none; }
+      .timeline { font-size: 11px; }
+      .editor-footer { grid-template-columns: minmax(0, 1fr); gap: 20px; padding: 16px; }
+      .transport { grid-column: 1; grid-row: 1; }
+      .preset-row { grid-column: 1; grid-row: 2; }
+      .range-grid { grid-column: 1; grid-row: 3; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .clip-duration, .range-grid label:last-child { grid-column: 1 / -1; }
+      .controls { grid-column: 1; grid-row: 4; grid-template-columns: 1fr; }
+    }
+
     @media (prefers-reduced-motion: reduce) {
       .hero-visual, .hero-glow, .dropzone .upload-icon svg { animation: none !important; }
       .hero-glow { opacity: 0; }
@@ -1871,6 +1999,10 @@
         </span>
         Sonic Cutter
       </div>
+      <nav class="header-nav" aria-label="Navigation">
+        <a href="#workbenchMain" class="is-current" data-chrome="navCut">Audio Cutter</a>
+        <a href="#intro" data-chrome="navGuide">How It Works</a>
+      </nav>
       <div class="top-actions">
         <label class="language-switcher" for="languageSelect">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z"></path><path d="M3.6 9h16.8"></path><path d="M3.6 15h16.8"></path><path d="M12 3a14 14 0 0 1 0 18"></path><path d="M12 3a14 14 0 0 0 0 18"></path></svg>
@@ -1905,7 +2037,7 @@
         </div>
       </div>
       <div class="hero-visual" aria-hidden="true">
-        <img class="hero-art" src="../assets/sonic-studio.jpg" alt="Headphones and mixing console in a recording studio" fetchpriority="high" width="1800" height="600">
+        <img class="hero-art" src="../assets/sonic-lavender.jpg" alt="Lavender headphones and flowing audio waves" fetchpriority="high" width="1800" height="600">
         <div class="hero-glow"></div>
         <canvas class="hero-wave" id="heroWave" aria-hidden="true" width="1" height="1"></canvas>
       </div>
@@ -1942,6 +2074,7 @@
             <div class="status" id="qualityStatus">Waiting to analyze audio format</div>
             <button class="icon replace-button" id="replaceBtn" type="button" title="Replace audio" aria-label="Replace audio">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4"></path><path d="m7 9 5-5 5 5"></path><path d="M20 16v4H4v-4"></path></svg>
+              <span id="replaceText">Replace audio</span>
             </button>
           </div>
 
@@ -1953,6 +2086,9 @@
             </div>
             <div class="timeline">
               <span id="timeLeft">00:00.000</span>
+              <span id="timeQuarter" aria-hidden="true">00:00.000</span>
+              <span id="timeMiddle" aria-hidden="true">00:00.000</span>
+              <span id="timeThreeQuarter" aria-hidden="true">00:00.000</span>
               <span id="timeRight">00:00.000</span>
             </div>
             <div class="seek-row">
@@ -1960,7 +2096,10 @@
               <input id="seekRange" type="range" min="0" max="0" step="0.001" value="0">
               <strong id="seekTime">00:00.000</strong>
             </div>
-            <div class="transport" id="transport"><button class="icon" id="playBtn" type="button" title="Play or pause">
+          </div>
+
+          <div class="editor-footer">
+          <div class="transport" id="transport"><button class="icon" id="playBtn" type="button" title="Play or pause">
               <svg viewBox="0 0 24 24" id="playIcon"><path d="M8 5v14l11-7z"></path></svg>
             </button><button class="icon" id="loopBtn" title="Loop selected range" aria-pressed="false">
               <svg viewBox="0 0 24 24"><path d="M17 2l4 4-4 4"></path><path d="M3 11V9a3 3 0 0 1 3-3h15"></path><path d="M7 22l-4-4 4-4"></path><path d="M21 13v2a3 3 0 0 1-3 3H3"></path></svg>
@@ -1969,8 +2108,6 @@
             </button><button class="icon danger" id="clearBtn" title="Upload again">
               <svg viewBox="0 0 24 24"><path d="M3 6h18"></path><path d="M8 6V4h8v2"></path><path d="m19 6-1 14H6L5 6"></path><path d="M10 11v5"></path><path d="M14 11v5"></path></svg>
             </button></div>
-          </div>
-
           <div class="editor-settings">
           <div class="preset-row">
             <span id="presetLabel">Quick length</span>
@@ -1988,6 +2125,10 @@
               <span id="endInputLabel">End time</span>
               <input id="endInput" type="number" min="0" step="0.001" value="0" max="0">
             </label>
+            <div class="clip-duration">
+              <span id="meterLength">Length</span>
+              <output id="lengthLabel">00:00.000</output>
+            </div>
             <label>
               <span id="outputNameLabel">File name</span>
               <input id="outputName" type="text" value="clip">
@@ -2008,6 +2149,7 @@
             </button>
           </div>
           </div>
+          </div>
         </div>
         </section>
 
@@ -2016,7 +2158,6 @@
           <h2 id="clipInfoTitle">Clip info</h2>
           <div class="meter"><span id="meterStart">Start</span><strong id="startLabel">00:00.000</strong></div>
           <div class="meter"><span id="meterEnd">End</span><strong id="endLabel">00:00.000</strong></div>
-          <div class="meter"><span id="meterLength">Length</span><strong id="lengthLabel">00:00.000</strong></div>
           <div class="meter"><span id="meterSize">Estimated size</span><strong id="sizeLabel">--</strong></div>
         </section>
 
@@ -3644,7 +3785,6 @@
     els.loopBtn.addEventListener("click", () => {
       state.loop = !state.loop;
       els.loopBtn.setAttribute("aria-pressed", String(state.loop));
-      els.loopBtn.style.background = state.loop ? "rgba(8, 125, 131, .14)" : "#ffffff";
     });
     els.fullBtn.addEventListener("click", () => setSelection(0, state.duration));
     els.clearBtn.addEventListener("click", resetApp);
@@ -4022,7 +4162,7 @@
       const width = rect.width || 1;
       const height = rect.height || 320;
       ctx.clearRect(0, 0, width, height);
-      ctx.fillStyle = "#f8fbfa";
+      ctx.fillStyle = "#fcfbff";
       ctx.fillRect(0, 0, width, height);
 
       if (!state.peaks.length) {
@@ -4041,7 +4181,7 @@
       const peakEnd = Math.min(state.peaks.length, Math.ceil(endRatio * state.peaks.length));
       const visiblePeaks = state.peaks.slice(peakStart, peakEnd);
 
-      ctx.strokeStyle = "rgba(8,125,131,.08)";
+      ctx.strokeStyle = "rgba(114,65,219,.06)";
       ctx.lineWidth = 1;
       for (let i = 0; i < 8; i++) {
         const y = (height / 8) * i;
@@ -4051,7 +4191,7 @@
         ctx.stroke();
       }
 
-      ctx.strokeStyle = "#279c98";
+      ctx.strokeStyle = "#a689ee";
       ctx.lineWidth = Math.max(1, width / visiblePeaks.length);
       for (let x = 0; x < width; x++) {
         const index = Math.floor((x / width) * visiblePeaks.length);
@@ -4158,6 +4298,9 @@
       els.lengthLabel.textContent = formatTime(Math.max(0, state.end - state.start));
       els.timeLeft.textContent = formatTime(state.offset);
       els.timeRight.textContent = formatTime(Math.min(state.duration, state.offset + visibleDuration()));
+      ["timeQuarter", "timeMiddle", "timeThreeQuarter"].forEach((id, index) => {
+        document.getElementById(id).textContent = formatTime(Math.min(state.duration, state.offset + visibleDuration() * (index + 1) / 4));
+      });
       els.sizeLabel.textContent = estimateSize();
       document.querySelectorAll(".preset").forEach(button => {
         button.setAttribute("aria-pressed", String(Math.abs(state.end - state.start - Number(button.dataset.duration)) < .001));
@@ -4564,6 +4707,15 @@
       document.querySelector('meta[name="twitter:description"]').setAttribute("content", t("metaDescription"));
       document.querySelector('meta[property="og:title"]').content = document.title;
       document.querySelector('meta[name="twitter:title"]').content = document.title;
+      const chrome = {
+        zh: ["音频剪切", "使用说明"], en: ["Audio Cutter", "How It Works"],
+        ja: ["音声カット", "使い方"], ko: ["오디오 자르기", "사용 안내"],
+        fr: ["Découpe audio", "Mode d’emploi"], de: ["Audio schneiden", "Anleitung"],
+        es: ["Cortar audio", "Cómo funciona"]
+      }[nextLang];
+      document.querySelectorAll("[data-chrome]").forEach(element => {
+        element.textContent = chrome[element.dataset.chrome === "navCut" ? 0 : 1];
+      });
       document.querySelectorAll("[data-resource]").forEach((element) => {
         const key = element.dataset.resource;
         element.textContent = resourceTranslations[nextLang][key];
@@ -4607,6 +4759,7 @@
       els.fullBtn.title = t("fullTitle");
       els.clearBtn.title = t("clearTitle");
       els.replaceBtn.title = t("replaceAudio");
+      document.getElementById("replaceText").textContent = t("replaceAudio");
       els.replaceBtn.setAttribute("aria-label", t("replaceAudio"));
 
       if (!state.file) {
@@ -4751,17 +4904,17 @@
           surface.clearRect(0, 0, canvas.width, canvas.height);
           surface.setTransform(ratio, 0, 0, ratio, 0, 0);
           const color = surface.createLinearGradient(0, 0, width, 0);
-          color.addColorStop(0, "rgba(99,229,220,0)");
-          color.addColorStop(.35, "rgba(99,229,220,.8)");
-          color.addColorStop(.65, "#b8fff1");
-          color.addColorStop(1, "#e18cbf");
+          color.addColorStop(0, "rgba(129,77,245,0)");
+          color.addColorStop(.35, "rgba(129,77,245,.12)");
+          color.addColorStop(.65, "#c5adfc");
+          color.addColorStop(1, "#baa2f4");
           const time = now / 1000;
           const phase = time * Math.PI / 3;
           const amplitude = 8 + (Math.sin(phase) + 1) * 5;
           for (let index = 0; index < 2; index++) {
             surface.save();
             surface.strokeStyle = color;
-            surface.shadowColor = "#63e5dc";
+            surface.shadowColor = "#c6b1f7";
             surface.shadowBlur = 6;
             surface.lineWidth = 1.8 - index * .4;
             surface.globalAlpha = .8 - index * .25;

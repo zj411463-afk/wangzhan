@@ -35,7 +35,7 @@ function fixture() {
       await page.goto(pathToFileURL(path.resolve(locale === "zh" ? "index.html" : `${locale}/index.html`)).href);
       await page.selectOption("#languageSelect", locale);
       assert(await page.locator(".hero-art").evaluate(img => img.complete && img.naturalWidth > 0));
-      for (const width of [1440, 320, 390, 768]) {
+      for (const width of [1440, 320, 390, 600, 640, 768, 900, 1100]) {
         await page.setViewportSize({ width, height: 1000 });
         const empty = await page.evaluate(() => {
           const box = selector => document.querySelector(selector).getBoundingClientRect();
@@ -45,7 +45,7 @@ function fixture() {
             overflow: document.documentElement.scrollWidth > innerWidth };
         });
         assert(empty.below && empty.centered && !empty.overflow, `${locale} empty layout at ${width}`);
-        assert(empty.actionWidth >= 200 && empty.heroHeight >= (width > 560 ? 480 : 280));
+        assert(empty.actionWidth >= 200 && empty.heroHeight >= (width > 600 ? 300 : 320));
         assert(empty.dropHeight >= (width > 560 ? 420 : 360));
       }
       if (locale === "zh") {
@@ -75,9 +75,9 @@ function fixture() {
       const geometry = await page.evaluate(() => {
         const wave = document.querySelector(".wave-wrap").getBoundingClientRect();
         const controls = document.querySelector(".controls").getBoundingClientRect();
-        return { waveRight: wave.right, controlsLeft: controls.left, waveWidth: wave.width };
+        return { waveBottom: wave.bottom, controlsTop: controls.top, waveWidth: wave.width };
       });
-      assert(geometry.waveWidth > 800 && geometry.controlsLeft >= geometry.waveRight - 1);
+      assert(geometry.waveWidth > 1100 && geometry.controlsTop >= geometry.waveBottom - 1);
       await page.locator("#previewBtn").click();
       await page.waitForFunction(() => document.querySelector("#previewBtn").getAttribute("aria-pressed") === "true");
       await page.waitForFunction(() => document.querySelector("#previewBtn").getAttribute("aria-pressed") === "false");
@@ -92,7 +92,7 @@ function fixture() {
       assert(saved.subarray(44).equals(source.subarray(44 + 22050 * 2, 44 + 22050 * 6)), "WAV export must preserve original sample bytes");
       await page.locator("#editor").scrollIntoViewIfNeeded();
       if (locale === "en") await page.locator("#editor").screenshot({ path: "assets/audio-selection.png" });
-      for (const width of [320, 390, 768]) {
+      for (const width of [320, 390, 600, 640, 768, 900, 1100]) {
         await page.setViewportSize({ width, height: 844 });
         assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `${locale} overflow at ${width}`);
         const action = await page.locator("#saveBtn").boundingBox();

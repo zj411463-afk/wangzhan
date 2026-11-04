@@ -9,7 +9,7 @@ if (existsSync(output) && readdirSync(output).length) {
 
 const files = [
   "index.html", "video-to-audio.html", "404.html", "robots.txt", "sitemap.xml",
-  "_worker.js", "assets/sonic-hero.jpg", "assets/sonic-studio.jpg", "assets/audio-selection.png", "assets/reading.css",
+  "_worker.js", "assets/sonic-hero.jpg", "assets/sonic-studio.jpg", "assets/sonic-lavender.jpg", "assets/audio-selection.png", "assets/reading.css",
   ...contentFiles,
   ...["en", "ja", "ko", "fr", "de", "es"].map((locale) => `${locale}/index.html`)
 ];
