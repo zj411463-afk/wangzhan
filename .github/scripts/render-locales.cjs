@@ -5,12 +5,12 @@ const { pathToFileURL } = require("node:url");
 const { chromium } = require("playwright");
 const locales = ["en", "ja", "ko", "fr", "de", "es"];
 const imageAlts = {
-  en: "Sonic Cutter waveform editor preview",
-  ja: "Sonic Cutter の波形エディターのプレビュー",
-  ko: "Sonic Cutter 파형 편집기 미리보기",
-  fr: "Aperçu de l’éditeur de forme d’onde Sonic Cutter",
-  de: "Vorschau des Sonic Cutter Wellenform-Editors",
-  es: "Vista previa del editor de onda Sonic Cutter"
+  en: "Headphones and mixing console in a recording studio",
+  ja: "録音スタジオのヘッドホンとミキサー",
+  ko: "녹음실의 헤드폰과 믹싱 콘솔",
+  fr: "Casque et console de mixage dans un studio",
+  de: "Kopfhörer und Mischpult in einem Tonstudio",
+  es: "Auriculares y mesa de mezclas en un estudio"
 };
 
 (async () => {
@@ -35,7 +35,7 @@ const imageAlts = {
       document.querySelectorAll(".locale-links a[data-locale]").forEach((link) => {
         link.setAttribute("href", link.dataset.locale === "zh" ? "../" : `../${link.dataset.locale}/`);
       });
-      document.querySelector(".hero-art").setAttribute("src", "../assets/sonic-hero.jpg");
+      document.querySelector(".hero-art").setAttribute("src", "../assets/sonic-studio.jpg");
       document.querySelector(".hero-art").setAttribute("alt", imageAlt);
       const style = document.querySelector("head style");
       style.textContent = style.textContent.replaceAll('url("assets/sonic-hero.jpg")', 'url("../assets/sonic-hero.jpg")');

@@ -16,7 +16,7 @@ test("deployment contains only public site files", () => {
     assert.deepEqual(readdirSync(output).sort(), [
       "404.html", "_worker.js", "assets", ...locales, "scenes", "guides", "index.html", "robots.txt", "sitemap.xml", "video-to-audio.html"
     ].sort());
-    assert.deepEqual(readdirSync(path.join(output, "assets")).sort(), ["audio-selection.png", "reading.css", "sonic-hero.jpg"]);
+    assert.deepEqual(readdirSync(path.join(output, "assets")).sort(), ["audio-selection.png", "reading.css", "sonic-hero.jpg", "sonic-studio.jpg"]);
     assert.match(readFileSync(path.join(output, "404.html"), "utf8"), /name="robots" content="noindex"/);
     const home = readFileSync(path.join(output, "index.html"), "utf8");
     const script = (html) => html.match(/<script>([\s\S]*?)<\/script>/)?.[1];

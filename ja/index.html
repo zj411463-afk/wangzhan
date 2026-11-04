@@ -1716,6 +1716,86 @@
       }
     }
 
+    /* C direction: compact photographic header and a wide, light editing surface. */
+    body { background: #f3f6f5; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
+    .brand, h1, h2, h3, .section-heading h2, .seo-section h2, .drop-title { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; font-weight: 650; }
+    .hero { min-height: 240px; padding: 44px 24px 64px; margin: 8px 0 28px; border-radius: 6px; display: grid; place-items: center; text-align: center; }
+    .hero::before { background: rgba(10, 19, 21, .22); }
+    .hero-copy { max-width: 760px; }
+    .hero h1 { font-size: 40px; max-width: 760px; }
+    .hero h1 span { color: #b7eee5; }
+    .hero .subtitle { margin: 12px auto 0; max-width: 680px; font-size: 14px; line-height: 1.65; color: #e0e9e8; }
+    .hero .eyebrow, .hero-actions, .hero-stats, .hero-glow { display: none; }
+    .hero-visual { min-height: 0; transform: none; animation: none; }
+    .hero-art { filter: none; }
+    .hero-wave { opacity: .85; }
+    #workbenchMain { grid-template-columns: minmax(0, 1fr); gap: 0; }
+    .workbench-section .section-heading { margin-bottom: 16px; }
+    .workbench-section .section-heading h2 { font-size: 28px; }
+    .workspace { border-radius: 6px; box-shadow: none; background: #fff; }
+    .editor.is-ready { display: grid; grid-template-columns: minmax(0, 1fr) 270px; align-items: start; }
+    .filebar { grid-column: 1 / -1; background: #fff; padding: 18px 22px; }
+    .wave-wrap { grid-column: 1; grid-row: 2 / 5; padding: 22px; background: #fff; border-right: 1px solid var(--line); }
+    .wave-shell { min-height: 360px; background: #f8fbfa; border: 1px solid #e0e9e6; border-radius: 4px; box-shadow: none; }
+    .wave-shell canvas { height: 360px; }
+    .selection { background: rgba(47, 193, 178, .15); border-color: #087d83; }
+    .selection::before, .selection::after { background: #087d83; border-color: #fff; border-radius: 5px; width: 12px; height: 38px; box-shadow: 0 2px 6px #163d3d22; }
+    .playhead { background: #234c50; }
+    .preset-row { grid-column: 2; padding: 20px 18px 0; }
+    .range-grid { grid-column: 2; grid-template-columns: 1fr; padding: 16px 18px; background: #fff; border: 0; }
+    .range-grid label:last-child { grid-column: auto; }
+    .controls { grid-column: 2; display: grid; grid-template-columns: 1fr; padding: 0 18px 20px; border: 0; gap: 10px; background: #fff; }
+    .controls .icon.preview, .controls .icon.primary { margin: 0; width: 100%; min-width: 0; height: auto; min-height: 46px; justify-content: center; white-space: normal; }
+    .transport { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; padding-top: 18px; }
+    .transport .icon { width: 44px; height: 44px; border-radius: 6px; }
+    #playBtn { border-radius: 50%; background: #087d83; color: #fff; border-color: #087d83; }
+    .side.is-ready { display: grid; grid-template-columns: minmax(0, 2fr) minmax(160px, 1fr); gap: 16px 32px; position: static; border: 0; box-shadow: none; background: transparent; padding: 20px 0; }
+    .side section:first-child { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+    .side section:first-child h2 { grid-column: 1 / -1; }
+    .side .meter { display: grid; gap: 8px; border: 0; padding: 0; }
+    .side .hint { margin: 0; }
+    .intro { gap: 24px; }
+    .intro-card { background: transparent; box-shadow: none; border: 0; border-top: 1px solid var(--line); border-radius: 0; padding: 20px 0; }
+    .intro-card::before, .intro-card::after { display: none; }
+    .section-heading h2, .seo-section h2 { font-size: 28px; line-height: 1.25; }
+    .seo-section { border: 0; border-top: 1px solid var(--line); border-radius: 0; padding: 28px 0; background: transparent; box-shadow: none; }
+    .seo-item, .step-card { background: transparent; border: 0; border-top: 1px solid var(--line); border-radius: 0; padding: 18px 0; }
+    .task-card { box-shadow: none; border-radius: 6px; }
+    .task-card.is-locked { display: none; }
+    #converter { border-block: 1px solid var(--line); padding: 16px 0; }
+    #converter > summary { cursor: pointer; color: var(--muted); font-size: 14px; }
+    #converter[open] > summary { margin-bottom: 20px; }
+    input[type="number"], input[type="text"], .icon, .preset { border-radius: 6px; }
+    @media (max-width: 900px) {
+      .editor.is-ready { grid-template-columns: minmax(0, 1fr); }
+      .filebar, .wave-wrap, .range-grid, .preset-row, .controls { grid-column: 1; grid-row: auto; }
+      .wave-wrap { border-right: 0; border-bottom: 1px solid var(--line); }
+      .range-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .range-grid label:last-child { grid-column: 1 / -1; }
+      .controls { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .controls .icon.preview, .controls .icon.primary { grid-column: auto; }
+      .side.is-ready { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 560px) {
+      header { margin-bottom: 16px; }
+      .hero { min-height: 200px; padding: 28px 18px 52px; }
+      .hero h1 { font-size: 27px; line-height: 1.25; }
+      .hero .subtitle { font-size: 12px; line-height: 1.6; }
+      .hero-art { object-position: 42% center; }
+      .hero::before { background: rgba(10,19,21,.48); }
+      .workbench-section .section-heading h2 { font-size: 23px; }
+      .filebar { padding: 14px; }
+      .wave-wrap { padding: 12px; }
+      .wave-shell { min-height: 280px; }
+      .wave-shell canvas { height: 280px; }
+      .range-grid, .controls { padding-left: 14px; padding-right: 14px; grid-template-columns: 1fr; }
+      .range-grid label:last-child { grid-column: auto; }
+      .controls .icon.preview, .controls .icon.primary { grid-column: 1; }
+      .side section:first-child { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .seek-row { gap: 6px; }
+      main.is-empty .dropzone { min-height: 280px; }
+    }
+
     @media (prefers-reduced-motion: reduce) {
       .hero-visual, .hero-glow, .dropzone .upload-icon svg { animation: none !important; }
       .hero-glow { opacity: 0; }
@@ -1773,7 +1853,7 @@
         </div>
       </div>
       <div class="hero-visual" aria-hidden="true">
-        <img class="hero-art" src="../assets/sonic-hero.jpg" alt="Sonic Cutter の波形エディターのプレビュー">
+        <img class="hero-art" src="../assets/sonic-studio.jpg" alt="録音スタジオのヘッドホンとミキサー" fetchpriority="high" width="1800" height="600">
         <div class="hero-glow"></div>
         <canvas class="hero-wave" id="heroWave" aria-hidden="true" width="1" height="1"></canvas>
       </div>
@@ -1828,6 +1908,15 @@
               <input id="seekRange" type="range" min="0" max="0" step="0.001" value="0">
               <strong id="seekTime">00:00.000</strong>
             </div>
+            <div class="transport" id="transport"><button class="icon" id="playBtn" type="button" title="再生 / 一時停止">
+              <svg viewBox="0 0 24 24" id="playIcon"><path d="M8 5v14l11-7z"></path></svg>
+            </button><button class="icon" id="loopBtn" title="選択範囲をループ" aria-pressed="false">
+              <svg viewBox="0 0 24 24"><path d="M17 2l4 4-4 4"></path><path d="M3 11V9a3 3 0 0 1 3-3h15"></path><path d="M7 22l-4-4 4-4"></path><path d="M21 13v2a3 3 0 0 1-3 3H3"></path></svg>
+            </button><button class="icon" id="fullBtn" title="全体を選択">
+              <svg viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2v3"></path><path d="M16 3h3a2 2 0 0 1 2 2v3"></path><path d="M8 21H5a2 2 0 0 1-2-2v-3"></path><path d="M16 21h3a2 2 0 0 0 2-2v-3"></path></svg>
+            </button><button class="icon danger" id="clearBtn" title="再アップロード">
+              <svg viewBox="0 0 24 24"><path d="M3 6h18"></path><path d="M8 6V4h8v2"></path><path d="m19 6-1 14H6L5 6"></path><path d="M10 11v5"></path><path d="M14 11v5"></path></svg>
+            </button></div>
           </div>
 
           <div class="preset-row">
@@ -1852,18 +1941,10 @@
             </label>
           </div>
           <div class="controls">
-            <button class="icon" id="playBtn" type="button" title="再生 / 一時停止">
-              <svg viewBox="0 0 24 24" id="playIcon"><path d="M8 5v14l11-7z"></path></svg>
-            </button>
-            <button class="icon" id="loopBtn" title="選択範囲をループ" aria-pressed="false">
-              <svg viewBox="0 0 24 24"><path d="M17 2l4 4-4 4"></path><path d="M3 11V9a3 3 0 0 1 3-3h15"></path><path d="M7 22l-4-4 4-4"></path><path d="M21 13v2a3 3 0 0 1-3 3H3"></path></svg>
-            </button>
-            <button class="icon" id="fullBtn" title="全体を選択">
-              <svg viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2v3"></path><path d="M16 3h3a2 2 0 0 1 2 2v3"></path><path d="M8 21H5a2 2 0 0 1-2-2v-3"></path><path d="M16 21h3a2 2 0 0 0 2-2v-3"></path></svg>
-            </button>
-            <button class="icon danger" id="clearBtn" title="再アップロード">
-              <svg viewBox="0 0 24 24"><path d="M3 6h18"></path><path d="M8 6V4h8v2"></path><path d="m19 6-1 14H6L5 6"></path><path d="M10 11v5"></path><path d="M14 11v5"></path></svg>
-            </button>
+            
+            
+            
+            
             <button class="icon preview" id="previewBtn" type="button" aria-pressed="false" disabled="">
               <svg viewBox="0 0 24 24" id="previewIcon" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
               <span id="previewText">選択範囲を試聴</span>
@@ -1911,7 +1992,8 @@
       </article>
     </section>
 
-    <section class="tool-section" id="converter">
+    <details class="tool-section" id="converter">
+      <summary data-i18n="converterComingSoon">近日公開</summary>
       <div class="section-heading">
         <div>
           <p class="section-kicker" data-i18n="converterKicker">形式変換</p>
@@ -1986,7 +2068,7 @@
           </p>
         </aside>
       </div>
-    </section>
+    </details>
 
     <section class="task-section" aria-labelledby="taskTitle">
       <div class="section-heading">
@@ -3886,7 +3968,7 @@
       const width = rect.width || 1;
       const height = rect.height || 320;
       ctx.clearRect(0, 0, width, height);
-      ctx.fillStyle = "#11191d";
+      ctx.fillStyle = "#f8fbfa";
       ctx.fillRect(0, 0, width, height);
 
       if (!state.peaks.length) {
@@ -3905,7 +3987,7 @@
       const peakEnd = Math.min(state.peaks.length, Math.ceil(endRatio * state.peaks.length));
       const visiblePeaks = state.peaks.slice(peakStart, peakEnd);
 
-      ctx.strokeStyle = "rgba(255,255,255,.065)";
+      ctx.strokeStyle = "rgba(8,125,131,.08)";
       ctx.lineWidth = 1;
       for (let i = 0; i < 8; i++) {
         const y = (height / 8) * i;
@@ -3915,7 +3997,7 @@
         ctx.stroke();
       }
 
-      ctx.strokeStyle = "#63e5dc";
+      ctx.strokeStyle = "#279c98";
       ctx.lineWidth = Math.max(1, width / visiblePeaks.length);
       for (let x = 0; x < width; x++) {
         const index = Math.floor((x / width) * visiblePeaks.length);
@@ -4610,50 +4692,30 @@
           lastPaint = now;
           surface.setTransform(1, 0, 0, 1, 0, 0);
           surface.clearRect(0, 0, canvas.width, canvas.height);
-          // Project the traces into the same 900 x 480 cover framing as the artwork.
-          const scale = Math.max(width / 900, height / 480);
-          surface.setTransform(ratio * scale, 0, 0, ratio * scale, ratio * (width - 900 * scale) / 2, ratio * (height - 480 * scale) / 2);
-          const color = surface.createLinearGradient(330, 0, 920, 0);
+          surface.setTransform(ratio, 0, 0, ratio, 0, 0);
+          const color = surface.createLinearGradient(0, 0, width, 0);
           color.addColorStop(0, "rgba(99,229,220,0)");
           color.addColorStop(.35, "rgba(99,229,220,.8)");
           color.addColorStop(.65, "#b8fff1");
           color.addColorStop(1, "#e18cbf");
           const time = now / 1000;
-          const beat = Math.pow((Math.sin(time * Math.PI * 3.2) + 1) / 2, 2);
-          const amplitude = 20 + beat * 68;
-          const upper = [], lower = [];
-          for (let x = 390; x <= 930; x += 3) {
-            const position = (x - 390) / 540;
-            const envelope = Math.pow(Math.sin(position * Math.PI), 1.3);
-            const energy = .25 + .75 * Math.abs(Math.sin(x * .075 - time * 6) * Math.sin(x * .025 + time * 2));
-            const center = 232 + Math.sin(position * 8 - time * 1.5) * 9;
-            const height = amplitude * envelope * energy;
-            upper.push([x, center - height]);
-            lower.push([x, center + height]);
-          }
-          surface.beginPath();
-          upper.forEach(([x, y], index) => index ? surface.lineTo(x, y) : surface.moveTo(x, y));
-          lower.reverse().forEach(([x, y]) => surface.lineTo(x, y));
-          surface.closePath();
-          surface.fillStyle = color;
-          surface.globalAlpha = .24;
-          surface.fill();
-          surface.globalAlpha = 1;
-          for (let index = 0; index < 3; index++) {
+          const phase = time * Math.PI / 3;
+          const amplitude = 8 + (Math.sin(phase) + 1) * 5;
+          for (let index = 0; index < 2; index++) {
             surface.save();
             surface.strokeStyle = color;
             surface.shadowColor = "#63e5dc";
-            surface.shadowBlur = 14;
-            surface.lineWidth = 2.6 - index * .5;
-            surface.globalAlpha = .95 - index * .2;
+            surface.shadowBlur = 6;
+            surface.lineWidth = 1.8 - index * .4;
+            surface.globalAlpha = .8 - index * .25;
             surface.beginPath();
-            for (let x = 390; x <= 930; x += 3) {
-              const position = (x - 390) / 540;
+            for (let x = 0; x <= width; x += 2) {
+              const position = x / width;
               const envelope = Math.pow(Math.sin(position * Math.PI), 1.3);
-              const carrier = Math.sin(position * 30 - time * 5 + index * .8) * .72 + Math.sin(position * 61 + time * 3) * .28;
-              const center = 232 + Math.sin(position * 8 - time * 1.5) * 9;
+              const carrier = Math.sin(position * 17 - phase + index * 1.2);
+              const center = height * .83;
               const y = center + carrier * amplitude * envelope * (1 - index * .18);
-              if (x === 390) surface.moveTo(x, y);
+              if (x === 0) surface.moveTo(x, y);
               else surface.lineTo(x, y);
             }
             surface.stroke();
@@ -4683,6 +4745,9 @@
       update();
     }
 
+    document.querySelectorAll(".controls > .icon:not(.preview):not(.primary)").forEach(button => {
+      document.querySelector("#transport").append(button);
+    });
     startHeroMotion();
     initializeLanguage();
     resizeCanvas();
