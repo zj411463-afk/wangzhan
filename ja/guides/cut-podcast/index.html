@@ -33,6 +33,7 @@
   <meta name="twitter:image" content="https://www.tomp3.xyz/assets/audio-selection.png">
   <meta name="twitter:image:alt" content="Sonic Cutter の音声波形、選択ハンドル、試聴ボタン（英語表示）">
   <link rel="stylesheet" href="/assets/reading.css">
+  
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://www.tomp3.xyz/ja/guides/cut-podcast/","url":"https://www.tomp3.xyz/ja/guides/cut-podcast/","name":"ポッドキャストや会話を単語の途中で切らずに保存する方法","description":"MP3・WAVの会話を探し、文の境界を調整して試聴・保存する手順。長い録音の読み込みと出力確認も解説します。","inLanguage":"ja","dateModified":"2026-11-05","mainEntity":{"@id":"https://www.tomp3.xyz/ja/guides/cut-podcast/#article"},"isPartOf":{"@type":"WebSite","name":"Sonic Cutter","url":"https://www.tomp3.xyz/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"音声カッター","item":"https://www.tomp3.xyz/ja/"},{"@type":"ListItem","position":2,"name":"ポッドキャストや会話を単語の途中で切らずに保存する方法","item":"https://www.tomp3.xyz/ja/guides/cut-podcast/"}]},{"@type":"Article","@id":"https://www.tomp3.xyz/ja/guides/cut-podcast/#article","headline":"ポッドキャストや会話を単語の途中で切らずに保存する方法","description":"MP3・WAVの会話を探し、文の境界を調整して試聴・保存する手順。長い録音の読み込みと出力確認も解説します。","inLanguage":"ja","datePublished":"2026-11-04","dateModified":"2026-11-05","author":{"@type":"Organization","name":"Sonic Cutter","url":"https://www.tomp3.xyz/"},"mainEntityOfPage":{"@id":"https://www.tomp3.xyz/ja/guides/cut-podcast/"},"image":["https://www.tomp3.xyz/assets/audio-selection.png"],"publisher":{"@type":"Organization","name":"Sonic Cutter","url":"https://www.tomp3.xyz/"}},{"@type":"HowTo","name":"ポッドキャストや会話を単語の途中で切らずに保存する方法","description":"12:10から12:42までの回答を例に、意味が通る範囲を残します。時間は録音に合わせて変更してください。一度に保存できるのは連続した範囲で、音声認識や文字起こしは行いません。","inLanguage":"ja","step":[{"@type":"HowToStep","name":"録音を選ぶ","text":"MP3またはWAVを選択し、波形を待ちます。再生できる形式はブラウザによって異なります。スマートフォンで長い録音を読み込むときは、ページを前面に保ってください。","url":"https://www.tomp3.xyz/ja/guides/cut-podcast/#section-1"},{"@type":"HowToStep","name":"文の始まりを探す","text":"再生位置を目的の時間付近へ動かし、波形と聞こえ方で開始位置を決めます。最初の単語より少し前に置き、子音や息継ぎを切らないよう自然な間を残します。","url":"https://www.tomp3.xyz/ja/guides/cut-podcast/#section-2"},{"@type":"HowToStep","name":"文末を残して試聴する","text":"最後の単語と余韻を含めて終了時間を決めます。範囲全体を試聴し、回答が完結しているか、次の発言が混ざっていないか確認します。離れた部分は別々に保存してください。結合はできません。","url":"https://www.tomp3.xyz/ja/guides/cut-podcast/#section-3"},{"@type":"HowToStep","name":"保存した録音を確認する","text":"端末のプレーヤーで保存結果を再生します。MP3はMP3、WAVはWAVのままです。ノイズ除去、音量調整、文字起こしが必要なら対応する編集ツールを使い、元録音は保管してください。","url":"https://www.tomp3.xyz/ja/guides/cut-podcast/#section-4"}]}]}</script>
 </head>
 <body>
@@ -54,7 +55,8 @@
 <a href="#section-4">保存した録音を確認する</a>
 <a href="#section-5">長い録音を読み込めない場合</a></nav>
       <div class="aside-related"><p class="eyebrow">関連記事</p><a href="/ja/scenes/podcast/">ポッドキャスト・インタビュー・講義の音声を切り出す</a>
-<a href="/ja/guides/cut-mp3/">MP3をカットする方法：時間指定・試聴・保存</a></div>
+<a href="/ja/guides/cut-mp3/">MP3をカットする方法：時間指定・試聴・保存</a>
+<a href="/ja/mp3-splitter/">MP3分割ツール：長さ・時刻を指定してオンラインで分割</a></div>
     </aside>
     <main id="content">
       <nav class="breadcrumbs" aria-label="音声カッター"><a href="/ja/">音声カッター</a><span aria-hidden="true">/</span><span>使い方</span></nav>
@@ -62,6 +64,7 @@
         <p class="eyebrow">使い方 · <span>更新日 <time datetime="2026-11-05">2026-11-05</time></span></p>
         <h1>ポッドキャストや会話を単語の途中で切らずに保存する方法</h1>
         <p class="lead">12:10から12:42までの回答を例に、意味が通る範囲を残します。時間は録音に合わせて変更してください。一度に保存できるのは連続した範囲で、音声認識や文字起こしは行いません。</p>
+        
         <a class="tool-link" href="/ja/#workbenchMain">音声カッターを開く</a>
         <figure><a href="/ja/#workbenchMain"><img src="/assets/audio-selection.png" width="1280" height="637" alt="Sonic Cutter の音声波形、選択ハンドル、試聴ボタン（英語表示）" decoding="async" loading="lazy"></a><figcaption>波形で範囲を指定し、選択した部分を試聴します。</figcaption></figure>
         <section id="section-1"><h2>1. 録音を選ぶ</h2><p>MP3またはWAVを選択し、波形を待ちます。再生できる形式はブラウザによって異なります。スマートフォンで長い録音を読み込むときは、ページを前面に保ってください。</p><p class="context-link"><a href="/ja/scenes/podcast/">ポッドキャスト・インタビュー・講義の音声を切り出す</a></p></section>
@@ -69,7 +72,7 @@
 <section id="section-3"><h2>3. 文末を残して試聴する</h2><p>最後の単語と余韻を含めて終了時間を決めます。範囲全体を試聴し、回答が完結しているか、次の発言が混ざっていないか確認します。離れた部分は別々に保存してください。結合はできません。</p></section>
 <section id="section-4"><h2>4. 保存した録音を確認する</h2><p>端末のプレーヤーで保存結果を再生します。MP3はMP3、WAVはWAVのままです。ノイズ除去、音量調整、文字起こしが必要なら対応する編集ツールを使い、元録音は保管してください。</p></section>
 <section id="section-5"><h2>長い録音を読み込めない場合</h2><p>デコードと波形作成にはメモリを使います。ほかの重いタブを閉じて、パソコンのブラウザで再試行してください。端末のプレーヤーでも再生できなければ、元ファイルを確認します。読み込み中の連続操作は避けてください。</p></section>
-        <section class="related"><h2>関連記事</h2><ul><li><a href="/ja/scenes/podcast/">ポッドキャスト・インタビュー・講義の音声を切り出す</a></li><li><a href="/ja/guides/cut-mp3/">MP3をカットする方法：時間指定・試聴・保存</a></li></ul><p><a href="/ja/#workbenchMain">音声カッターを開く</a></p></section>
+        <section class="related"><h2>関連記事</h2><ul><li><a href="/ja/scenes/podcast/">ポッドキャスト・インタビュー・講義の音声を切り出す</a></li><li><a href="/ja/guides/cut-mp3/">MP3をカットする方法：時間指定・試聴・保存</a></li><li><a href="/ja/mp3-splitter/">MP3分割ツール：長さ・時刻を指定してオンラインで分割</a></li></ul><p><a href="/ja/#workbenchMain">音声カッターを開く</a></p></section>
         <section class="references"><h2>参考資料</h2><ul><li><a href="https://developer.mozilla.org/en-US/docs/Web/Media/Guides/Formats/Audio_codecs">MDN · MP3 / WAV</a></li></ul></section>
       </article>
     </main>

@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
+  <title>MP3 편집 방법: 자르기, 분할, 미리 듣기와 저장 | Sonic Cutter</title>
+  <meta name="description" content="브라우저에서 MP3 구간을 자르거나 여러 파일로 나눠 미리 듣고 저장하는 방법과 프레임 편집의 제한을 알아보세요.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="theme-color" content="#7643e8">
+  <link rel="canonical" href="https://www.tomp3.xyz/ko/guides/how-to-edit-mp3/">
+  <link rel="alternate" hreflang="zh-CN" href="https://www.tomp3.xyz/guides/how-to-edit-mp3/">
+  <link rel="alternate" hreflang="en" href="https://www.tomp3.xyz/en/guides/how-to-edit-mp3/">
+  <link rel="alternate" hreflang="ja" href="https://www.tomp3.xyz/ja/guides/how-to-edit-mp3/">
+  <link rel="alternate" hreflang="ko" href="https://www.tomp3.xyz/ko/guides/how-to-edit-mp3/">
+  <link rel="alternate" hreflang="fr" href="https://www.tomp3.xyz/fr/guides/how-to-edit-mp3/">
+  <link rel="alternate" hreflang="de" href="https://www.tomp3.xyz/de/guides/how-to-edit-mp3/">
+  <link rel="alternate" hreflang="es" href="https://www.tomp3.xyz/es/guides/how-to-edit-mp3/">
+  <link rel="alternate" hreflang="x-default" href="https://www.tomp3.xyz/en/guides/how-to-edit-mp3/">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="MP3 편집 방법: 자르기, 분할, 미리 듣기와 저장">
+  <meta property="og:description" content="브라우저에서 MP3 구간을 자르거나 여러 파일로 나눠 미리 듣고 저장하는 방법과 프레임 편집의 제한을 알아보세요.">
+  <meta property="og:url" content="https://www.tomp3.xyz/ko/guides/how-to-edit-mp3/">
+  <meta property="og:image" content="https://www.tomp3.xyz/assets/audio-selection.png">
+  <meta property="og:image:width" content="1280">
+  <meta property="og:image:height" content="637">
+  <meta property="og:image:alt" content="Sonic Cutter의 오디오 파형, 선택 손잡이와 미리듣기 제어 화면(영문)">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="MP3 편집 방법: 자르기, 분할, 미리 듣기와 저장">
+  <meta name="twitter:description" content="브라우저에서 MP3 구간을 자르거나 여러 파일로 나눠 미리 듣고 저장하는 방법과 프레임 편집의 제한을 알아보세요.">
+  <meta name="twitter:image" content="https://www.tomp3.xyz/assets/audio-selection.png">
+  <meta name="twitter:image:alt" content="Sonic Cutter의 오디오 파형, 선택 손잡이와 미리듣기 제어 화면(영문)">
+  <link rel="stylesheet" href="/assets/reading.css">
+  
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://www.tomp3.xyz/ko/guides/how-to-edit-mp3/","url":"https://www.tomp3.xyz/ko/guides/how-to-edit-mp3/","name":"MP3 편집 방법: 자르기, 분할, 미리 듣기와 저장","description":"브라우저에서 MP3 구간을 자르거나 여러 파일로 나눠 미리 듣고 저장하는 방법과 프레임 편집의 제한을 알아보세요.","inLanguage":"ko","dateModified":"2026-11-05","mainEntity":{"@id":"https://www.tomp3.xyz/ko/guides/how-to-edit-mp3/#article"},"isPartOf":{"@type":"WebSite","name":"Sonic Cutter","url":"https://www.tomp3.xyz/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"오디오 자르기","item":"https://www.tomp3.xyz/ko/"},{"@type":"ListItem","position":2,"name":"MP3 편집 방법: 자르기, 분할, 미리 듣기와 저장","item":"https://www.tomp3.xyz/ko/guides/how-to-edit-mp3/"}]},{"@type":"Article","@id":"https://www.tomp3.xyz/ko/guides/how-to-edit-mp3/#article","headline":"MP3 편집 방법: 자르기, 분할, 미리 듣기와 저장","description":"브라우저에서 MP3 구간을 자르거나 여러 파일로 나눠 미리 듣고 저장하는 방법과 프레임 편집의 제한을 알아보세요.","inLanguage":"ko","datePublished":"2026-11-05","dateModified":"2026-11-05","author":{"@type":"Organization","name":"Sonic Cutter","url":"https://www.tomp3.xyz/"},"mainEntityOfPage":{"@id":"https://www.tomp3.xyz/ko/guides/how-to-edit-mp3/"},"image":["https://www.tomp3.xyz/assets/audio-selection.png"],"publisher":{"@type":"Organization","name":"Sonic Cutter","url":"https://www.tomp3.xyz/"}},{"@type":"HowTo","name":"MP3 편집 방법: 자르기, 분할, 미리 듣기와 저장","description":"한 구간을 남기는 작업과 장별로 나누는 작업을 구분하세요. Sonic Cutter는 기기 내 자르기와 분할을 지원하며 볼륨 조정, 믹싱, 잡음 제거, 페이드와 변환은 지원하지 않습니다.","inLanguage":"ko","step":[{"@type":"HowToStep","name":"자르기 또는 분할 선택","text":"한 구간은 오디오 자르기, 여러 연속 파일은 MP3 분할을 사용하세요. 보호된 음악은 확장자를 바꿔도 호환되지 않습니다.","url":"https://www.tomp3.xyz/ko/guides/how-to-edit-mp3/#section-1"},{"@type":"HowToStep","name":"경계 지정","text":"자르기는 파형 또는 시작·종료 시간으로, 분할은 초나 0:30, 1:00 같은 시간점으로 지정하세요. 마지막 남은 부분도 포함됩니다.","url":"https://www.tomp3.xyz/ko/guides/how-to-edit-mp3/#section-2"},{"@type":"HowToStep","name":"저장 전에 미리 듣기","text":"자르기는 선택 구간을, 분할은 실제 출력 MP3를 재생합니다. 첫 음과 문장 끝을 확인하세요. 프레임 의존성이 시작 부분에 영향을 줄 수 있습니다.","url":"https://www.tomp3.xyz/ko/guides/how-to-edit-mp3/#section-3"},{"@type":"HowToStep","name":"저장 후 확인","text":"개별 파일 또는 ZIP을 저장하고 다운로드 목록이나 파일 앱에서 찾으세요. 필요하면 다른 플레이어로 확인하세요. 원본은 변경되지 않습니다.","url":"https://www.tomp3.xyz/ko/guides/how-to-edit-mp3/#section-4"}]}]}</script>
+</head>
+<body>
+  <a class="skip-link" href="#content">본문으로 이동</a>
+  <header class="site-header">
+    <a class="brand" href="/ko/">Sonic Cutter<span>오디오 자르기</span></a>
+    <nav aria-label="오디오 자르기 활용 사례와 안내">
+      <a href="/ko/scenes/ringtone/">활용 사례</a>
+      <a href="/ko/guides/cut-mp3/">사용 안내</a>
+      <a class="tool-link" href="/ko/#workbenchMain">오디오 도구 열기</a>
+    </nav>
+  </header>
+  <div class="reading-layout">
+    <aside>
+      <p class="eyebrow">목차</p>
+      <nav aria-label="목차"><a href="#section-1">자르기 또는 분할 선택</a>
+<a href="#section-2">경계 지정</a>
+<a href="#section-3">저장 전에 미리 듣기</a>
+<a href="#section-4">저장 후 확인</a>
+<a href="#section-5">다른 편집기가 필요한 경우</a></nav>
+      <div class="aside-related"><p class="eyebrow">관련 글</p><a href="/ko/mp3-splitter/">온라인 MP3 분할: 길이와 시간점으로 나누기</a>
+<a href="/ko/guides/cut-mp3/">MP3 자르는 방법: 시간 선택·미리듣기·저장</a></div>
+    </aside>
+    <main id="content">
+      <nav class="breadcrumbs" aria-label="오디오 자르기"><a href="/ko/">오디오 자르기</a><span aria-hidden="true">/</span><span>사용 안내</span></nav>
+      <article>
+        <p class="eyebrow">사용 안내 · <span>업데이트 <time datetime="2026-11-05">2026-11-05</time></span></p>
+        <h1>MP3 편집 방법: 자르기, 분할, 미리 듣기와 저장</h1>
+        <p class="lead">한 구간을 남기는 작업과 장별로 나누는 작업을 구분하세요. Sonic Cutter는 기기 내 자르기와 분할을 지원하며 볼륨 조정, 믹싱, 잡음 제거, 페이드와 변환은 지원하지 않습니다.</p>
+        
+        <a class="tool-link" href="/ko/#workbenchMain">오디오 도구 열기</a>
+        <figure><a href="/ko/#workbenchMain"><img src="/assets/audio-selection.png" width="1280" height="637" alt="Sonic Cutter의 오디오 파형, 선택 손잡이와 미리듣기 제어 화면(영문)" decoding="async" loading="lazy"></a><figcaption>파형에서 범위를 선택한 뒤 해당 구간을 미리 들어보세요.</figcaption></figure>
+        <section id="section-1"><h2>1. 자르기 또는 분할 선택</h2><p>한 구간은 오디오 자르기, 여러 연속 파일은 MP3 분할을 사용하세요. 보호된 음악은 확장자를 바꿔도 호환되지 않습니다.</p><p class="context-link"><a href="/ko/mp3-splitter/">온라인 MP3 분할: 길이와 시간점으로 나누기</a></p></section>
+<section id="section-2"><h2>2. 경계 지정</h2><p>자르기는 파형 또는 시작·종료 시간으로, 분할은 초나 0:30, 1:00 같은 시간점으로 지정하세요. 마지막 남은 부분도 포함됩니다.</p></section>
+<section id="section-3"><h2>3. 저장 전에 미리 듣기</h2><p>자르기는 선택 구간을, 분할은 실제 출력 MP3를 재생합니다. 첫 음과 문장 끝을 확인하세요. 프레임 의존성이 시작 부분에 영향을 줄 수 있습니다.</p></section>
+<section id="section-4"><h2>4. 저장 후 확인</h2><p>개별 파일 또는 ZIP을 저장하고 다운로드 목록이나 파일 앱에서 찾으세요. 필요하면 다른 플레이어로 확인하세요. 원본은 변경되지 않습니다.</p></section>
+<section id="section-5"><h2>다른 편집기가 필요한 경우</h2><p>볼륨 조정, 잡음 제거, 합치기와 페이드는 샘플을 변경하므로 별도 편집기가 필요하며 MP3 출력은 보통 재인코딩합니다. 프레임 복사로 원본 음질을 향상시킬 수 없습니다.</p></section>
+        <section class="related"><h2>관련 글</h2><ul><li><a href="/ko/mp3-splitter/">온라인 MP3 분할: 길이와 시간점으로 나누기</a></li><li><a href="/ko/guides/cut-mp3/">MP3 자르는 방법: 시간 선택·미리듣기·저장</a></li></ul><p><a href="/ko/#workbenchMain">오디오 도구 열기</a></p></section>
+        <section class="references"><h2>참고 자료</h2><ul><li><a href="https://developer.mozilla.org/en-US/docs/Web/Media/Guides/Formats/Audio_codecs">MDN · MP3 / WAV</a></li></ul></section>
+      </article>
+    </main>
+  </div>
+  <footer>
+    <a href="/ko/">Sonic Cutter · 오디오 자르기</a>
+    <nav class="locale-links" aria-label="Language"><a href="/guides/how-to-edit-mp3/" hreflang="zh-CN" lang="zh-CN">中文</a>
+<a href="/en/guides/how-to-edit-mp3/" hreflang="en" lang="en">English</a>
+<a href="/ja/guides/how-to-edit-mp3/" hreflang="ja" lang="ja">日本語</a>
+<a href="/ko/guides/how-to-edit-mp3/" hreflang="ko" lang="ko" aria-current="page">한국어</a>
+<a href="/fr/guides/how-to-edit-mp3/" hreflang="fr" lang="fr">Français</a>
+<a href="/de/guides/how-to-edit-mp3/" hreflang="de" lang="de">Deutsch</a>
+<a href="/es/guides/how-to-edit-mp3/" hreflang="es" lang="es">Español</a></nav>
+  </footer>
+</body>
+</html>

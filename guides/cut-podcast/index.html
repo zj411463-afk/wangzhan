@@ -33,6 +33,7 @@
   <meta name="twitter:image" content="https://www.tomp3.xyz/assets/audio-selection.png">
   <meta name="twitter:image:alt" content="Sonic Cutter 中已加载音频的波形、选区手柄和试听控制（英文界面）">
   <link rel="stylesheet" href="/assets/reading.css">
+  
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://www.tomp3.xyz/guides/cut-podcast/","url":"https://www.tomp3.xyz/guides/cut-podcast/","name":"如何截取播客与采访录音：保留完整语句","description":"学习在 MP3 或 WAV 录音中定位语音、调整句子边界、试听并保存连续片段。包含长录音处理和导出检查方法。","inLanguage":"zh-CN","dateModified":"2026-11-05","mainEntity":{"@id":"https://www.tomp3.xyz/guides/cut-podcast/#article"},"isPartOf":{"@type":"WebSite","name":"Sonic Cutter","url":"https://www.tomp3.xyz/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"音频剪切工具","item":"https://www.tomp3.xyz/"},{"@type":"ListItem","position":2,"name":"如何截取播客与采访录音：保留完整语句","item":"https://www.tomp3.xyz/guides/cut-podcast/"}]},{"@type":"Article","@id":"https://www.tomp3.xyz/guides/cut-podcast/#article","headline":"如何截取播客与采访录音：保留完整语句","description":"学习在 MP3 或 WAV 录音中定位语音、调整句子边界、试听并保存连续片段。包含长录音处理和导出检查方法。","inLanguage":"zh-CN","datePublished":"2026-11-04","dateModified":"2026-11-05","author":{"@type":"Organization","name":"Sonic Cutter","url":"https://www.tomp3.xyz/"},"mainEntityOfPage":{"@id":"https://www.tomp3.xyz/guides/cut-podcast/"},"image":["https://www.tomp3.xyz/assets/audio-selection.png"],"publisher":{"@type":"Organization","name":"Sonic Cutter","url":"https://www.tomp3.xyz/"}},{"@type":"HowTo","name":"如何截取播客与采访录音：保留完整语句","description":"以一段 12:10 到 12:42 的回答为例，下面的流程帮助你保留完整语义。请按实际录音调整时间；Sonic Cutter 一次导出一个连续选区，不会自动识别人声或生成文字。","inLanguage":"zh-CN","step":[{"@type":"HowToStep","name":"选择已有的 MP3 或 WAV 录音","text":"打开剪切工具并选择设备上的录音，等待波形出现。文件的播放兼容性取决于浏览器。手机加载长录音时保持页面在前台，等待文件准备完成。","url":"https://www.tomp3.xyz/guides/cut-podcast/#section-1"},{"@type":"HowToStep","name":"找到目标句子的起点","text":"移动播放进度到目标时间附近，结合波形和听感确定开始位置。把开始时间放在第一个字之前，保留一点自然停顿，避免切掉辅音或吸气。","url":"https://www.tomp3.xyz/guides/cut-podcast/#section-2"},{"@type":"HowToStep","name":"保留句尾并试听整个选区","text":"设置结束时间，给最后一个字和尾音留出空间。使用选区试听检查回答是否完整、有无残留下一句话。若要保留多段不连续回答，需要分别导出，本工具目前不支持拼接。","url":"https://www.tomp3.xyz/guides/cut-podcast/#section-3"},{"@type":"HowToStep","name":"保存并核对导出的录音","text":"保存后用系统播放器检查片段是否完整。MP3 仍为 MP3，WAV 仍为 WAV。若需要降噪、响度处理或转写，请把结果交给支持这些功能的编辑工具，并保留原始录音。","url":"https://www.tomp3.xyz/guides/cut-podcast/#section-4"}]}]}</script>
 </head>
 <body>
@@ -54,7 +55,8 @@
 <a href="#section-4">保存并核对导出的录音</a>
 <a href="#section-5">长录音加载失败怎么办</a></nav>
       <div class="aside-related"><p class="eyebrow">相关内容</p><a href="/scenes/podcast/">播客片段剪切：截取采访、课程与语音录音</a>
-<a href="/guides/cut-mp3/">如何剪切 MP3：选取时间、试听并保存片段</a></div>
+<a href="/guides/cut-mp3/">如何剪切 MP3：选取时间、试听并保存片段</a>
+<a href="/mp3-splitter/">在线 MP3 分割工具：按时长或时间点拆分音乐</a></div>
     </aside>
     <main id="content">
       <nav class="breadcrumbs" aria-label="音频剪切工具"><a href="/">音频剪切工具</a><span aria-hidden="true">/</span><span>剪切教程</span></nav>
@@ -62,6 +64,7 @@
         <p class="eyebrow">剪切教程 · <span>更新于 <time datetime="2026-11-05">2026-11-05</time></span></p>
         <h1>如何截取播客与采访录音：保留完整语句</h1>
         <p class="lead">以一段 12:10 到 12:42 的回答为例，下面的流程帮助你保留完整语义。请按实际录音调整时间；Sonic Cutter 一次导出一个连续选区，不会自动识别人声或生成文字。</p>
+        
         <a class="tool-link" href="/#workbenchMain">打开剪切工具</a>
         <figure><a href="/#workbenchMain"><img src="/assets/audio-selection.png" width="1280" height="637" alt="Sonic Cutter 中已加载音频的波形、选区手柄和试听控制（英文界面）" decoding="async" loading="lazy"></a><figcaption>在波形上选择范围，再试听选中的片段。</figcaption></figure>
         <section id="section-1"><h2>1. 选择已有的 MP3 或 WAV 录音</h2><p>打开剪切工具并选择设备上的录音，等待波形出现。文件的播放兼容性取决于浏览器。手机加载长录音时保持页面在前台，等待文件准备完成。</p><p class="context-link"><a href="/scenes/podcast/">播客片段剪切：截取采访、课程与语音录音</a></p></section>
@@ -69,7 +72,7 @@
 <section id="section-3"><h2>3. 保留句尾并试听整个选区</h2><p>设置结束时间，给最后一个字和尾音留出空间。使用选区试听检查回答是否完整、有无残留下一句话。若要保留多段不连续回答，需要分别导出，本工具目前不支持拼接。</p></section>
 <section id="section-4"><h2>4. 保存并核对导出的录音</h2><p>保存后用系统播放器检查片段是否完整。MP3 仍为 MP3，WAV 仍为 WAV。若需要降噪、响度处理或转写，请把结果交给支持这些功能的编辑工具，并保留原始录音。</p></section>
 <section id="section-5"><h2>长录音加载失败怎么办</h2><p>本地处理省去了上传，但解码和波形生成仍会消耗内存。先关闭占用内存的其他页面，再用桌面浏览器重试。如果文件在系统播放器中也无法播放，请先检查源文件。不要连续重复点击选择或保存。</p></section>
-        <section class="related"><h2>相关内容</h2><ul><li><a href="/scenes/podcast/">播客片段剪切：截取采访、课程与语音录音</a></li><li><a href="/guides/cut-mp3/">如何剪切 MP3：选取时间、试听并保存片段</a></li></ul><p><a href="/#workbenchMain">打开剪切工具</a></p></section>
+        <section class="related"><h2>相关内容</h2><ul><li><a href="/scenes/podcast/">播客片段剪切：截取采访、课程与语音录音</a></li><li><a href="/guides/cut-mp3/">如何剪切 MP3：选取时间、试听并保存片段</a></li><li><a href="/mp3-splitter/">在线 MP3 分割工具：按时长或时间点拆分音乐</a></li></ul><p><a href="/#workbenchMain">打开剪切工具</a></p></section>
         <section class="references"><h2>参考资料</h2><ul><li><a href="https://developer.mozilla.org/en-US/docs/Web/Media/Guides/Formats/Audio_codecs">MDN · MP3 / WAV</a></li></ul></section>
       </article>
     </main>

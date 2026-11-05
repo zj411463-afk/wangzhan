@@ -22,7 +22,7 @@ jobs:
         run: node .github/scripts/check-audio-only.js
 
       - name: Check anonymous funnel
-        run: node --test .github/scripts/check-funnel.mjs .github/scripts/check-release.mjs
+        run: node --test .github/scripts/check-funnel.mjs .github/scripts/check-release.mjs .github/scripts/check-mp3-splitter.mjs
 
       - name: Prepare public files
         run: node .github/scripts/build-pages.js

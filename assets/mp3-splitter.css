@@ -1,0 +1,58 @@
+.splitter-page { --paper: #f6f3ff; --ink: #17152d; --accent: #7643e8; --line: #ded5f2; --muted: #655e78; }
+.splitter-page .tool-link:hover { background: #6030cc; }
+.splitter-page .skip-link:not(:focus-visible) { top: -100px; }
+.splitter { border: 1px solid #ded5f2; border-radius: 8px; background: #fff; padding: 24px; color: #17152d; margin: 24px 0 40px; }
+.splitter [hidden] { display: none !important; }
+.splitter button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 46px; padding: 10px 16px; border: 1px solid #d8ccec; border-radius: 6px; background: #faf8ff; color: #492a86; font: inherit; font-weight: 650; cursor: pointer; max-width: 100%; overflow-wrap: anywhere; white-space: normal; }
+.splitter button svg { flex: 0 0 20px; }
+.splitter button:hover { background: #eee6ff; }
+.splitter button:focus-visible, .splitter input:focus-visible, .splitter textarea:focus-visible { outline: 3px solid #7643e8; outline-offset: 3px; }
+.splitter button:disabled { opacity: .5; cursor: wait; }
+.splitter .split-primary { background: #7643e8; color: #fff; border-color: #7643e8; }
+.splitter .split-primary:hover { background: #6030cc; }
+.split-filebar, .split-results-head { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+.split-filebar > div { min-width: 0; }
+.split-filebar strong { display: block; overflow-wrap: anywhere; }
+.splitter .eyebrow { margin: 0 0 4px; color: #65527c; }
+#splitStatus { margin: 16px 0; min-height: 28px; overflow-wrap: anywhere; }
+#splitStatus[data-error] { color: #a02143; }
+.splitter progress { width: 100%; accent-color: #7643e8; }
+.splitter audio { width: 100%; display: block; margin: 16px 0; }
+.splitter fieldset { border: 0; margin: 0 0 20px; padding: 0; min-width: 0; }
+.splitter legend, .splitter form > div > label { display: block; font-weight: 650; margin-bottom: 8px; }
+.split-modes { display: flex; flex-wrap: wrap; gap: 10px 24px; }
+.split-modes label { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; cursor: pointer; }
+.splitter input[type="radio"] { accent-color: #7643e8; width: 18px; height: 18px; flex-shrink: 0; }
+.splitter input[type="number"], .splitter textarea { width: 100%; max-width: 100%; min-height: 46px; border: 1px solid #d8ccec; border-radius: 6px; padding: 10px 12px; font: inherit; background: #fcfaff; color: #17152d; }
+.splitter textarea { resize: vertical; }
+.splitter .split-note { font-size: 14px; line-height: 1.65; color: #655e78; margin: 12px 0 0; }
+.split-commands { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
+.split-results-head h2 { margin: 0; font-size: 20px; }
+#splitList { list-style: none; padding: 0; margin: 16px 0; }
+#splitList li { border-top: 1px solid #e9e1f5; padding: 14px 0; margin: 0; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+#splitList .part-info { min-width: 0; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.part-info strong, .part-info small { display: block; }
+.part-info small { color: #655e78; }
+.part-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.splitter-page .reading-layout { grid-template-columns: minmax(0, 1fr); width: min(1160px, calc(100% - 48px)); }
+.splitter-page aside { display: none; }
+.splitter-page article > section:not(.splitter), .splitter-page article > figure { max-width: 820px; }
+@media (max-width: 600px) {
+  .splitter-page .reading-layout { width: calc(100% - 24px); }
+  .splitter { padding: 16px; }
+  .split-filebar, .split-results-head { flex-direction: column; align-items: stretch; }
+  .splitter button { min-height: 48px; }
+  #splitList li { align-items: stretch; flex-direction: column; }
+  .part-actions > button { flex: 1; }
+  .split-commands > button { flex: 1; }
+}
+@media (prefers-color-scheme: dark) {
+  .splitter-page { --paper: #171321; --ink: #f5f0ff; --accent: #c4a3ff; --line: #514262; --muted: #d3c3e8; }
+  .splitter-page .tool-link { background: #7643e8; }
+  .splitter { background: #211b2e; color: #f5f0ff; border-color: #514262; }
+  .splitter button, .splitter input[type="number"], .splitter textarea { background: #30263d; color: #f5f0ff; border-color: #645077; }
+  .splitter button:hover { background: #483458; }
+  .splitter .eyebrow, .splitter .split-note, .part-info small { color: #d3c3e8; }
+  #splitStatus[data-error] { color: #ffaec1; }
+  #splitList li { border-color: #514262; }
+}

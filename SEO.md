@@ -29,8 +29,9 @@ not silently ship. Only the allowlisted public files are deployed.
 
 ## Content and internal links
 
-Four content pages are available in every supported language: ringtone and podcast
-use cases, MP3 cutting and speech-excerpt tutorials. The source of their translated
+Six supporting/tool pages are available in every supported language: ringtone and podcast
+use cases, MP3 cutting and speech-excerpt tutorials, the MP3 splitter and the MP3
+editing guide. The source of their translated
 titles, descriptions, readable text and editor link labels is `.github/content-pages.cjs`.
 The editor links to the use cases and tutorials; use cases link to the matching
 tutorial; tutorials link back to the working cutter and relevant use case. All links
@@ -45,7 +46,7 @@ node .github/scripts/render-locales.cjs
 node --test .github/scripts/check-funnel.mjs .github/scripts/check-release.mjs
 ```
 
-The first command updates the content HTML, editor resource copy and 35-URL sitemap.
+The first command updates the content HTML, editor resource copy and 49-URL sitemap.
 The second regenerates all seven editor snapshots, including the Chinese root,
 and aligns visible copy, metadata and structured data. The release check validates
 unique titles and descriptions, canonical URLs, one H1 per page, image alternatives,
@@ -84,7 +85,7 @@ manual URL navigation, mobile overflow and visible/schema language consistency.
 Run `check-editor-ui.cjs` and `check-funnel-ui.cjs` to verify actual selection,
 preview, byte-preserving export and unchanged anonymous event payloads. These
 tests use local fixtures, not production events. The deployed-content check now
-covers all 35 indexable pages as well as sitemap, robots and shared icons.
+covers all 49 indexable pages as well as sitemap, robots, shared icons and splitter assets.
 
 Search Console indexing is an external state, not a build result. Record each
 URL's inspected status, Google's selected canonical and the inspection date only
@@ -101,3 +102,27 @@ sites; adding outbound references or passing tests does not create inbound links
 The existing public README provides genuine tool and guide links. No directory
 listing, purchased link, Search Console submission or indexing request is claimed
 by these scripts.
+
+## MP3 splitter and editing intent (2026-11-05)
+
+Primary English query: `mp3 splitter`, served by `/en/mp3-splitter/`, with a working
+duration/timestamp splitter, actual output preview, individual downloads and ZIP.
+Secondary query: `how to edit mp3`, served by `/en/guides/how-to-edit-mp3/`, explaining
+trim versus split, four real steps and the boundary between frame copying and
+sample-changing editing. Seven localized versions have self canonicals and reciprocal
+language links. Existing cutter and cut-MP3 URLs keep their narrower single-excerpt
+intent; no old URLs are removed or redirected simply to target the new keywords.
+Home resource links, article body links, guides and the splitter cross-link through
+the shared content directory. These are not duplicate title-swapped landing pages.
+
+Search volume, KD and low-DR competitor figures were provided by the user; they
+were not independently verified. The referenced external report path was unavailable
+on this machine. Do not present those figures as measured traffic or a ranking promise.
+
+The splitter reuses the existing cutter's MPEG header arithmetic, with stricter
+Layer III validation, VBR support and separate local-Worker scanning. Output omits
+stale original Xing/VBRI/ID3 metadata. It prefers nearby independent frames when
+available but clearly discloses bit-reservoir dependencies and non-gapless boundaries.
+CBR/VBR fixture tests check copied bytes, ZIP, playback and FFmpeg decoding; they
+do not prove artifact-free boundaries for all MP3 encoders. JSZip 3.10.1 is vendored
+with its license, loaded only for ZIP, using STORE rather than recompression.

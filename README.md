@@ -5,6 +5,12 @@ continuous MP3 or WAV excerpt in your browser. Audio files stay on your device.
 MP3 exports align to existing audio frames and WAV exports align to sample
 blocks, without re-encoding. The original file remains unchanged.
 
+[MP3 Splitter](https://www.tomp3.xyz/en/mp3-splitter/) divides a recording by
+duration or custom timestamps, previews the exported parts and downloads individual
+MP3s or one ZIP. Frame scanning runs in a local Worker; the ZIP library loads only
+when requested. MP3 decoder dependencies can affect segment openings; inspect the
+actual parts. It does not promise sample-accurate or gapless editing.
+
 ## Languages
 
 [中文](https://www.tomp3.xyz/) ·
@@ -17,6 +23,8 @@ blocks, without re-encoding. The original file remains unchanged.
 
 ## Use cases and guides
 
+- [How to edit MP3: trim, split, preview and save](https://www.tomp3.xyz/en/guides/how-to-edit-mp3/)
+- [在线 MP3 分割工具](https://www.tomp3.xyz/mp3-splitter/)
 - [Make a ringtone clip](https://www.tomp3.xyz/en/scenes/ringtone/)
 - [Trim a podcast or interview](https://www.tomp3.xyz/en/scenes/podcast/)
 - [How to select, preview and save an MP3 clip](https://www.tomp3.xyz/en/guides/cut-mp3/)
@@ -41,6 +49,7 @@ node .github/scripts/render-content.cjs
 node .github/scripts/render-locales.cjs
 node .github/scripts/check-audio-only.js
 node --test .github/scripts/check-funnel.mjs .github/scripts/check-release.mjs
+node --test .github/scripts/check-mp3-splitter.mjs
 node .github/scripts/build-pages.js
 ```
 
@@ -48,3 +57,8 @@ The locale renderer requires Playwright and Chromium. Configure `NODE_PATH`
 and `CHROME_PATH` if necessary. Build into an empty output directory. Only
 allowlisted public assets are deployed; project documentation and credentials
 are not part of the website bundle.
+
+Run `check-splitter-ui.cjs` with Playwright, Chromium and FFmpeg for real CBR/VBR
+fixtures, ZIP/byte checks, responsive layouts and isolated analytics. It refreshes
+the English splitter screenshot; regenerate content afterward. The local browser
+module/Worker tool needs HTTP(S), not file://.

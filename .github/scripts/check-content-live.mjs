@@ -24,6 +24,13 @@ checks.push({ route: "/favicon.svg", contentType: /image\/svg\+xml/i,
   check: text => { assert.ok(text.includes("<svg")); assert.ok(text.includes("#7643e8")); } });
 checks.push({ route: "/apple-touch-icon.png", binary: true, contentType: /image\/png/i,
   check: data => { assert.equal(data.readUInt32BE(0), 0x89504e47); assert.equal(data.readUInt32BE(16), 180); } });
+for (const filename of ["mp3-splitter.mjs", "mp3-frames.mjs", "mp3-splitter-worker.mjs", "vendor/jszip-3.10.1.min.js"]) {
+  checks.push({ route: `/assets/${filename}`, contentType: /javascript/i,
+    check: source => assert.ok(source.length > 100 && !source.startsWith("<!"), `Missing module: ${filename}`) });
+}
+checks.push({ route: "/assets/mp3-splitter.css", contentType: /text\/css/i, check: text => assert.ok(text.includes(".splitter")) });
+checks.push({ route: "/assets/mp3-splitter.png", contentType: /image\/png/i, binary: true,
+  check: data => assert.equal(data.readUInt32BE(0), 0x89504e47) });
 for (const { route, check, binary, contentType } of checks) {
   for (let attempt = 1; ; attempt++) {
     try {

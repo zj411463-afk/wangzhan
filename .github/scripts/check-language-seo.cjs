@@ -71,6 +71,6 @@ const { locales, routes, sitePath } = require("../content-pages.cjs");
     await page.selectOption("#languageSelect", "auto");
     await page.waitForURL("https://www.tomp3.xyz/en/");
     await context.close();
-    console.log("PASS: seven stable locale URLs, metadata/schema consistency, 28 content pages at 320/390/768/1440px in light/dark, manual language navigation and explicit Auto.");
+    console.log(`PASS: seven stable locale URLs, metadata/schema consistency, ${locales.length * Object.keys(routes).length} content pages at 320/390/768/1440px in light/dark, manual language navigation and explicit Auto.`);
   } finally { await browser.close(); }
 })().catch(error => { console.error(error); process.exitCode = 1; });

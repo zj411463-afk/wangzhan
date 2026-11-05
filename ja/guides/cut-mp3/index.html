@@ -33,6 +33,7 @@
   <meta name="twitter:image" content="https://www.tomp3.xyz/assets/audio-selection.png">
   <meta name="twitter:image:alt" content="Sonic Cutter の音声波形、選択ハンドル、試聴ボタン（英語表示）">
   <link rel="stylesheet" href="/assets/reading.css">
+  
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://www.tomp3.xyz/ja/guides/cut-mp3/","url":"https://www.tomp3.xyz/ja/guides/cut-mp3/","name":"MP3をカットする方法：時間指定・試聴・保存","description":"Sonic CutterでMP3を選び、開始・終了時間を調整し、選択範囲を試聴して保存する手順。フレーム境界とダウンロードの確認方法も説明します。","inLanguage":"ja","dateModified":"2026-11-05","mainEntity":{"@id":"https://www.tomp3.xyz/ja/guides/cut-mp3/#article"},"isPartOf":{"@type":"WebSite","name":"Sonic Cutter","url":"https://www.tomp3.xyz/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"音声カッター","item":"https://www.tomp3.xyz/ja/"},{"@type":"ListItem","position":2,"name":"MP3をカットする方法：時間指定・試聴・保存","item":"https://www.tomp3.xyz/ja/guides/cut-mp3/"}]},{"@type":"Article","@id":"https://www.tomp3.xyz/ja/guides/cut-mp3/#article","headline":"MP3をカットする方法：時間指定・試聴・保存","description":"Sonic CutterでMP3を選び、開始・終了時間を調整し、選択範囲を試聴して保存する手順。フレーム境界とダウンロードの確認方法も説明します。","inLanguage":"ja","datePublished":"2026-11-04","dateModified":"2026-11-05","author":{"@type":"Organization","name":"Sonic Cutter","url":"https://www.tomp3.xyz/"},"mainEntityOfPage":{"@id":"https://www.tomp3.xyz/ja/guides/cut-mp3/"},"image":["https://www.tomp3.xyz/assets/audio-selection.png"],"publisher":{"@type":"Organization","name":"Sonic Cutter","url":"https://www.tomp3.xyz/"}},{"@type":"HowTo","name":"MP3をカットする方法：時間指定・試聴・保存","description":"00:45から01:00までの音楽を残す例で説明します。時間は自分のファイルに合わせて調整してください。ブラウザ内で処理し、新しいファイルを保存するので元の音楽は変更されません。","inLanguage":"ja","step":[{"@type":"HowToStep","name":"MP3ファイルを選択する","text":"音声カッターを開き、端末のMP3を選びます。波形と全体の長さが表示されるまで待ちます。保護された音楽ファイルは通常のMP3ではなく、拡張子の変更だけでは編集できません。","url":"https://www.tomp3.xyz/ja/guides/cut-mp3/#section-1"},{"@type":"HowToStep","name":"開始と終了を設定する","text":"波形のハンドルを動かすか、開始00:45、終了01:00を入力します。再生位置を動かして曲の場所を探してから範囲を調整することもできます。実際の長さに合った時間を指定してください。","url":"https://www.tomp3.xyz/ja/guides/cut-mp3/#section-2"},{"@type":"HowToStep","name":"選択範囲を試聴する","text":"選択範囲の試聴ボタンで開始から終了まで確認します。最初の音と最後のフレーズを聞いて境界を調整します。全体再生と範囲試聴は用途が異なるため、クリップの確認には範囲試聴を使います。","url":"https://www.tomp3.xyz/ja/guides/cut-mp3/#section-3"},{"@type":"HowToStep","name":"保存して再生を確認する","text":"クリップを保存し、ブラウザのダウンロード先で新しいMP3を探します。ダイアログなしでダウンロードフォルダに入る場合もあります。端末で再生し、内容と切り口を確認してから使用してください。","url":"https://www.tomp3.xyz/ja/guides/cut-mp3/#section-4"}]}]}</script>
 </head>
 <body>
@@ -55,7 +56,8 @@
 <a href="#section-5">保存時間が少し変わる理由</a>
 <a href="#section-6">スマートフォンでファイルを選んで保存する</a></nav>
       <div class="aside-related"><p class="eyebrow">関連記事</p><a href="/ja/scenes/ringtone/">MP3・WAVから着信音用の音声をオンラインで切り出す</a>
-<a href="/ja/guides/cut-podcast/">ポッドキャストや会話を単語の途中で切らずに保存する方法</a></div>
+<a href="/ja/guides/cut-podcast/">ポッドキャストや会話を単語の途中で切らずに保存する方法</a>
+<a href="/ja/guides/how-to-edit-mp3/">MP3を編集する方法：カット・分割・試聴・保存</a></div>
     </aside>
     <main id="content">
       <nav class="breadcrumbs" aria-label="音声カッター"><a href="/ja/">音声カッター</a><span aria-hidden="true">/</span><span>使い方</span></nav>
@@ -63,6 +65,7 @@
         <p class="eyebrow">使い方 · <span>更新日 <time datetime="2026-11-05">2026-11-05</time></span></p>
         <h1>MP3をカットする方法：時間指定・試聴・保存</h1>
         <p class="lead">00:45から01:00までの音楽を残す例で説明します。時間は自分のファイルに合わせて調整してください。ブラウザ内で処理し、新しいファイルを保存するので元の音楽は変更されません。</p>
+        
         <a class="tool-link" href="/ja/#workbenchMain">音声カッターを開く</a>
         <figure><a href="/ja/#workbenchMain"><img src="/assets/audio-selection.png" width="1280" height="637" alt="Sonic Cutter の音声波形、選択ハンドル、試聴ボタン（英語表示）" decoding="async" loading="lazy"></a><figcaption>波形で範囲を指定し、選択した部分を試聴します。</figcaption></figure>
         <section id="section-1"><h2>1. MP3ファイルを選択する</h2><p>音声カッターを開き、端末のMP3を選びます。波形と全体の長さが表示されるまで待ちます。保護された音楽ファイルは通常のMP3ではなく、拡張子の変更だけでは編集できません。</p><p class="context-link"><a href="/ja/scenes/ringtone/">MP3・WAVから着信音用の音声をオンラインで切り出す</a></p></section>
@@ -71,7 +74,7 @@
 <section id="section-4"><h2>4. 保存して再生を確認する</h2><p>クリップを保存し、ブラウザのダウンロード先で新しいMP3を探します。ダイアログなしでダウンロードフォルダに入る場合もあります。端末で再生し、内容と切り口を確認してから使用してください。</p></section>
 <section id="section-5"><h2>保存時間が少し変わる理由</h2><p>MP3は既存のフレーム境界に合わせて保存するため、指定時間と数ミリ秒ずれる場合があります。再圧縮を避けても、最初の圧縮で失われた音は戻りません。サンプル単位の編集には元のWAVを使い、拡張子変更を形式変換の代わりにしないでください。</p></section>
 <section id="section-6"><h2>スマートフォンでファイルを選んで保存する</h2><p>保護された音楽アプリのダウンロードではなく、端末のファイル選択画面から MP3 を選びます。ハンドルの操作が難しい場合は開始・終了時刻の入力欄で調整してください。試聴して保存した後は、ブラウザーのダウンロード一覧やファイルアプリを確認します。保存ダイアログの有無はブラウザー設定によります。</p></section>
-        <section class="related"><h2>関連記事</h2><ul><li><a href="/ja/scenes/ringtone/">MP3・WAVから着信音用の音声をオンラインで切り出す</a></li><li><a href="/ja/guides/cut-podcast/">ポッドキャストや会話を単語の途中で切らずに保存する方法</a></li></ul><p><a href="/ja/#workbenchMain">音声カッターを開く</a></p></section>
+        <section class="related"><h2>関連記事</h2><ul><li><a href="/ja/scenes/ringtone/">MP3・WAVから着信音用の音声をオンラインで切り出す</a></li><li><a href="/ja/guides/cut-podcast/">ポッドキャストや会話を単語の途中で切らずに保存する方法</a></li><li><a href="/ja/guides/how-to-edit-mp3/">MP3を編集する方法：カット・分割・試聴・保存</a></li></ul><p><a href="/ja/#workbenchMain">音声カッターを開く</a></p></section>
         <section class="references"><h2>参考資料</h2><ul><li><a href="https://support.apple.com/120692">Apple · GarageBand</a></li><li><a href="https://support.google.com/pixelphone/answer/2819577">Google · Pixel</a></li><li><a href="https://developer.mozilla.org/en-US/docs/Web/Media/Guides/Formats/Audio_codecs">MDN · MP3 / WAV</a></li></ul></section>
       </article>
     </main>

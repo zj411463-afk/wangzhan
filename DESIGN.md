@@ -43,3 +43,10 @@ Shared tab icon: favicon.svg matches the purple waveform brand. Regenerate the
 16/32/48px favicon.ico and 180px apple-touch-icon.png with build-favicons.cjs when
 editing the SVG. All pages reference root icon URLs, and the public allowlist,
 release checks and live deployment checks must keep these assets included.
+
+MP3 splitter: a separate functional page in all seven locales. Reuse the existing
+lavender tokens, 8px framed tool and system type. Fixed-duration and timestamp
+modes use native radios, numeric/time inputs and accessible audio controls; no fake
+waveform. Actual output parts have preview/download actions and a lazy ZIP action.
+Lucide icon nodes come from the installed library, with its license included.
+Preserve the cutter's layout and event IDs. The splitter has its own prefixed events.

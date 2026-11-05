@@ -1,6 +1,8 @@
 const fs = require("node:fs");
 const path = require("node:path");
 const { locales, languageNames, routes, sitePath, content, mobileTips } = require("../content-pages.cjs");
+const { data: splitterCopy } = require("../splitter-pages.cjs");
+const splitterMarkup = require("../splitter-markup.cjs");
 const origin = "https://www.tomp3.xyz";
 const published = "2026-11-04";
 const updated = "2026-11-05";
@@ -10,7 +12,7 @@ const imageHeight = image.readUInt32BE(20);
 const escape = (value) => String(value).replace(/[&<>"']/g, (character) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[character]);
 const lang = (locale) => locale === "zh" ? "zh-CN" : locale;
 const link = (url, text) => `<a href="${escape(url)}">${escape(text)}</a>`;
-const related = { ringtone: ["mp3", "podcast"], podcast: ["speech", "ringtone"], mp3: ["ringtone", "speech"], speech: ["podcast", "mp3"] };
+const related = { ringtone: ["mp3", "podcast", "splitter"], podcast: ["speech", "ringtone", "splitter"], mp3: ["ringtone", "speech", "edit"], speech: ["podcast", "mp3", "splitter"], splitter: ["edit", "mp3"], edit: ["splitter", "mp3"] };
 const references = [
   ["https://support.apple.com/120692", "Apple · GarageBand"],
   ["https://support.google.com/pixelphone/answer/2819577", "Google · Pixel"],
@@ -24,20 +26,29 @@ for (const locale of locales) {
   for (const key of Object.keys(routes)) {
     const page = copy.pages[key];
     const isGuide = Boolean(page.steps);
+    const isSplitter = key === "splitter";
+    const splitterLabel = { zh: "MP3 分割", en: "MP3 Splitter", ja: "MP3分割", ko: "MP3 분할", fr: "Division MP3", de: "MP3 Splitter", es: "Divisor MP3" }[locale];
+    const kindLabel = isSplitter ? splitterLabel : isGuide ? guides : scenes;
+    const previewImage = isSplitter ? "mp3-splitter.png" : "audio-selection.png";
+    const previewAlt = isSplitter ? page.title : copy.image;
+    const previewBytes = fs.existsSync(`assets/${previewImage}`) ? fs.readFileSync(`assets/${previewImage}`) : image;
+    const pagePublished = ["splitter", "edit"].includes(key) ? "2026-11-05" : published;
     const url = `${origin}${sitePath(locale, key)}`;
     const sections = [...(page.steps || []), ...page.sections, ...(key === "mp3" ? [mobileTips[locale]] : [])];
     const schema = {
       "@context": "https://schema.org",
       "@graph": [
         { "@type": "WebPage", "@id": url, url, name: page.title, description: page.description, inLanguage: lang(locale), dateModified: updated,
-          ...(isGuide ? { mainEntity: { "@id": `${url}#article` } } : {}),
+          ...(isGuide ? { mainEntity: { "@id": `${url}#article` } } : isSplitter ? { mainEntity: { "@id": `${url}#application` } } : {}),
           isPartOf: { "@type": "WebSite", name: "Sonic Cutter", url: origin + "/" } },
         { "@type": "BreadcrumbList", itemListElement: [
           { "@type": "ListItem", position: 1, name: tool, item: origin + sitePath(locale) },
           { "@type": "ListItem", position: 2, name: page.title, item: url }
         ] },
+        ...(isSplitter ? [{ "@type": "WebApplication", "@id": `${url}#application`, name: "Sonic Cutter MP3 Splitter", url, inLanguage: lang(locale), description: page.description,
+          applicationCategory: "MultimediaApplication", operatingSystem: "Web browser", offers: { "@type": "Offer", price: "0", priceCurrency: "USD" } }] : []),
         ...(isGuide ? [{ "@type": "Article", "@id": `${url}#article`, headline: page.title, description: page.description,
-          inLanguage: lang(locale), datePublished: published, dateModified: updated,
+          inLanguage: lang(locale), datePublished: pagePublished, dateModified: updated,
           author: { "@type": "Organization", name: "Sonic Cutter", url: origin + "/" },
           mainEntityOfPage: { "@id": url }, image: [origin + "/assets/audio-selection.png"],
           publisher: { "@type": "Organization", name: "Sonic Cutter", url: origin + "/" } },
@@ -63,19 +74,20 @@ ${alternates(key)}
   <meta property="og:title" content="${escape(page.title)}">
   <meta property="og:description" content="${escape(page.description)}">
   <meta property="og:url" content="${url}">
-  <meta property="og:image" content="${origin}/assets/audio-selection.png">
-  <meta property="og:image:width" content="${imageWidth}">
-  <meta property="og:image:height" content="${imageHeight}">
-  <meta property="og:image:alt" content="${escape(copy.image)}">
+  <meta property="og:image" content="${origin}/assets/${previewImage}">
+  <meta property="og:image:width" content="${previewBytes.readUInt32BE(16)}">
+  <meta property="og:image:height" content="${previewBytes.readUInt32BE(20)}">
+  <meta property="og:image:alt" content="${escape(previewAlt)}">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="${escape(page.title)}">
   <meta name="twitter:description" content="${escape(page.description)}">
-  <meta name="twitter:image" content="${origin}/assets/audio-selection.png">
-  <meta name="twitter:image:alt" content="${escape(copy.image)}">
+  <meta name="twitter:image" content="${origin}/assets/${previewImage}">
+  <meta name="twitter:image:alt" content="${escape(previewAlt)}">
   <link rel="stylesheet" href="/assets/reading.css">
+  ${isSplitter ? '<link rel="stylesheet" href="/assets/mp3-splitter.css">' : ""}
   <script type="application/ld+json">${JSON.stringify(schema).replaceAll("<", "\\u003c")}</script>
 </head>
-<body>
+<body${isSplitter ? ' class="splitter-page"' : ""}>
   <a class="skip-link" href="#content">${escape(skip)}</a>
   <header class="site-header">
     <a class="brand" href="${sitePath(locale)}">Sonic Cutter<span>${escape(tool)}</span></a>
@@ -92,13 +104,14 @@ ${alternates(key)}
       <div class="aside-related"><p class="eyebrow">${escape(more)}</p>${related[key].map((other) => link(sitePath(locale, other), copy.pages[other].title)).join("\n")}</div>
     </aside>
     <main id="content">
-      <nav class="breadcrumbs" aria-label="${escape(tool)}">${link(sitePath(locale), tool)}<span aria-hidden="true">/</span><span>${escape(isGuide ? guides : scenes)}</span></nav>
+      <nav class="breadcrumbs" aria-label="${escape(tool)}">${link(sitePath(locale), tool)}<span aria-hidden="true">/</span><span>${escape(kindLabel)}</span></nav>
       <article>
-        <p class="eyebrow">${escape(isGuide ? guides : scenes)} · <span>${escape(date)} <time datetime="${updated}">${updated}</time></span></p>
+        <p class="eyebrow">${escape(kindLabel)} · <span>${escape(date)} <time datetime="${updated}">${updated}</time></span></p>
         <h1>${escape(page.title)}</h1>
         <p class="lead">${escape(page.intro)}</p>
+        ${isSplitter ? splitterMarkup(splitterCopy[locale]) : ""}
         <a class="tool-link" href="${sitePath(locale)}#workbenchMain">${escape(open)}</a>
-        <figure><a href="${sitePath(locale)}#workbenchMain"><img src="/assets/audio-selection.png" width="${imageWidth}" height="${imageHeight}" alt="${escape(copy.image)}" decoding="async" loading="lazy"></a><figcaption>${escape(copy.caption)}</figcaption></figure>
+        ${isSplitter ? "" : `<figure><a href="${sitePath(locale)}#workbenchMain"><img src="/assets/audio-selection.png" width="${imageWidth}" height="${imageHeight}" alt="${escape(copy.image)}" decoding="async" loading="lazy"></a><figcaption>${escape(copy.caption)}</figcaption></figure>`}
         ${sections.map(([heading, body], index) => `<section id="section-${index + 1}"><h2>${isGuide && index < page.steps.length ? `${index + 1}. ` : ""}${escape(heading)}</h2><p>${escape(body)}</p>${index === 0 ? `<p class="context-link">${link(sitePath(locale, related[key][0]), copy.pages[related[key][0]].title)}</p>` : ""}</section>`).join("\n")}
         <section class="related"><h2>${escape(more)}</h2><ul>${related[key].map((other) => `<li>${link(sitePath(locale, other), copy.pages[other].title)}</li>`).join("")}</ul><p>${link(`${sitePath(locale)}#workbenchMain`, open)}</p></section>
         <section class="references"><h2>${escape(refs)}</h2><ul>${references.filter((_, index) => key === "ringtone" || key === "mp3" || index === 2).map(([href, title]) => `<li>${link(href, title)}</li>`).join("")}</ul></section>
@@ -124,7 +137,9 @@ const resourceCopy = Object.fromEntries(locales.map((locale) => [locale, {
   ringtone: content[locale].pages.ringtone.title,
   podcast: content[locale].pages.podcast.title,
   mp3: content[locale].pages.mp3.title,
-  speech: content[locale].pages.speech.title
+  speech: content[locale].pages.speech.title,
+  splitter: content[locale].pages.splitter.title,
+  edit: content[locale].pages.edit.title
 }]));
 const resourceMarkup = `<section class="resource-section" aria-labelledby="resourceHeading">
       <h2 id="resourceHeading" data-resource="heading">${escape(resourceCopy.zh.heading)}</h2>
