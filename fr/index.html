@@ -6,8 +6,8 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
   <title>Couper un fichier audio en ligne | MP3 et WAV sans réencodage</title>
   <meta name="description" content="Outil gratuit de découpe audio sans perte en ligne. MP3 aligné sur les trames, WAV aligné sur les blocs d'échantillons, traitement local dans le navigateur.">
-  
-  <meta name="robots" content="index, follow">
+
+  <meta name="robots" content="index, follow, max-image-preview:large">
   <link rel="canonical" href="https://www.tomp3.xyz/fr/">
   <link rel="alternate" hreflang="zh-CN" href="https://www.tomp3.xyz/">
   <link rel="alternate" hreflang="en" href="https://www.tomp3.xyz/en/">
@@ -17,16 +17,18 @@
   <link rel="alternate" hreflang="de" href="https://www.tomp3.xyz/de/">
   <link rel="alternate" hreflang="es" href="https://www.tomp3.xyz/es/">
   <link rel="alternate" hreflang="x-default" href="https://www.tomp3.xyz/">
-  <meta name="theme-color" content="#087d83">
+  <meta name="theme-color" content="#7643e8">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.tomp3.xyz/fr/">
   <meta property="og:title" content="Couper un fichier audio en ligne | MP3 et WAV sans réencodage">
   <meta property="og:description" content="Outil gratuit de découpe audio sans perte en ligne. MP3 aligné sur les trames, WAV aligné sur les blocs d'échantillons, traitement local dans le navigateur.">
-  <meta property="og:image" content="https://www.tomp3.xyz/assets/sonic-hero.jpg">
+  <meta property="og:image" content="https://www.tomp3.xyz/assets/audio-selection.png">
+  <meta property="og:image:alt" content="Forme d’onde, sélection et écoute dans Sonic Cutter, interface en anglais">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Couper un fichier audio en ligne | MP3 et WAV sans réencodage">
   <meta name="twitter:description" content="Outil gratuit de découpe audio sans perte en ligne. MP3 aligné sur les trames, WAV aligné sur les blocs d'échantillons, traitement local dans le navigateur.">
-  <meta name="twitter:image" content="https://www.tomp3.xyz/assets/sonic-hero.jpg">
+  <meta name="twitter:image" content="https://www.tomp3.xyz/assets/audio-selection.png">
+  <meta name="twitter:image:alt" content="Forme d’onde, sélection et écoute dans Sonic Cutter, interface en anglais">
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -34,7 +36,8 @@
     {
       "@type": "WebSite",
       "name": "Sonic Cutter",
-      "url": "https://www.tomp3.xyz/"
+      "url": "https://www.tomp3.xyz/",
+      "inLanguage": "fr"
     },
     {
       "@type": "WebApplication",
@@ -52,7 +55,8 @@
         "Découpe MP3 sans perte",
         "Rognage WAV original",
         "Traitement local plus sûr"
-      ]
+      ],
+      "inLanguage": "fr"
     },
     {
       "@type": "FAQPage",
@@ -97,7 +101,8 @@
             "text": "Non. Elle préserve les données encodées existantes, mais ne restaure pas les informations perdues lors de la compression initiale du MP3."
           }
         }
-      ]
+      ],
+      "inLanguage": "fr"
     },
     {
       "@type": "HowTo",
@@ -118,7 +123,8 @@
           "name": "Exporter sur votre appareil",
           "text": "Enregistrez le clip localement. MP3 s'aligne sur les trames et WAV sur les blocs pour éviter la recompression."
         }
-      ]
+      ],
+      "inLanguage": "fr"
     }
   ]
 }
@@ -2010,7 +2016,7 @@
         <label class="language-switcher" for="languageSelect">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z"></path><path d="M3.6 9h16.8"></path><path d="M3.6 15h16.8"></path><path d="M12 3a14 14 0 0 1 0 18"></path><path d="M12 3a14 14 0 0 0 0 18"></path></svg>
           <select id="languageSelect" aria-label="Language">
-            <option value="auto">Auto</option>
+            <option value="auto">Auto · Français</option>
             <option value="zh">中文</option>
             <option value="en">English</option>
             <option value="ja">日本語</option>
@@ -2138,10 +2144,10 @@
             </label>
           </div>
           <div class="controls">
-            
-            
-            
-            
+
+
+
+
             <button class="icon preview" id="previewBtn" type="button" aria-pressed="false" disabled="">
               <svg viewBox="0 0 24 24" id="previewIcon" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
               <span id="previewText">Écouter la sélection</span>
@@ -2426,7 +2432,7 @@
       <a href="../en/" hreflang="en" lang="en" data-locale="en">English</a>
       <a href="../ja/" hreflang="ja" lang="ja" data-locale="ja">日本語</a>
       <a href="../ko/" hreflang="ko" lang="ko" data-locale="ko">한국어</a>
-      <a href="../fr/" hreflang="fr" lang="fr" data-locale="fr">Français</a>
+      <a href="../fr/" hreflang="fr" lang="fr" data-locale="fr" aria-current="page">Français</a>
       <a href="../de/" hreflang="de" lang="de" data-locale="de">Deutsch</a>
       <a href="../es/" hreflang="es" lang="es" data-locale="es">Español</a>
     </nav>
@@ -3719,7 +3725,7 @@
       }
       storageSet("sonic-cutter-language", value);
       state.languageMode = "manual";
-      applyLanguage(value);
+      switchLanguage(value);
     });
 
     els.fileInput.addEventListener("change", (event) => {
@@ -4756,6 +4762,7 @@
 
       document.querySelector("#intro").setAttribute("aria-label", t("introLabel"));
       els.languageSelect.querySelector('option[value="auto"]').textContent = t("auto");
+      updateLanguageRecommendation();
       els.playBtn.title = t("playTitle");
       updatePreviewButton();
       els.loopBtn.title = t("loopTitle");
@@ -4773,6 +4780,22 @@
         updateFormatStatus();
       }
       updateConverterLanguageState();
+      const graph = JSON.parse(document.querySelector('script[type="application/ld+json"]').textContent);
+      graph["@graph"].forEach(item => { item.inLanguage = document.documentElement.lang; });
+      const application = graph["@graph"].find(item => item["@type"] === "WebApplication");
+      application.description = t("metaDescription");
+      application.featureList = Array.from(document.querySelectorAll('[data-i18n="feature1Title"], [data-i18n="feature2Title"], [data-i18n="feature3Title"]'), item => item.textContent);
+      graph["@graph"].find(item => item["@type"] === "FAQPage").mainEntity = Array.from(document.querySelectorAll(".faq details"), item => ({
+        "@type": "Question", name: item.querySelector("summary").textContent,
+        acceptedAnswer: { "@type": "Answer", text: item.querySelector("p").textContent }
+      }));
+      const howTo = graph["@graph"].find(item => item["@type"] === "HowTo");
+      howTo.name = document.querySelector(".step-list").getAttribute("aria-label");
+      delete howTo.description;
+      howTo.step = Array.from(document.querySelectorAll(".step-card"), item => ({
+        "@type": "HowToStep", name: item.querySelector("h3").textContent, text: item.querySelector("p").textContent
+      }));
+      document.querySelector('script[type="application/ld+json"]').textContent = JSON.stringify(graph).replaceAll("<", "\\u003c");
       drawWaveform();
     }
 
@@ -4788,30 +4811,44 @@
       }
     }
 
+    function updateLanguageRecommendation() {
+      const names = { zh: "中文", en: "English", ja: "日本語", ko: "한국어", fr: "Français", de: "Deutsch", es: "Español" };
+      const recommendation = names[state.recommendedLanguage];
+      els.languageSelect.querySelector('option[value="auto"]').textContent = recommendation
+        ? `${t("auto")} · ${recommendation}` : t("auto");
+    }
+
+    function switchLanguage(lang) {
+      // Never navigate away from an audio file already being edited.
+      if (!state.file && /^https?:$/.test(location.protocol)) {
+        const target = lang === "zh" ? "/" : `/${lang}/`;
+        if (location.pathname !== target) {
+          location.assign(target + location.hash);
+          return;
+        }
+      }
+      applyLanguage(lang);
+      els.languageSelect.value = lang;
+    }
+
     async function initializeLanguage(forceIpLookup = false) {
-      const pageLanguage = document.documentElement.dataset.pageLanguage;
-      if (pageLanguage && translations[pageLanguage] && !forceIpLookup) {
-        state.languageMode = "manual";
+      const pageLanguage = document.documentElement.dataset.pageLanguage || "zh";
+      state.languageMode = forceIpLookup ? "auto" : "manual";
+      if (!forceIpLookup) {
         els.languageSelect.value = pageLanguage;
         applyLanguage(pageLanguage);
-        return;
       }
       const saved = storageGet("sonic-cutter-language");
-      if (saved && translations[saved] && !forceIpLookup) {
-        state.languageMode = "manual";
-        els.languageSelect.value = saved;
-        applyLanguage(saved);
-        return;
+      state.recommendedLanguage = saved && translations[saved] ? saved : resolveBrowserLanguage();
+      updateLanguageRecommendation();
+      // Fixed URLs keep stable content. IP detection only recommends a language;
+      // the visitor must choose Auto before it changes their page.
+      if (pageLanguage === "zh" || forceIpLookup) {
+        const detected = await detectLanguageByIp();
+        if (detected && !saved) state.recommendedLanguage = detected;
+        updateLanguageRecommendation();
       }
-
-      state.languageMode = "auto";
-      els.languageSelect.value = "auto";
-      applyLanguage(resolveBrowserLanguage());
-
-      const detected = await detectLanguageByIp();
-      if (state.languageMode === "auto" && detected) {
-        applyLanguage(detected);
-      }
+      if (forceIpLookup && state.languageMode === "auto") switchLanguage(state.recommendedLanguage);
     }
 
     async function detectLanguageByIp() {
@@ -4967,6 +5004,7 @@
     syncInputs();
     syncSeekControl();
   </script>
+
 
 
 </body></html>

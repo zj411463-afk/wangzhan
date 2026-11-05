@@ -89,6 +89,16 @@ test("deployment contains only public site files", () => {
       assert.ok(sitemap.includes(`<loc>https://www.tomp3.xyz${route}</loc>`), `Not in sitemap: ${file}`);
       assert.ok(html.includes(`rel="canonical" href="https://www.tomp3.xyz${route}"`), `Invalid canonical: ${file}`);
       assert.ok(!html.includes('name="robots" content="noindex'), `Unexpected noindex: ${file}`);
+      assert.ok(html.includes("max-image-preview:large"), `Missing image preview permission: ${file}`);
+      const application = schema(html)["@graph"].find(item => item["@type"] === "WebApplication");
+      if (application) {
+        assert.equal(application.inLanguage, html.match(/<html lang="([^"]+)"/)[1], `Schema language: ${file}`);
+        assert.equal(application.description, description, `Schema description: ${file}`);
+        assert.ok(html.includes(`data-page-language="${file === "index.html" ? "zh" : file.split("/")[0]}"`));
+      }
+      const shareImage = html.match(/<meta property="og:image" content="([^"]+)"/)?.[1];
+      assert.equal(shareImage, "https://www.tomp3.xyz/assets/audio-selection.png", `Use a real tool preview: ${file}`);
+      assert.ok(readFileSync(path.join(output, new URL(shareImage).pathname)).length);
       const base = new URL(route, "https://www.tomp3.xyz");
       for (const match of html.matchAll(/<(a|img)\b[^>]*\b(href|src)="([^"]+)"/g)) {
         const target = new URL(match[3], base);
@@ -101,6 +111,10 @@ test("deployment contains only public site files", () => {
         }
       }
       for (const image of html.matchAll(/<img\b[^>]*>/g)) assert.match(image[0], /\balt="[^"]+"/, `Missing image alt: ${file}`);
+      for (const image of html.matchAll(/<img\b[^>]*>/g)) {
+        assert.match(image[0], /\bwidth="\d+"/, `Reserve image width: ${file}`);
+        assert.match(image[0], /\bheight="\d+"/, `Reserve image height: ${file}`);
+      }
     }
     for (const locale of contentLocales) {
       const homeFile = `${sitePath(locale).slice(1)}index.html`;
@@ -111,6 +125,7 @@ test("deployment contains only public site files", () => {
         assert.ok(homeHtml.includes(`href="${sitePath(locale, key)}"`), `Homepage must link to ${file}`);
         assert.ok(html.includes(`href="${sitePath(locale)}#workbenchMain"`), `Missing tool link: ${file}`);
         assert.ok(html.includes(`href="${sitePath(locale, key === "ringtone" ? "mp3" : key === "podcast" ? "speech" : key === "mp3" ? "ringtone" : "podcast")}"`), `Missing contextual link: ${file}`);
+        assert.match(html, /<p class="context-link"><a href="[^"]+">[^<]+<\/a><\/p><\/section>/, `Missing in-body contextual link: ${file}`);
         for (const alternate of contentLocales) assert.ok(html.includes(`href="https://www.tomp3.xyz${sitePath(alternate, key)}"`), `Missing language alternate: ${file}`);
         const graph = schema(html)["@graph"];
         assert.ok(graph.some((item) => item["@type"] === "BreadcrumbList"));

@@ -1,6 +1,12 @@
 # Search and AI visibility
 
-The homepage retains its existing browser/IP-based automatic language choice.
+Every editor URL, including the Chinese homepage, keeps its named language stable.
+Browser/IP detection recommends a language in the Auto option without silently
+changing or redirecting the page. Choosing Auto explicitly opens the recommended
+language URL. Manual language choices also open the matching URL, except when an
+audio file is already loaded (or the page is opened from file://): in that case
+only the interface changes so that editing is not lost. Saved preferences inform
+the recommendation, never override the language of a direct URL visit.
 Separately indexable versions of the same working editor are available at
 `/en/`, `/ja/`, `/ko/`, `/fr/`, `/de/`, and `/es/`. A localized URL defaults
 to its named language, even if the visitor is elsewhere; manual switching remains
@@ -40,7 +46,8 @@ node --test .github/scripts/check-funnel.mjs .github/scripts/check-release.mjs
 ```
 
 The first command updates the content HTML, editor resource copy and 35-URL sitemap.
-The second regenerates the translated editor snapshots. The release check validates
+The second regenerates all seven editor snapshots, including the Chinese root,
+and aligns visible copy, metadata and structured data. The release check validates
 unique titles and descriptions, canonical URLs, one H1 per page, image alternatives,
 local links and fragments, contextual links and structured data. Content pages have
 WebPage and BreadcrumbList markup; tutorials also have Article and HowTo markup
@@ -51,6 +58,10 @@ sitemap. `robots.txt` allows crawling and points to the canonical sitemap.
 `assets/audio-selection.png` is a screenshot of the working English editor with a
 synthetic local audio sample, not a user's recording. Guide layouts reuse the site's
 teal accent and use the Mintlify documentation reference for reading widths and navigation.
+The MP3 guide includes phone file selection, time-input adjustments and download
+troubleshooting in all seven languages. Contextual links appear inside the body,
+not just in a related-links footer. Share cards use the actual editor screenshot;
+images reserve dimensions and article screenshots are lazy-loaded.
 External references lead to Apple, Google Pixel and MDN documentation. These are
 outbound references. The public GitHub README links back to the tool and selected
 guides, providing a relevant repository-to-site link without promising ranking benefits.
@@ -64,3 +75,29 @@ clicks, and countries there. In Bing, review AI Performance if available.
 Use those reports to choose future guides rather than inventing search demand.
 The site's event counters are action counts, not unique people or user-level
 conversion data. Do not add credentials or verification tokens to this file.
+
+## Verification and search measurement
+
+Run `node .github/scripts/check-language-seo.cjs` with Playwright/Chromium to check
+stable locale URLs against conflicting browser/IP/saved preferences, explicit Auto,
+manual URL navigation, mobile overflow and visible/schema language consistency.
+Run `check-editor-ui.cjs` and `check-funnel-ui.cjs` to verify actual selection,
+preview, byte-preserving export and unchanged anonymous event payloads. These
+tests use local fixtures, not production events. The deployed-content check now
+covers all 35 indexable pages as well as sitemap, robots and shared icons.
+
+Search Console indexing is an external state, not a build result. Record each
+URL's inspected status, Google's selected canonical and the inspection date only
+after reading Search Console or an authorized API/export. Do not label an HTTP
+200 page as indexed. Submit the existing sitemap rather than inventing additional
+URLs solely for keyword coverage. Review 28-day query/page/country/device exports
+weekly; prioritize high-impression low-CTR pages for title improvements, and pages
+with relevant queries but insufficient answers for content updates. Record changes
+and compare periods, distinguishing partial days and the console's reporting timezone.
+Do not infer target markets from raw Cloudflare country/request counts.
+
+Further backlinks require editorial work and publication on relevant external
+sites; adding outbound references or passing tests does not create inbound links.
+The existing public README provides genuine tool and guide links. No directory
+listing, purchased link, Search Console submission or indexing request is claimed
+by these scripts.

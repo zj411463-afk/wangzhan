@@ -1,5 +1,14 @@
 const locales = ["zh", "en", "ja", "ko", "fr", "de", "es"];
 const languageNames = { zh: "中文", en: "English", ja: "日本語", ko: "한국어", fr: "Français", de: "Deutsch", es: "Español" };
+const mobileTips = {
+  zh: ["在手机上选择文件和保存", "从系统文件选择器中选择 MP3，而不是受保护的音乐应用下载。选区手柄不易拖准时，可用开始和结束时间输入框微调。试听后保存，并到浏览器下载列表或系统“文件”应用查找新文件；是否弹出保存窗口由浏览器设置决定。"],
+  en: ["Choose and save a file on a phone", "Choose an MP3 from the system file picker, not a protected music-app download. If dragging the handles is difficult, refine the start and end with the time inputs. Preview, save, then check the browser downloads or your Files app. A save dialog depends on browser settings."],
+  ja: ["スマートフォンでファイルを選んで保存する", "保護された音楽アプリのダウンロードではなく、端末のファイル選択画面から MP3 を選びます。ハンドルの操作が難しい場合は開始・終了時刻の入力欄で調整してください。試聴して保存した後は、ブラウザーのダウンロード一覧やファイルアプリを確認します。保存ダイアログの有無はブラウザー設定によります。"],
+  ko: ["휴대전화에서 파일 선택과 저장", "보호된 음악 앱 다운로드가 아닌 MP3 파일을 시스템 파일 선택기에서 고르세요. 손잡이 조작이 어렵다면 시작과 종료 시간 입력란으로 미세 조정하세요. 미리 듣고 저장한 뒤 브라우저 다운로드 목록이나 파일 앱을 확인하세요. 저장 창 표시 여부는 브라우저 설정에 따라 다릅니다."],
+  fr: ["Choisir et enregistrer sur téléphone", "Choisissez un MP3 dans le sélecteur de fichiers, et non un téléchargement protégé d’une application musicale. Si les poignées sont difficiles à déplacer, ajustez les heures dans les champs de début et de fin. Écoutez puis enregistrez et consultez les téléchargements ou l’application Fichiers. La fenêtre d’enregistrement dépend du navigateur."],
+  de: ["Datei auf dem Telefon auswählen und speichern", "Wähle im Dateidialog ein MP3 statt eines geschützten Downloads aus einer Musik-App. Lassen sich die Griffe schwer bewegen, nutze die Eingaben für Start und Ende. Höre die Auswahl an, speichere und prüfe die Browser-Downloads oder die Dateien-App. Ob ein Speicherdialog erscheint, hängt vom Browser ab."],
+  es: ["Elegir y guardar un archivo en el móvil", "Elige un MP3 en el selector de archivos, no una descarga protegida de una aplicación de música. Si cuesta mover los controles, ajusta el inicio y el final en los campos de tiempo. Escucha, guarda y consulta las descargas del navegador o la aplicación Archivos. El diálogo de guardado depende del navegador."]
+};
 const routes = { ringtone: "scenes/ringtone/", podcast: "scenes/podcast/", mp3: "guides/cut-mp3/", speech: "guides/cut-podcast/" };
 const sitePath = (locale, key) => `/${locale === "zh" ? "" : `${locale}/`}${key ? routes[key] : ""}`;
 const content = {
@@ -203,4 +212,4 @@ const content = {
   }
 };
 const contentFiles = locales.flatMap((locale) => Object.keys(routes).map((key) => `${sitePath(locale, key).slice(1)}index.html`));
-module.exports = { locales, languageNames, routes, sitePath, content, contentFiles };
+module.exports = { locales, languageNames, routes, sitePath, content, contentFiles, mobileTips };

@@ -1,6 +1,4 @@
-<!doctype html>
-<html lang="zh-CN">
-<head>
+<!DOCTYPE html><html lang="zh-CN" data-page-language="zh"><head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
@@ -8,8 +6,8 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
   <title>在线无损音频切割工具｜MP3剪切、WAV裁剪、本地处理</title>
   <meta name="description" content="免费的在线无损音频切割工具，支持 MP3 按帧剪切、WAV 按采样块裁剪。文件只在浏览器本地处理，不上传服务器、无需注册，适合制作铃声、采样和音乐片段。">
-  <meta name="keywords" content="音频切割, MP3剪切, WAV裁剪, 在线音频剪辑, 无损音频切割, 音乐裁剪, 铃声制作, audio cutter, mp3 cutter, wav cutter">
-  <meta name="robots" content="index, follow">
+
+  <meta name="robots" content="index, follow, max-image-preview:large">
   <link rel="canonical" href="https://www.tomp3.xyz/">
   <link rel="alternate" hreflang="zh-CN" href="https://www.tomp3.xyz/">
   <link rel="alternate" hreflang="en" href="https://www.tomp3.xyz/en/">
@@ -19,115 +17,118 @@
   <link rel="alternate" hreflang="de" href="https://www.tomp3.xyz/de/">
   <link rel="alternate" hreflang="es" href="https://www.tomp3.xyz/es/">
   <link rel="alternate" hreflang="x-default" href="https://www.tomp3.xyz/">
-  <meta name="theme-color" content="#087d83">
+  <meta name="theme-color" content="#7643e8">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.tomp3.xyz/">
-  <meta property="og:title" content="在线无损音频切割工具">
-  <meta property="og:description" content="上传 MP3 或 WAV，选择波形片段并本地导出。尽量保持原始音质，不重新压缩。">
-  <meta property="og:image" content="https://www.tomp3.xyz/assets/sonic-hero.jpg">
+  <meta property="og:title" content="在线无损音频切割工具｜MP3剪切、WAV裁剪、本地处理">
+  <meta property="og:description" content="免费的在线无损音频切割工具，支持 MP3 按帧剪切、WAV 按采样块裁剪。文件只在浏览器本地处理，不上传服务器、无需注册，适合制作铃声、采样和音乐片段。">
+  <meta property="og:image" content="https://www.tomp3.xyz/assets/audio-selection.png">
+  <meta property="og:image:alt" content="Sonic Cutter 音频波形、选区与试听控制（英文界面）">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="在线无损音频切割工具">
-  <meta name="twitter:description" content="浏览器本地完成 MP3/WAV 音频切割，不上传文件。">
-  <meta name="twitter:image" content="https://www.tomp3.xyz/assets/sonic-hero.jpg">
+  <meta name="twitter:title" content="在线无损音频切割工具｜MP3剪切、WAV裁剪、本地处理">
+  <meta name="twitter:description" content="免费的在线无损音频切割工具，支持 MP3 按帧剪切、WAV 按采样块裁剪。文件只在浏览器本地处理，不上传服务器、无需注册，适合制作铃声、采样和音乐片段。">
+  <meta name="twitter:image" content="https://www.tomp3.xyz/assets/audio-selection.png">
+  <meta name="twitter:image:alt" content="Sonic Cutter 音频波形、选区与试听控制（英文界面）">
   <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
     {
-      "@context": "https://schema.org",
-      "@graph": [
+      "@type": "WebSite",
+      "name": "Sonic Cutter",
+      "url": "https://www.tomp3.xyz/",
+      "inLanguage": "zh-CN"
+    },
+    {
+      "@type": "WebApplication",
+      "name": "Sonic Cutter",
+      "url": "https://www.tomp3.xyz/",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "Web browser",
+      "description": "免费的在线无损音频切割工具，支持 MP3 按帧剪切、WAV 按采样块裁剪。文件只在浏览器本地处理，不上传服务器、无需注册，适合制作铃声、采样和音乐片段。",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "featureList": [
+        "支持 MP3 无损剪切",
+        "支持 WAV 原始裁剪",
+        "本地处理更安全"
+      ],
+      "inLanguage": "zh-CN"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
         {
-          "@type": "WebSite",
-          "name": "Sonic Cutter",
-          "url": "https://www.tomp3.xyz/"
+          "@type": "Question",
+          "name": "这个在线音频切割工具免费吗？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "免费。你可以直接在浏览器中上传音频、选择片段并保存到本地。"
+          }
         },
         {
-          "@type": "WebApplication",
-          "name": "Sonic Cutter",
-          "url": "https://www.tomp3.xyz/",
-          "applicationCategory": "MultimediaApplication",
-          "operatingSystem": "Web browser",
-          "description": "在线无损音频切割工具，支持 MP3 按音频帧剪切、WAV 按采样块裁剪，文件在浏览器本地处理。",
-          "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "USD"
-          },
-          "featureList": [
-            "MP3 frame-aligned cutting",
-            "WAV sample-block cutting",
-            "Local browser processing",
-            "Waveform range selection",
-            "No recompression export"
-          ]
+          "@type": "Question",
+          "name": "文件会上传到服务器吗？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "不会。音频文件只在你的浏览器本地处理，页面不会把音乐上传到服务器。"
+          }
         },
         {
-          "@type": "FAQPage",
-          "mainEntity": [
-            {
-              "@type": "Question",
-              "name": "这个在线音频切割工具免费吗？",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "免费。你可以直接在浏览器中上传音频、选择片段并保存到本地。"
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "文件会上传到服务器吗？",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "不会。音频文件只在你的浏览器本地处理，页面不会把音乐上传到服务器。"
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "为什么导出的开始或结束时间可能有一点点偏差？",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "为了不重新压缩，MP3 需要对齐到音频帧，WAV 需要对齐到采样块，因此可能出现毫秒级的边界差异。"
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "支持哪些音频格式无损导出？",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "当前重点支持 MP3 和 WAV 的无损导出。M4A、AAC、FLAC、OGG 等格式暂不作为无损导出格式。"
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "无重新压缩能恢复 MP3 音质吗？",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "不能。剪切时不重新压缩可以保留原有编码数据，但无法恢复原 MP3 压缩时已经丢失的信息。"
-              }
-            }
-          ]
+          "@type": "Question",
+          "name": "为什么导出的开始或结束时间可能有一点点偏差？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "为了不重新压缩，MP3 需要对齐到音频帧，WAV 需要对齐到采样块，因此可能出现毫秒级的边界差异。"
+          }
         },
         {
-          "@type": "HowTo",
-          "name": "如何在线无损切割 MP3 或 WAV 音频",
-          "description": "上传音频文件，在波形上选择需要保留的片段，然后保存到本地。",
-          "step": [
-            {
-              "@type": "HowToStep",
-              "name": "上传音频",
-              "text": "选择 MP3 或 WAV 文件，浏览器会在本地读取并生成波形预览。"
-            },
-            {
-              "@type": "HowToStep",
-              "name": "选择片段",
-              "text": "拖拽波形选区，或输入开始和结束时间进行精确调整。"
-            },
-            {
-              "@type": "HowToStep",
-              "name": "保存结果",
-              "text": "点击保存片段，工具会从原始音频数据中导出裁剪后的文件。"
-            }
-          ]
+          "@type": "Question",
+          "name": "支持哪些音频格式无损导出？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "当前重点支持 MP3 和 WAV 的无损导出。M4A、AAC、FLAC、OGG 等格式暂不作为无损导出格式。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "无重新压缩能恢复 MP3 音质吗？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "不能。剪切时不重新压缩可以保留原有编码数据，但无法恢复原 MP3 压缩时已经丢失的信息。"
+          }
         }
-      ]
+      ],
+      "inLanguage": "zh-CN"
+    },
+    {
+      "@type": "HowTo",
+      "name": "如何在线切割音频",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "name": "上传 MP3 或 WAV",
+          "text": "把音乐、录音、播客或采样文件拖到页面中。浏览器会直接在本地读取文件并生成波形，不需要等待上传。"
+        },
+        {
+          "@type": "HowToStep",
+          "name": "选择要保留的片段",
+          "text": "拖拽波形上的选区手柄，或输入开始和结束时间。你可以先试听选中的部分，再微调到合适位置。"
+        },
+        {
+          "@type": "HowToStep",
+          "name": "导出到本地设备",
+          "text": "点击保存片段，MP3 会按帧边界导出，WAV 会按采样块导出，尽量避免重新压缩造成的音质变化。"
+        }
+      ],
+      "inLanguage": "zh-CN"
     }
-  </script>
+  ]
+}
+</script>
   <style>
     :root {
       color-scheme: light;
@@ -2015,7 +2016,7 @@
         <label class="language-switcher" for="languageSelect">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z"></path><path d="M3.6 9h16.8"></path><path d="M3.6 15h16.8"></path><path d="M12 3a14 14 0 0 1 0 18"></path><path d="M12 3a14 14 0 0 0 0 18"></path></svg>
           <select id="languageSelect" aria-label="Language">
-            <option value="auto">Auto</option>
+            <option value="auto">自动 · 中文</option>
             <option value="zh">中文</option>
             <option value="en">English</option>
             <option value="ja">日本語</option>
@@ -2031,7 +2032,7 @@
 
     <section class="hero">
       <div class="hero-copy">
-        <div class="eyebrow" id="eyebrow">Lossless Audio Studio</div>
+        <div class="eyebrow" id="eyebrow">无损音频工作室</div>
         <h1 id="heroTitle">在线音频剪切：<span>MP3 与 WAV</span></h1>
         <p class="subtitle" id="heroSubtitle">上传音乐，拖拽波形选择片段，导出时保留原始音频数据。WAV 按采样块裁切，MP3 按音频帧裁切，全程不重新压缩。</p>
         <div class="hero-actions">
@@ -2047,15 +2048,15 @@
       <div class="hero-visual" aria-hidden="true">
         <img class="hero-art" src="assets/sonic-lavender.jpg" alt="浅紫色耳机与音浪" fetchpriority="high" width="1800" height="600">
         <div class="hero-glow"></div>
-        <canvas class="hero-wave" id="heroWave" aria-hidden="true"></canvas>
+        <canvas class="hero-wave" id="heroWave" aria-hidden="true" width="1" height="1"></canvas>
       </div>
     </section>
 
     <section class="tool-section workbench-section">
       <div class="section-heading">
         <div>
-          <p class="section-kicker" id="workbenchKicker">Precision Workspace</p>
-          <h2 id="workbenchTitle">上传、选择、保存</h2>
+          <p class="section-kicker" id="workbenchKicker">精准工作台</p>
+          <h2 id="workbenchTitle">音频剪切工作台</h2>
         </div>
         <p id="workbenchText">选择音频、调整波形，试听选区后保存片段。</p>
       </div>
@@ -2067,10 +2068,10 @@
           <span class="upload-content"><span class="upload-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24"><path d="M12 16V4"></path><path d="m7 9 5-5 5 5"></path><path d="M20 16v4H4v-4"></path></svg>
           </span>
-          <span class="upload-text"><span class="drop-title" id="dropTitle">选择一段想留下的声音</span>
-          <span class="drop-copy" id="dropCopy">拖入 MP3 或 WAV，或从设备选择文件。音频留在本地处理。</span>
+          <span class="upload-text"><span class="drop-title" id="dropTitle">把音频拖到这里</span>
+          <span class="drop-copy" id="dropCopy">支持 MP3 和 WAV，文件在你的设备上处理。</span>
           <span class="file-types" aria-hidden="true"><span>MP3</span><span>WAV</span></span></span></span>
-          <span class="upload-action" id="chooseAudio" aria-hidden="true">选择音频</span>
+          <span class="upload-action" id="chooseAudio" aria-hidden="true">选择音频文件</span>
         </label>
 
         <div class="workspace editor" id="editor">
@@ -2088,7 +2089,7 @@
 
           <div class="wave-wrap">
             <div class="wave-shell" id="waveShell">
-              <canvas id="waveCanvas" width="1200" height="360"></canvas>
+              <canvas id="waveCanvas" width="1" height="1"></canvas>
               <div class="selection" id="selection"></div>
               <div class="playhead" id="playhead"></div>
             </div>
@@ -2107,7 +2108,15 @@
           </div>
 
           <div class="editor-footer">
-          <div class="transport" id="transport"></div>
+          <div class="transport" id="transport"><button class="icon" id="playBtn" type="button" title="播放或暂停">
+              <svg viewBox="0 0 24 24" id="playIcon"><path d="M8 5v14l11-7z"></path></svg>
+            </button><button class="icon" id="loopBtn" title="循环试听选区" aria-pressed="false">
+              <svg viewBox="0 0 24 24"><path d="M17 2l4 4-4 4"></path><path d="M3 11V9a3 3 0 0 1 3-3h15"></path><path d="M7 22l-4-4 4-4"></path><path d="M21 13v2a3 3 0 0 1-3 3H3"></path></svg>
+            </button><button class="icon" id="fullBtn" title="选择整首">
+              <svg viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2v3"></path><path d="M16 3h3a2 2 0 0 1 2 2v3"></path><path d="M8 21H5a2 2 0 0 1-2-2v-3"></path><path d="M16 21h3a2 2 0 0 0 2-2v-3"></path></svg>
+            </button><button class="icon danger" id="clearBtn" title="重新上传">
+              <svg viewBox="0 0 24 24"><path d="M3 6h18"></path><path d="M8 6V4h8v2"></path><path d="m19 6-1 14H6L5 6"></path><path d="M10 11v5"></path><path d="M14 11v5"></path></svg>
+            </button></div>
           <div class="editor-settings">
           <div class="preset-row">
             <span id="presetLabel">快速时长</span>
@@ -2119,11 +2128,11 @@
           <div class="range-grid">
             <label>
               <span id="startInputLabel">开始时间</span>
-              <input id="startInput" type="number" min="0" step="0.001" value="0">
+              <input id="startInput" type="number" min="0" step="0.001" value="0" max="0">
             </label>
             <label>
               <span id="endInputLabel">结束时间</span>
-              <input id="endInput" type="number" min="0" step="0.001" value="0">
+              <input id="endInput" type="number" min="0" step="0.001" value="0" max="0">
             </label>
             <div class="clip-duration">
               <span id="meterLength">长度</span>
@@ -2135,19 +2144,11 @@
             </label>
           </div>
           <div class="controls">
-            <button class="icon" id="playBtn" type="button" title="播放或暂停">
-              <svg viewBox="0 0 24 24" id="playIcon"><path d="M8 5v14l11-7z"></path></svg>
-            </button>
-            <button class="icon" id="loopBtn" title="循环试听选区" aria-pressed="false">
-              <svg viewBox="0 0 24 24"><path d="M17 2l4 4-4 4"></path><path d="M3 11V9a3 3 0 0 1 3-3h15"></path><path d="M7 22l-4-4 4-4"></path><path d="M21 13v2a3 3 0 0 1-3 3H3"></path></svg>
-            </button>
-            <button class="icon" id="fullBtn" title="选择整首">
-              <svg viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2v3"></path><path d="M16 3h3a2 2 0 0 1 2 2v3"></path><path d="M8 21H5a2 2 0 0 1-2-2v-3"></path><path d="M16 21h3a2 2 0 0 0 2-2v-3"></path></svg>
-            </button>
-            <button class="icon danger" id="clearBtn" title="重新上传">
-              <svg viewBox="0 0 24 24"><path d="M3 6h18"></path><path d="M8 6V4h8v2"></path><path d="m19 6-1 14H6L5 6"></path><path d="M10 11v5"></path><path d="M14 11v5"></path></svg>
-            </button>
-            <button class="icon preview" id="previewBtn" type="button" aria-pressed="false" disabled>
+
+
+
+
+            <button class="icon preview" id="previewBtn" type="button" aria-pressed="false" disabled="">
               <svg viewBox="0 0 24 24" id="previewIcon" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
               <span id="previewText">试听选区</span>
             </button>
@@ -2199,17 +2200,17 @@
       <summary data-i18n="converterComingSoon">即将开放</summary>
       <div class="section-heading">
         <div>
-          <p class="section-kicker" data-i18n="converterKicker">Format Converter</p>
-          <h2 data-i18n="converterTitle">普通音频转 MP3</h2>
+          <p class="section-kicker" data-i18n="converterKicker">格式转换</p>
+          <h2 data-i18n="converterTitle">本地音频格式转换</h2>
         </div>
-        <p data-i18n="converterText">把你有权处理的未加密音频转换成 MP3。适合普通 M4A、WAV、FLAC、OGG、AAC 等文件；不支持破解平台加密格式。</p>
+        <p data-i18n="converterText">本地音频格式转换模块正在准备中，后续将支持把未加密音频转换为 MP3、WAV、FLAC、OGG 或 AAC/M4A。当前版本先专注无损剪切。</p>
       </div>
 
       <div class="converter-section">
         <div class="converter-panel is-locked">
           <span class="converter-lock" data-i18n="converterComingSoon">即将开放</span>
           <label class="converter-drop" id="converterDropzone" tabindex="-1">
-            <input id="converterInput" type="file" accept="audio/*,.mp3,.wav,.m4a,.aac,.flac,.ogg,.wma,.ape,.mka,.mcn,.ncm,.kgm,.kgma,.qmc,.qmc0,.qmc3,.qmcflac,.qmcogg,.mflac,.mgg,.kwm" disabled>
+            <input id="converterInput" type="file" accept="audio/*,.mp3,.wav,.m4a,.aac,.flac,.ogg,.wma,.ape,.mka,.mcn,.ncm,.kgm,.kgma,.qmc,.qmc0,.qmc3,.qmcflac,.qmcogg,.mflac,.mgg,.kwm" disabled="">
             <span>
               <span class="upload-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24"><path d="M12 3v12"></path><path d="m7 10 5 5 5-5"></path><path d="M5 21h14"></path></svg>
@@ -2224,7 +2225,7 @@
               <span id="converterFileName" data-i18n="converterNoFile">未选择转换文件</span>
               <span id="converterStatus" data-i18n="converterUnavailable">格式转换暂未开放，当前版本先专注无损剪切。</span>
             </div>
-            <div class="format-chips" aria-label="Supported conversion formats" data-i18n-aria="converterFormatsAria">
+            <div class="format-chips" aria-label="支持转换的格式" data-i18n-aria="converterFormatsAria">
               <span class="format-chip">M4A</span>
               <span class="format-chip">WAV</span>
               <span class="format-chip">FLAC</span>
@@ -2235,7 +2236,7 @@
             <div class="converter-actions">
               <label>
                 <span data-i18n="converterOutputFormat">输出格式</span>
-                <select id="converterOutput" disabled>
+                <select id="converterOutput" disabled="">
                   <option value="mp3">MP3</option>
                   <option value="wav">WAV</option>
                   <option value="flac">FLAC</option>
@@ -2245,14 +2246,14 @@
               </label>
               <label>
                 <span data-i18n="converterBitrate">MP3 码率</span>
-                <select id="converterBitrate" disabled>
+                <select id="converterBitrate" disabled="">
                   <option value="128k">128 kbps</option>
-                  <option value="192k" selected>192 kbps</option>
+                  <option value="192k" selected="">192 kbps</option>
                   <option value="256k">256 kbps</option>
                   <option value="320k">320 kbps</option>
                 </select>
               </label>
-              <button class="icon primary" id="convertBtn" type="button" disabled>
+              <button class="icon primary" id="convertBtn" type="button" disabled="">
                 <svg viewBox="0 0 24 24"><path d="M4 7h11"></path><path d="m12 4 3 3-3 3"></path><path d="M20 17H9"></path><path d="m12 20-3-3 3-3"></path></svg>
                 <span data-i18n="converterButton">转换并下载</span>
               </button>
@@ -2276,7 +2277,7 @@
     <section class="task-section" aria-labelledby="taskTitle">
       <div class="section-heading">
         <div>
-          <p class="section-kicker" data-i18n="taskKicker">Popular Tasks</p>
+          <p class="section-kicker" data-i18n="taskKicker">常用任务</p>
           <h2 id="taskTitle" data-i18n="taskTitle">常用任务，一步直达</h2>
         </div>
         <p data-i18n="taskIntro">从最常见的需求直接开始，系统会把你带到对应工具，并自动准备好合适的目标格式。</p>
@@ -2427,7 +2428,7 @@
     </section>
     <!-- resources:end -->
     <nav class="locale-links" aria-label="Language versions">
-      <a href="./" hreflang="zh-CN" lang="zh-CN" data-locale="zh">中文</a>
+      <a href="./" hreflang="zh-CN" lang="zh-CN" data-locale="zh" aria-current="page">中文</a>
       <a href="en/" hreflang="en" lang="en" data-locale="en">English</a>
       <a href="ja/" hreflang="ja" lang="ja" data-locale="ja">日本語</a>
       <a href="ko/" hreflang="ko" lang="ko" data-locale="ko">한국어</a>
@@ -3724,7 +3725,7 @@
       }
       storageSet("sonic-cutter-language", value);
       state.languageMode = "manual";
-      applyLanguage(value);
+      switchLanguage(value);
     });
 
     els.fileInput.addEventListener("change", (event) => {
@@ -4761,6 +4762,7 @@
 
       document.querySelector("#intro").setAttribute("aria-label", t("introLabel"));
       els.languageSelect.querySelector('option[value="auto"]').textContent = t("auto");
+      updateLanguageRecommendation();
       els.playBtn.title = t("playTitle");
       updatePreviewButton();
       els.loopBtn.title = t("loopTitle");
@@ -4778,6 +4780,22 @@
         updateFormatStatus();
       }
       updateConverterLanguageState();
+      const graph = JSON.parse(document.querySelector('script[type="application/ld+json"]').textContent);
+      graph["@graph"].forEach(item => { item.inLanguage = document.documentElement.lang; });
+      const application = graph["@graph"].find(item => item["@type"] === "WebApplication");
+      application.description = t("metaDescription");
+      application.featureList = Array.from(document.querySelectorAll('[data-i18n="feature1Title"], [data-i18n="feature2Title"], [data-i18n="feature3Title"]'), item => item.textContent);
+      graph["@graph"].find(item => item["@type"] === "FAQPage").mainEntity = Array.from(document.querySelectorAll(".faq details"), item => ({
+        "@type": "Question", name: item.querySelector("summary").textContent,
+        acceptedAnswer: { "@type": "Answer", text: item.querySelector("p").textContent }
+      }));
+      const howTo = graph["@graph"].find(item => item["@type"] === "HowTo");
+      howTo.name = document.querySelector(".step-list").getAttribute("aria-label");
+      delete howTo.description;
+      howTo.step = Array.from(document.querySelectorAll(".step-card"), item => ({
+        "@type": "HowToStep", name: item.querySelector("h3").textContent, text: item.querySelector("p").textContent
+      }));
+      document.querySelector('script[type="application/ld+json"]').textContent = JSON.stringify(graph).replaceAll("<", "\\u003c");
       drawWaveform();
     }
 
@@ -4793,30 +4811,44 @@
       }
     }
 
+    function updateLanguageRecommendation() {
+      const names = { zh: "中文", en: "English", ja: "日本語", ko: "한국어", fr: "Français", de: "Deutsch", es: "Español" };
+      const recommendation = names[state.recommendedLanguage];
+      els.languageSelect.querySelector('option[value="auto"]').textContent = recommendation
+        ? `${t("auto")} · ${recommendation}` : t("auto");
+    }
+
+    function switchLanguage(lang) {
+      // Never navigate away from an audio file already being edited.
+      if (!state.file && /^https?:$/.test(location.protocol)) {
+        const target = lang === "zh" ? "/" : `/${lang}/`;
+        if (location.pathname !== target) {
+          location.assign(target + location.hash);
+          return;
+        }
+      }
+      applyLanguage(lang);
+      els.languageSelect.value = lang;
+    }
+
     async function initializeLanguage(forceIpLookup = false) {
-      const pageLanguage = document.documentElement.dataset.pageLanguage;
-      if (pageLanguage && translations[pageLanguage] && !forceIpLookup) {
-        state.languageMode = "manual";
+      const pageLanguage = document.documentElement.dataset.pageLanguage || "zh";
+      state.languageMode = forceIpLookup ? "auto" : "manual";
+      if (!forceIpLookup) {
         els.languageSelect.value = pageLanguage;
         applyLanguage(pageLanguage);
-        return;
       }
       const saved = storageGet("sonic-cutter-language");
-      if (saved && translations[saved] && !forceIpLookup) {
-        state.languageMode = "manual";
-        els.languageSelect.value = saved;
-        applyLanguage(saved);
-        return;
+      state.recommendedLanguage = saved && translations[saved] ? saved : resolveBrowserLanguage();
+      updateLanguageRecommendation();
+      // Fixed URLs keep stable content. IP detection only recommends a language;
+      // the visitor must choose Auto before it changes their page.
+      if (pageLanguage === "zh" || forceIpLookup) {
+        const detected = await detectLanguageByIp();
+        if (detected && !saved) state.recommendedLanguage = detected;
+        updateLanguageRecommendation();
       }
-
-      state.languageMode = "auto";
-      els.languageSelect.value = "auto";
-      applyLanguage(resolveBrowserLanguage());
-
-      const detected = await detectLanguageByIp();
-      if (state.languageMode === "auto" && detected) {
-        applyLanguage(detected);
-      }
+      if (forceIpLookup && state.languageMode === "auto") switchLanguage(state.recommendedLanguage);
     }
 
     async function detectLanguageByIp() {
@@ -4972,5 +5004,7 @@
     syncInputs();
     syncSeekControl();
   </script>
-</body>
-</html>
+
+
+
+</body></html>

@@ -3,12 +3,15 @@ import { createRequire } from "node:module";
 import { setTimeout } from "node:timers/promises";
 const { locales, routes, sitePath } = createRequire(import.meta.url)("../content-pages.cjs");
 const origin = "https://www.tomp3.xyz";
-const checks = locales.flatMap((locale) => Object.keys(routes).map((key) => ({
+const checks = locales.flatMap((locale) => [undefined, ...Object.keys(routes)].map((key) => ({
   route: sitePath(locale, key),
   check: (html) => {
     assert.ok(html.includes(`rel="canonical" href="${origin}${sitePath(locale, key)}"`));
-    assert.ok(html.includes(`href="${sitePath(locale)}#workbenchMain"`));
+    assert.ok(html.includes(`href="${key ? sitePath(locale) : ""}#workbenchMain"`));
     assert.ok(html.includes('type="application/ld+json"'));
+    assert.equal([...html.matchAll(/<h1\b/g)].length, 1);
+    assert.ok(html.includes("max-image-preview:large"));
+    for (const alternate of locales) assert.ok(html.includes(`hreflang="${alternate === "zh" ? "zh-CN" : alternate}" href="${origin}${sitePath(alternate, key)}"`));
   }
 })));
 checks.push({ route: "/sitemap.xml", check: (xml) => {
@@ -26,6 +29,7 @@ for (const { route, check, binary, contentType } of checks) {
     try {
       const response = await fetch(origin + route, { signal: AbortSignal.timeout(15000) });
       assert.equal(response.status, 200, `${route} status ${response.status}`);
+      if (route.endsWith("/")) assert.ok(!/noindex/i.test(response.headers.get("x-robots-tag") || ""), `${route} unexpectedly noindex`);
       if (contentType) assert.match(response.headers.get("content-type") || "", contentType, `${route} content type`);
       check(binary ? Buffer.from(await response.arrayBuffer()) : await response.text());
       break;

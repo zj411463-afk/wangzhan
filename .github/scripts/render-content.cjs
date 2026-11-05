@@ -1,8 +1,9 @@
 const fs = require("node:fs");
 const path = require("node:path");
-const { locales, languageNames, routes, sitePath, content } = require("../content-pages.cjs");
+const { locales, languageNames, routes, sitePath, content, mobileTips } = require("../content-pages.cjs");
 const origin = "https://www.tomp3.xyz";
-const updated = "2026-11-04";
+const published = "2026-11-04";
+const updated = "2026-11-05";
 const image = fs.readFileSync("assets/audio-selection.png");
 const imageWidth = image.readUInt32BE(16);
 const imageHeight = image.readUInt32BE(20);
@@ -24,7 +25,7 @@ for (const locale of locales) {
     const page = copy.pages[key];
     const isGuide = Boolean(page.steps);
     const url = `${origin}${sitePath(locale, key)}`;
-    const sections = [...(page.steps || []), ...page.sections];
+    const sections = [...(page.steps || []), ...page.sections, ...(key === "mp3" ? [mobileTips[locale]] : [])];
     const schema = {
       "@context": "https://schema.org",
       "@graph": [
@@ -36,7 +37,8 @@ for (const locale of locales) {
           { "@type": "ListItem", position: 2, name: page.title, item: url }
         ] },
         ...(isGuide ? [{ "@type": "Article", "@id": `${url}#article`, headline: page.title, description: page.description,
-          inLanguage: lang(locale), datePublished: updated, dateModified: updated,
+          inLanguage: lang(locale), datePublished: published, dateModified: updated,
+          author: { "@type": "Organization", name: "Sonic Cutter", url: origin + "/" },
           mainEntityOfPage: { "@id": url }, image: [origin + "/assets/audio-selection.png"],
           publisher: { "@type": "Organization", name: "Sonic Cutter", url: origin + "/" } },
         { "@type": "HowTo", name: page.title, description: page.intro, inLanguage: lang(locale),
@@ -53,8 +55,8 @@ for (const locale of locales) {
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
   <title>${escape(page.title)} | Sonic Cutter</title>
   <meta name="description" content="${escape(page.description)}">
-  <meta name="robots" content="index, follow">
-  <meta name="theme-color" content="#087d83">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="theme-color" content="#7643e8">
   <link rel="canonical" href="${url}">
 ${alternates(key)}
   <meta property="og:type" content="${isGuide ? "article" : "website"}">
@@ -62,6 +64,8 @@ ${alternates(key)}
   <meta property="og:description" content="${escape(page.description)}">
   <meta property="og:url" content="${url}">
   <meta property="og:image" content="${origin}/assets/audio-selection.png">
+  <meta property="og:image:width" content="${imageWidth}">
+  <meta property="og:image:height" content="${imageHeight}">
   <meta property="og:image:alt" content="${escape(copy.image)}">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="${escape(page.title)}">
@@ -94,8 +98,8 @@ ${alternates(key)}
         <h1>${escape(page.title)}</h1>
         <p class="lead">${escape(page.intro)}</p>
         <a class="tool-link" href="${sitePath(locale)}#workbenchMain">${escape(open)}</a>
-        <figure><a href="${sitePath(locale)}#workbenchMain"><img src="/assets/audio-selection.png" width="${imageWidth}" height="${imageHeight}" alt="${escape(copy.image)}" decoding="async"></a><figcaption>${escape(copy.caption)}</figcaption></figure>
-        ${sections.map(([heading, body], index) => `<section id="section-${index + 1}"><h2>${isGuide && index < page.steps.length ? `${index + 1}. ` : ""}${escape(heading)}</h2><p>${escape(body)}</p></section>`).join("\n")}
+        <figure><a href="${sitePath(locale)}#workbenchMain"><img src="/assets/audio-selection.png" width="${imageWidth}" height="${imageHeight}" alt="${escape(copy.image)}" decoding="async" loading="lazy"></a><figcaption>${escape(copy.caption)}</figcaption></figure>
+        ${sections.map(([heading, body], index) => `<section id="section-${index + 1}"><h2>${isGuide && index < page.steps.length ? `${index + 1}. ` : ""}${escape(heading)}</h2><p>${escape(body)}</p>${index === 0 ? `<p class="context-link">${link(sitePath(locale, related[key][0]), copy.pages[related[key][0]].title)}</p>` : ""}</section>`).join("\n")}
         <section class="related"><h2>${escape(more)}</h2><ul>${related[key].map((other) => `<li>${link(sitePath(locale, other), copy.pages[other].title)}</li>`).join("")}</ul><p>${link(`${sitePath(locale)}#workbenchMain`, open)}</p></section>
         <section class="references"><h2>${escape(refs)}</h2><ul>${references.filter((_, index) => key === "ringtone" || key === "mp3" || index === 2).map(([href, title]) => `<li>${link(href, title)}</li>`).join("")}</ul></section>
       </article>
