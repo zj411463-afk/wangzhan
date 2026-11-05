@@ -14,7 +14,8 @@ test("deployment contains only public site files", () => {
     assert.equal(result.status, 0, result.stderr);
     const locales = ["en", "ja", "ko", "fr", "de", "es"];
     assert.deepEqual(readdirSync(output).sort(), [
-      "404.html", "_worker.js", "assets", ...locales, "scenes", "guides", "index.html", "robots.txt", "sitemap.xml", "video-to-audio.html"
+      "404.html", "_worker.js", "assets", ...locales, "scenes", "guides", "index.html", "robots.txt", "sitemap.xml", "video-to-audio.html",
+      "favicon.ico", "favicon.svg", "apple-touch-icon.png"
     ].sort());
     assert.deepEqual(readdirSync(path.join(output, "assets")).sort(), ["audio-selection.png", "reading.css", "sonic-hero.jpg", "sonic-lavender.jpg", "sonic-studio.jpg"]);
     assert.match(readFileSync(path.join(output, "404.html"), "utf8"), /name="robots" content="noindex"/);
@@ -52,6 +53,29 @@ test("deployment contains only public site files", () => {
     const descriptions = new Set();
     const publicPages = ["index.html", ...locales.map((locale) => `${locale}/index.html`), ...contentFiles];
     const pages = new Map(publicPages.map((file) => [file, readFileSync(path.join(output, file), "utf8")]));
+    for (const [file, html] of [...pages, ...["404.html", "video-to-audio.html"].map(file => [file, readFileSync(path.join(output, file), "utf8")])]) {
+      for (const icon of ["favicon.ico", "favicon.svg", "apple-touch-icon.png"]) {
+        assert.ok(html.includes(`href="/${icon}"`), `Missing shared icon in ${file}: ${icon}`);
+      }
+    }
+    const ico = readFileSync(path.join(output, "favicon.ico"));
+    assert.equal(ico.readUInt16LE(0), 0);
+    assert.equal(ico.readUInt16LE(2), 1);
+    assert.equal(ico.readUInt16LE(4), 3);
+    [16, 32, 48].forEach((size, index) => {
+      const entry = 6 + index * 16;
+      assert.equal(ico[entry], size);
+      assert.equal(ico[entry + 1], size);
+      const start = ico.readUInt32LE(entry + 12), length = ico.readUInt32LE(entry + 8);
+      assert.ok(start + length <= ico.length);
+      assert.equal(ico.readUInt32BE(start), 0x89504e47);
+      assert.equal(ico.readUInt32BE(start + 16), size);
+      assert.equal(ico.readUInt32BE(start + 20), size);
+    });
+    const touch = readFileSync(path.join(output, "apple-touch-icon.png"));
+    assert.equal(touch.readUInt32BE(0), 0x89504e47);
+    assert.equal(touch.readUInt32BE(16), 180);
+    assert.equal(touch.readUInt32BE(20), 180);
     for (const [file, html] of pages) {
       const title = html.match(/<title>([^<]+)<\/title>/)?.[1];
       const description = html.match(/<meta name="description" content="([^"]+)"/)?.[1];

@@ -38,3 +38,8 @@ Run check-editor-ui.cjs for desktop, 320/390/768px mobile, native file selection
 preview stopping, preset states and byte-preserving WAV export. It refreshes the
 English editor screenshot; run render-content.cjs afterwards. Check release and
 anonymous funnel tests before publishing. See SEO.md for generation commands.
+
+Shared tab icon: favicon.svg matches the purple waveform brand. Regenerate the
+16/32/48px favicon.ico and 180px apple-touch-icon.png with build-favicons.cjs when
+editing the SVG. All pages reference root icon URLs, and the public allowlist,
+release checks and live deployment checks must keep these assets included.
