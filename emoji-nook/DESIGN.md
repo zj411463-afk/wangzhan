@@ -17,4 +17,4 @@ Direction: Miro-inspired, playful editorial utility. The interface stays bright 
 - Every copy card is a real button and supports keyboard focus.
 - Controls have at least a 44px touch target.
 - Copy feedback uses an `aria-live` toast.
-- Mobile uses one card per row and hides nonessential header navigation.
+- Mobile uses a compact two-column card grid and hides nonessential header navigation.

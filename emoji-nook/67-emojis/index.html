@@ -44,25 +44,12 @@
   </header>
 
   <main>
-    <section class="hero shell">
-      <div class="hero-copy">
-        <p class="eyebrow">Trending internet slang</p>
-        <h1>67 Emojis</h1>
-        <p class="hero-lede">Copy and paste Six Seven emoji combinations, then learn what the viral <strong>67 meme</strong> actually means.</p>
-        <a class="primary-button" href="#emojis">Browse 67 emojis <span aria-hidden="true">↓</span></a>
-      </div>
-      <div class="hero-board" aria-label="Preview of popular 67 emoji combinations">
-        <div class="board-note note-yellow"><span>6️⃣7️⃣</span><small>The classic</small></div>
-        <div class="board-note note-rose"><span>⁶🤷⁷</span><small>The gesture</small></div>
-        <div class="board-note note-teal"><span>6️⃣7️⃣ 🏀</span><small>Basketball edit</small></div>
-      </div>
-    </section>
-
     <section class="tool-section shell" id="emojis" aria-labelledby="emoji-heading">
       <div class="section-heading">
         <div>
-          <p class="eyebrow">One-click copy</p>
-          <h2 id="emoji-heading">Pick your 67</h2>
+          <p class="eyebrow">Copy & paste</p>
+          <h1 id="emoji-heading">67 Emojis</h1>
+          <p class="tool-intro">Tap any combination to copy it. Find the perfect Six Seven emoji for your next message.</p>
         </div>
         <label class="search-box">
           <span class="sr-only">Search emoji combinations</span>
@@ -78,12 +65,15 @@
         <button class="filter-button" type="button" data-filter="reaction" aria-pressed="false">Reaction</button>
         <button class="filter-button" type="button" data-filter="text" aria-pressed="false">Text</button>
       </div>
+      <p class="results-count" id="results-count" role="status" aria-live="polite">18 combinations</p>
 
       <div class="emoji-grid" id="emoji-grid">
-        <button class="emoji-card" type="button" data-copy="6️⃣7️⃣" data-category="classic" data-label="Classic keycaps"><span>6️⃣7️⃣</span><small>Classic keycaps</small><b>Copy</b></button>
-        <button class="emoji-card" type="button" data-copy="⁶🤷⁷" data-category="gesture" data-label="Shrug gesture"><span>⁶🤷⁷</span><small>Shrug gesture</small><b>Copy</b></button>
         <button class="emoji-card" type="button" data-copy="⁶🤷‍♂️⁷" data-category="gesture" data-label="Shrugging man"><span>⁶🤷‍♂️⁷</span><small>Shrugging man</small><b>Copy</b></button>
+        <button class="emoji-card" type="button" data-copy="6🫲🤪🫱7" data-category="gesture" data-label="Six seven hands gesture"><span>6🫲🤪🫱7</span><small>Six Seven hands</small><b>Copy</b></button>
+        <button class="emoji-card" type="button" data-copy="⁶🤷⁷" data-category="gesture" data-label="Shrug gesture"><span>⁶🤷⁷</span><small>Shrug gesture</small><b>Copy</b></button>
         <button class="emoji-card" type="button" data-copy="⁶🤷‍♀️⁷" data-category="gesture" data-label="Shrugging woman"><span>⁶🤷‍♀️⁷</span><small>Shrugging woman</small><b>Copy</b></button>
+        <button class="emoji-card" type="button" data-copy="6️⃣7️⃣" data-category="classic" data-label="Classic keycaps"><span>6️⃣7️⃣</span><small>Classic keycaps</small><b>Copy</b></button>
+        <button class="emoji-card" type="button" data-copy="🫲6 7🫱" data-category="gesture" data-label="Six seven hands"><span>🫲6 7🫱</span><small>Hands around 67</small><b>Copy</b></button>
         <button class="emoji-card" type="button" data-copy="6 🫲😝🫱 7" data-category="gesture" data-label="Palms up"><span>6 🫲😝🫱 7</span><small>Palms up</small><b>Copy</b></button>
         <button class="emoji-card" type="button" data-copy="6 🫲😎🫱 7" data-category="gesture" data-label="Cool gesture"><span>6 🫲😎🫱 7</span><small>Cool gesture</small><b>Copy</b></button>
         <button class="emoji-card" type="button" data-copy="🤲 6️⃣7️⃣" data-category="gesture" data-label="Hands out"><span>🤲 6️⃣7️⃣</span><small>Hands out</small><b>Copy</b></button>
@@ -99,7 +89,7 @@
         <button class="emoji-card" type="button" data-copy="6-7" data-category="classic" data-label="Hyphenated"><span>6-7</span><small>Hyphenated</small><b>Copy</b></button>
         <button class="emoji-card" type="button" data-copy="6 7" data-category="classic" data-label="Spaced"><span>6 7</span><small>Spaced</small><b>Copy</b></button>
       </div>
-      <p class="empty-state" id="empty-state" hidden>No matches yet. Try “gesture” or “basketball.”</p>
+      <div class="empty-state" id="empty-state" hidden><p>No matches yet. Try another search or category.</p><button class="filter-button" id="reset-filters" type="button">Show all combinations</button></div>
     </section>
 
     <section class="meaning-section shell" id="meaning" aria-labelledby="meaning-heading">

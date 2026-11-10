@@ -3,6 +3,8 @@ const filters = [...document.querySelectorAll('.filter-button')];
 const search = document.querySelector('#emoji-search');
 const emptyState = document.querySelector('#empty-state');
 const toast = document.querySelector('#copy-toast');
+const resultCount = document.querySelector('#results-count');
+const resetFilters = document.querySelector('#reset-filters');
 let activeFilter = 'all';
 let toastTimer;
 
@@ -17,8 +19,15 @@ async function copyText(value) {
     field.style.opacity = '0';
     document.body.append(field);
     field.select();
-    document.execCommand('copy');
+    const copied = document.execCommand('copy');
     field.remove();
+    if (!copied) {
+      toast.textContent = 'Copy failed. Please select and copy the text manually.';
+      toast.classList.add('show');
+      window.clearTimeout(toastTimer);
+      toastTimer = window.setTimeout(() => toast.classList.remove('show'), 3000);
+      return;
+    }
   }
 
   window.clearTimeout(toastTimer);
@@ -41,6 +50,7 @@ function updateCards() {
   });
 
   emptyState.hidden = visibleCount !== 0;
+  resultCount.textContent = `${visibleCount} ${visibleCount === 1 ? 'combination' : 'combinations'}`;
 }
 
 cards.forEach((card) => card.addEventListener('click', () => copyText(card.dataset.copy)));
@@ -58,4 +68,10 @@ filters.forEach((button) => {
 });
 
 search.addEventListener('input', updateCards);
+resetFilters.addEventListener('click', () => {
+  search.value = '';
+  filters[0].click();
+  search.focus();
+});
+updateCards();
 document.querySelector('#current-year').textContent = new Date().getFullYear();
