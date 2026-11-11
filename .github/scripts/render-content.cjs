@@ -3,6 +3,7 @@ const path = require("node:path");
 const { locales, languageNames, routes, sitePath, content, mobileTips } = require("../content-pages.cjs");
 const { data: splitterCopy } = require("../splitter-pages.cjs");
 const splitterMarkup = require("../splitter-markup.cjs");
+const reverserMarkup = require("../reverser-markup.cjs");
 const origin = "https://www.tomp3.xyz";
 const published = "2026-11-04";
 const updated = "2026-11-05";
@@ -12,7 +13,7 @@ const imageHeight = image.readUInt32BE(20);
 const escape = (value) => String(value).replace(/[&<>"']/g, (character) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[character]);
 const lang = (locale) => locale === "zh" ? "zh-CN" : locale;
 const link = (url, text) => `<a href="${escape(url)}">${escape(text)}</a>`;
-const related = { ringtone: ["mp3", "podcast", "splitter"], podcast: ["speech", "ringtone", "splitter"], mp3: ["ringtone", "speech", "edit"], speech: ["podcast", "mp3", "splitter"], splitter: ["edit", "mp3"], edit: ["splitter", "mp3"] };
+const related = { ringtone: ["mp3", "podcast", "splitter"], podcast: ["speech", "ringtone", "splitter"], mp3: ["ringtone", "speech", "edit", "reverser"], speech: ["podcast", "mp3", "splitter"], splitter: ["edit", "mp3", "reverser"], edit: ["splitter", "mp3", "reverser"] };
 const references = [
   ["https://support.apple.com/120692", "Apple · GarageBand"],
   ["https://support.google.com/pixelphone/answer/2819577", "Google · Pixel"],
@@ -25,6 +26,12 @@ for (const locale of locales) {
   const [tool, scenes, guides, open, more, refs, toc, skip, date] = copy.ui;
   for (const key of Object.keys(routes)) {
     const page = copy.pages[key];
+    if (key === "reverser") {
+      const filename = path.join(sitePath(locale, key).slice(1), "index.html");
+      fs.mkdirSync(path.dirname(filename), { recursive: true });
+      fs.writeFileSync(filename, reverserMarkup({ locale, page, locales, languageNames, sitePath, content }));
+      continue;
+    }
     const isGuide = Boolean(page.steps);
     const isSplitter = key === "splitter";
     const splitterLabel = { zh: "MP3 分割", en: "MP3 Splitter", ja: "MP3分割", ko: "MP3 분할", fr: "Division MP3", de: "MP3 Splitter", es: "Divisor MP3" }[locale];
@@ -139,7 +146,8 @@ const resourceCopy = Object.fromEntries(locales.map((locale) => [locale, {
   mp3: content[locale].pages.mp3.title,
   speech: content[locale].pages.speech.title,
   splitter: content[locale].pages.splitter.title,
-  edit: content[locale].pages.edit.title
+  edit: content[locale].pages.edit.title,
+  reverser: content[locale].pages.reverser.title
 }]));
 const resourceMarkup = `<section class="resource-section" aria-labelledby="resourceHeading">
       <h2 id="resourceHeading" data-resource="heading">${escape(resourceCopy.zh.heading)}</h2>

@@ -2011,6 +2011,7 @@
       <nav class="header-nav" aria-label="Navigation">
         <a href="#workbenchMain" class="is-current" data-chrome="navCut">오디오 자르기</a>
         <a href="/ko/mp3-splitter/" data-splitter-nav="">MP3 분할</a>
+        <a href="/ko/audio-reverser/" data-reverser-nav="">오디오 역재생</a>
         <a href="#intro" data-chrome="navGuide">사용 안내</a>
       </nav>
       <div class="top-actions">
@@ -2427,7 +2428,8 @@
       <a data-resource="mp3" href="/ko/guides/cut-mp3/">MP3 자르는 방법: 시간 선택·미리듣기·저장</a>
       <a data-resource="speech" href="/ko/guides/cut-podcast/">팟캐스트와 인터뷰에서 단어를 끊지 않고 구간 저장하기</a>
       <a data-resource="splitter" href="/ko/mp3-splitter/">온라인 MP3 분할: 길이와 시간점으로 나누기</a>
-      <a data-resource="edit" href="/ko/guides/how-to-edit-mp3/">MP3 편집 방법: 자르기, 분할, 미리 듣기와 저장</a></div>
+      <a data-resource="edit" href="/ko/guides/how-to-edit-mp3/">MP3 편집 방법: 자르기, 분할, 미리 듣기와 저장</a>
+      <a data-resource="reverser" href="/ko/audio-reverser/">온라인 오디오 역재생</a></div>
     </section>
     <!-- resources:end -->
     <nav class="locale-links" aria-label="Language versions">
@@ -2445,7 +2447,7 @@
 
   <script>
     // resource-copy:start
-    const resourceTranslations = {"zh":{"heading":"音频剪切场景与教程","ringtone":"在线制作铃声：剪切 MP3 和 WAV 音乐片段","podcast":"播客片段剪切：截取采访、课程与语音录音","mp3":"如何剪切 MP3：选取时间、试听并保存片段","speech":"如何截取播客与采访录音：保留完整语句","splitter":"在线 MP3 分割工具：按时长或时间点拆分音乐","edit":"如何编辑 MP3：剪切、分割、试听与保存"},"en":{"heading":"Audio cutting use cases and guides","ringtone":"Make a ringtone online from an MP3 or WAV clip","podcast":"Trim podcast clips, interviews and lecture recordings","mp3":"How to cut an MP3: select, preview and save a clip","speech":"How to cut a podcast or interview without clipping words","splitter":"MP3 Splitter Online: Split MP3 by Time Without Re-encoding","edit":"How to Edit MP3 Online: Trim, Split, Preview and Save"},"ja":{"heading":"音声カットの利用シーンとガイド","ringtone":"MP3・WAVから着信音用の音声をオンラインで切り出す","podcast":"ポッドキャスト・インタビュー・講義の音声を切り出す","mp3":"MP3をカットする方法：時間指定・試聴・保存","speech":"ポッドキャストや会話を単語の途中で切らずに保存する方法","splitter":"MP3分割ツール：長さ・時刻を指定してオンラインで分割","edit":"MP3を編集する方法：カット・分割・試聴・保存"},"ko":{"heading":"오디오 자르기 활용 사례와 안내","ringtone":"MP3·WAV 구간을 잘라 온라인으로 벨소리 만들기","podcast":"팟캐스트·인터뷰·강의 녹음 구간 자르기","mp3":"MP3 자르는 방법: 시간 선택·미리듣기·저장","speech":"팟캐스트와 인터뷰에서 단어를 끊지 않고 구간 저장하기","splitter":"온라인 MP3 분할: 길이와 시간점으로 나누기","edit":"MP3 편집 방법: 자르기, 분할, 미리 듣기와 저장"},"fr":{"heading":"Usages et tutoriels de découpe audio","ringtone":"Créer une sonnerie en ligne à partir d’un MP3 ou WAV","podcast":"Découper des extraits de podcast, d’entretien ou de cours","mp3":"Comment couper un MP3 : sélectionner, écouter et enregistrer","speech":"Couper un podcast ou un entretien sans tronquer les mots","splitter":"Diviser un MP3 en ligne par durée ou par repères","edit":"Comment modifier un MP3 : couper, diviser, écouter et enregistrer"},"de":{"heading":"Anwendungen und Anleitungen zum Audioschnitt","ringtone":"Klingelton online aus einem MP3- oder WAV-Ausschnitt erstellen","podcast":"Podcast-Ausschnitte, Interviews und Vorlesungen schneiden","mp3":"MP3 schneiden: Bereich wählen, anhören und speichern","speech":"Podcast oder Interview schneiden, ohne Wörter abzutrennen","splitter":"MP3 Splitter online: nach Dauer oder Zeitpunkten teilen","edit":"MP3 bearbeiten: schneiden, teilen, anhören und speichern"},"es":{"heading":"Usos y tutoriales para cortar audio","ringtone":"Crear un tono de llamada online con un MP3 o WAV","podcast":"Recortar fragmentos de pódcast, entrevistas y clases","mp3":"Cómo cortar un MP3: seleccionar, escuchar y guardar","speech":"Cómo cortar un pódcast o entrevista sin truncar palabras","splitter":"Divisor MP3 online: dividir por duración o marcas de tiempo","edit":"Cómo editar MP3: recortar, dividir, escuchar y guardar"}};
+    const resourceTranslations = {"zh":{"heading":"音频剪切场景与教程","ringtone":"在线制作铃声：剪切 MP3 和 WAV 音乐片段","podcast":"播客片段剪切：截取采访、课程与语音录音","mp3":"如何剪切 MP3：选取时间、试听并保存片段","speech":"如何截取播客与采访录音：保留完整语句","splitter":"在线 MP3 分割工具：按时长或时间点拆分音乐","edit":"如何编辑 MP3：剪切、分割、试听与保存","reverser":"在线音频倒放"},"en":{"heading":"Audio cutting use cases and guides","ringtone":"Make a ringtone online from an MP3 or WAV clip","podcast":"Trim podcast clips, interviews and lecture recordings","mp3":"How to cut an MP3: select, preview and save a clip","speech":"How to cut a podcast or interview without clipping words","splitter":"MP3 Splitter Online: Split MP3 by Time Without Re-encoding","edit":"How to Edit MP3 Online: Trim, Split, Preview and Save","reverser":"Audio Reverser Online"},"ja":{"heading":"音声カットの利用シーンとガイド","ringtone":"MP3・WAVから着信音用の音声をオンラインで切り出す","podcast":"ポッドキャスト・インタビュー・講義の音声を切り出す","mp3":"MP3をカットする方法：時間指定・試聴・保存","speech":"ポッドキャストや会話を単語の途中で切らずに保存する方法","splitter":"MP3分割ツール：長さ・時刻を指定してオンラインで分割","edit":"MP3を編集する方法：カット・分割・試聴・保存","reverser":"音声をオンラインで逆再生"},"ko":{"heading":"오디오 자르기 활용 사례와 안내","ringtone":"MP3·WAV 구간을 잘라 온라인으로 벨소리 만들기","podcast":"팟캐스트·인터뷰·강의 녹음 구간 자르기","mp3":"MP3 자르는 방법: 시간 선택·미리듣기·저장","speech":"팟캐스트와 인터뷰에서 단어를 끊지 않고 구간 저장하기","splitter":"온라인 MP3 분할: 길이와 시간점으로 나누기","edit":"MP3 편집 방법: 자르기, 분할, 미리 듣기와 저장","reverser":"온라인 오디오 역재생"},"fr":{"heading":"Usages et tutoriels de découpe audio","ringtone":"Créer une sonnerie en ligne à partir d’un MP3 ou WAV","podcast":"Découper des extraits de podcast, d’entretien ou de cours","mp3":"Comment couper un MP3 : sélectionner, écouter et enregistrer","speech":"Couper un podcast ou un entretien sans tronquer les mots","splitter":"Diviser un MP3 en ligne par durée ou par repères","edit":"Comment modifier un MP3 : couper, diviser, écouter et enregistrer","reverser":"Inverser un audio en ligne"},"de":{"heading":"Anwendungen und Anleitungen zum Audioschnitt","ringtone":"Klingelton online aus einem MP3- oder WAV-Ausschnitt erstellen","podcast":"Podcast-Ausschnitte, Interviews und Vorlesungen schneiden","mp3":"MP3 schneiden: Bereich wählen, anhören und speichern","speech":"Podcast oder Interview schneiden, ohne Wörter abzutrennen","splitter":"MP3 Splitter online: nach Dauer oder Zeitpunkten teilen","edit":"MP3 bearbeiten: schneiden, teilen, anhören und speichern","reverser":"Audio online rückwärts abspielen"},"es":{"heading":"Usos y tutoriales para cortar audio","ringtone":"Crear un tono de llamada online con un MP3 o WAV","podcast":"Recortar fragmentos de pódcast, entrevistas y clases","mp3":"Cómo cortar un MP3: seleccionar, escuchar y guardar","speech":"Cómo cortar un pódcast o entrevista sin truncar palabras","splitter":"Divisor MP3 online: dividir por duración o marcas de tiempo","edit":"Cómo editar MP3: recortar, dividir, escuchar y guardar","reverser":"Invertir audio online"}};
     // resource-copy:end
     const workspaceTranslations = {
       zh: { workbenchTitle: "音频剪切工作台", dropTitle: "把音频拖到这里", dropCopy: "支持 MP3 和 WAV，文件在你的设备上处理。", chooseAudio: "选择音频文件", replaceAudio: "更换音频", loadingAudio: "正在读取音频..." },
@@ -4735,8 +4737,12 @@
       document.querySelectorAll("[data-resource]").forEach((element) => {
         const key = element.dataset.resource;
         element.textContent = resourceTranslations[nextLang][key];
-        const routes = { ringtone: "scenes/ringtone/", podcast: "scenes/podcast/", mp3: "guides/cut-mp3/", speech: "guides/cut-podcast/", splitter: "mp3-splitter/", edit: "guides/how-to-edit-mp3/" };
+        const routes = { ringtone: "scenes/ringtone/", podcast: "scenes/podcast/", mp3: "guides/cut-mp3/", speech: "guides/cut-podcast/", splitter: "mp3-splitter/", edit: "guides/how-to-edit-mp3/", reverser: "audio-reverser/" };
         if (routes[key]) element.setAttribute("href", `/${nextLang === "zh" ? "" : `${nextLang}/`}${routes[key]}`);
+      });
+      document.querySelectorAll("[data-reverser-nav]").forEach(element => {
+        element.textContent = { zh: "音频倒放", en: "Audio Reverser", ja: "音声逆再生", ko: "오디오 역재생", fr: "Inverser l’audio", de: "Audio umkehren", es: "Invertir audio" }[nextLang];
+        element.href = `/${nextLang === "zh" ? "" : `${nextLang}/`}audio-reverser/`;
       });
 
       const htmlKeys = ["heroTitle"];
@@ -5011,6 +5017,7 @@
     syncInputs();
     syncSeekControl();
   </script>
+
 
 
 

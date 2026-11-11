@@ -50,3 +50,20 @@ modes use native radios, numeric/time inputs and accessible audio controls; no f
 waveform. Actual output parts have preview/download actions and a lazy ZIP action.
 Lucide icon nodes come from the installed library, with its license included.
 Preserve the cutter's layout and event IDs. The splitter has its own prefixed events.
+
+Audio reverser (2026-11-11): independent seven-locale `/audio-reverser/` pages.
+Follow the approved desktop/mobile mockup: compact lavender headphones intro,
+full-width waveform selection, whole/selection segmented native radios, explicit
+time fields, original/reversed comparison and WAV export. Original audio is teal;
+reversed audio is violet. Show real PCM peaks only after selection of a file.
+Before a file is selected, show a working drop area, not fabricated audio.
+At narrow widths stack commands and export; give waveform handles 44px hit targets.
+Use an explicit theme toggle and translated controls. The 2026-11-11 revision
+matches the cutter: 220px waveform (200px mobile), slim labeled seek slider,
+circular source play/reset controls, grouped time/filename inputs and vertically
+aligned preview command. The final WAV download belongs below both comparison
+previews, right-aligned on desktop and full-width on mobile. Native audio is the hidden playback engine;
+custom controls have translated names, keyboard seeking and a visible playhead.
+Download stays disabled until an actual result exists. Changing selection
+invalidates old previews and downloads. Preview and download share the same WAV.
+The source file never changes. Keep original cutter/splitter IDs and event names.

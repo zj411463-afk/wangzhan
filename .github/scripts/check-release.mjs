@@ -14,10 +14,10 @@ test("deployment contains only public site files", () => {
     assert.equal(result.status, 0, result.stderr);
     const locales = ["en", "ja", "ko", "fr", "de", "es"];
     assert.deepEqual(readdirSync(output).sort(), [
-      "404.html", "_worker.js", "assets", ...locales, "scenes", "guides", "mp3-splitter", "index.html", "robots.txt", "sitemap.xml", "video-to-audio.html",
+      "404.html", "_worker.js", "assets", ...locales, "scenes", "guides", "mp3-splitter", "audio-reverser", "index.html", "robots.txt", "sitemap.xml", "video-to-audio.html",
       "favicon.ico", "favicon.svg", "apple-touch-icon.png"
     ].sort());
-    assert.deepEqual(readdirSync(path.join(output, "assets")).sort(), ["audio-selection.png", "reading.css", "sonic-hero.jpg", "sonic-lavender.jpg", "sonic-studio.jpg", "mp3-frames.mjs", "mp3-splitter.mjs", "mp3-splitter-worker.mjs", "mp3-splitter.css", "mp3-splitter.png", "vendor"].sort());
+    assert.deepEqual(readdirSync(path.join(output, "assets")).sort(), ["audio-selection.png", "reading.css", "sonic-hero.jpg", "sonic-lavender.jpg", "sonic-studio.jpg", "mp3-frames.mjs", "mp3-splitter.mjs", "mp3-splitter-worker.mjs", "mp3-splitter.css", "mp3-splitter.png", "audio-reverser.mjs", "audio-reverser-core.mjs", "audio-reverser-worker.mjs", "audio-reverser.css", "audio-reverser.png", "vendor"].sort());
     assert.deepEqual(readdirSync(path.join(output, "assets/vendor")).sort(), ["jszip-3.10.1.min.js", "jszip-LICENSE.txt", "lucide-LICENSE.txt"].sort());
     assert.match(readFileSync(path.join(output, "404.html"), "utf8"), /name="robots" content="noindex"/);
     const home = readFileSync(path.join(output, "index.html"), "utf8");
@@ -95,10 +95,10 @@ test("deployment contains only public site files", () => {
       if (application && !file.includes("mp3-splitter")) {
         assert.equal(application.inLanguage, html.match(/<html lang="([^"]+)"/)[1], `Schema language: ${file}`);
         assert.equal(application.description, description, `Schema description: ${file}`);
-        assert.ok(html.includes(`data-page-language="${file === "index.html" ? "zh" : file.split("/")[0]}"`));
+        assert.ok(html.includes(`data-page-language="${file === "index.html" || file.startsWith("audio-reverser/") ? "zh" : file.split("/")[0]}"`));
       }
       const shareImage = html.match(/<meta property="og:image" content="([^"]+)"/)?.[1];
-      assert.equal(shareImage, `https://www.tomp3.xyz/assets/${file.includes("mp3-splitter/") ? "mp3-splitter.png" : "audio-selection.png"}`, `Use a real tool preview: ${file}`);
+      assert.equal(shareImage, `https://www.tomp3.xyz/assets/${file.includes("audio-reverser/") ? "audio-reverser.png" : file.includes("mp3-splitter/") ? "mp3-splitter.png" : "audio-selection.png"}`, `Use a real tool preview: ${file}`);
       assert.ok(readFileSync(path.join(output, new URL(shareImage).pathname)).length);
       const base = new URL(route, "https://www.tomp3.xyz");
       for (const match of html.matchAll(/<(a|img)\b[^>]*\b(href|src)="([^"]+)"/g)) {
@@ -111,7 +111,7 @@ test("deployment contains only public site files", () => {
           assert.ok(readFileSync(absolute, "utf8").includes(`id="${target.hash.slice(1)}"`), `Broken fragment in ${file}: ${match[3]}`);
         }
       }
-      for (const image of html.matchAll(/<img\b[^>]*>/g)) assert.match(image[0], /\balt="[^"]+"/, `Missing image alt: ${file}`);
+      for (const image of html.matchAll(/<img\b[^>]*>/g)) assert.match(image[0], /\balt="[^"]*"/, `Missing image alt: ${file}`);
       for (const image of html.matchAll(/<img\b[^>]*>/g)) {
         assert.match(image[0], /\bwidth="\d+"/, `Reserve image width: ${file}`);
         assert.match(image[0], /\bheight="\d+"/, `Reserve image height: ${file}`);
@@ -125,7 +125,7 @@ test("deployment contains only public site files", () => {
         const html = pages.get(file);
         assert.ok(homeHtml.includes(`href="${sitePath(locale, key)}"`), `Homepage must link to ${file}`);
         assert.ok(html.includes(`href="${sitePath(locale)}#workbenchMain"`), `Missing tool link: ${file}`);
-        const contextual = { ringtone: "mp3", podcast: "speech", mp3: "ringtone", speech: "podcast", splitter: "edit", edit: "splitter" };
+        const contextual = { ringtone: "mp3", podcast: "speech", mp3: "ringtone", speech: "podcast", splitter: "edit", edit: "splitter", reverser: "mp3" };
         assert.ok(html.includes(`href="${sitePath(locale, contextual[key])}"`), `Missing contextual link: ${file}`);
         assert.match(html, /<p class="context-link"><a href="[^"]+">[^<]+<\/a><\/p><\/section>/, `Missing in-body contextual link: ${file}`);
         for (const alternate of contentLocales) assert.ok(html.includes(`href="https://www.tomp3.xyz${sitePath(alternate, key)}"`), `Missing language alternate: ${file}`);

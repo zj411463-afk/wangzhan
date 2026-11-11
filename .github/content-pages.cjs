@@ -9,7 +9,7 @@ const mobileTips = {
   de: ["Datei auf dem Telefon auswählen und speichern", "Wähle im Dateidialog ein MP3 statt eines geschützten Downloads aus einer Musik-App. Lassen sich die Griffe schwer bewegen, nutze die Eingaben für Start und Ende. Höre die Auswahl an, speichere und prüfe die Browser-Downloads oder die Dateien-App. Ob ein Speicherdialog erscheint, hängt vom Browser ab."],
   es: ["Elegir y guardar un archivo en el móvil", "Elige un MP3 en el selector de archivos, no una descarga protegida de una aplicación de música. Si cuesta mover los controles, ajusta el inicio y el final en los campos de tiempo. Escucha, guarda y consulta las descargas del navegador o la aplicación Archivos. El diálogo de guardado depende del navegador."]
 };
-const routes = { ringtone: "scenes/ringtone/", podcast: "scenes/podcast/", mp3: "guides/cut-mp3/", speech: "guides/cut-podcast/", splitter: "mp3-splitter/", edit: "guides/how-to-edit-mp3/" };
+const routes = { ringtone: "scenes/ringtone/", podcast: "scenes/podcast/", mp3: "guides/cut-mp3/", speech: "guides/cut-podcast/", splitter: "mp3-splitter/", edit: "guides/how-to-edit-mp3/", reverser: "audio-reverser/" };
 const sitePath = (locale, key) => `/${locale === "zh" ? "" : `${locale}/`}${key ? routes[key] : ""}`;
 const content = {
   zh: {
@@ -212,10 +212,12 @@ const content = {
   }
 };
 const { data: splitterCopy } = require("./splitter-pages.cjs");
+const { data: reverserCopy } = require("./reverser-pages.cjs");
 for (const locale of locales) {
   const copy = splitterCopy[locale];
   content[locale].pages.splitter = { title: copy.title, description: copy.description, intro: copy.intro, sections: copy.sections };
   content[locale].pages.edit = { title: copy.editTitle, description: copy.editDescription, intro: copy.editIntro, steps: copy.steps, sections: copy.editSections };
+  content[locale].pages.reverser = reverserCopy[locale];
 }
 const contentFiles = locales.flatMap((locale) => Object.keys(routes).map((key) => `${sitePath(locale, key).slice(1)}index.html`));
 module.exports = { locales, languageNames, routes, sitePath, content, contentFiles, mobileTips };

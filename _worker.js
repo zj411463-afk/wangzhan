@@ -45,7 +45,8 @@ export default {
       }
 
       const events = new Set(["page_open", "file_ready", "preview_started", "download_started",
-        "splitter_page_open", "splitter_file_ready", "splitter_preview_started", "splitter_download_started"]);
+        "splitter_page_open", "splitter_file_ready", "splitter_preview_started", "splitter_download_started",
+        "reverser_page_open", "reverser_file_ready", "reverser_preview_started", "reverser_download_started"]);
       if (!payload || !events.has(payload.event) || Object.keys(payload).length !== 1) {
         return new Response(null, { status: 400 });
       }

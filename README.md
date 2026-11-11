@@ -11,6 +11,16 @@ MP3s or one ZIP. Frame scanning runs in a local Worker; the ZIP library loads on
 when requested. MP3 decoder dependencies can affect segment openings; inspect the
 actual parts. It does not promise sample-accurate or gapless editing.
 
+## Audio reverser
+
+[Audio Reverser](https://www.tomp3.xyz/en/audio-reverser/) is also available in
+[Chinese](https://www.tomp3.xyz/audio-reverser/) and five other languages.
+The new page reverses whole audio or an extracted selection, compares the original
+and reversed clip, and exports 16-bit PCM WAV. It uses native browser decoding and
+a local Worker, not an upload server or FFmpeg WASM. Limits: 40 MiB, five minutes,
+mono/stereo. Decoding may resample; 16-bit export quantizes samples and is not a
+bit-exact copy of the source.
+
 ## Languages
 
 [中文](https://www.tomp3.xyz/) ·
@@ -50,6 +60,7 @@ node .github/scripts/render-locales.cjs
 node .github/scripts/check-audio-only.js
 node --test .github/scripts/check-funnel.mjs .github/scripts/check-release.mjs
 node --test .github/scripts/check-mp3-splitter.mjs
+node --test .github/scripts/check-audio-reverser.mjs
 node .github/scripts/build-pages.js
 ```
 
@@ -62,3 +73,9 @@ Run `check-splitter-ui.cjs` with Playwright, Chromium and FFmpeg for real CBR/VB
 fixtures, ZIP/byte checks, responsive layouts and isolated analytics. It refreshes
 the English splitter screenshot; regenerate content afterward. The local browser
 module/Worker tool needs HTTP(S), not file://.
+
+`check-reverser-ui.cjs` uses Playwright, Chromium and FFmpeg to check seven
+languages, responsive light/dark layouts, asymmetric stereo reversal, WAV and MP3
+input, cancellation, invalid input and isolated events. It refreshes the English
+reverser screenshot. Browser emulation is not a substitute for an iPhone/Android
+device test.

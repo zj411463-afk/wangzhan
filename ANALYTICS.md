@@ -25,6 +25,14 @@ names are unchanged; filter by the exact original names to retain that funnel.
 The endpoint still accepts only one event-name field, no filenames or other data.
 HTTP fixture tests send no production events.
 
+The audio reverser has an independent fixed namespace: `reverser_page_open`,
+`reverser_file_ready`, `reverser_preview_started`, `reverser_download_started`.
+File-ready follows successful browser decoding. Preview counts playback of the
+generated reversed WAV, not the original comparison or a build-button click.
+Downloads count the trigger, not verified disk writes. Events are deduplicated
+once per page load and contain only the event name. Localhost tests send no
+events; the browser fixture intercepts production host requests locally.
+
 Before the first deployment, enable Analytics Engine for the Cloudflare account
 in Workers & Pages > Analytics Engine. The Pages deployment will fail with
 `You need to enable Analytics Engine` until this account-level switch is on.

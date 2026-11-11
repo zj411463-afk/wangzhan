@@ -126,3 +126,22 @@ available but clearly discloses bit-reservoir dependencies and non-gapless bound
 CBR/VBR fixture tests check copied bytes, ZIP, playback and FFmpeg decoding; they
 do not prove artifact-free boundaries for all MP3 encoders. JSZip 3.10.1 is vendored
 with its license, loaded only for ZIP, using STORE rather than recompression.
+
+## Audio reverser (2026-11-11)
+
+Seven independent localized `/audio-reverser/` pages target audio reversal, not
+conversion or cutting. They have static translated content and controls, self
+canonicals, reciprocal hreflang, WebApplication/BreadcrumbList schema, existing
+favicon links and a real tool screenshot. The shared generator now emits 56
+sitemap URLs. Homepage navigation/resources and related splitter/editing pages
+link to the reverser; it links back to the cutter, splitter and MP3 guide.
+
+Regenerate via `render-content.cjs` then `render-locales.cjs` after homepage
+navigation changes. `check-reverser-ui.cjs` refreshes the actual screenshot;
+`check-release.mjs` and `check-content-live.mjs` cover the new routes/assets.
+No indexing, keyword difficulty or search-traffic claims follow from passing tests.
+The English page targets `audio reverser` with natural `reverse audio` and
+`play audio backwards` wording. Each locale has a descriptive search title and
+three visible translated questions about selection, phones and WAV output, mirrored
+in FAQ schema. This is not a promise of FAQ rich results, AI citations or rankings.
+Primary references: Google Search Central title-link and localized-versions docs.
